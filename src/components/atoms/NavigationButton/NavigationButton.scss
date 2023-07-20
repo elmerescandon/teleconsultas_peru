@@ -1,0 +1,17 @@
+
+.navigation-button{
+    text-align: center;
+    font-size: 1rem;
+
+}
+
+.navigation-button:hover{
+    background-color: var(--palette-sky-blue);
+    color: #000;
+    transition: 0.1s;
+    cursor: pointer;
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.05rem;
+    border-bottom: var(--palette-black) 5px solid;
+}

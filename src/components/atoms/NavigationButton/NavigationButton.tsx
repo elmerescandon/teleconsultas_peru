@@ -1,3 +1,4 @@
+import "./NavigationButton.scss";
 import Link from "next/link";
 
 type NavigationButtonProps = {
@@ -7,11 +8,10 @@ type NavigationButtonProps = {
 
 const NavigationButton = ({ to, children }: NavigationButtonProps) => {
   return (
-    <Link
-      href={to}
-      className="text-gray-600 hover:text-gray-900 flex items-center transition-colors duration-300"
-    >
-      {children}
+    <Link href={to}>
+      <div className="navigation-button m-0 text-black-100 hover:text-blue-900 flex items-center justify-center  transition-colors duration-300 h-24 w-28 px-2 ">
+        {children}
+      </div>
     </Link>
   );
 };
