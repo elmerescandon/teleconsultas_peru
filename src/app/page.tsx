@@ -1,4 +1,5 @@
 import Header from "@/components/organisms/Header/Header";
+import AspectsInformation from "@/components/templates/AspectsInformation/AspectsInformation";
 import MainUserInformation from "@/components/templates/MainUserInformation/MainserInformation";
 import SecondaryUserInformation from "@/components/templates/SecondaryUserInformation/SecondaryUserInformation";
 
@@ -16,6 +17,7 @@ const Home = () => {
         title="Your Health, Your Time, Your Way"
         info={infoHome}
       />
+      <AspectsInformation />
     </main>
   );
 };
