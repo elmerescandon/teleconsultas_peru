@@ -4,7 +4,7 @@ import NavigationBar from "@/components/molecules/NavigationBar/NavigationBar";
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center">
+    <header className="flex justify-between items-center px-10">
       <Logo />
       <NavigationBar />
       {/* <SearchBar/> */}
