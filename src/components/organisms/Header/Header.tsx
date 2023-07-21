@@ -5,9 +5,9 @@ import NavigationBar from "@/components/molecules/NavigationBar/NavigationBar";
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center px-10">
+    <header className="flex justify-between items-center px-10 flex-wrap">
       <Logo />
-      <div className="flex gap-8 items-center">
+      <div className="flex gap-8 items-center flex-wrap">
         <NavigationBar />
         <LoginBar />
       </div>

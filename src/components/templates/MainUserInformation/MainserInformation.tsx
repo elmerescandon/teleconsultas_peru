@@ -10,13 +10,15 @@ type MainUserInformationProps = {
 
 const MainUserInformation = ({ title, subtitle }: MainUserInformationProps) => {
   return (
-    <div className="main_information flex justify-around flex-col items-center sm:flex-row py-10">
+    <div className="main_information flex justify-center flex-col items-center sm:flex-row py-10">
       <div className="flex flex-col justify-center items-center sm:items-start px-10 gap-5">
         <div className="font-bold text-5xl max-w-md">{title}</div>
         <div className="text-xl max-w-md">{subtitle}</div>
         <Button content="More information" />
       </div>
-      <LandingImage />
+      <div className="hidden sm:block">
+        <LandingImage />
+      </div>
     </div>
   );
 };

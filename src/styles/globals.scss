@@ -31,3 +31,22 @@ li {
   margin: 0;
   padding: 0;
 }
+
+
+.aspects-doctors {
+  .big-aspects-information{
+    background-color: rgb(165, 180,252);
+    .aspects-information{
+    background-color: rgb(165, 180,252);
+    }
+  }
+}
+
+.aspects-patients {
+  .big-aspects-information{
+    background-color: rgb(252, 165, 165);
+    .aspects-information{
+    background-color: rgb(252, 165, 165);
+    }
+  }
+}
