@@ -42,20 +42,20 @@ const Patients = () => {
   return (
     <main>
       <Header />
-      <div className="patients">
+      <div className="patients pt-8">
         <div className="flex justify-center items-center">
-          <div className="flex flex-col container gap-8 pl-10">
+          <div className="flex flex-col container gap-8 pl-10 items-center sm:items-start pb-5 sm:pb-0 pr-10 sm:pr-10">
             <div className="text-red-400 font-semibold text-2xl">Patients</div>
-            <div className="patients__title font-bold text-6xl">
+            <div className="patients__title font-bold text-6xl text-center sm:text-left">
               Elevate Your Healthcare Experience with MediConnect
             </div>
-            <div className="patients__subtitle font-normal text-3xl">
+            <div className="patients__subtitle font-normal text-3xl text-center sm:text-left">
               Quality Medical Consultations from the Comfort of Your Home
             </div>
             <Button content="More information" />
           </div>
 
-          <div className="px-32">
+          <div className="px-32 hidden sm:block">
             <Image
               src="/human_3.svg"
               alt="doctors-patient"
