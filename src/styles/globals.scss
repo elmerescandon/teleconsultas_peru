@@ -5,17 +5,21 @@
 
 @layer base{
   :root {
-    --palette-sky-blue-sea: #000080;
+    --palette-blue-deep: #46A1B9;
     --palette-sky-blue: #e2f0f9;
+    --palette-delicate-green: #E8F3F1;
     --palette-soft-green: #8FC9B8;
     --palette-gray: #F0F0F0;
     --palette-white: #FFFFFF;
     --palette-black: #000000;
-  }
+    --palette-coral-orange: #FF6F61;  }
 }
 
 
 body {
   color: rgb(var(--palette-white));
+}
+
+.home{
   padding: 0 1%;
 }
