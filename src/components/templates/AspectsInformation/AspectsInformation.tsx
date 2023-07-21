@@ -1,9 +1,9 @@
-import { AspectInformation } from "@/utils/interfaces/AspectInformation";
+import { IAspectInformation } from "@/utils/interfaces/IAspectInformation";
 import "./AspectsInformation.scss";
 import CardInformation from "@/components/molecules/CardInformation/CardInformation";
 
 type AspectsInformationProps = {
-  aspects: AspectInformation[];
+  aspects: IAspectInformation[];
 };
 
 const AspectsInformation = ({ aspects }: AspectsInformationProps) => {
