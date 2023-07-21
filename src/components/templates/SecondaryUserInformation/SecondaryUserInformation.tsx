@@ -12,7 +12,7 @@ const SecondaryUserInformation = ({
 }: SecondaryUserInformationProps) => {
   return (
     <div className="big-secondary-info bg-sky-blue">
-      <div className="secondary-info flex flex-col sm:flex-row justify-center items-center gap-5 px-10 bg-sky-blue">
+      <div className="secondary-info flex flex-col sm:flex-row justify-center items-center gap-5 px-10 bg-sky-blue py-10">
         <div>
           <LandingImage2 />
         </div>
