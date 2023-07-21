@@ -1,13 +1,12 @@
-import NavigationButton from '@/components/atoms/NavigationButton/NavigationButton';
-import React from 'react';
-
+import NavigationButton from "@/components/atoms/NavigationButton/NavigationButton";
+import React from "react";
 
 const NavigationBar = () => {
   return (
     <nav className="h-full justify-center flex w ">
-      <NavigationButton to="/about">Pacientes</NavigationButton>
-      <NavigationButton to="/services">Profesionales</NavigationButton>
-      <NavigationButton to="/contact">Especialistas</NavigationButton>
+      <NavigationButton to="/patients">Patients</NavigationButton>
+      <NavigationButton to="/doctors">Doctors</NavigationButton>
+      <NavigationButton to="/specialists">Specialists</NavigationButton>
     </nav>
   );
 };
