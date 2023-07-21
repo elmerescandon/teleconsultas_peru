@@ -1,0 +1,10 @@
+.simple-button{
+    background-color: var(--palette-black);
+    color: white;
+}
+
+.simple-button:hover{
+    background-color: var(--palette-white);
+    color: black;
+    border: 1px solid var(--palette-black);
+}
