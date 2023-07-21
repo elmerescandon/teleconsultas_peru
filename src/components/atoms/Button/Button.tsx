@@ -27,7 +27,7 @@ const Button = ({ content }: ButtonProps) => {
 
   return (
     <button
-      className="font-bold py-4 px-8 rounded-md h-12 flex items-center justify-center"
+      className=" simple-button font-bold py-4 px-8 rounded-md h-12  flex items-center justify-center"
       style={buttonStyles}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
