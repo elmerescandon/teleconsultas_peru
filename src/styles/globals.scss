@@ -2,14 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --palette-sky-blue-sea: #000080;
-  --palette-sky-blue: #e2f0f9;
-  --palette-soft-green: #8FC9B8;
-  --palette-gray: #F0F0F0;
-  --palette-white: #FFFFFF;
-  --palette-black: #000000;
+
+@layer base{
+  :root {
+    --palette-sky-blue-sea: #000080;
+    --palette-sky-blue: #e2f0f9;
+    --palette-soft-green: #8FC9B8;
+    --palette-gray: #F0F0F0;
+    --palette-white: #FFFFFF;
+    --palette-black: #000000;
+  }
 }
+
 
 body {
   color: rgb(var(--palette-white));
