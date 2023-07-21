@@ -1,3 +1,4 @@
+import Button from "@/components/atoms/Button/Button";
 import "./MainUserInformation.scss";
 import LandingImage from "@/components/atoms/Images/LandingImage/LandingImage";
 import Image from "next/image";
@@ -13,6 +14,7 @@ const MainUserInformation = ({ title, subtitle }: MainUserInformationProps) => {
       <div className="flex flex-col justify-center items-center sm:items-start px-10 gap-5">
         <div className="font-bold text-5xl max-w-md">{title}</div>
         <div className="text-xl max-w-md">{subtitle}</div>
+        <Button content="More information" />
       </div>
       <LandingImage />
     </div>
