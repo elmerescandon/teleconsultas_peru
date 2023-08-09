@@ -1,3 +1,4 @@
+import Footer from "@/components/Organisms/Footer/Footer";
 import "../styles/globals.scss";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -67,6 +68,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${lato.className} page-body`}>{children}</body>
+      <Footer />
     </html>
   );
 }
