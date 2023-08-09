@@ -5,30 +5,53 @@
 
 @layer base{
   :root {
-    --palette-blue-deep: #46A1B9;
-    --palette-sky-blue: #e2f0f9;
-    --palette-delicate-green: #E8F3F1;
-    --palette-soft-green: #8FC9B8;
-    --palette-gray: #F0F0F0;
-    --palette-white: #FFFFFF;
-    --palette-black: #000000;
-    --palette-coral-orange: #FF6F61;  }
+    --column-width: 72px;
+    --gutter-width: 28px;
+
+
+    --basic-white: #ffffff;
+    --basic-black: #000000;
+    --neutral-50: #F8FAFC;
+    --neutral-100: #F1F5F9;
+    --neutral-200: #E2E8F0;
+    --neutral-300: #CBD5E1;
+    --neutral-400: #94A3B8;
+    --neutral-500: #64748B;
+    --neutral-600: #475569;
+    --neutral-700: #334155;
+    --neutral-800: #1E293B;
+    --neutral-900: #0F172A;
+
+    --brand-50: #C8D7FA;
+    --brand-100: #AABFF2;
+    --brand-200: #8DA9EB;
+    --brand-300: #7194E3;
+    --brand-400: #587FDB; 
+    --brand-500: #3F6ED4;
+    --brand-600: #295ACC;
+    --brand-700: #1449C4;
+    --brand-800: #0039BD;
+    --brand-900: #0036B2;
+
+    --teal-600: #0D9488;
+    --teal-400: #2DD4BF;
+    --teal-50: #F0FDFA;
+    --amber-600: #D97706;
+    --amber-400: #F59E0B;
+    --amber-50: #FEF3C7;
+    --rose-600: #E11D48;
+    --rose-400: #FB7185;
+    --rose-50: #FFF1F2;
+
+  }
 }
 
 
 body {
-  color: rgb(var(--palette-white));
+  color: rgb(var(--basic-white));
 }
 
-.home{
-  padding: 0 1%;
-}
-
-// Resets
-
-li {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.page-content{
+  padding: 0 7%;
 }
 
