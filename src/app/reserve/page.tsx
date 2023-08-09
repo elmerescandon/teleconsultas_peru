@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Reserve = () => {
-  return (
-    <div>Reserve</div>
-  )
-}
+  return <div>Reserve</div>;
+};
 
-export default Reserve
+export default Reserve;

@@ -1,9 +1,0 @@
-.card-information{
-    background-color: var(--palette-white);
-}
-
-.card-information:hover{
-    // make the container grow a little bit with a smooth transition
-    transform: scale(1.05);
-    transition: transform .2s;
-}
