@@ -24,6 +24,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@heroicons/react": "^2.0.18",
     "framer-motion": "^10.13.0",
     "sass": "^1.64.0",
     "scss": "^0.2.4"
