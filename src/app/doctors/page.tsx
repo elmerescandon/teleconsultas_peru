@@ -17,7 +17,7 @@ const Doctors = () => {
                         "Llega y atiende a pacientes más allá de tu consultorio a través de tus consultas en línea"
                     }
                     linkRef={Routes.RESERVE}
-                    linkName={"¡Reserva tu cita ya!"}
+                    linkName={"¡Regístrate ya!"}
                 />
                 <DoctorsCardSection />
                 <DoctorPersonsSection />
