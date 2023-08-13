@@ -19,7 +19,6 @@ const Home = () => {
                 linkRef={Routes.RESERVE}
                 linkName={"¡Reserva tu cita ya!"}
             />
-            {/* <CardSection /> */}
         </main>
     );
 };
