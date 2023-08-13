@@ -4,15 +4,15 @@ import NavigationBar from "@/components/Molecules/NavigationBar/NavigationBar";
 import React from "react";
 
 const Header = () => {
-  return (
-    <div className="header flex flex-row justify-between items-center py-12">
-      <LinkLogo />
-      <div className="header-bar flex gap-28">
-        <NavigationBar />
-        <LoginBar />
-      </div>
-    </div>
-  );
+    return (
+        <div className="flex flex-row justify-between items-center py-12">
+            <LinkLogo />
+            <div className="header-bar flex gap-28">
+                <NavigationBar />
+                <LoginBar />
+            </div>
+        </div>
+    );
 };
 
 export default Header;
