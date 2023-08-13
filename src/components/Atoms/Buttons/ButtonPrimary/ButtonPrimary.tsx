@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 type ButtonPrimaryProps = {
@@ -7,12 +8,14 @@ type ButtonPrimaryProps = {
 
 const ButtonPrimary = ({ children, onClickFn }: ButtonPrimaryProps) => {
     return (
-        <button
-            className="text-basic-white bg-brand-600 rounded-lg p-2 text-sm font-normal"
-            onChange={onClickFn}
-        >
-            {children}
-        </button>
+        <div>
+            <button
+                className="text-basic-white bg-brand-600 rounded-lg text-md font-normal py-4 px-10"
+                onChange={onClickFn}
+            >
+                {children}
+            </button>
+        </div>
     );
 };
 
