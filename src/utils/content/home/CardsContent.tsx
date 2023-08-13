@@ -9,19 +9,19 @@ import {
 const cardsContent: ICardContent[] = [
     {
         title: "A un click de distancia",
-        // logo: <ComputerDesktopIcon className="w-10 h-10 text-brand-900" />,
+        logo: <ComputerDesktopIcon className="w-10 h-10 text-brand-900" />,
     },
     {
         title: "Privacidad y seguridad",
-        // logo: <LockClosedIcon className="w-10 h-10 text-brand-900" />,
+        logo: <LockClosedIcon className="w-10 h-10 text-brand-900" />,
     },
     {
         title: "Reserva de citas inmediata",
-        // logo: <ClockIcon className="w-10 h-10 text-brand-900" />,
+        logo: <ClockIcon className="w-10 h-10 text-brand-900" />,
     },
     {
         title: "Consultas por videollamada",
-        // logo: <VideoCameraIcon className="w-10 h-10 text-brand-900" />,
+        logo: <VideoCameraIcon className="w-10 h-10 text-brand-900" />,
     },
 ];
 
