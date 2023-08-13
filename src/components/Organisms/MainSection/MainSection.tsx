@@ -16,11 +16,11 @@ const MainSection = ({
     linkName,
 }: MainSectionProps) => {
     return (
-        <div className="flex flex-col items-center px-56 py-32">
+        <div className="flex flex-col items-center px-56 py-20">
             <div className="flex flex-col gap-4">
                 <h1 className="text-5xl font-semibold">{title}</h1>
                 <h5 className="text-2xl font-semibold">{subtitle}</h5>
-                <div>
+                <div className="py-5">
                     <LinkPrimary to={linkRef}>{linkName}</LinkPrimary>
                 </div>
             </div>
