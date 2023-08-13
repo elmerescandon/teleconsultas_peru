@@ -25,8 +25,8 @@ const StepsSection = () => {
                 ¡Empezar es sencillo!
             </div>
             <div className="flex justify-center gap-44">
-                {steps.map((step) => {
-                    return <CardCellPhone {...step} />;
+                {steps.map((step, index) => {
+                    return <CardCellPhone key={index} {...step} />;
                 })}
             </div>
         </div>
