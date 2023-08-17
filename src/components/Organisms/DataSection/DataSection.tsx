@@ -30,7 +30,7 @@ const DataSection = () => {
         },
     ];
     return (
-        <div className="flex py-20 pt-36 justify-center">
+        <div className="flex py-20 pt-36 justify-center max-lg:flex-col max-lg:items-center max-lg:py-5 max-lg:pb-16">
             {dataFeatures.map((dataFeature, index) => {
                 return (
                     <CircleFeature
