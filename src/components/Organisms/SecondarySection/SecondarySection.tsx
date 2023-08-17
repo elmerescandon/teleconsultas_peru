@@ -27,7 +27,7 @@ const SecondarySection = ({
         <div
             className={`flex ${
                 order === "left" ? "flex-row" : "flex-row-reverse"
-            } items-center bg-brand-50 justify-center`}
+            } items-center bg-brand-50 justify-center flex-wrap py-10`}
         >
             <InformationLanding
                 buttonInfo={buttonInfo}
