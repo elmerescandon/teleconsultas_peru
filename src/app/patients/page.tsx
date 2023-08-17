@@ -11,8 +11,8 @@ import Routes from "@/utils/routes/Routes";
 const Patients = () => {
     return (
         <main>
+            <Header />
             <div className="page-body">
-                <Header />
                 <MainSection
                     title={"Mejora tu Experiencia de Salud con MediConnect"}
                     subtitle={

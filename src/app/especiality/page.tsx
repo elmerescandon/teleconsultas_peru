@@ -9,8 +9,8 @@ import React from "react";
 const Especiality = () => {
     return (
         <main>
+            <Header />
             <div className="page-body">
-                <Header />
                 <MainSection
                     title={"Ejerce tu especialidad en línea con nosotros"}
                     subtitle={
