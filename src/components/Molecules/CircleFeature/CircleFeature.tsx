@@ -54,7 +54,8 @@ const CircleFeature = ({
 
     return (
         <div
-            className={`rounded-full ${selectedColor.bg} w-80 h-80 flex flex-col justify-center items-center gap-4 -mr-12 ${selectedColor.position} border-4 ${selectedColor.border}`}
+            className={`rounded-full ${selectedColor.bg} w-80 h-80 flex flex-col justify-center items-center 
+            gap-4 -mr-12 ${selectedColor.position} border-4 ${selectedColor.border} max-lg:m-0 max-lg:-mb-10`}
         >
             <div
                 className={`${selectedColor.titleColor} text-5xl font-semibold`}
