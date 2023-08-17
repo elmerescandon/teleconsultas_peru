@@ -4,7 +4,7 @@ import React from "react";
 
 const NavigationBar = () => {
     return (
-        <div className="navigation-bar flex flex-row items-center gap-7">
+        <div className="navigation-bar flex flex-row items-center gap-7 max-xl:gap-4 ">
             <LinkSecondary to={Routes.RESERVE}>
                 {"¡Reserva tu cita!"}
             </LinkSecondary>
