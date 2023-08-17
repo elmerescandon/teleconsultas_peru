@@ -49,9 +49,18 @@
 
 body {
   color: rgb(var(--basic-white));
+  margin:0; 
 }
 
 .page-body{
   padding: 0 10%;
+
+  @media (max-width: 1536px){
+    padding: 0 3%;
+  }
+
+  @media (max-width:768px){
+    padding: 0 20px;
+  }
 }
 
