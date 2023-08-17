@@ -11,8 +11,8 @@ import Routes from "@/utils/routes/Routes";
 const Home = () => {
     return (
         <main>
+            <Header />
             <div className="page-body">
-                <Header />
                 <MainSection
                     title={
                         "Bienvenido a Aika Salud - Tu puerta a una atención de calidad"
