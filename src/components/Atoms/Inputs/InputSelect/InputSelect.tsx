@@ -12,7 +12,7 @@ const InputSelect = ({ options, selectId, placeholder }: InputSelectProps) => {
         <div>
             <select
                 id={selectId}
-                className="text-neutral-400 focus:text-classic-black border-neutral-300 border-2 rounded-md h-12 px-4 pr-10"
+                className="text-neutral-400 focus:text-classic-black border-neutral-300 border-2 rounded-md h-12 px-4 pr-10 max-xl:w-full"
                 placeholder={placeholder}
             >
                 <option disabled selected>
