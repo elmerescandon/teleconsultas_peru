@@ -1,25 +1,33 @@
-import CardPersonasSection from "@/components/Organisms/CardPersonasSection/CardPersonasSection";
+import CardPerson from "@/components/Molecules/CardPerson/CardPerson";
+import Carrousel from "@/components/Organisms/Carrousel/Carrousel";
 import React from "react";
 
 const DoctorPersonsSection = () => {
     const persons = [
-        {
-            name: "Dr. Juan Carlos",
-            label: "Oftalmólogo",
-            image: "/doctor_random.jpg",
-        },
-        {
-            name: "Dra. María Fernanda",
-            label: "Médico General",
-            image: "/doctor_random.jpg",
-        },
-        {
-            name: "Dr. Juan Felipe",
-            label: "Otorrinolaringólogo",
-            image: "/doctor_random.jpg",
-        },
+        <CardPerson
+            key={0}
+            imagePath="/doctor_random.jpg"
+            label="Oftalmólogo"
+            name="Dr. Juan Pedro"
+        />,
+        <CardPerson
+            key={1}
+            imagePath="/doctor_random.jpg"
+            label="Oftalmólogo"
+            name="Dr. Juan Carlos"
+        />,
+        <CardPerson
+            key={2}
+            imagePath="/doctor_random.jpg"
+            label="Oftalmólogo"
+            name="Dr. Juan Juanito"
+        />,
     ];
-    return <CardPersonasSection persons={persons} />;
+    return (
+        <div>
+            <Carrousel items={persons} />
+        </div>
+    );
 };
 
 export default DoctorPersonsSection;
