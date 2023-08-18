@@ -24,7 +24,7 @@ const StepsSection = () => {
             <div className="text-5xl pb-12 font-semibold px-48 max-xl:px-5 max-xl:text-center">
                 ¡Empezar es sencillo!
             </div>
-            <div className="flex justify-center gap-44 max-xl:gap-5">
+            <div className="flex justify-center gap-44 max-xl:flex-wrap">
                 {steps.map((step, index) => {
                     return <CardCellPhone key={index} {...step} />;
                 })}
