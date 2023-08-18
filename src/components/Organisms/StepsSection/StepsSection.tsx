@@ -21,10 +21,10 @@ const StepsSection = () => {
     ];
     return (
         <div className="py-10 bg-brand-50">
-            <div className="text-5xl pb-12 font-semibold px-48">
+            <div className="text-5xl pb-12 font-semibold px-48 max-xl:px-5 max-xl:text-center">
                 ¡Empezar es sencillo!
             </div>
-            <div className="flex justify-center gap-44">
+            <div className="flex justify-center gap-44 max-xl:gap-5">
                 {steps.map((step, index) => {
                     return <CardCellPhone key={index} {...step} />;
                 })}

@@ -39,7 +39,7 @@ const CardFeaturesSection = ({ title }: CardFeaturesSectionProps) => {
         },
     ];
     return (
-        <div className="flex flex-col py-7">
+        <div className="flex flex-col py-7 max-lg:text-center">
             <div className="text-5xl pb-16 font-semibold">{title}</div>
             <div className="flex flex-wrap gap-10 justify-center items-center">
                 {cardFeatures.map((cardFeature, index) => {

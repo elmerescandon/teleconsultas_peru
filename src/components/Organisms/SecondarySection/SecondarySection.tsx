@@ -38,7 +38,7 @@ const SecondarySection = ({
             />
 
             <Image
-                className="max-w-xl rounded-xl border-brand-600 border-2"
+                className="max-w-xl rounded-xl border-brand-600 border-2 max-lg:max-w-sm max-sm:max-w-xs"
                 src={pathImage}
                 height={sizeImage ? sizeImage : "50"}
                 width={sizeImage ? sizeImage : "50"}

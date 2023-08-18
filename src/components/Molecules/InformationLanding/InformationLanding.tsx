@@ -17,8 +17,8 @@ const InformationLanding = ({
     buttonInfo,
 }: InformationLandingProps) => {
     return (
-        <div className="flex flex-col gap-10 px-20 py-24">
-            <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-10 px-20 py-24 max-xl:items-center max-xl:text-center">
+            <div className="flex flex-col gap-5 max-xl:items-center">
                 <div className="text-lg font-semibold">{miniHeader}</div>
                 <div className="text-5xl max-w-lg font-semibold">{title}</div>
                 <div className="text-xl max-w-md text-neutral-600">
