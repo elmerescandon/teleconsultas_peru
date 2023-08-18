@@ -14,7 +14,7 @@ const InformationForm = ({ title }: InformationFormProps) => {
         <div className="flex flex-col items-center py-10">
             <div className="text-3xl font-semibold pb-5">{title}</div>
             <form className="flex flex-col gap-2">
-                <div className="flex flex-row gap-6">
+                <div className="flex flex-row gap-6 max-xl:flex-wrap">
                     <div className="flex flex-col gap-3">
                         <InputText placeholder="Nombre y Apellidos" />
                         <InputText placeholder="Correo Elecrónico" />
