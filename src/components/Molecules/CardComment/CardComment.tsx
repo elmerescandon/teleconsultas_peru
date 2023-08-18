@@ -15,7 +15,7 @@ const CardComment = ({ name, comment, imagePath }: CardCommentProps) => {
                 height="200"
                 src={imagePath}
                 alt={`${name}-alt`}
-                className="rounded-full h-36 w-36"
+                className="rounded-full h-36 w-36 max-xl:h-28 max-xl:w-28"
             />
             <div className="flex flex-col justify-center items-center gap-3">
                 <div className="text-3xl font-semibold text-center">{name}</div>
