@@ -9,16 +9,19 @@ const ReviewDoctorSection = () => {
             imagePath="/girl_smiling_v2.jpg"
             name="Dr. Jorge Pérez"
             comment="MediConnect me ayudó a mejorar mi salud en todo momento todo lugar. ¡Recomendadísimo!"
+            key={1}
         />,
         <CardComment
             imagePath="/girl_smiling_v2.jpg"
             name="Dra. Mariella Quispe"
             comment="MediConnect me ayudó a mejorar mi salud en todo momento todo lugar. ¡Recomendadísimo!"
+            key={2}
         />,
         <CardComment
             imagePath="/girl_smiling_v2.jpg"
             name="Dra. Eva Coronado"
             comment="MediConnect me ayudó a mejorar mi salud en todo momento todo lugar. ¡Recomendadísimo!"
+            key={3}
         />,
     ];
     return (

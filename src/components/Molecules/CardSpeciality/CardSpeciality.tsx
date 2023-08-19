@@ -18,8 +18,8 @@ const CardSpeciality = ({
             {icon}
             <div className="text-4xl font-semibold">Salud Mental</div>
             <div className="flex flex-col gap-3">
-                {features.map((feature) => (
-                    <LabelFeature content={feature} />
+                {features.map((feature, index) => (
+                    <LabelFeature content={feature} key={index} />
                 ))}
             </div>
             <div className="flex flex-col gap-5 py-5">
@@ -27,8 +27,8 @@ const CardSpeciality = ({
                     Nos desempeñamos en...
                 </div>
                 <div className="flex flex-wrap gap-5">
-                    {specialities.map((speciality) => (
-                        <LabelPrimary content={speciality} />
+                    {specialities.map((speciality, index) => (
+                        <LabelPrimary content={speciality} key={index} />
                     ))}
                 </div>
             </div>
