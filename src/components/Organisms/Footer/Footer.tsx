@@ -10,8 +10,8 @@ import React from "react";
 const Footer = () => {
     return (
         <div className="footer flex flex-row bg-brand-700 px-48 py-14 max-lg:px-5 max-lg:flex-col max-lg:gap-10">
-            <div className="flex flex-row justify-between gap-14">
-                <div className="footer-section footer-section__1 flex flex-col gap-2">
+            <div className="flex flex-row justify-between gap-14 flex-wrap">
+                <div className="footer-section footer-section__1 flex flex-col gap-2 flex-wrap">
                     <LinkSecondary2 to={Routes.HOME}>Inicio </LinkSecondary2>
                     <LinkSecondary2 to={Routes.ABOUT_US}>
                         Nuestra Empresa
