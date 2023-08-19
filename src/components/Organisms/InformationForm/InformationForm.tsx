@@ -28,17 +28,17 @@ const InformationForm = ({ title }: InformationFormProps) => {
                                 },
                                 {
                                     label: "Estomatologia",
-                                    value: "oftalmologia",
+                                    value: "estomatologia",
                                 },
                                 {
                                     label: "Medicina General",
-                                    value: "oftalmologia",
+                                    value: "medicina-general",
                                 },
                                 {
                                     label: "Endocrinología",
-                                    value: "oftalmologia",
+                                    value: "endocrinologia",
                                 },
-                                { label: "Cardiología", value: "oftalmologia" },
+                                { label: "Cardiología", value: "cardiologia" },
                             ]}
                         />
                     </div>
