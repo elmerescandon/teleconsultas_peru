@@ -1,4 +1,3 @@
-import "./LoginOptions.scss";
 import GoogleColoredIcon from "@/components/Atoms/Icons/GoogleColoredIcon";
 import React from "react";
 import AppleColoredIcon from "@/components/Atoms/Icons/AppleColoredIcon";
