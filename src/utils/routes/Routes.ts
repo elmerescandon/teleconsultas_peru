@@ -6,6 +6,7 @@ enum Routes{
     CONTACT_US = '/contact_us',
     LOGIN = '/login',
     REGISTER = '/register',
+    REGISTER_COMPLETE = '/register/success',
     PROFILE = '/profile',
     NOT_FOUND = '/not-found',
     DOCTORS = '/doctors',
