@@ -11,8 +11,8 @@ const TagAppointment = ({ appointment, onClickFn }: TagAppointmentProps) => {
     const [popUpOpen, setPopUpOpen] = useState(false);
 
     const [dimensions, setDimensions] = useState({
-        height: window.innerHeight,
-        width: window.innerWidth,
+        height: 3000,
+        width: 3000,
     });
 
     useEffect(() => {
