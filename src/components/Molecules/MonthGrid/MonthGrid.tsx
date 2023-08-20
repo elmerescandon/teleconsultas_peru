@@ -16,7 +16,7 @@ const MonthGrid = ({
     onAppointmentClick,
 }: MonthGridProps) => {
     const daysInMonth = new Date(year, month, 0).getDate();
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const days = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sáb"];
     const monthGrid = [];
     const daysLeft =
         new Date(year, month, 1).getDay() === 0
