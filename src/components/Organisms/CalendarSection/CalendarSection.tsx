@@ -7,18 +7,18 @@ import React, { useState } from "react";
 
 const CalendarSection = () => {
     const monthToMonthName = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
     ];
     const { month, year, goToPreviousMonth, goToNextMonth } =
         useMonthYearChange(new Date().getMonth(), new Date().getFullYear());
