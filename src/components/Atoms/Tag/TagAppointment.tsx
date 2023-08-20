@@ -1,0 +1,53 @@
+import React, { useEffect, useState } from "react";
+import IAppointment from "@/utils/Interfaces/IAppointment";
+import PopUpAppointment from "../PopUp/PopUp";
+
+type TagAppointmentProps = {
+    appointment: IAppointment;
+    onClickFn: () => void;
+};
+
+const TagAppointment = ({ appointment, onClickFn }: TagAppointmentProps) => {
+    const [popUpOpen, setPopUpOpen] = useState(false);
+
+    const [dimensions, setDimensions] = useState({
+        height: window.innerHeight,
+        width: window.innerWidth,
+    });
+
+    useEffect(() => {
+        const handleResize = () => {
+            setDimensions({
+                height: window.innerHeight,
+                width: window.innerWidth,
+            });
+        };
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    return (
+        <div>
+            <button
+                onClick={() => {
+                    setPopUpOpen(true);
+                }}
+            >
+                <div className="bg-brand-600 text-basic-white px-2 py-1 rounded text-ellipsis whitespace-nowrap overflow-hidden">
+                    {dimensions.width >= 1024 ? appointment.specialty : "..."}
+                </div>
+            </button>
+
+            {popUpOpen && (
+                <PopUpAppointment
+                    onClose={() => setPopUpOpen(false)}
+                    appointment={appointment}
+                />
+            )}
+        </div>
+    );
+};
+
+export default TagAppointment;
