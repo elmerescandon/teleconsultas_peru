@@ -12,12 +12,10 @@ const InputSelect = ({ options, selectId, placeholder }: InputSelectProps) => {
         <div>
             <select
                 id={selectId}
-                className="text-neutral-400 focus:text-classic-black border-neutral-300 border-2 rounded-md h-12 px-4 pr-10 max-xl:w-full"
+                className="text-neutral-400 focus:text-classic-black border-neutral-300 border-2 rounded-md h-12 px-4 pr-10 max-xl:w-full w-full"
                 placeholder={placeholder}
             >
-                <option disabled defaultValue={""}>
-                    Escoge tu especialidad
-                </option>
+                <option defaultValue={""}>{placeholder}</option>
                 {options.map((option) => {
                     return (
                         <option key={option.value} value={option.value}>
