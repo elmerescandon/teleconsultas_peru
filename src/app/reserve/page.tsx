@@ -1,13 +1,38 @@
+import React, { createContext } from "react";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
 import ReserveAppointmentSection from "@/components/Templates/ReserveAppointmentSection/ReserveAppointmentSection";
-import React from "react";
+
+export const AppointmentContext = createContext({
+    appointmentInfo: {
+        specialityId: "",
+        doctorId: "",
+        reason: "",
+        symptoms: "",
+        details: "",
+        date: null,
+        hour: null,
+    },
+    setAppointmentInfo: () => {},
+});
+
+const initialAppointmentInfo = {
+    specialityId: "",
+    doctorId: "",
+    reason: "",
+    symptoms: "",
+    details: "",
+    date: null,
+    hour: null,
+};
 
 const page = () => {
     return (
         <div>
             <Header />
-            <ReserveAppointmentSection />
+            <AppointmentContext.Provider value={{initialAppointmentInfo}>
+                <ReserveAppointmentSection />
+            </AppointmentContext.Provider>
             <Footer />
         </div>
     );
