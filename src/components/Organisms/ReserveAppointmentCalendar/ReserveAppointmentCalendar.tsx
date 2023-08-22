@@ -1,7 +1,20 @@
-import React from "react";
+"use client";
+import { DateCalendar } from "@mui/x-date-pickers";
+import React, { useState } from "react";
 
 const ReserveAppointmentCalendar = () => {
-    return <div>ReserveAppointmentCalendar</div>;
+    const [value, setValue] = useState(null);
+    return (
+        <div className="w-1/3 px-5">
+            <div className="text-xl font-semibold py-4">
+                Calendario Disponible
+            </div>
+            <DateCalendar
+                value={value}
+                onChange={(newValue) => setValue(newValue)}
+            />
+        </div>
+    );
 };
 
 export default ReserveAppointmentCalendar;
