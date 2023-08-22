@@ -27,7 +27,9 @@ const InputSelect = ({
                 placeholder={placeholder}
                 onChange={handleChange}
             >
-                <option defaultValue={""}>{placeholder}</option>
+                <option defaultValue={""} value="">
+                    {placeholder}
+                </option>
                 {options.map((option, index) => {
                     return (
                         <option key={index} value={option.value}>

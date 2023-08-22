@@ -4,9 +4,21 @@ type InputTextAreaProps = {
     rows: number;
     cols: number;
     placeholder: string;
+    message: string;
+    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
-const InputTextArea = ({ rows, cols, placeholder }: InputTextAreaProps) => {
+const InputTextArea = ({
+    rows,
+    cols,
+    placeholder,
+    message,
+    onChange,
+}: InputTextAreaProps) => {
+    const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        onChange(e);
+    };
+
     return (
         <div className="flex">
             <textarea
@@ -14,6 +26,8 @@ const InputTextArea = ({ rows, cols, placeholder }: InputTextAreaProps) => {
                 rows={rows}
                 cols={cols}
                 placeholder={placeholder}
+                value={message}
+                onChange={handleMessageChange}
             />
         </div>
     );
