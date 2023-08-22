@@ -15,8 +15,11 @@ const ReserveAppointmentHours = ({
                 Horarios Disponibles
             </div>
             <div className="flex flex-wrap gap-5 justify-around">
-                {availableAppointments.map((appointment) => (
-                    <SlotAppointment availableAppointment={appointment} />
+                {availableAppointments.map((appointment, index) => (
+                    <SlotAppointment
+                        key={index}
+                        availableAppointment={appointment}
+                    />
                 ))}
             </div>
         </div>
