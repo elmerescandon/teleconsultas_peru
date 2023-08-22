@@ -4,6 +4,10 @@ import InputTextArea from "@/components/Atoms/Inputs/InputTextArea/InputTextArea
 import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
 import {
+    useAppointment,
+    useAppointmentDispatch,
+} from "@/utils/context/AppointmentContext/AppointmentContext";
+import {
     getSpecialitiesOptions,
     getDoctorsOptions,
 } from "@/utils/functions/utils";
@@ -13,41 +17,19 @@ import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import symptomsMockup from "@/utils/mockups/symptomsMockup";
 import React, { useEffect, useState } from "react";
 
-type ReserveAppointmentFormsProps = {
-    info: {
-        specialityId: string;
-        doctorId: string;
-        reason: string;
-        symptoms: string;
-        details: string;
-    };
-    setInfo: React.Dispatch<
-        React.SetStateAction<{
-            specialityId: string;
-            doctorId: string;
-            reason: string;
-            symptoms: string;
-            details: string;
-        }>
-    >;
-};
-
-const ReserveAppointmentForms = ({
-    info,
-    setInfo,
-}: ReserveAppointmentFormsProps) => {
-    // TODO: Get Doctors from especialities
+const ReserveAppointmentForms = () => {
     // TODO: Reason and Symptoms only enable when doctor is selected
 
     const specialitiesOptions = getSpecialitiesOptions(specialitiesMockup);
 
-    const [specialityId, setSpecialityId] = useState<string>("");
-    const [doctorId, setDoctorId] = useState<string>("");
+    const dispatch = useAppointmentDispatch();
+    const appointment = useAppointment();
+    const { specialityId, doctorId, details } = appointment;
 
     const [doctorsOptions, setDoctorsOptios] = useState<IUser[]>([]);
 
     useEffect(() => {
-        if (specialityId !== "") {
+        if (appointment?.specialityId !== "") {
             const newDoctorOptions = doctorsMockup.filter((doctor) => {
                 if (doctor?.specialties) {
                     return doctor.specialties.includes(specialityId);
@@ -56,7 +38,7 @@ const ReserveAppointmentForms = ({
 
             setDoctorsOptios(newDoctorOptions);
         }
-    }, [specialityId]);
+    }, [specialityId, doctorId]);
 
     return (
         <div className="w-1/3 max-xl:py-28 px-5">
@@ -69,7 +51,10 @@ const ReserveAppointmentForms = ({
                         placeholder="Escoge tu especialidad"
                         options={specialitiesOptions}
                         onChange={(e: string) => {
-                            setSpecialityId(e);
+                            dispatch({
+                                type: "SET_SPECIALITY",
+                                payload: e,
+                            });
                         }}
                     />
                 </RegisterField>
@@ -78,10 +63,13 @@ const ReserveAppointmentForms = ({
                     <InputSelect
                         key={2}
                         selectId="doctor"
-                        placeholder="Escoge al especialista"
+                        placeholder="Escoge al profesional de la salud"
                         options={getDoctorsOptions(doctorsOptions)}
                         onChange={(e) => {
-                            setDoctorId(e);
+                            dispatch({
+                                type: "SET_DOCTOR",
+                                payload: e,
+                            });
                         }}
                     />
                 </RegisterField>
@@ -92,7 +80,12 @@ const ReserveAppointmentForms = ({
                         selectId="reason"
                         placeholder="Selecciona el motivo de tu consulta"
                         options={reasonMockup}
-                        onChange={(e) => {}}
+                        onChange={(e) => {
+                            dispatch({
+                                type: "SET_REASON",
+                                payload: e,
+                            });
+                        }}
                     />
                 </RegisterField>
 
@@ -102,7 +95,12 @@ const ReserveAppointmentForms = ({
                         selectId="symptoms"
                         placeholder="Indica uno o más síntomas"
                         options={symptomsMockup}
-                        onChange={(e) => {}}
+                        onChange={(e) => {
+                            dispatch({
+                                type: "SET_SYMPTOMS",
+                                payload: [e],
+                            });
+                        }}
                     />
                 </RegisterField>
 
@@ -111,6 +109,15 @@ const ReserveAppointmentForms = ({
                         cols={80}
                         rows={5}
                         placeholder="Por favor, indique más detalles sobre su consulta"
+                        message={details}
+                        onChange={(
+                            e: React.ChangeEvent<HTMLTextAreaElement>
+                        ) => {
+                            dispatch({
+                                type: "SET_DETAILS",
+                                payload: e.target.value,
+                            });
+                        }}
                     />
                 </RegisterField>
             </div>
