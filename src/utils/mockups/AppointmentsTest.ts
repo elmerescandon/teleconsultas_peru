@@ -1,4 +1,4 @@
-import IAppointment from "../Interfaces/IAppointment";
+import IAppointment from "../Interfaces/reducers/IAppointment";
 
 const AppointmentTest : IAppointment[] = [
     {

@@ -1,4 +1,4 @@
-import IAppointment from "./IAppointment";
+import IAppointment from "./reducers/IAppointment";
 
 interface IDayData {
     date: Date;
