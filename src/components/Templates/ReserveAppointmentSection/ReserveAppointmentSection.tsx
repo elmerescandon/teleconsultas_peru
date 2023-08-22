@@ -2,14 +2,9 @@ import ReserveAppointmentCalendar from "@/components/Organisms/ReserveAppointmen
 import ReserveAppointmentForms from "@/components/Organisms/ReserveAppointmentForms/ReserveAppointmentForms";
 import ReserveAppointmentHours from "@/components/Organisms/ReserveAppointmentHours/ReserveAppointmentHours";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
-import React, { useState } from "react";
+import React from "react";
 
 const ReserveAppointmentSection = () => {
-    const [appointmentInfo, setAppointmentInfo] = useState({
-        specialityId: "",
-        doctorId: "",
-    });
-
     const availableAppointments: IAvailableAppointment[] = [
         {
             startDate: new Date(2023, 7, 20, 10, 0),
@@ -35,7 +30,7 @@ const ReserveAppointmentSection = () => {
 
     return (
         <div className="px-48 flex py-10">
-            <ReserveAppointmentForms info={} setInfo={} />
+            <ReserveAppointmentForms />
             <ReserveAppointmentCalendar />
             <ReserveAppointmentHours
                 availableAppointments={availableAppointments}
