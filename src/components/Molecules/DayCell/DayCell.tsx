@@ -1,7 +1,7 @@
-import TagAppointment from "@/components/Atoms/Tag/TagAppointment";
+import TagAppointment from "@/components/Atoms/TagAppointment/TagAppointment";
 import IAppointment from "@/utils/Interfaces/IAppointment";
 import IDayData from "@/utils/Interfaces/IDayData";
-import React, { useState } from "react";
+import React from "react";
 
 // TODO: Show only a few appointments and a button to show more
 
