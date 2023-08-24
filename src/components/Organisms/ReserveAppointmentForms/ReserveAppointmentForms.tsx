@@ -35,7 +35,6 @@ const ReserveAppointmentForms = () => {
                     return doctor.specialties.includes(specialityId);
                 }
             });
-
             setDoctorsOptios(newDoctorOptions);
         }
     }, [specialityId, doctorId]);
