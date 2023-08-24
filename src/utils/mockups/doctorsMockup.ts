@@ -7,7 +7,7 @@ const doctorsMockup :IUser[] = [
       "name": "Dr. Smith",
       "email": "dr.smith@example.com",
       "password": "hashed_password",
-      "specialties": ["specialty123", "specialty303"],
+      "specialties": ["specialty789", "specialty303"],
       "phone": "123-456-7890",
       "address": "123 Medical St, City",
       "profile_picture": "http://example.com/profile.jpg",
