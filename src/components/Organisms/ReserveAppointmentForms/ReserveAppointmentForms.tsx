@@ -41,7 +41,7 @@ const ReserveAppointmentForms = () => {
     }, [specialityId, doctorId]);
 
     return (
-        <div className="w-1/3 max-xl:py-28 px-5">
+        <div className="max-xl:pt-28 max-xl:pb-8 px-5 max-w-md">
             <div className="text-xl font-semibold py-4">Escoge tu cita</div>
             <div className="flex flex-col gap-5">
                 <RegisterField title="Especialidad">

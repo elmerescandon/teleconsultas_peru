@@ -10,11 +10,11 @@ const ReserveAppointmentHours = ({
     availableAppointments,
 }: ReserveAppointmentHoursProps) => {
     return (
-        <div className="w-1/3 px-5">
+        <div className="px-5">
             <div className="text-xl font-semibold py-4">
                 Horarios Disponibles
             </div>
-            <div className="flex flex-wrap gap-5 justify-around">
+            <div className="flex flex-wrap gap-5 justify-around max-xl:justify-start">
                 {availableAppointments.map((appointment, index) => (
                     <SlotAppointment
                         key={index}

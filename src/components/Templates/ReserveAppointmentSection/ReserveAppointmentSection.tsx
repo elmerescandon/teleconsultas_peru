@@ -29,7 +29,7 @@ const ReserveAppointmentSection = () => {
     ];
 
     return (
-        <div className="px-48 flex py-10">
+        <div className="px-48 flex py-10 max-xl:flex-col max-xl:px-10 max-xl:items-center">
             <ReserveAppointmentForms />
             <ReserveAppointmentCalendar />
             <ReserveAppointmentHours

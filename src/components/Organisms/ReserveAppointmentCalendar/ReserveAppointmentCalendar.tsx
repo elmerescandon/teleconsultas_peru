@@ -5,7 +5,7 @@ import React, { useState } from "react";
 const ReserveAppointmentCalendar = () => {
     const [value, setValue] = useState(null);
     return (
-        <div className="w-1/3 px-5">
+        <div className="px-5">
             <div className="text-xl font-semibold py-4">
                 Calendario Disponible
             </div>
