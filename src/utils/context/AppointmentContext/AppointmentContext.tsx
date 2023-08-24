@@ -18,6 +18,7 @@ const AppointmentProvider = ({ children }: AppointmentProviderProps) => {
         reason: "",
         symptoms: [],
         details: "",
+        date: "",
         startDate: "",
         endDate: "",
     });
@@ -50,6 +51,14 @@ const appointmentReducer = (
             return { ...appointment, symptoms: action.payload };
         case "SET_DETAILS":
             return { ...appointment, details: action.payload };
+        case "SET_DATE":
+            return { ...appointment, date: action.payload };
+        case "SET_TIME":
+            return {
+                ...appointment,
+                startDate: action.payload.startDate,
+                endDate: action.payload.endDate,
+            };
         default:
             return appointment;
     }
