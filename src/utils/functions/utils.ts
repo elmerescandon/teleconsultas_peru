@@ -1,5 +1,7 @@
+import IAvailableAppointment from "../Interfaces/IAvailableAppointment";
 import ISpecialty from "../Interfaces/dataModel/ISpeciality";
 import IUser from "../Interfaces/dataModel/IUser";
+import doctorAvailabilityMockup from "../mockups/doctorAvailabilityMockup";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: ISpecialty[]) => {
@@ -21,4 +23,13 @@ export const getDoctorsOptions = (doctors: IUser[]) => {
     };
   });
   return options;
+};
+
+export const getAvailableAppointments = (date: string, doctorId : string, specialityId: string) => {
+  const availableDateDoctor = doctorAvailabilityMockup.filter((availability) => {
+    return availability.doctor_id === doctorId && availability.specialty_id === specialityId && availability.availability_slots.some((slot) => slot.date === date);
+  });
+
+  if(availableDateDoctor.length === 0) return [];
+  return availableDateDoctor[0].availability_slots.filter((slot) => slot.date === date)[0].slots as IAvailableAppointment[];
 };
