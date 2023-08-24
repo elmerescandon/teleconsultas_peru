@@ -9,18 +9,19 @@ type ReserveAppointmentHoursProps = {
 const ReserveAppointmentHours = ({
     availableAppointments,
 }: ReserveAppointmentHoursProps) => {
+    const slots = availableAppointments.map((appointment, index) => (
+        <SlotAppointment key={index} availableAppointment={appointment} />
+    ));
+
     return (
         <div className="px-5">
             <div className="text-xl font-semibold py-4">
                 Horarios Disponibles
             </div>
             <div className="flex flex-wrap gap-5 justify-around max-xl:justify-start">
-                {availableAppointments.map((appointment, index) => (
-                    <SlotAppointment
-                        key={index}
-                        availableAppointment={appointment}
-                    />
-                ))}
+                {slots.length > 0
+                    ? slots.map((slot) => slot)
+                    : "No hay horarios disponibles"}
             </div>
         </div>
     );
