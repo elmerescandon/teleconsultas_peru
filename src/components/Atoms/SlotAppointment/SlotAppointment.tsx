@@ -1,4 +1,5 @@
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
+import { useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
 import React from "react";
 
 type SlotAppointmentProps = {
@@ -7,6 +8,7 @@ type SlotAppointmentProps = {
 
 const SlotAppointment = ({ availableAppointment }: SlotAppointmentProps) => {
     const { startDate, endDate, available } = availableAppointment;
+    const dispatch = useAppointmentDispatch();
     return (
         <button
             disabled={!available}
@@ -17,10 +19,16 @@ const SlotAppointment = ({ availableAppointment }: SlotAppointmentProps) => {
                         ? "bg-brand-600 text-basic-white"
                         : "bg-neutral-50 text-neutral-400"
                 }`}
+            onClick={() => {
+                dispatch({
+                    type: "SET_TIME",
+                    payload: { startDate, endDate },
+                });
+            }}
         >
-            {`${startDate
+            {`${new Date(startDate)
                 .toLocaleTimeString()
-                .replace(/:\d+ /, " ")} - ${endDate
+                .replace(/:\d+ /, " ")} - ${new Date(endDate)
                 .toLocaleTimeString()
                 .replace(/:\d+ /, " ")} `}
         </button>
