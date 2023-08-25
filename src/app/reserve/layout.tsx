@@ -2,6 +2,7 @@
 import React from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import AppointmentProvider from "@/utils/context/AppointmentContext/AppointmentContext";
 
 type ReserveLayoutProps = {
     children: React.ReactNode;
@@ -10,7 +11,7 @@ type ReserveLayoutProps = {
 const ReserveLayout = ({ children }: ReserveLayoutProps) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            {children}
+            <AppointmentProvider>{children}</AppointmentProvider>
         </LocalizationProvider>
     );
 };
