@@ -3,6 +3,8 @@ import PaymentCard from "@/components/Molecules/PaymentCard/PaymentCard";
 import React from "react";
 
 const PaymentOptions = () => {
+    const [indexSelected, setIndexSelected] = React.useState(0);
+
     const cardOptions = [
         {
             cardType: "VISA",
@@ -21,8 +23,13 @@ const PaymentOptions = () => {
                 {cardOptions.map((card, index) => (
                     <PaymentCard
                         key={index}
+                        indexSelected={indexSelected}
+                        index={index}
                         cardType={card.cardType}
                         lastDigits={card.lastDigits}
+                        onClickPayment={(index) => {
+                            setIndexSelected(index);
+                        }}
                     />
                 ))}
             </div>

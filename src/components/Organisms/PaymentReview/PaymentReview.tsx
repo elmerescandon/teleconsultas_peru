@@ -7,7 +7,7 @@ const PaymentReview = () => {
     const appointment = useAppointment();
     const { specialityId, doctorId, date, startDate, endDate } = appointment;
     return (
-        <div className="w-2/3 p-7 h-[60vh]">
+        <div className="w-2/3 p-7 h-[60vh] max-lg:w-full">
             <div className="text-xl">Detalle</div>
             <div className="w-full border my-5"></div>
             <div>
