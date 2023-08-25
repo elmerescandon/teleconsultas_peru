@@ -19,6 +19,7 @@ const InputTextArea = ({
         onChange(e);
     };
 
+    // TODO: Add debounce
     return (
         <div className="flex">
             <textarea
