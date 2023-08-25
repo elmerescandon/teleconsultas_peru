@@ -12,6 +12,7 @@ enum Routes{
     DOCTORS = '/doctors',
     PATIENTS = '/patients',
     RESERVE = '/reserve',
+    RESERVE_PAYMENT = '/reserve/payment',
     ESPECIALITY = '/especiality',
 }
 
