@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import IAppointment from "@/utils/Interfaces/IAppointment";
-import PopUpAppointment from "../PopUp/PopUp";
+import PopUpAppointment from "../PopUp/PopUpAppointment/PopUpAppointment";
+import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 
 type TagAppointmentProps = {
     appointment: IAppointment;
