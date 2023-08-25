@@ -52,7 +52,12 @@ const appointmentReducer = (
         case "SET_DETAILS":
             return { ...appointment, details: action.payload };
         case "SET_DATE":
-            return { ...appointment, date: action.payload };
+            return {
+                ...appointment,
+                date: action.payload,
+                startDate: "",
+                endDate: "",
+            };
         case "SET_TIME":
             return {
                 ...appointment,
