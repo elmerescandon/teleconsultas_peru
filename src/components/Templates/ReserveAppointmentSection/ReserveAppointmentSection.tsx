@@ -1,4 +1,5 @@
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
+import PopUpReservation from "@/components/Atoms/PopUp/PopUpReservation/PopUpReservation";
 import ReserveAppointmentCalendar from "@/components/Organisms/ReserveAppointmentCalendar/ReserveAppointmentCalendar";
 import ReserveAppointmentForms from "@/components/Organisms/ReserveAppointmentForms/ReserveAppointmentForms";
 import ReserveAppointmentHours from "@/components/Organisms/ReserveAppointmentHours/ReserveAppointmentHours";
@@ -10,9 +11,13 @@ import {
     getAvailableAppointments,
     validateAppointment,
 } from "@/utils/functions/utils";
+import Routes from "@/utils/routes/Routes";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const ReserveAppointmentSection = () => {
+    const router = useRouter();
+    const [popUp, setPopUp] = useState<boolean>(false);
     const [availableAppointments, setAvailableAppointments] = useState<
         IAvailableAppointment[]
     >([]);
@@ -21,9 +26,9 @@ const ReserveAppointmentSection = () => {
 
     const onClickReserve = (appointment: IAppointment) => {
         if (validateAppointment(appointment)) {
-            console.log("Appointment is valid");
+            router.push(Routes.RESERVE_PAYMENT);
         } else {
-            console.log("Appointment is not valid");
+            setPopUp(true);
         }
     };
 
@@ -63,6 +68,13 @@ const ReserveAppointmentSection = () => {
                     </ButtonPrimary>
                 </div>
             </div>
+            {popUp && (
+                <PopUpReservation
+                    onClose={() => {
+                        setPopUp(false);
+                    }}
+                />
+            )}
         </div>
     );
 };
