@@ -7,13 +7,15 @@ enum Routes{
     LOGIN = '/login',
     REGISTER = '/register',
     REGISTER_COMPLETE = '/register/success',
-    PROFILE = '/profile',
     NOT_FOUND = '/not-found',
     DOCTORS = '/doctors',
     PATIENTS = '/patients',
+    PROFILE = '/profile',
     RESERVE = '/reserve',
     RESERVE_PAYMENT = '/reserve/payment',
+    RESERVE_SUCCESS = '/reserve/success',
     ESPECIALITY = '/especiality',
+    PATIENT_HOME = '/patient',
 }
 
 export default Routes;
