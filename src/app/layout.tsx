@@ -1,3 +1,4 @@
+import { Providers } from "@/redux/provider";
 import "../styles/globals.scss";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
@@ -70,7 +71,9 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={`${lato.className}`}>{children}</body>
+            <body className={`${lato.className}`}>
+                <Providers>{children}</Providers>
+            </body>
         </html>
     );
 }
