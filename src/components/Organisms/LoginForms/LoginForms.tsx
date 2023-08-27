@@ -1,7 +1,11 @@
 "use client";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import InputText from "@/components/Atoms/Inputs/InputText/InputText";
+import { userLogIn } from "@/redux/action-creators/UserActionCreators";
+import { useAppDispatch } from "@/redux/hooks";
 import useUserValidation from "@/utils/hooks/useAuth";
+import Routes from "@/utils/routes/Routes";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const LoginForms = () => {
@@ -9,16 +13,31 @@ const LoginForms = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const router = useRouter();
+    const dispatch = useAppDispatch();
 
     const handleSubmit = async () => {
         try {
             await validateUser(username, password);
             setError("");
+            dispatch(
+                userLogIn({
+                    _id: "123",
+                    role: "patient",
+                    name: "Juan",
+                    email: "juanperez@aikasalud.com",
+                    phone: "945681231",
+                    address: "Av. Los Pinos 123",
+                    profile_picture: "https://i.imgur.com/1OJ9Q3x.png",
+                })
+            );
+
             console.log("SE LOGRO");
+            router.push(Routes.PATIENT_HOME);
             // Continue with further actions, such as registering the user
         } catch (error: any) {
             setError(error.message);
-            console.log("No se logr");
+            console.log("No se logro");
         }
     };
 

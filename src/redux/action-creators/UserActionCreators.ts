@@ -1,3 +1,4 @@
+"use client";
 import { UserActionTypes } from "../action-types";
 import IUserInfo from "../state-interfaces/User/IUserInfo";
 

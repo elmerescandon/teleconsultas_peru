@@ -27,6 +27,20 @@ const UserReducer = (
                 logged: true,
                 userInfo: action.payload
             };
+        case UserActionTypes.USER_LOGOUT:
+            return{
+                ...state, 
+                logged: false,
+                userInfo: {
+                    _id: "",
+                    role: "patient",
+                    name: "",
+                    email: "",
+                    phone: "",
+                    address: "",
+                    profile_picture: "",
+                },
+            }
         default:
             return state;
     }
