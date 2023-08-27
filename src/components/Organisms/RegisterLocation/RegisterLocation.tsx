@@ -8,24 +8,54 @@ const RegisterLocation = () => {
         <div className="flex flex-row justify-around max-xl:flex-col max-xl:items-center">
             <RegisterRow>
                 <RegisterField title="Región">
-                    <InputText type="text" placeholder="" />
+                    <InputText
+                        onChangeFn={() => {}}
+                        value=""
+                        type="text"
+                        placeholder=""
+                    />
                 </RegisterField>
                 <RegisterField title="Provincia">
-                    <InputText type="text" placeholder="" />
+                    <InputText
+                        onChangeFn={() => {}}
+                        value=""
+                        type="text"
+                        placeholder=""
+                    />
                 </RegisterField>
                 <RegisterField title="Distrito">
-                    <InputText type="text" placeholder="" />
+                    <InputText
+                        onChangeFn={() => {}}
+                        value=""
+                        type="text"
+                        placeholder=""
+                    />
                 </RegisterField>
             </RegisterRow>
             <RegisterRow>
                 <RegisterField title="Dirección">
-                    <InputText type="text" placeholder="" />
+                    <InputText
+                        onChangeFn={() => {}}
+                        value=""
+                        type="text"
+                        placeholder=""
+                    />
                 </RegisterField>
                 <RegisterField title="Referencia (Opcional)">
-                    <InputText type="text" placeholder="" />
+                    <InputText
+                        onChangeFn={() => {}}
+                        value=""
+                        type="text"
+                        placeholder=""
+                    />
                 </RegisterField>
                 <RegisterField title="Interior (Dpto, Mz, etc)">
-                    <InputText type="text" placeholder="" />
+                    <InputText
+                        onChangeFn={() => {}}
+                        value=""
+                        type="text"
+                        placeholder=""
+                    />
                 </RegisterField>
             </RegisterRow>
         </div>

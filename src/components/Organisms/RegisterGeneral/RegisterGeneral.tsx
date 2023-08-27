@@ -9,11 +9,18 @@ const RegisterGeneral = () => {
         <div className="flex flex-row justify-around max-xl:flex-col max-xl:items-center">
             <RegisterRow>
                 <RegisterField title="Nombre">
-                    <InputText type="text" placeholder="Ej. Pedro Alberto" />
+                    <InputText
+                        onChangeFn={() => {}}
+                        value=""
+                        type="text"
+                        placeholder="Ej. Pedro Alberto"
+                    />
                 </RegisterField>
 
                 <RegisterField title="Apellido (s)">
                     <InputText
+                        onChangeFn={() => {}}
+                        value=""
                         type="text"
                         placeholder="Ej. Álvarez Rodriguez "
                     />
@@ -21,6 +28,8 @@ const RegisterGeneral = () => {
 
                 <RegisterField title="Correo Electrónico">
                     <InputText
+                        onChangeFn={() => {}}
+                        value=""
                         type="mail"
                         placeholder="Ej. pedro.alva@aikasalud.com"
                     />
@@ -29,11 +38,18 @@ const RegisterGeneral = () => {
 
             <RegisterRow>
                 <RegisterField title="Documento de Identidad">
-                    <InputText type="number" placeholder="Ej. 4589812" />
+                    <InputText
+                        onChangeFn={() => {}}
+                        value=""
+                        type="number"
+                        placeholder="Ej. 4589812"
+                    />
                 </RegisterField>
 
                 <RegisterField title="Contraseña">
                     <InputText
+                        onChangeFn={() => {}}
+                        value=""
                         type="password"
                         placeholder="Ej. Almenos 8 caractéres, una mayúscula y números"
                     />
@@ -41,6 +57,8 @@ const RegisterGeneral = () => {
 
                 <RegisterField title="Validar Contraseña">
                     <InputText
+                        onChangeFn={() => {}}
+                        value=""
                         type="password"
                         placeholder="Ej. pedro.alva@aikasalud.com"
                     />
