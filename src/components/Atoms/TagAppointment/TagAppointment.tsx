@@ -36,7 +36,9 @@ const TagAppointment = ({ appointment, onClickFn }: TagAppointmentProps) => {
                 }}
             >
                 <div className="bg-brand-600 text-basic-white px-2 py-1 rounded text-ellipsis whitespace-nowrap overflow-hidden">
-                    {dimensions.width >= 1024 ? appointment.specialty : "..."}
+                    {dimensions.width >= 1024
+                        ? appointment.specialityId
+                        : "..."}
                 </div>
             </button>
 
