@@ -16,9 +16,18 @@ const InformationForm = ({ title }: InformationFormProps) => {
             <form className="flex flex-col gap-2">
                 <div className="flex flex-row gap-6 max-xl:flex-wrap">
                     <div className="flex flex-col gap-3">
-                        <InputText placeholder="Nombre y Apellidos" />
-                        <InputText placeholder="Correo Elecrónico" />
+                        <InputText
+                            onChangeFn={() => {}}
+                            value=""
+                            placeholder="Nombre y Apellidos"
+                        />
+                        <InputText
+                            onChangeFn={() => {}}
+                            value=""
+                            placeholder="Correo Elecrónico"
+                        />
                         <InputSelect
+                            onChange={() => {}}
                             placeholder="Escoge tu especialidad"
                             selectId="select"
                             options={[
@@ -42,7 +51,13 @@ const InformationForm = ({ title }: InformationFormProps) => {
                             ]}
                         />
                     </div>
-                    <InputTextArea rows={7} cols={50} />
+                    <InputTextArea
+                        rows={7}
+                        cols={50}
+                        onChange={() => {}}
+                        message=""
+                        placeholder="Escribe algo"
+                    />
                 </div>
 
                 <ButtonPrimary onClickFn={() => {}}>Enviar</ButtonPrimary>
