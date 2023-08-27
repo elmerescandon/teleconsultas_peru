@@ -5,7 +5,7 @@ import React from "react";
 
 const Patient = () => {
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen max-xl:h-full">
             <Header />
             <PatientHome />
             <Footer />
