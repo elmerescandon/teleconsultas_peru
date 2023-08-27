@@ -1,5 +1,5 @@
 "use client";
-import IAppointment from "@/utils/Interfaces/IAppointment";
+import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import DayCell from "../DayCell/DayCell";
 
 type MonthGridProps = {
@@ -22,16 +22,16 @@ const MonthGrid = ({
         new Date(year, month, 1).getDay() === 0
             ? 0
             : new Date(year, month, 1).getDay();
+
     for (let i = 1 - daysLeft; i <= 35 - daysLeft; i++) {
         let currentDate = new Date(year, month, i);
         let appointments: IAppointment[] = monthAppointmentData.filter(
             (appointment) => {
+                const date = new Date(appointment.date);
                 return (
-                    appointment.startDate.getDate() === currentDate.getDate() &&
-                    appointment.startDate.getMonth() ===
-                        currentDate.getMonth() &&
-                    appointment.startDate.getFullYear() ===
-                        currentDate.getFullYear()
+                    date.getDate() === currentDate.getDate() &&
+                    date.getMonth() === currentDate.getMonth() &&
+                    date.getFullYear() === currentDate.getFullYear()
                 );
             }
         );
