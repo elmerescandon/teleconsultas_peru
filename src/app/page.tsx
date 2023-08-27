@@ -1,5 +1,4 @@
 "use client";
-
 import CardSection from "@/components/Organisms/CardSection/CardSection";
 import DataSection from "@/components/Organisms/DataSection/DataSection";
 import Footer from "@/components/Organisms/Footer/Footer";
