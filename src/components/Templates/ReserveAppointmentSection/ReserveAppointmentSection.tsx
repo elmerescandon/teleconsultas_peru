@@ -33,7 +33,6 @@ const ReserveAppointmentSection = () => {
     };
 
     useEffect(() => {
-        console.log(appointment);
         if (date !== "") {
             //  This getAvailable is a mock function that returns the available appointments for the date
             const available = getAvailableAppointments(

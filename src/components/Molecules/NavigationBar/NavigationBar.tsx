@@ -9,8 +9,6 @@ import React from "react";
 const NavigationBar = () => {
     const state = useAppSelector((state: IState) => state.user as IUserState);
     const { logged } = state;
-    console.log(state);
-    console.log(logged);
     return (
         <div className="flex items-center">
             {logged ? (

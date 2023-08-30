@@ -32,12 +32,10 @@ const LoginForms = () => {
                 })
             );
 
-            console.log("SE LOGRO");
             router.push(Routes.PATIENT_HOME);
             // Continue with further actions, such as registering the user
         } catch (error: any) {
             setError(error.message);
-            console.log("No se logro");
         }
     };
 
