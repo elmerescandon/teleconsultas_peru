@@ -43,7 +43,7 @@ const ReserveAppointmentForms = () => {
         <div className=" max-xl:pb-8 px-5 max-w-md flex-grow">
             <div className="text-xl font-semibold py-4">Escoge tu cita</div>
             <div className="flex gap-5 flex-col">
-                <RegisterField title="Especialidad">
+                <RegisterField title="Especialidad" error="">
                     <InputSelect
                         key={1}
                         selectId="speciality"
@@ -58,7 +58,7 @@ const ReserveAppointmentForms = () => {
                     />
                 </RegisterField>
 
-                <RegisterField title="Doctor">
+                <RegisterField title="Doctor" error="">
                     <InputSelect
                         key={2}
                         selectId="doctor"
@@ -73,7 +73,7 @@ const ReserveAppointmentForms = () => {
                     />
                 </RegisterField>
 
-                <RegisterField title="Razón de consulta">
+                <RegisterField title="Razón de consulta" error="">
                     <InputSelect
                         key={3}
                         selectId="reason"
@@ -88,7 +88,7 @@ const ReserveAppointmentForms = () => {
                     />
                 </RegisterField>
 
-                <RegisterField title="Síntomas">
+                <RegisterField title="Síntomas" error="">
                     <InputSelect
                         key={4}
                         selectId="symptoms"
@@ -103,7 +103,7 @@ const ReserveAppointmentForms = () => {
                     />
                 </RegisterField>
 
-                <RegisterField title="Detalles">
+                <RegisterField title="Detalles" error="">
                     <InputTextArea
                         cols={80}
                         rows={5}
