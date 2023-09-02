@@ -15,7 +15,6 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
     const [checkForms, setCheckForms] = useState<boolean>(false);
 
     useEffect(() => {
-        console.log(formFields);
         if (checkForms && handleRegister("general")) {
             nextFn();
         } else {
