@@ -1,5 +1,5 @@
 import ISelectOptions from "../Interfaces/ISelectOptions";
-import { currentUbigeo, departments } from "../constants/locationSelect";
+import { currentUbigeo, departments } from "../constants/registerSelect";
 
 
 export const selectDepartments : ISelectOptions[] = departments.map((department) => {
