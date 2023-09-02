@@ -44,11 +44,15 @@ const ReserveSummary = () => {
                 </div>
                 <div className="flex justify-between py-2 gap-5">
                     <div className="text-lg">Hora:</div>
-                    <div className="text-lg break-all w-44">{dateTime}</div>
+                    <div className="text-lg break-all w-44 text-right">
+                        {dateTime}
+                    </div>
                 </div>
                 <div className="flex justify-between py-2 gap-5">
                     <div className="text-lg">Detalles:</div>
-                    <div className="text-lg break-all w-40">{details}</div>
+                    <div className="text-lg break-all w-40 text-right">
+                        {details}
+                    </div>
                 </div>
             </div>
         </div>
