@@ -11,6 +11,7 @@ import {
     selectProvinces,
 } from "@/utils/functions/utilsRegister";
 import ISelectOptions from "@/utils/Interfaces/ISelectOptions";
+import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 
 type RegisterLocationProps = {
     prevFn: () => void;
@@ -27,6 +28,7 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
     const [districtOptions, setDistrictOptions] = useState<ISelectOptions[]>(
         []
     );
+    const dispatch = useRegisterDispatch();
 
     useEffect(() => {
         if (formFields.region.value !== "") {
@@ -48,6 +50,17 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
         }
 
         if (checkForms && handleRegister("location")) {
+            dispatch({
+                type: "SET_LOCATION",
+                payload: {
+                    region: formFields.region.value,
+                    province: formFields.province.value,
+                    district: formFields.district.value,
+                    address: formFields.address.value,
+                    refference: formFields.refference.value,
+                    interiorNumber: formFields.interiorNumber.value,
+                },
+            });
             nextFn();
         } else {
             setCheckForms(false);

@@ -7,6 +7,7 @@ import useRegister from "@/utils/hooks/useRegister";
 import InputSelect from "@/components/Atoms/Inputs/InputSelect/InputSelect";
 import { sexOptions } from "@/utils/constants/registerSelect";
 import { DatePicker } from "@mui/x-date-pickers";
+import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 
 type RegisterInformationProps = {
     nextFn: () => void;
@@ -17,9 +18,21 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
     const { formFields, handleChange, handleRegister, handleValidations } =
         useRegister();
     const [checkForms, setCheckForms] = useState<boolean>(false);
+    const dispatch = useRegisterDispatch();
 
     useEffect(() => {
         if (checkForms && handleRegister("info")) {
+            dispatch({
+                type: "SET_INFO",
+                payload: {
+                    age: formFields.age.value,
+                    sex: formFields.sex.value,
+                    height: formFields.height.value,
+                    weight: formFields.weight.value,
+                    phone: formFields.phone.value,
+                    bornDate: formFields.bornDate.value,
+                },
+            });
             nextFn();
         } else {
             setCheckForms(false);
