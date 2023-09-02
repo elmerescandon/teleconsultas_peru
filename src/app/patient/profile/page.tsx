@@ -5,7 +5,7 @@ import React from "react";
 
 const Profile = () => {
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col">
             <Header />
             <ProfileSection />
             <Footer />

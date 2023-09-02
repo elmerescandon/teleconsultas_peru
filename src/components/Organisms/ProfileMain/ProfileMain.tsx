@@ -29,13 +29,15 @@ const ProfileMain = () => {
                     <p className="text-lg font-semibold">
                         Información Personal
                     </p>
-                    <button
-                        onClick={() => {
-                            setIsEditingPersonal(true);
-                        }}
-                    >
-                        <PencilIcon className="h-6 w-6 text-brand-600" />
-                    </button>
+                    {!isEditingPersonal ? (
+                        <button
+                            onClick={() => {
+                                setIsEditingPersonal(true);
+                            }}
+                        >
+                            <PencilIcon className="h-6 w-6 text-brand-600" />
+                        </button>
+                    ) : null}
                 </div>
                 <div className="flex flex-col gap-4 pt-5">
                     <LabelProfileMain
