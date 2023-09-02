@@ -3,7 +3,7 @@ import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimar
 import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import { userLogIn } from "@/redux/action-creators/UserActionCreators";
 import { useAppDispatch } from "@/redux/hooks";
-import useUserValidation from "@/utils/hooks/useAuth";
+import useUserValidation from "@/utils/hooks/useUserValidation";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -47,6 +47,7 @@ const LoginForms = () => {
                 onChangeFn={setUsername}
             />
             <InputText
+                type="password"
                 placeholder="Contraseña"
                 value={password}
                 onChangeFn={setPassword}
@@ -54,7 +55,7 @@ const LoginForms = () => {
             <ButtonPrimary onClickFn={handleSubmit}>
                 Iniciar Sesión
             </ButtonPrimary>
-            {error && <p>Error: {error}</p>}
+            {error && <p className="text-rose-600 font-bold">{error}</p>}
         </div>
     );
 };

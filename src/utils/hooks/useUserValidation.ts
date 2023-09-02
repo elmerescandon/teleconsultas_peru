@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 const useUserValidation = () => {
   const isUsernameValid = (username: string): boolean => {
@@ -14,8 +13,6 @@ const useUserValidation = () => {
   };
 
   const isPasswordValid = (password: string): boolean => {
-    // Add your password validation logic here
-    // For example, requiring a minimum length or specific character types
     const minLength = 8;
     return password.length >= minLength;
   };
@@ -35,11 +32,11 @@ const useUserValidation = () => {
     const trimmedPassword = password.trim();
     
     if (!isUsernameAvailable(trimmedUsername)) {
-      throw new Error('Invalid username. Please use only letters, numbers, and underscores, between 4 and 20 characters.');
+      throw new Error('Usuario o contraseña incorrectos.');
     }
 
     if (!isPasswordValid(trimmedPassword)) {
-      throw new Error('Invalid password. Password must be at least 8 characters.');
+      throw new Error('Usuario o contraseña incorrectos.');
     }
   };
 
