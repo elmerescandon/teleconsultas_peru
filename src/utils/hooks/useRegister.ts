@@ -22,6 +22,7 @@ interiorNumber: IFormField;
 
 // Info
 age: IFormField;
+sex: IFormField;
 height:IFormField;
 weight: IFormField;
 phone: IFormField;
@@ -48,6 +49,7 @@ const useRegister = () => {
 
     // Info
     age: { value: '', error: '' },
+    sex: { value: '', error: ''},
     height: { value: '', error: '' },
     weight: { value: '', error: '' },
     phone: { value: '', error: '' },
@@ -84,7 +86,8 @@ const useRegister = () => {
     address: (value : string) => (value ? '' : 'Address is required'),
     refference: (value : string) => (value ? '' : 'Refference is required'),
     interiorNumber: (value : string) => (value ? '' : 'Interior Number is required'),
-    age: (value : string) => (value ? '' : 'Age is required'),
+    age: (value : string) => (value ? '' : 'Age is required'),  
+    sex: (value: string) => (value ? '' : 'Sex is required'),
     height: (value : string) => (value ? '' : 'Height is required'),
     weight: (value : string) => (value ? '' : 'Weight is required'),
     phone: (value : string) => (value ? '' : 'Phone is required'),
@@ -113,7 +116,7 @@ const useRegister = () => {
   const handleValidations = (type: 'general' | 'location' | 'info') => {
     const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
     const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
-    const infoField = ["age", "height", "weight", "phone", "bornDate"] as (keyof IFormFields)[];
+    const infoField = ["age", "sex", "height", "weight", "phone", "bornDate"] as (keyof IFormFields)[];
     switch (type) {
       case 'general':
         validateAllFields(generalField as (keyof IFormFields)[]);
@@ -130,7 +133,7 @@ const useRegister = () => {
   const handleRegister = (type: 'general' | 'location' | 'info') => {
     const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
     const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
-    const infoField = ["age", "height", "weight", "phone", "bornDate"] as (keyof IFormFields)[];
+    const infoField = ["age", "sex","height", "weight", "phone", "bornDate"] as (keyof IFormFields)[];
 
     switch (type) {
       case 'general':

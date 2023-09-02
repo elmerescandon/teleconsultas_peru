@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const RegisterForm = () => {
-    // TODO: Add user validation functions
     const [step, setStep] = useState(1);
     const router = useRouter();
 
@@ -62,7 +61,16 @@ const RegisterForm = () => {
                         }}
                     />
                 )}
-                {step === 3 && <RegisterInformation />}
+                {step === 3 && (
+                    <RegisterInformation
+                        prevFn={() => {
+                            setStep(step - 1);
+                        }}
+                        nextFn={() => {
+                            router.push(Routes.REGISTER_COMPLETE);
+                        }}
+                    />
+                )}
             </div>
         </div>
     );
