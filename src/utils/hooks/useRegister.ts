@@ -66,8 +66,8 @@ const useRegister = () => {
   //  TODO: CORRECT VALIDATIONS
 
   const validations = {
-    name: (value : string) => (value ? '' : 'Name is required'),
-    lastname: (value : string) => (value ? '' : 'Lastname is required'),
+    name: (value : string) => (value !== '' ? '' : 'Name is required'),
+    lastname: (value : string) => (value !== '' ? '' : 'Lastname is required'),
     email: (value : string) =>
       value
         ? /\S+@\S+\.\S+/.test(value)
@@ -77,7 +77,7 @@ const useRegister = () => {
     id: (value : string) => (value ? '' : 'ID is required'),
     password: (value : string) => (value ? '' : 'Password is required'),
     repeatPassword: (value : string) =>
-      value ? (value === fields.password.value ? '' : 'Passwords do not match') : 'Repeat Password is required',
+      value ? (value === formFields.password.value ? '' : 'Passwords do not match') : 'Repeat Password is required',
     region: (value : string) => (value ? '' : 'Region is required'),
     province: (value : string) => (value ? '' : 'Province is required'),
     district: (value : string) => (value ? '' : 'District is required'),
@@ -96,40 +96,60 @@ const useRegister = () => {
     const error = validations[fieldName](value);
     setFormFields({
       ...formFields,
-      [fieldName]: { ...formFields[fieldName], error },
+      [fieldName]: { value, error },
     });
   };
 
   const validateAllFields = (paramsToValidate : (keyof IFormFields)[]) => {
+    const newFormFields = { ...formFields };
     paramsToValidate.forEach((fieldName) => {
-      validateField(fieldName);
+      const value = formFields[fieldName].value;
+      const error = validations[fieldName](value);
+      newFormFields[fieldName] = { value, error };
     });
+    setFormFields(newFormFields);
   };
 
-  const handleRegister = (type: string) => {
+  const handleValidations = (type: string) => {
+    const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
+    const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
+    const infoField = ["age", "height", "weight", "phone", "bornDate"] as (keyof IFormFields)[];
+    switch (type) {
+      case 'general':
+        validateAllFields(generalField as (keyof IFormFields)[]);
+        break;
+      case 'location':
+        validateAllFields(locationField as (keyof IFormFields)[]);
+        break;
+      case 'info':
+        validateAllFields(infoField as (keyof IFormFields)[]);
+        break;
+    }
+  }
 
+  const handleRegister = (type: string) => {
     const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
     const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
     const infoField = ["age", "height", "weight", "phone", "bornDate"] as (keyof IFormFields)[];
 
     switch (type) {
       case 'general':
-        validateAllFields(generalField);
         return generalField.every((field) => !formFields[field].error);
       case 'location':
-        validateAllFields(locationField as (keyof IFormFields)[]);
         return locationField.every((field) => !formFields[field].error);
       case 'info':
-        validateAllFields(infoField as (keyof IFormFields)[]);
-        return locationField.every((field) => !formFields[field].error);
+        return infoField.every((field) => !formFields[field].error);
       default:
         return false;
     }
   };
 
+
+
   return {
     formFields,
     handleChange,
+    handleValidations,
     handleRegister
   };
 };
