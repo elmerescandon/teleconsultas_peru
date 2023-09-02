@@ -63,11 +63,11 @@ const registerReducer = (register: IRegister, action: IRegisterActions) => {
     }
 };
 
-export const useAppointment = () => {
+export const useRegisterState = () => {
     return useContext(RegisterContext);
 };
 
-export const useAppointmentDispatch = () => {
+export const useRegisterDispatch = () => {
     return useContext(RegisterDispatchContext);
 };
 

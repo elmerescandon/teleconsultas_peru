@@ -1,8 +1,9 @@
 import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RegisterRow from "../RegisterRow/RegisterRow";
 import useRegister from "@/utils/hooks/useRegister";
+import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 
 const RegisterGeneral = () => {
     // TODO: Make it responsive
@@ -10,6 +11,12 @@ const RegisterGeneral = () => {
     // TODO: Add error messages
 
     const { formFields, handleChange } = useRegister();
+
+    const dispatch = useRegisterDispatch();
+
+    useEffect(() => {
+        console.log(formFields);
+    }, [formFields]);
 
     return (
         <div className="flex flex-row justify-around max-xl:flex-col max-xl:items-center">
@@ -74,8 +81,8 @@ const RegisterGeneral = () => {
                     error={formFields.password.error}
                 >
                     <InputText
-                        onChangeFn={() => {
-                            handleChange("password", "");
+                        onChangeFn={(pass) => {
+                            handleChange("password", pass);
                         }}
                         value={formFields.password.value}
                         type="password"
