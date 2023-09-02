@@ -13,7 +13,7 @@ const RegisterForm = () => {
     const router = useRouter();
 
     return (
-        <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-10">
+        <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-10 max-xl:w-2/3">
             <div className="flex flex-row items-center justify-center gap-36 pb-10">
                 <p
                     className={`text-3xl font-semibold ${
@@ -48,7 +48,7 @@ const RegisterForm = () => {
                 {step === 1 && <RegisterGeneral />}
                 {step === 2 && <RegisterLocation />}
                 {step === 3 && <RegisterInformation />}
-                <div className="w-48 m-10 flex gap-10">
+                <div className="w-48 m-10 flex gap-10 max-xl:w-full">
                     <div className={`${step === 1 ? "hidden" : ""}`}>
                         <ButtonPrimary
                             onClickFn={() => {
