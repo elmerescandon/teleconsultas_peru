@@ -12,6 +12,20 @@ email: IFormField;
 id: IFormField;
 password: IFormField;
 repeatPassword: IFormField;
+
+region: IFormField;
+province: IFormField;
+district: IFormField;
+address: IFormField;
+refference: IFormField;
+interiorNumber: IFormField;
+
+// Info
+age: IFormField;
+height:IFormField;
+weight: IFormField;
+phone: IFormField;
+bornDate: IFormField;
 }
 
 const useRegister = () => {
@@ -40,6 +54,17 @@ const useRegister = () => {
     bornDate: { value: '', error: '' },
   };
 
+  const [formFields, setFormFields] = useState<IFormFields>(fields);
+
+  const handleChange = (fieldName : keyof IFormFields, value : string) => {
+    setFormFields({
+      ...formFields,
+      [fieldName]: { ...formFields[fieldName], value },
+    });
+  };
+
+  //  TODO: CORRECT VALIDATIONS
+
   const validations = {
     name: (value : string) => (value ? '' : 'Name is required'),
     lastname: (value : string) => (value ? '' : 'Lastname is required'),
@@ -66,15 +91,6 @@ const useRegister = () => {
     bornDate: (value : string) => (value ? '' : 'Born Date is required'),
     };
 
-  const [formFields, setFormFields] = useState<IFormFields>(fields);
-
-  const handleChange = (fieldName : keyof IFormFields, value : string) => {
-    setFormFields({
-      ...formFields,
-      [fieldName]: { ...formFields[fieldName], value },
-    });
-  };
-
   const validateField = (fieldName : keyof IFormFields) => {
     const value = formFields[fieldName].value;
     const error = validations[fieldName](value);
@@ -84,25 +100,37 @@ const useRegister = () => {
     });
   };
 
-  const validateAllFields = () => {
-    Object.keys(validations).forEach((fieldName) => {
-      validateField(fieldName as keyof IFormFields);
+  const validateAllFields = (paramsToValidate : (keyof IFormFields)[]) => {
+    paramsToValidate.forEach((fieldName) => {
+      validateField(fieldName);
     });
   };
 
-  const handleRegister = () => {
-    validateAllFields();
+  const handleRegister = (type: string) => {
 
-    const isValid = Object.values(formFields).every((field) => !field.error);
+    const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
+    const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
+    const infoField = ["age", "height", "weight", "phone", "bornDate"] as (keyof IFormFields)[];
 
-    if (isValid) {
-      // Perform registration logic here
+    switch (type) {
+      case 'general':
+        validateAllFields(generalField);
+        return generalField.every((field) => !formFields[field].error);
+      case 'location':
+        validateAllFields(locationField as (keyof IFormFields)[]);
+        return locationField.every((field) => !formFields[field].error);
+      case 'info':
+        validateAllFields(infoField as (keyof IFormFields)[]);
+        return locationField.every((field) => !formFields[field].error);
+      default:
+        return false;
     }
   };
 
   return {
     formFields,
     handleChange,
+    handleRegister
   };
 };
 
