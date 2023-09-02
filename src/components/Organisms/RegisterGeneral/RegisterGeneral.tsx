@@ -2,7 +2,6 @@ import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
 import RegisterRow from "../RegisterRow/RegisterRow";
 import useRegister from "@/utils/hooks/useRegister";
-import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import { useEffect, useState } from "react";
 
