@@ -6,7 +6,7 @@ import React from "react";
 const Register = () => {
     return (
         <div>
-            <div className="flex flex-row justify-between items-center py-12 px-48 max-xl:justify-start">
+            <div className="flex flex-row justify-between items-center py-12 px-48 max-xl:justify-center max-xl:px-0">
                 <LinkLogo />
             </div>
             <RegisterForm />
