@@ -3,13 +3,15 @@ import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimar
 import RegisterGeneral from "@/components/Organisms/RegisterGeneral/RegisterGeneral";
 import RegisterInformation from "@/components/Organisms/RegisterInformation/RegisterInformation";
 import RegisterLocation from "@/components/Organisms/RegisterLocation/RegisterLocation";
+import { useRegisterState } from "@/utils/context/RegisterContext/RegisterContext";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const RegisterForm = () => {
     const [step, setStep] = useState(1);
     const router = useRouter();
+    const formsState = useRegisterState();
 
     return (
         <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-10 max-xl:w-2/3 max-md:w-full">
@@ -68,6 +70,7 @@ const RegisterForm = () => {
                         }}
                         nextFn={() => {
                             router.push(Routes.REGISTER_COMPLETE);
+                            console.log(formsState);
                         }}
                     />
                 )}
