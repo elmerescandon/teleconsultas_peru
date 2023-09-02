@@ -18,8 +18,8 @@ const RegisterForm = () => {
                 <p
                     className={`text-3xl font-semibold ${
                         step === 1
-                            ? "text-basic-black font-semibold"
-                            : "text-neutral-300"
+                            ? "text-basic-black font-semibold max-xl:block"
+                            : "text-neutral-300 max-xl:hidden"
                     }`}
                 >
                     Registro
@@ -27,8 +27,8 @@ const RegisterForm = () => {
                 <p
                     className={`text-3xl ${
                         step === 2
-                            ? "text-basic-black font-semibold"
-                            : "text-neutral-300"
+                            ? "text-basic-black font-semibold max-xl:block"
+                            : "text-neutral-300 max-xl:hidden"
                     }`}
                 >
                     Ubicacion
@@ -36,8 +36,8 @@ const RegisterForm = () => {
                 <p
                     className={`text-3xl ${
                         step === 3
-                            ? "text-basic-black font-semibold"
-                            : "text-neutral-300"
+                            ? "text-basic-black font-semibold max-xl:block"
+                            : "text-neutral-300 max-xl:hidden"
                     }`}
                 >
                     Informacion
