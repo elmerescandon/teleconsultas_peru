@@ -4,6 +4,7 @@ import RegisterRow from "../RegisterRow/RegisterRow";
 import useRegister from "@/utils/hooks/useRegister";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import { useEffect, useState } from "react";
+import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 
 type RegisterGeneralProps = {
     nextFn: () => void;
@@ -13,9 +14,21 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
     const { formFields, handleChange, handleValidations, handleRegister } =
         useRegister();
     const [checkForms, setCheckForms] = useState<boolean>(false);
+    const dispatch = useRegisterDispatch();
 
     useEffect(() => {
         if (checkForms && handleRegister("general")) {
+            dispatch({
+                type: "SET_GENERAL",
+                payload: {
+                    name: formFields.name.value,
+                    lastname: formFields.lastname.value,
+                    email: formFields.email.value,
+                    password: formFields.password.value,
+                    confirmPassword: formFields.repeatPassword.value,
+                    id: formFields.id.value,
+                },
+            });
             nextFn();
         } else {
             setCheckForms(false);
