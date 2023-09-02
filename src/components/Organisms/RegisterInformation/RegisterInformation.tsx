@@ -6,6 +6,7 @@ import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimar
 import useRegister from "@/utils/hooks/useRegister";
 import InputSelect from "@/components/Atoms/Inputs/InputSelect/InputSelect";
 import { sexOptions } from "@/utils/constants/registerSelect";
+import { DatePicker } from "@mui/x-date-pickers";
 
 type RegisterInformationProps = {
     nextFn: () => void;
@@ -55,13 +56,16 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                         title="Fecha de Nacimiento"
                         error={formFields.bornDate.error}
                     >
-                        <InputText
-                            onChangeFn={(bornDate) => {
-                                handleChange("bornDate", bornDate);
+                        <DatePicker
+                            sx={{
+                                width: "100%",
                             }}
+                            label=""
                             value={formFields.bornDate.value}
-                            type="text"
-                            placeholder="Día/Mes/Año"
+                            onChange={(newValue) => {
+                                if (newValue !== null)
+                                    handleChange("bornDate", newValue);
+                            }}
                         />
                     </RegisterField>
                 </RegisterRow>
