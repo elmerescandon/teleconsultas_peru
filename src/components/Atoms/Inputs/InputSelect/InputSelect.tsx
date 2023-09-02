@@ -32,11 +32,13 @@ const InputSelect = ({
         <div>
             <select
                 id={selectId}
-                className="text-neutral-400 focus:text-classic-black border-neutral-300 border-2 rounded-md h-12 px-4 pr-10 max-xl:w-full w-full"
+                className="text-basic-black focus:text-classic-black border-neutral-300 border-2 rounded-md h-12 px-4 pr-10 max-xl:w-full w-full"
                 onChange={handleChange}
                 value={selectedValue}
             >
-                <option value="">{placeholder}</option>
+                <option value="" className="text-neutral-400">
+                    {placeholder}
+                </option>
                 {options.map((option, index) => (
                     <option key={index} value={option.value}>
                         {option.label}
