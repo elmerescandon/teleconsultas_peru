@@ -1,3 +1,4 @@
+import LabelProfileMain from "@/components/Atoms/Labels/LabelProfileMain/LabelProfileMain";
 import React from "react";
 
 const ProfileDetailed = () => {
@@ -7,40 +8,48 @@ const ProfileDetailed = () => {
 
             <div className="flex flex-row max-xl:flex-col gap-5">
                 <div className="w-1/2 flex flex-col justify-around gap-10">
-                    <div className="flex justify-start max-xl:flex-col">
-                        <p className="text-gray-500 w-36">Región</p>
-                        <p className="text-lg">Lima</p>
-                    </div>
-                    <div className="flex justify-start max-xl:flex-col">
-                        <p className="text-gray-500 w-36">Provincia </p>
-                        <p className="text-lg">Lima</p>
-                    </div>
-                    <div className="flex justify-start max-xl:flex-col">
-                        <p className="text-gray-500 w-36">Distrito</p>
-                        <p className="text-lg">Miraflores</p>
-                    </div>
-                    <div className="flex justify-start max-xl:flex-col">
-                        <p className="text-gray-500 w-36">Dirección</p>
-                        <p className="text-lg">Av. Larco 156</p>
-                    </div>
+                    <LabelProfileMain
+                        label="Región"
+                        value="Lima"
+                        editable={false}
+                    />
+                    <LabelProfileMain
+                        label="Provincia"
+                        value="Lima"
+                        editable={false}
+                    />
+                    <LabelProfileMain
+                        label="Distrito"
+                        value="Miraflores"
+                        editable={false}
+                    />
+                    <LabelProfileMain
+                        label="Dirección"
+                        value="Av. Larco 156"
+                        editable={false}
+                    />
                 </div>
                 <div className="w-1/2 flex flex-col justify-around gap-10">
-                    <div className="flex justify-start max-xl:flex-col">
-                        <p className="text-gray-500 w-36">Teléfono</p>
-                        <p className="text-lg">+51 942 235 231</p>
-                    </div>
-                    <div className="flex justify-start max-xl:flex-col">
-                        <p className="text-gray-500 w-36">Edad</p>
-                        <p className="text-lg">51</p>
-                    </div>
-                    <div className="flex justify-start max-xl:flex-col">
-                        <p className="text-gray-500 w-36">Nacimiento</p>
-                        <p className="text-lg">15/08/1973</p>
-                    </div>
-                    <div className="flex justify-start max-xl:flex-col">
-                        <p className="text-gray-500 w-36">Sexo</p>
-                        <p className="text-lg">Hombre</p>
-                    </div>
+                    <LabelProfileMain
+                        label="Teléfono"
+                        value="+51 942 235 231"
+                        editable={false}
+                    />
+                    <LabelProfileMain
+                        label="Edad"
+                        value="51"
+                        editable={false}
+                    />
+                    <LabelProfileMain
+                        label="Nacimiento"
+                        value="15/08/1973"
+                        editable={false}
+                    />
+                    <LabelProfileMain
+                        label="Sexo"
+                        value="Hombre"
+                        editable={false}
+                    />
                 </div>
             </div>
         </div>
