@@ -9,8 +9,8 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <div className="footer flex flex-row bg-brand-700 px-48 py-14 max-lg:px-5 max-lg:flex-col max-lg:gap-10">
-            <div className="flex flex-row justify-between gap-14 flex-wrap">
+        <div className="footer flex flex-row bg-brand-700 px-48 py-14 max-lg:px-5 max-xl:flex-col max-xl:gap-10">
+            <div className="flex flex-row justify-between gap-14 flex-wrap max-xl:items-center max-xl:justify-center">
                 <div className="footer-section footer-section__1 flex flex-col gap-2 flex-wrap">
                     <LinkSecondary2 to={Routes.HOME}>Inicio </LinkSecondary2>
                     <LinkSecondary2 to={Routes.ABOUT_US}>
@@ -46,8 +46,7 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="footer-section footer-section__2 flex flex-col gap-2 px-14 max-lg:px-0">
+            <div className="footer-section footer-section__2 flex flex-col gap-2 px-14 max-lg:px-0 max-xl:items-center">
                 <p className="text-3xl font-semibold text-basic-white">
                     Aika Salud
                 </p>
