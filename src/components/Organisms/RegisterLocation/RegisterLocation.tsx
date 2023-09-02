@@ -5,7 +5,12 @@ import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import useRegister from "@/utils/hooks/useRegister";
 import InputSelect from "@/components/Atoms/Inputs/InputSelect/InputSelect";
-import { selectDepartments } from "@/utils/functions/utilsRegister";
+import {
+    selectDepartments,
+    selectDistricts,
+    selectProvinces,
+} from "@/utils/functions/utilsRegister";
+import ISelectOptions from "@/utils/Interfaces/ISelectOptions";
 
 type RegisterLocationProps = {
     prevFn: () => void;
@@ -16,8 +21,32 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
     const { formFields, handleChange, handleRegister, handleValidations } =
         useRegister();
     const [checkForms, setCheckForms] = useState<boolean>(false);
+    const [provinceOptions, setProvinceOptions] = useState<ISelectOptions[]>(
+        []
+    );
+    const [districtOptions, setDistrictOptions] = useState<ISelectOptions[]>(
+        []
+    );
 
     useEffect(() => {
+        if (formFields.region.value !== "") {
+            setProvinceOptions(selectProvinces(formFields.region.value));
+        } else {
+            setProvinceOptions([]);
+            setDistrictOptions([]);
+        }
+
+        if (formFields.province.value !== "") {
+            setDistrictOptions(
+                selectDistricts(
+                    formFields.region.value,
+                    formFields.province.value
+                )
+            );
+        } else {
+            setDistrictOptions([]);
+        }
+
         if (checkForms && handleRegister("location")) {
             nextFn();
         } else {
@@ -34,36 +63,38 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                         error={formFields.region.error}
                     >
                         <InputSelect
-                            onChange={(region) => {}}
+                            onChange={(region) => {
+                                handleChange("region", region);
+                            }}
                             selectId="region"
                             options={selectDepartments}
-                            placeholder=""
+                            placeholder="Seleccione su región"
                         />
                     </RegisterField>
                     <RegisterField
                         title="Provincia"
                         error={formFields.province.error}
                     >
-                        <InputText
-                            onChangeFn={(province) => {
+                        <InputSelect
+                            onChange={(province) => {
                                 handleChange("province", province);
                             }}
-                            value={formFields.province.value}
-                            type="text"
-                            placeholder=""
+                            selectId="province"
+                            options={provinceOptions}
+                            placeholder="Seleccione su provincia"
                         />
                     </RegisterField>
                     <RegisterField
                         title="Distrito"
                         error={formFields.district.error}
                     >
-                        <InputText
-                            onChangeFn={(district) => {
+                        <InputSelect
+                            onChange={(district) => {
                                 handleChange("district", district);
                             }}
-                            value={formFields.district.value}
-                            type="text"
-                            placeholder=""
+                            selectId="district"
+                            options={districtOptions}
+                            placeholder="Seleccione su distrito"
                         />
                     </RegisterField>
                 </RegisterRow>
