@@ -110,7 +110,7 @@ const useRegister = () => {
     setFormFields(newFormFields);
   };
 
-  const handleValidations = (type: string) => {
+  const handleValidations = (type: 'general' | 'location' | 'info') => {
     const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
     const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
     const infoField = ["age", "height", "weight", "phone", "bornDate"] as (keyof IFormFields)[];
@@ -127,7 +127,7 @@ const useRegister = () => {
     }
   }
 
-  const handleRegister = (type: string) => {
+  const handleRegister = (type: 'general' | 'location' | 'info') => {
     const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
     const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
     const infoField = ["age", "height", "weight", "phone", "bornDate"] as (keyof IFormFields)[];
