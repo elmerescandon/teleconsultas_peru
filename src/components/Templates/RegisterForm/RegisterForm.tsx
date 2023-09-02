@@ -45,39 +45,24 @@ const RegisterForm = () => {
             </div>
 
             <div className="pb-10 flex flex-col justify-start">
-                {step === 1 && <RegisterGeneral />}
-                {step === 2 && <RegisterLocation />}
+                {step === 1 && (
+                    <RegisterGeneral
+                        nextFn={() => {
+                            setStep(step + 1);
+                        }}
+                    />
+                )}
+                {step === 2 && (
+                    <RegisterLocation
+                        prevFn={() => {
+                            setStep(step - 1);
+                        }}
+                        nextFn={() => {
+                            setStep(step + 1);
+                        }}
+                    />
+                )}
                 {step === 3 && <RegisterInformation />}
-                <div className="w-48 m-10 flex gap-10 max-xl:w-full">
-                    <div className={`${step === 1 ? "hidden" : ""}`}>
-                        <ButtonPrimary
-                            onClickFn={() => {
-                                setStep(step - 1);
-                            }}
-                        >
-                            Anterior
-                        </ButtonPrimary>
-                    </div>
-
-                    <div className={`${step === 3 ? "hidden" : ""}`}>
-                        <ButtonPrimary
-                            onClickFn={() => {
-                                setStep(step + 1);
-                            }}
-                        >
-                            Siguiente
-                        </ButtonPrimary>
-                    </div>
-                    <div className={`${step !== 3 ? "hidden" : ""}`}>
-                        <ButtonPrimary
-                            onClickFn={() => {
-                                router.push(Routes.REGISTER_COMPLETE);
-                            }}
-                        >
-                            Finalizar
-                        </ButtonPrimary>
-                    </div>
-                </div>
             </div>
         </div>
     );
