@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import RegisterRow from "../RegisterRow/RegisterRow";
 import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
@@ -11,10 +11,16 @@ type RegisterLocationProps = {
 };
 
 const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
-    const { formFields, handleChange, handleRegister } = useRegister();
+    const { formFields, handleChange, handleRegister, handleValidations } =
+        useRegister();
+    const [checkForms, setCheckForms] = useState<boolean>(false);
 
     useEffect(() => {
-        console.log(formFields);
+        if (checkForms && handleRegister("location")) {
+            nextFn();
+        } else {
+            setCheckForms(false);
+        }
     }, [formFields]);
 
     return (
@@ -115,10 +121,8 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                 <ButtonPrimary
                     type="button"
                     onClickFn={() => {
-                        if (handleRegister("location")) {
-                            console.log("se logró");
-                            nextFn();
-                        }
+                        handleValidations("location");
+                        setCheckForms(true);
                     }}
                 >
                     Siguiente
