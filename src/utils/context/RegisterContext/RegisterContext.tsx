@@ -35,6 +35,7 @@ const RegisterProvider = ({ children }: RegisterProviderProps) => {
 
         // Info
         age: "",
+        sex: "",
         height: "",
         weight: "",
         phone: "",
@@ -70,40 +71,5 @@ export const useRegisterState = () => {
 export const useRegisterDispatch = () => {
     return useContext(RegisterDispatchContext);
 };
-
-export const registerGeneral = (forms: {
-    name: string;
-    lastname: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-    id: string;
-}) => ({
-    type: RegisterActions.SET_GENERAL,
-    payload: forms,
-});
-
-export const registerLocation = (forms: {
-    region: string;
-    province: string;
-    district: string;
-    address: string;
-    refference: string;
-    interiorNumber: string;
-}) => ({
-    type: RegisterActions.SET_LOCATION,
-    payload: forms,
-});
-
-export const registerInfo = (forms: {
-    age: string;
-    height: string;
-    weight: string;
-    phone: string;
-    bornDate: string;
-}) => ({
-    type: RegisterActions.SET_INFO,
-    payload: forms,
-});
 
 export default RegisterProvider;
