@@ -13,7 +13,7 @@ const RegisterForm = () => {
     const router = useRouter();
 
     return (
-        <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-10 max-xl:w-2/3">
+        <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-10 max-xl:w-2/3 max-md:w-full">
             <div className="flex flex-row items-center justify-center gap-36 pb-10">
                 <p
                     className={`text-3xl font-semibold ${
