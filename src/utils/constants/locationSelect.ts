@@ -1,9 +1,11 @@
 import ubigeoPeru from 'ubigeo-peru';
+import IUbigeo from '../Interfaces/IUbigeo';
 
-const currentUbigeo = ubigeoPeru.reniec;
+export const currentUbigeo : IUbigeo[] = ubigeoPeru.reniec;
 
-const departments = currentUbigeo.filter((item) => {
+export const departments = currentUbigeo.filter((item) => {
   return (item.provincia === '00' &&   item.distrito === '00')});
+
 
 
 
