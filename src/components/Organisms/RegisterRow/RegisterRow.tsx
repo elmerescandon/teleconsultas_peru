@@ -5,7 +5,7 @@ type RegisterRowProps = {
 };
 
 const RegisterRow = ({ children }: RegisterRowProps) => {
-    return <div className="w-full px-10 flex flex-col gap-5">{children}</div>;
+    return <div className="w-full flex flex-col gap-5">{children}</div>;
 };
 
 export default RegisterRow;
