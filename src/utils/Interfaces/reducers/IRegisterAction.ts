@@ -27,6 +27,7 @@ type IRegisterActionSetInfo ={
     type: 'SET_INFO',
     payload: {
         age: string,
+        sex: string,
         height: string,
         weight: string,
         phone: string,

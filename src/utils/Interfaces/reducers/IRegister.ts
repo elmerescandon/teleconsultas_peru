@@ -17,6 +17,7 @@ interface IRegister{
 
     // Info
     age: string,
+    sex: string,
     height: string,
     weight: string,
     phone: string,
