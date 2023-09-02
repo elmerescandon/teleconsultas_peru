@@ -4,6 +4,8 @@ import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import useRegister from "@/utils/hooks/useRegister";
+import InputSelect from "@/components/Atoms/Inputs/InputSelect/InputSelect";
+import { selectDepartments } from "@/utils/functions/utilsRegister";
 
 type RegisterLocationProps = {
     prevFn: () => void;
@@ -31,12 +33,10 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                         title="Región"
                         error={formFields.region.error}
                     >
-                        <InputText
-                            onChangeFn={(region) => {
-                                handleChange("region", region);
-                            }}
-                            value={formFields.region.value}
-                            type="text"
+                        <InputSelect
+                            onChange={(region) => {}}
+                            selectId="region"
+                            options={selectDepartments}
                             placeholder=""
                         />
                     </RegisterField>
