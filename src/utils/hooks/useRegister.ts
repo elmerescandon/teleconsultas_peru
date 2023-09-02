@@ -68,30 +68,30 @@ const useRegister = () => {
   //  TODO: CORRECT VALIDATIONS
 
   const validations = {
-    name: (value : string) => (value !== '' ? '' : 'Name is required'),
-    lastname: (value : string) => (value !== '' ? '' : 'Lastname is required'),
+    name: (value : string) => (value !== '' ? '' : 'Nombre es requerido'),
+    lastname: (value : string) => (value !== '' ? '' : 'Apellidos es requerido'),
     email: (value : string) =>
       value
         ? /\S+@\S+\.\S+/.test(value)
           ? ''
-          : 'Invalid email format'
-        : 'Email is required',
-    id: (value : string) => (value ? '' : 'ID is required'),
-    password: (value : string) => (value ? '' : 'Password is required'),
+          : 'Formato inválido'
+        : 'Email es requerido',
+    id: (value : string) => (value ? '' : 'DNI es requerido'),
+    password: (value : string) => (value ? '' : 'Contraseña es requerida'),
     repeatPassword: (value : string) =>
-      value ? (value === formFields.password.value ? '' : 'Passwords do not match') : 'Repeat Password is required',
-    region: (value : string) => (value ? '' : 'Region is required'),
-    province: (value : string) => (value ? '' : 'Province is required'),
-    district: (value : string) => (value ? '' : 'District is required'),
-    address: (value : string) => (value ? '' : 'Address is required'),
-    refference: (value : string) => (value ? '' : 'Refference is required'),
-    interiorNumber: (value : string) => (value ? '' : 'Interior Number is required'),
-    age: (value : string) => (value ? '' : 'Age is required'),  
-    sex: (value: string) => (value ? '' : 'Sex is required'),
-    height: (value : string) => (value ? '' : 'Height is required'),
-    weight: (value : string) => (value ? '' : 'Weight is required'),
-    phone: (value : string) => (value ? '' : 'Phone is required'),
-    bornDate: (value : string) => (value ? '' : 'Born Date is required'),
+      value ? (value === formFields.password.value ? '' : 'Contraseñas no coinciden') : 'Repetir contraseña es requerido',
+    region: (value : string) => (value ? '' : 'Región es requerido'),
+    province: (value : string) => (value ? '' : 'Provincia es requerido'),
+    district: (value : string) => (value ? '' : 'Distrito es requerido'),
+    address: (value : string) => (value ? '' : 'Dirección es requerido'),
+    refference: (value : string) => (value ? '' : 'Referencia es requerido'),
+    interiorNumber: (value : string) => (value ? '' : 'Interior es requerido'),
+    age: (value : string) => (value ? '' : 'Edad es requerido'),  
+    sex: (value: string) => (value ? '' : 'Sexo es requerido'),
+    height: (value : string) => (value ? '' : 'Altura es requerido'),
+    weight: (value : string) => (value ? '' : 'Peso es requerido'),
+    phone: (value : string) => (value ? '' : 'Teléfono es requerido'),
+    bornDate: (value : string) => (value ? '' : 'Fecha de nacimiento es requerido'),
     };
 
   const validateField = (fieldName : keyof IFormFields) => {
