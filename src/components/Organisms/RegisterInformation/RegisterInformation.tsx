@@ -4,6 +4,8 @@ import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
 import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import useRegister from "@/utils/hooks/useRegister";
+import InputSelect from "@/components/Atoms/Inputs/InputSelect/InputSelect";
+import { sexOptions } from "@/utils/constants/registerSelect";
 
 type RegisterInformationProps = {
     nextFn: () => void;
@@ -39,13 +41,13 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     </RegisterField>
 
                     <RegisterField title="Sexo" error={formFields.sex.error}>
-                        <InputText
-                            onChangeFn={(sex) => {
+                        <InputSelect
+                            selectId="sexo"
+                            onChange={(sex) => {
                                 handleChange("sex", sex);
                             }}
-                            value={formFields.sex.value}
-                            type="text"
-                            placeholder=""
+                            options={sexOptions}
+                            placeholder="Escoge tu sexo"
                         />
                     </RegisterField>
 
