@@ -7,6 +7,7 @@ type SlotAppointmentProps = {
 };
 
 const SlotAppointment = ({ availableAppointment }: SlotAppointmentProps) => {
+    // TODO: Animate button
     const { startDate, endDate, available } = availableAppointment;
     const dispatch = useAppointmentDispatch();
     return (
