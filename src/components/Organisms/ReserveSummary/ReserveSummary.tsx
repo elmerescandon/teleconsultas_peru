@@ -22,7 +22,7 @@ const ReserveSummary = () => {
                   .toLocaleTimeString()
                   .replace(/:\d+ /, " ")} `;
     return (
-        <div>
+        <div className="w-1/3 max-xl:w-full">
             <div className="text-2xl font-semibold py-4">Resumen</div>
             <div>
                 <div className="flex justify-between py-2 gap-5">
