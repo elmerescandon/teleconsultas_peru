@@ -1,5 +1,6 @@
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import React from "react";
+import ButtonPrimary from "../../Buttons/ButtonPrimary/ButtonPrimary";
 
 type PopUpAppointmentProps = {
     onClose: () => void;
@@ -21,10 +22,7 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => (
                     appointment.endDate
                 ).getHours()}`}
             </p>
-
-            <button className="text-blue-500 hover:underline" onClick={onClose}>
-                Close
-            </button>
+            <ButtonPrimary onClickFn={onClose}>Cerrar</ButtonPrimary>
         </div>
     </div>
 );
