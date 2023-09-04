@@ -1,4 +1,4 @@
-interface ISpecialty {
+interface Ispeciality {
     _id: string;
     name: string;
     description: string;
@@ -6,4 +6,4 @@ interface ISpecialty {
     other_fields: any;
   }
   
-export default ISpecialty;
+export default Ispeciality;
