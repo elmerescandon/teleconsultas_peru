@@ -3,6 +3,14 @@ import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimar
 import PaymentItem from "@/components/Molecules/PaymentItem/PaymentItem";
 import SuccessRecommendations from "@/components/Molecules/SuccessRecommendations/SuccessRecommendations";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
+import {
+    getAppointmentHours,
+    getDoctorName,
+    getSpecialityName,
+    stringToDate,
+} from "@/utils/functions/utils";
+import doctorsMockup from "@/utils/mockups/doctorsMockup";
+import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -34,10 +42,19 @@ const SucessAppointmentSection = () => {
             </div>
             <div className="text-xl font-semibold py-3">Resumen</div>
             <div className="pb-5">
-                <PaymentItem label="Especialidad" name={specialityId} />
-                <PaymentItem label="Profesional" name={doctorId} />
-                <PaymentItem label="Fecha" name={date} />
-                <PaymentItem label="Horario" name={startDate} />
+                <PaymentItem
+                    label="Especialidad"
+                    name={getSpecialityName(specialitiesMockup, specialityId)}
+                />
+                <PaymentItem
+                    label="Profesional"
+                    name={getDoctorName(doctorsMockup, doctorId)}
+                />
+                <PaymentItem label="Fecha" name={stringToDate(date)} />
+                <PaymentItem
+                    label="Horario"
+                    name={getAppointmentHours(startDate, endDate)}
+                />
             </div>
             <SuccessRecommendations />
         </div>
