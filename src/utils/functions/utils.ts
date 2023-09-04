@@ -1,11 +1,11 @@
 import IAvailableAppointment from "../Interfaces/IAvailableAppointment";
-import ISpecialty from "../Interfaces/dataModel/ISpeciality";
+import Ispeciality from "../Interfaces/dataModel/ISpeciality";
 import IUser from "../Interfaces/dataModel/IUser";
 import IAppointment from "../Interfaces/reducers/IAppointment";
 import doctorAvailabilityMockup from "../mockups/doctorAvailabilityMockup";
 
 // function from specialitiesMokcup to select options
-export const getSpecialitiesOptions = (specialities: ISpecialty[]) => {
+export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
   const options = specialities.map((speciality) => {
     return {
       value: speciality._id,
@@ -28,7 +28,7 @@ export const getDoctorsOptions = (doctors: IUser[]) => {
 
 export const getAvailableAppointments = (date: string, doctorId : string, specialityId: string) => {
   const availableDateDoctor = doctorAvailabilityMockup.filter((availability) => {
-    return availability.doctor_id === doctorId && availability.specialty_id === specialityId && availability.availability_slots.some((slot) => slot.date === date);
+    return availability.doctor_id === doctorId && availability.speciality_id === specialityId && availability.availability_slots.some((slot) => slot.date === date);
   });
 
   if(availableDateDoctor.length === 0) return [];
@@ -41,3 +41,48 @@ export const validateAppointment = (appointment : IAppointment) => {
   if(!specialityId || !doctorId || !reason || !symptoms || !details || !date || !startDate || !endDate) return false;
   return true;
 }
+
+export const  stringToDate = (date : string) => {
+  if (date === "") return "";	
+
+  const spanishDate = new Date(date).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    return spanishDate.charAt(0).toUpperCase() + spanishDate.slice(1);
+}
+
+export const statusToSpanish = (status : string) => {
+  switch(status){
+    case 'scheduled':
+      return 'Agendada';
+    case 'completed':
+      return 'Aceptada';
+    case 'canceled':
+      return 'Rechazada';
+    case 'pending':
+      return 'Pendiente';
+    default:
+      return 'Pendiente';
+  }
+}
+
+export const getAppointmentHours = (startDate: string, endDate: string) => {
+  if (startDate === "" || endDate === "") return "";
+
+  return `${new Date(startDate)
+    .toLocaleTimeString()
+    .replace(/:\d+ /, " ")} - ${new Date(endDate)
+    .toLocaleTimeString()
+    .replace(/:\d+ /, " ")} `;
+}
+
+export const getSpecialityName = (specialities : Ispeciality[], specialityId : string) => {
+  const speciality = specialities.filter((speciality) => speciality._id === specialityId);
+  if(speciality.length === 0) return '';
+  return speciality[0].name;
+}
+
+
+export const getDoctorName = (doctors : IUser[], doctorId : string) => {
+  const doctor = doctors.filter((doctor) => doctor._id === doctorId);
+  if(doctor.length === 0) return '';
+  return doctor[0].name;
+};
