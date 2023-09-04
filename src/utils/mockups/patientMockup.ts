@@ -1,6 +1,6 @@
 import IUser from "../Interfaces/dataModel/IUser";
 
-const doctorUserMockup: IUser = {
+const patientMockup: IUser = {
     _id: "patient1",
     role: "patient",
     name: "Pedro Navaja",
@@ -16,4 +16,4 @@ const doctorUserMockup: IUser = {
     },
     active_prescriptions: ["prescription1", "prescription2"],
 };
-export default doctorUserMockup;
+export default patientMockup;
