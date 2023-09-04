@@ -1,6 +1,14 @@
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import PaymentItem from "@/components/Molecules/PaymentItem/PaymentItem";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
+import {
+    getAppointmentHours,
+    getDoctorName,
+    getSpecialityName,
+    stringToDate,
+} from "@/utils/functions/utils";
+import doctorsMockup from "@/utils/mockups/doctorsMockup";
+import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
 
@@ -13,10 +21,19 @@ const PaymentReview = () => {
             <div className="text-xl">Detalle</div>
             <div className="w-full border my-5"></div>
             <div>
-                <PaymentItem label="Especialidad" name={specialityId} />
-                <PaymentItem label="Profesional" name={doctorId} />
-                <PaymentItem label="Fecha" name={date} />
-                <PaymentItem label="Horario" name={startDate} />
+                <PaymentItem
+                    label="Especialidad"
+                    name={getSpecialityName(specialitiesMockup, specialityId)}
+                />
+                <PaymentItem
+                    label="Profesional"
+                    name={getDoctorName(doctorsMockup, doctorId)}
+                />
+                <PaymentItem label="Fecha" name={stringToDate(date)} />
+                <PaymentItem
+                    label="Horario"
+                    name={getAppointmentHours(startDate, endDate)}
+                />
             </div>
 
             <div className="w-full border my-5"></div>
