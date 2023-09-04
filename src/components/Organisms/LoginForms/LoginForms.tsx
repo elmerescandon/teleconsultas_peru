@@ -4,6 +4,7 @@ import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import { userLogIn } from "@/redux/action-creators/UserActionCreators";
 import { useAppDispatch } from "@/redux/hooks";
 import useUserValidation from "@/utils/hooks/useUserValidation";
+import patientReduxMockup from "@/utils/mockups/patientReduxMockup";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -20,18 +21,7 @@ const LoginForms = () => {
         try {
             await validateUser(username, password);
             setError("");
-            dispatch(
-                userLogIn({
-                    _id: "123",
-                    role: "patient",
-                    name: "Juan",
-                    email: "juanperez@aikasalud.com",
-                    phone: "945681231",
-                    address: "Av. Los Pinos 123",
-                    profile_picture: "https://i.imgur.com/1OJ9Q3x.png",
-                })
-            );
-
+            dispatch(userLogIn(patientReduxMockup));
             router.push(Routes.PATIENT_HOME);
             // Continue with further actions, such as registering the user
         } catch (error: any) {
