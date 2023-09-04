@@ -21,6 +21,9 @@ const AppointmentProvider = ({ children }: AppointmentProviderProps) => {
         date: "",
         startDate: "",
         endDate: "",
+        _id: "",
+        patientId: "",
+        status: "pending",
     });
 
     return (

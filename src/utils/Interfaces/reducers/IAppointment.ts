@@ -1,12 +1,15 @@
 interface IAppointment {
-    specialityId: string,
+    _id: string,
+    patientId: string,
     doctorId: string,
-    reason: string,
-    symptoms: string[],
-    details: string,
-    date: string,
     startDate: string,
+    date: string,
     endDate: string,
+    status: 'scheduled' | 'completed' | 'canceled' | 'pending',
+    reason: string,
+    details: string,
+    specialityId: string,
+    symptoms: string[],
 }
 
 export default IAppointment;
