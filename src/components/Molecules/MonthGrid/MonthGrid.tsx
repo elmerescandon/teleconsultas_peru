@@ -55,7 +55,7 @@ const MonthGrid = ({
         );
     }
     return (
-        <div className="w-full grid grid-cols-7 py-3 pb-16">
+        <div className="w-full grid grid-cols-7 py-3 pb-24">
             {days.map((day) => {
                 return (
                     <div

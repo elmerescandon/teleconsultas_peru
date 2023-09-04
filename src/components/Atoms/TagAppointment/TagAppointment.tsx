@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PopUpAppointment from "../PopUp/PopUpAppointment/PopUpAppointment";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
+import { getSpecialityName } from "@/utils/functions/utils";
+import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 
 type TagAppointmentProps = {
     appointment: IAppointment;
@@ -37,7 +39,10 @@ const TagAppointment = ({ appointment, onClickFn }: TagAppointmentProps) => {
             >
                 <div className="bg-brand-600 text-basic-white px-2 py-1 rounded text-ellipsis whitespace-nowrap overflow-hidden">
                     {dimensions.width >= 1024
-                        ? appointment.specialityId
+                        ? getSpecialityName(
+                              specialitiesMockup,
+                              appointment.specialityId
+                          )
                         : "..."}
                 </div>
             </button>

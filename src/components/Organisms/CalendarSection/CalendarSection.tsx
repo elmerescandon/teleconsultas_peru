@@ -1,6 +1,7 @@
 "use client";
 import MonthGrid from "@/components/Molecules/MonthGrid/MonthGrid";
 import useMonthYearChange from "@/utils/hooks/useCalendar";
+import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
 import AppointmentTest from "@/utils/mockups/AppointmentsTest";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
@@ -41,7 +42,7 @@ const CalendarSection = () => {
             </div>
 
             <MonthGrid
-                monthAppointmentData={AppointmentTest}
+                monthAppointmentData={AppointmentsMockup}
                 onAppointmentClick={() => {}}
                 month={month}
                 year={year}

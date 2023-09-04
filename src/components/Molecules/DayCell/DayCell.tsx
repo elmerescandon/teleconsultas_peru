@@ -15,7 +15,7 @@ const DayCell = ({ dayData, onAppointmentClick, today }: DayCellProps) => {
     const { appointments, date } = dayData;
     const restrictiveAppointments = appointments.slice(0, 2);
     return (
-        <div className="border p-2 h-28">
+        <div className="border p-2 h-36">
             <p
                 className={` flex items-center justify-center ${
                     today ? "bg-brand-600 rounded-full text-basic-white" : ""
@@ -23,13 +23,15 @@ const DayCell = ({ dayData, onAppointmentClick, today }: DayCellProps) => {
             >
                 {date.getDate()}
             </p>
-            {restrictiveAppointments.map((appointment, index) => (
-                <TagAppointment
-                    key={index}
-                    appointment={appointment}
-                    onClickFn={() => onAppointmentClick(appointment)}
-                />
-            ))}
+            <div className="flex gap-2 flex-wrap">
+                {restrictiveAppointments.map((appointment, index) => (
+                    <TagAppointment
+                        key={index}
+                        appointment={appointment}
+                        onClickFn={() => onAppointmentClick(appointment)}
+                    />
+                ))}
+            </div>
         </div>
     );
 };
