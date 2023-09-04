@@ -8,7 +8,11 @@ interface IUser {
     phone: string;
     address: string;
     profile_picture: string;
-    other_fields: any;
+    other_fields?: any;
+    reserved_appointments?: {
+        [date: string]: string[]; 
+      };
+    active_prescriptions?: string[];
 }
 
 export default IUser;
