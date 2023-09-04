@@ -1,9 +1,9 @@
 import IDoctorAvailability from "../Interfaces/dataModel/IDoctorAvailability";
 
 const doctorAvailabilityMockup: IDoctorAvailability[] = [{
-    _id: "availability456",
-    doctor_id: "doctor123",
-    specialty_id: "specialty789",
+    _id: "availability1",
+    doctor_id: "doctor1",
+    speciality_id: "speciality1",
     availability_slots: [
       {
         date: "2023-08-24",

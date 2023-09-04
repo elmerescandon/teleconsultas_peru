@@ -14,7 +14,7 @@ const SlotAppointment = ({ availableAppointment }: SlotAppointmentProps) => {
         <button
             disabled={!available}
             className={`
-                px-3 py-2 rounded-md text-center text-xs font-semibold w-36
+                px-3 py-2 rounded-md text-center text-xs font-semibold
                 ${
                     available
                         ? "bg-brand-600 text-basic-white"

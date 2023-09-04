@@ -1,7 +1,7 @@
 interface IFormsReserveAppointment{
     firstName: string;
     lastName: string;
-    specialty: string;
+    speciality: string;
     doctorId: number;
     diseaseId: number;
     symptomsId: number[];

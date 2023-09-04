@@ -18,10 +18,12 @@ const ReserveAppointmentHours = ({
             <div className="text-xl font-semibold py-4">
                 Horarios Disponibles
             </div>
-            <div className="flex  gap-5 justify-around max-xl:justify-start max-md:justify-center">
-                {slots.length > 0
-                    ? slots.map((slot) => slot)
-                    : "No hay horarios disponibles"}
+            <div className="flex flex-wrap gap-5 justify-start max-xl:justify-start max-md:justify-center">
+                {slots.length > 0 ? (
+                    slots.map((slot) => slot)
+                ) : (
+                    <p className="italic">No hay horarios disponibles</p>
+                )}
             </div>
         </div>
     );

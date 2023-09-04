@@ -22,7 +22,13 @@ const ReserveAppointmentCalendar = ({}) => {
             <div className="text-xl font-semibold py-4">
                 Calendario Disponible
             </div>
-            <DateCalendar value={dateJS} onChange={onChangeDate} />
+            <DateCalendar
+                sx={{
+                    width: "100%",
+                }}
+                value={dateJS}
+                onChange={onChangeDate}
+            />
         </div>
     );
 };
