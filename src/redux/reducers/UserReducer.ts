@@ -13,6 +13,8 @@ export const initialState: IUserState = {
         phone: "",
         address: "",
         profile_picture: "",
+        active_prescriptions: [],
+        reserved_appointments: undefined,
     },
 };
 
@@ -31,15 +33,7 @@ const UserReducer = (
             return{
                 ...state, 
                 logged: false,
-                userInfo: {
-                    _id: "",
-                    role: "patient",
-                    name: "",
-                    email: "",
-                    phone: "",
-                    address: "",
-                    profile_picture: "",
-                },
+                userInfo: initialState,
             }
         default:
             return state;

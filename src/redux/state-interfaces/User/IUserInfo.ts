@@ -3,9 +3,14 @@ interface IUserInfo {
     role: "patient" | "doctor";
     name: string;
     email: string;
+    specialties?: string[];
     phone: string;
     address: string;
     profile_picture: string;
+    reserved_appointments?: {
+        [date: string]: string[]; 
+      };
+    active_prescriptions?: string[];
 }
 
 export default IUserInfo;
