@@ -1,46 +1,46 @@
-import ISpecialty from "../Interfaces/dataModel/ISpeciality";
+import Ispeciality from "../Interfaces/dataModel/ISpeciality";
 
-const specialitiesMockup : ISpecialty[] = [
+const specialitiesMockup : Ispeciality[] = [
     {
-      "_id": "specialty123",
+      "_id": "speciality1",
       "name": "Cardiologia",
       "description": "Se enfoca en salud del corazón",
-      "doctors": ["doctor123", "doctor456"],
+      "doctors": ["doctor1", "doctor2"],
       "other_fields": {}
     },
     {
-      "_id": "specialty456",
+      "_id": "speciality2",
       "name": "Dermatología",
       "description": "Se enfoca en salud de la piel",
-      "doctors": ["doctor789"],
+      "doctors": ["doctor3"],
       "other_fields": {}
     },
     {
-      "_id": "specialty789",
+      "_id": "speciality3",
       "name": "Ortopedia",
       "description": "Se enfoca en salud de los huesos",
-      "doctors": ["doctor234", "doctor567"],
+      "doctors": ["doctor4", "doctor5"],
       "other_fields": {}
     },
     {
-      "_id": "specialty101",
+      "_id": "speciality4",
       "name": "Gastroenterología",
       "description": "Se enfoca en salud del sistema digestivo",
-      "doctors": ["doctor890"],
+      "doctors": ["doctor6"],
       "other_fields": {}
     },
     {
-      "_id": "specialty202",
+      "_id": "speciality5",
       "name": "Neurología",
       "description": "Se enfoca en salud del sistema nervioso",
-      "doctors": ["doctor345"],
+      "doctors": ["doctor7"],
       "other_fields": {}
     },
     {
-      "_id": "specialty303",
+      "_id": "speciality6",
       "name": "Medicina Interna",
       "description": "Se enfoca en salud general",
-      "doctors": ["doctor123"],
+      "doctors": ["doctor1"],
       "other_fields": {}
     }
   ]
