@@ -4,6 +4,7 @@ import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { IState } from "@/redux/store";
 import Routes from "@/utils/routes/Routes";
+import Link from "next/link";
 import React from "react";
 
 const NavigationBar = () => {
@@ -15,6 +16,9 @@ const NavigationBar = () => {
                 <div className="navigation-bar flex flex-row items-center gap-7 max-xl:gap-4">
                     <LinkSecondary to={Routes.PATIENT_HOME}>
                         {"Inicio"}
+                    </LinkSecondary>
+                    <LinkSecondary to={Routes.PATIENT_HISTORY}>
+                        {"Historias"}
                     </LinkSecondary>
                     <LinkSecondary to={Routes.RESERVE}>
                         {"Reserva"}
