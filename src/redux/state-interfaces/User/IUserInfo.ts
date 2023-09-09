@@ -11,6 +11,7 @@ interface IUserInfo {
         [date: string]: string[]; 
       };
     active_prescriptions?: string[];
+    ingresos?: {date: string, ingreso: string}[];
 }
 
 export default IUserInfo;

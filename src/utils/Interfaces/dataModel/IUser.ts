@@ -13,6 +13,7 @@ interface IUser {
         [date: string]: string[]; 
       };
     active_prescriptions?: string[];
+    ingresos: {date: string, ingreso: string}[];
 }
 
 export default IUser;

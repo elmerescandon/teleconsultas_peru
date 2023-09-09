@@ -19,6 +19,7 @@ enum Routes{
     PATIENT_PROFILE = '/patient/profile',
     PATIENT_HISTORY = '/patient/history',
     PATIENT_APPOINTMENTS = '/patient/appointments',
+    DOCTOR_HOME = '/doctor',
 }
 
 export default Routes;

@@ -4,6 +4,7 @@ import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import { userLogIn } from "@/redux/action-creators/UserActionCreators";
 import { useAppDispatch } from "@/redux/hooks";
 import useUserValidation from "@/utils/hooks/useUserValidation";
+import doctorMockup from "@/utils/mockups/doctorMockup";
 import patientReduxMockup from "@/utils/mockups/patientReduxMockup";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
@@ -21,6 +22,11 @@ const LoginForms = () => {
         try {
             await validateUser(username, password);
             setError("");
+            if (username === "doctor123" && password === "doctor123") {
+                dispatch(userLogIn(doctorMockup));
+                router.push(Routes.DOCTOR_HOME);
+                return;
+            }
             dispatch(userLogIn(patientReduxMockup));
             router.push(Routes.PATIENT_HOME);
             // Continue with further actions, such as registering the user
