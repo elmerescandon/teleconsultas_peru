@@ -10,6 +10,12 @@ interface IAppointment {
     details: string,
     specialityId: string,
     symptoms: string[],
+    // Doctor Side
+    price?: number,
+    diagnosis?: string[],
+    treatment?: string[],
+    prescription?: string[],
+    summary?: string,    
 }
 
 export default IAppointment;
