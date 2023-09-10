@@ -33,6 +33,7 @@ const PatientAppointments = () => {
             <div className="text-xl font-semibold">Citas Agendadas</div>
             <div className="flex flex-col items-center py-5 gap-4">
                 <Pagination
+                    orientation="col"
                     itemsPerPage={3}
                     items={patientAppointments.map((appointment, index) => {
                         return (
