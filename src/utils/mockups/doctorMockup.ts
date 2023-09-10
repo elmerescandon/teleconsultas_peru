@@ -10,10 +10,10 @@ const doctorMockup: IUser = {
     address: "Av. Larco 230",
     profile_picture: "/doctora.jpg",
     other_fields: {},
-    reserved_appointments: {
-        ["2023-09-09"]: ["appointment1", "appointment2"],
-        ["2023-09-10"]: ["appointment3", "appointment4"],
-    },
+    reserved_appointments: [
+        {date: "2023-09-10", appointments: ["appointment1", "appointment2"]},
+        {date: "2023-09-11", appointments: ["appointment3", "appointment4","appointment5", "appointment6","appointment7", "appointment8","appointment9","appointment10", ]}
+    ],
     ingresos: [
         {date: "2023-09-09", ingreso: "100"},
         {date: "2023-09-10", ingreso: "200"},
