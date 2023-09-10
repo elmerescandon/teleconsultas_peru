@@ -8,8 +8,8 @@ interface IUserInfo {
     address: string;
     profile_picture: string;
     reserved_appointments?: {
-        [date: string]: string[]; 
-      };
+      date: string, appointments: string[]; 
+    }[];
     active_prescriptions?: string[];
     ingresos?: {date: string, ingreso: string}[];
 }
