@@ -29,7 +29,7 @@ const AppointmentsMockup : IAppointment[] = [
     },  
     {
         _id: "appointment3",
-        patientId: "patient1",
+        patientId: "patient2",
         specialityId: "speciality3",
         startDate: "2023-08-24T10:00:00.000",
         endDate: "2023-08-24T10:30:00.000", 
@@ -42,7 +42,7 @@ const AppointmentsMockup : IAppointment[] = [
     },  
     {
         _id: "appointment4",
-        patientId: "patient1",
+        patientId: "patient3",
         specialityId: "speciality2",
         startDate: "2023-08-25T10:00:00.000",
         endDate: "2023-08-25T10:30:00.000", 
@@ -55,7 +55,7 @@ const AppointmentsMockup : IAppointment[] = [
     },  
     {
         _id: "appointment5",
-        patientId: "patient1",
+        patientId: "patient2",
         specialityId: "speciality2",
         startDate: "2023-08-25T10:00:00.000",
         endDate: "2023-08-25T10:30:00.000", 
@@ -89,7 +89,7 @@ const AppointmentsMockup : IAppointment[] = [
     },  
     {
         _id: "appointment7",
-        patientId: "patient1",
+        patientId: "patient3",
         specialityId: "speciality2",
         startDate: "2023-08-29T10:00:00.000",
         endDate: "2023-08-29T10:30:00.000", 

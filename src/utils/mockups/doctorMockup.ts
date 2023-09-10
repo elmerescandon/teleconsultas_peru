@@ -12,7 +12,7 @@ const doctorMockup: IUser = {
     other_fields: {},
     reserved_appointments: [
         {date: "2023-09-10", appointments: ["appointment1", "appointment2"]},
-        {date: "2023-09-11", appointments: ["appointment3", "appointment4","appointment5", "appointment6","appointment7", "appointment8","appointment9","appointment10", ]}
+        {date: "2023-09-11", appointments: ["appointment3", "appointment4","appointment5", "appointment6","appointment7" ]}
     ],
     ingresos: [
         {date: "2023-09-09", ingreso: "100"},

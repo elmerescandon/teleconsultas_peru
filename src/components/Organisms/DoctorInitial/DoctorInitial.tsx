@@ -15,7 +15,7 @@ const DoctorInitial = () => {
               ).length
             : 0;
     return (
-        <div className="flex justify-between w-full items-center">
+        <div className="flex justify-between w-full items-center max-xl:flex-col max-xl:gap-4">
             <h1 className="text-3xl font-bold">Welcome, {name}!</h1>
             <div>
                 <p>{`Tienes ${numberOfAppointments} citas agendadas para hoy`}</p>

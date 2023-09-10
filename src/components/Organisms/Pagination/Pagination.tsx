@@ -4,9 +4,14 @@ import React, { useState, useEffect, ReactElement } from "react";
 interface PaginationProps {
     items: ReactElement[];
     itemsPerPage: number;
+    orientation: "row" | "col";
 }
 
-const Pagination: React.FC<PaginationProps> = ({ items, itemsPerPage }) => {
+const Pagination: React.FC<PaginationProps> = ({
+    items,
+    itemsPerPage,
+    orientation,
+}) => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(1);
     const [currentItems, setCurrentItems] = useState<ReactElement[]>([]);
@@ -31,9 +36,17 @@ const Pagination: React.FC<PaginationProps> = ({ items, itemsPerPage }) => {
 
     return (
         <div className="w-full">
-            <div className="flex flex-col gap-2">
+            <div
+                className={`flex ${
+                    orientation === "col"
+                        ? "flex-col"
+                        : "flex-row justify-between"
+                } gap-2 max-xl:flex-col`}
+            >
                 {currentItems.map((item, index) => (
-                    <div key={index}>{item}</div>
+                    <div className="w-full" key={index}>
+                        {item}
+                    </div>
                 ))}
             </div>
             <div className="pagination pt-3">
