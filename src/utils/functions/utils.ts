@@ -86,3 +86,11 @@ export const getDoctorName = (doctors : IUser[], doctorId : string) => {
   if(doctor.length === 0) return '';
   return doctor[0].name;
 };
+
+export const areDatesEqual = (dateA : Date, dateB: Date) => {
+  return (
+    dateA.getFullYear() === dateB.getFullYear() &&
+    dateA.getMonth() === dateB.getMonth() &&
+    dateA.getDate() === dateB.getDate()
+  );
+}
