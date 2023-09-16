@@ -32,7 +32,7 @@ const InputSelect = ({
         <div>
             <select
                 id={selectId}
-                className="text-basic-black focus:text-classic-black border-neutral-300 border-2 rounded-md h-12 px-4 pr-10 max-xl:w-full w-full"
+                className="text-basic-black focus:text-classic-black border-neutral-300 border-2 rounded-md h-14 px-4 pr-10 max-xl:w-full w-full"
                 onChange={handleChange}
                 value={selectedValue}
             >
