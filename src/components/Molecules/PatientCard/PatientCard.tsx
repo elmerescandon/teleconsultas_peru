@@ -6,6 +6,7 @@ import {
 } from "@/utils/functions/utils";
 import patientsMockup from "@/utils/mockups/patientsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
 import React from "react";
 
 type PatientCardProps = {
@@ -13,9 +14,10 @@ type PatientCardProps = {
 };
 
 const PatientCard = ({ appointment }: PatientCardProps) => {
+    // TODO: Add edit values and eliminate values
     const { specialityId, patientId, startDate, endDate, status } = appointment;
     return (
-        <div className="bg-neutral-100 rounded-2xl w-full">
+        <div className="bg-neutral-100 rounded-2xl w-64 max-w-md">
             <div className="flex flex-col justify-start items-start p-4 gap-2">
                 <div className="flex items-center gap-4">
                     <div className="flex flex-col">
@@ -37,6 +39,14 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
                     <div className="text-sm">
                         {getAppointmentHours(startDate, endDate)}
                     </div>
+                </div>
+                <div className="flex gap-5 py-1">
+                    <button>
+                        <PencilSquareIcon className="w-5 h-5" />
+                    </button>
+                    <button>
+                        <TrashIcon className="w-5 h-5" />
+                    </button>
                 </div>
             </div>
         </div>
