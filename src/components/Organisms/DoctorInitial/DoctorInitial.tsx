@@ -6,6 +6,7 @@ import { areDatesEqual } from "@/utils/functions/utils";
 import React from "react";
 
 const DoctorInitial = () => {
+    // TODO: Add number of appointments for today
     const user: IUserState = useAppSelector((state) => state.user);
     const { name, reserved_appointments } = user.userInfo;
     const numberOfAppointments =

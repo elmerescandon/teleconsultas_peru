@@ -7,6 +7,7 @@ import PatientCard from "@/components/Molecules/PatientCard/PatientCard";
 import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
 
 const DoctorAppointments = () => {
+    // TODO: Filter according to the doctor's id and day
     const user: IUserState = useAppSelector((state) => state.user);
     const { _id } = user.userInfo;
     const appointments = AppointmentsMockup.map((appointment) => {
