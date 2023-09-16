@@ -40,13 +40,11 @@ const Pagination: React.FC<PaginationProps> = ({
                 className={`flex ${
                     orientation === "col"
                         ? "flex-col"
-                        : "flex-row justify-between"
+                        : "flex-row justify-start"
                 } gap-2 max-xl:flex-col`}
             >
                 {currentItems.map((item, index) => (
-                    <div className="w-full" key={index}>
-                        {item}
-                    </div>
+                    <div key={index}>{item}</div>
                 ))}
             </div>
             <div className="pagination pt-3">
