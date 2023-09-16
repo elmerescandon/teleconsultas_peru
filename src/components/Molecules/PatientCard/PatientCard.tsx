@@ -4,7 +4,7 @@ import {
     getPatientName,
     getSpecialityName,
 } from "@/utils/functions/utils";
-import patientsMockup from "@/utils/mockups/patientMockup";
+import patientsMockup from "@/utils/mockups/patientsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import React from "react";
 
