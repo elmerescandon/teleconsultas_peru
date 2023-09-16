@@ -5,7 +5,7 @@ import DateFilter from "@/components/Molecules/DateFilter/DateFilter";
 import IDateRangeAppointment from "@/utils/Interfaces/IDateRangeAppointment";
 import { getSpecialitiesOptions } from "@/utils/functions/utils";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const DoctorAppointmentFilter = () => {
     const specialitiesOptions = getSpecialitiesOptions(specialitiesMockup);
@@ -13,18 +13,31 @@ const DoctorAppointmentFilter = () => {
         init: null,
         finish: null,
     });
+    const [speciality, setSpeciality] = useState<string>("");
+    const [patientName, setPatientName] = useState<string>("");
+
+    useEffect(() => {
+        console.log(date, speciality, patientName);
+    }, [date, speciality, patientName]);
     return (
-        <div className="flex gap-24 justify-end pb-5">
-            <div className="flex gap-5 justify-end">
+        <div className="flex gap-14 justify-between py-5">
+            <div className="flex gap-5">
                 <InputSelect
-                    onChange={() => {}}
+                    onChange={(e: string) => {
+                        setSpeciality(e);
+                    }}
                     placeholder="Escoge tu especialidad"
-                    selectId="select"
+                    selectId="doctor-speciality"
                     options={specialitiesOptions}
                 />
                 <DateFilter date={date} setDate={setDate} />
             </div>
-            <InputSearch />
+            <InputSearch
+                placeholder="Busca a un paciente"
+                onInputChange={(e: string) => {
+                    setPatientName(e);
+                }}
+            />
         </div>
     );
 };
