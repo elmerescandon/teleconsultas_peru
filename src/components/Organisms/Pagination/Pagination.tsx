@@ -35,13 +35,13 @@ const Pagination: React.FC<PaginationProps> = ({
     };
 
     return (
-        <div className="w-full">
+        <div className="w-full justify-center">
             <div
                 className={`flex ${
                     orientation === "col"
                         ? "flex-col"
-                        : "flex-row justify-center"
-                } gap-2 max-xl:flex-col`}
+                        : "flex-row justify-start items-start"
+                } gap-2 max-xl:flex-col flex-wrap`}
             >
                 {currentItems.map((item, index) => (
                     <div key={index}>{item}</div>
