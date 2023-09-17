@@ -9,21 +9,9 @@ type InputSearchProps = {
 };
 
 const InputSearch = ({ placeholder, onInputChange }: InputSearchProps) => {
-    const [inputValue, setInputValue] = React.useState<string>("");
     const debounceSearch = debounce((value: string) => {
         onInputChange(value);
-    }, 300);
-
-    useEffect(() => {
-        return () => {
-            debounceSearch.cancel();
-        };
-    }, []);
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
-        debounceSearch(e.target.value);
-    };
+    }, 500);
 
     return (
         <div className="flex items-center gap-4">
@@ -33,8 +21,9 @@ const InputSearch = ({ placeholder, onInputChange }: InputSearchProps) => {
                 id="name"
                 name="name"
                 placeholder={placeholder}
-                value={inputValue}
-                onChange={handleInputChange}
+                onChange={(e) => {
+                    debounceSearch(e.target.value);
+                }}
                 required
             />
             <MagnifyingGlassIcon className="h-6 w-6  text-neutral-400 -mb-5" />
