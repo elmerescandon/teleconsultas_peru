@@ -17,7 +17,7 @@ const DoctorAppointments = () => {
     return (
         <div className="w-full">
             <p className="text-xl font-semibold pb-5">Tus citas para hoy</p>
-            <div className="px-20 max-xl:px-5">
+            <div className="max-xl:px-5">
                 {appointments && appointments.length > 0 ? (
                     <Pagination
                         orientation="row"

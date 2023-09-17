@@ -2,40 +2,44 @@
 import InputSearch from "@/components/Atoms/Inputs/InputSearch/InputSearch";
 import InputSelect from "@/components/Atoms/Inputs/InputSelect/InputSelect";
 import DateFilter from "@/components/Molecules/DateFilter/DateFilter";
-import IDateRangeAppointment from "@/utils/Interfaces/IDateRangeAppointment";
+import IAppointmentFilter from "@/utils/Interfaces/IAppointmentFilter";
 import { getSpecialitiesOptions } from "@/utils/functions/utils";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
-import React, { useEffect, useState } from "react";
 
-const DoctorAppointmentFilter = () => {
+type DoctorAppointmentFilterProps = {
+    filter: IAppointmentFilter;
+    setFilter: (filter: IAppointmentFilter) => void;
+};
+
+const DoctorAppointmentFilter = ({
+    filter,
+    setFilter,
+}: DoctorAppointmentFilterProps) => {
     const specialitiesOptions = getSpecialitiesOptions(specialitiesMockup);
-    const [date, setDate] = useState<IDateRangeAppointment>({
-        init: null,
-        finish: null,
-    });
-    const [speciality, setSpeciality] = useState<string>("");
-    const [patientName, setPatientName] = useState<string>("");
+    const { date, patientName, speciality } = filter;
 
-    useEffect(() => {
-        console.log(date, speciality, patientName);
-    }, [date, speciality, patientName]);
     return (
         <div className="flex gap-14 justify-between py-5">
             <div className="flex gap-5">
                 <InputSelect
                     onChange={(e: string) => {
-                        setSpeciality(e);
+                        setFilter({ ...filter, speciality: e });
                     }}
                     placeholder="Escoge tu especialidad"
                     selectId="doctor-speciality"
                     options={specialitiesOptions}
                 />
-                <DateFilter date={date} setDate={setDate} />
+                <DateFilter
+                    date={date}
+                    setDate={(date) => {
+                        setFilter({ ...filter, date: date });
+                    }}
+                />
             </div>
             <InputSearch
                 placeholder="Busca a un paciente"
                 onInputChange={(e: string) => {
-                    setPatientName(e);
+                    setFilter({ ...filter, patientName: e });
                 }}
             />
         </div>
