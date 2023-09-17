@@ -17,7 +17,7 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
     // TODO: Add edit values and eliminate values
     const { specialityId, patientId, startDate, endDate, status } = appointment;
     return (
-        <div className="bg-neutral-100 rounded-2xl w-52 max-w-md">
+        <div className="bg-neutral-100 rounded-2xl w-72 max-w-md">
             <div className="flex flex-col justify-start items-start p-4 gap-2">
                 <div className="flex items-center gap-4">
                     <div className="flex flex-col">
