@@ -6,7 +6,13 @@ import {
 } from "@/utils/functions/utils";
 import patientsMockup from "@/utils/mockups/patientsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
-import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
+import Routes from "@/utils/routes/Routes";
+import {
+    PencilSquareIcon,
+    TrashIcon,
+    UserIcon,
+} from "@heroicons/react/24/solid";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type PatientCardProps = {
@@ -15,7 +21,8 @@ type PatientCardProps = {
 
 const PatientCard = ({ appointment }: PatientCardProps) => {
     // TODO: Add edit values and eliminate values
-    const { specialityId, patientId, startDate, endDate, status } = appointment;
+    const router = useRouter();
+    const { specialityId, patientId, startDate, endDate, _id } = appointment;
     return (
         <div className="bg-neutral-100 rounded-2xl w-72 max-w-md">
             <div className="flex flex-col justify-start items-start p-4 gap-2">
@@ -41,7 +48,22 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
                     </div>
                 </div>
                 <div className="flex gap-5 py-1">
-                    <button>
+                    <button
+                        onClick={() => {
+                            router.push(
+                                `${Routes.DOCTOR_APPOINTMENTS}/${patientId}`
+                            );
+                        }}
+                    >
+                        <UserIcon className="w-5 h-5" />
+                    </button>
+                    <button
+                        onClick={() => {
+                            router.push(
+                                `${Routes.DOCTOR_APPOINTMENTS}/${patientId}/${_id}`
+                            );
+                        }}
+                    >
                         <PencilSquareIcon className="w-5 h-5" />
                     </button>
                     <button>

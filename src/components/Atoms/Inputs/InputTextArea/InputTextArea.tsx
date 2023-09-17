@@ -5,7 +5,7 @@ type InputTextAreaProps = {
     cols: number;
     placeholder: string;
     message: string;
-    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    onChange: (value: string) => void;
 };
 
 const InputTextArea = ({
@@ -16,7 +16,7 @@ const InputTextArea = ({
     onChange,
 }: InputTextAreaProps) => {
     const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        onChange(e);
+        onChange(e.target.value);
     };
 
     // TODO: Add debounce

@@ -5,8 +5,6 @@ import { PencilIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React, { useState } from "react";
 
-// TODO: Desglozarlo con props y componentes
-
 const ProfileMain = () => {
     const [isEditingPersonal, setIsEditingPersonal] = useState(false);
     return (

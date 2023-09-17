@@ -13,6 +13,11 @@ const AppointmentsMockup : IAppointment[] = [
         symptoms: ["Dolor de pecho", "Dolor de cabeza"],
         status: "scheduled",
         patientId: "patient1",
+        diagnosis: ['Gastritis', 'Colitis'],
+        treatment: ['Reposo', 'Dieta blanda'],
+        prescription: ['Omeprazol', 'Loperamida'],
+        summary: 'El paciente requiere reposo y dieta blanda. Se le recetó Omeprazol e Loperamida. Monitorear su progreso en la siguiente cita.'
+    
     },    
     {
         _id: "appointment2",
