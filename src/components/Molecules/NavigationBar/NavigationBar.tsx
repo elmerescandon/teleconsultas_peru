@@ -4,45 +4,22 @@ import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { IState } from "@/redux/store";
 import Routes from "@/utils/routes/Routes";
-import Link from "next/link";
 import React from "react";
+import NavigationBarPatient from "../NavigationBarPatient/NavigationBarPatient";
+import NavigationBarGeneral from "../NavigationBarGeneral/NavigationBarGeneral";
+import NavigationBarDoctor from "../NavigationBarDoctor/NavigationBarDoctor";
 
 const NavigationBar = () => {
-    const state = useAppSelector((state: IState) => state.user as IUserState);
-    const { logged } = state;
+    const state: IUserState = useAppSelector(
+        (state: IState) => state.user as IUserState
+    );
+    const { logged, userInfo } = state;
+    const { role } = userInfo;
     return (
         <div className="flex items-center">
-            {logged ? (
-                <div className="navigation-bar flex flex-row items-center gap-7 max-xl:gap-4">
-                    <LinkSecondary to={Routes.PATIENT_HOME}>
-                        {"Inicio"}
-                    </LinkSecondary>
-                    <LinkSecondary to={Routes.PATIENT_HISTORY}>
-                        {"Historias"}
-                    </LinkSecondary>
-                    <LinkSecondary to={Routes.RESERVE}>
-                        {"Reserva"}
-                    </LinkSecondary>
-                    <LinkSecondary to={Routes.PATIENT_APPOINTMENTS}>
-                        {"Citas"}
-                    </LinkSecondary>
-                </div>
-            ) : (
-                <div className="navigation-bar flex flex-row items-center gap-7 max-xl:gap-4 ">
-                    <LinkSecondary to={Routes.RESERVE}>
-                        {"¡Reserva tu cita!"}
-                    </LinkSecondary>
-                    <LinkSecondary to={Routes.PATIENTS}>
-                        {"Pacientes"}
-                    </LinkSecondary>
-                    <LinkSecondary to={Routes.DOCTORS}>
-                        {"Doctores"}
-                    </LinkSecondary>
-                    <LinkSecondary to={Routes.ESPECIALITY}>
-                        {"Especialidades"}
-                    </LinkSecondary>
-                </div>
-            )}
+            {!logged ? <NavigationBarGeneral /> : null}
+            {logged && role === "patient" ? <NavigationBarPatient /> : null}
+            {logged && role === "doctor" ? <NavigationBarDoctor /> : null}
         </div>
     );
 };

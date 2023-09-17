@@ -20,7 +20,6 @@ type PatientCardProps = {
 };
 
 const PatientCard = ({ appointment }: PatientCardProps) => {
-    // TODO: Add edit values and eliminate values
     const router = useRouter();
     const { specialityId, patientId, startDate, endDate, _id } = appointment;
     return (

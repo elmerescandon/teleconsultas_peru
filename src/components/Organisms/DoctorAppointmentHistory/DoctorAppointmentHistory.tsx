@@ -1,4 +1,5 @@
 "use client";
+import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
 import LabelPoints from "@/components/Atoms/Labels/LabelPoints/LabelPoints";
 import LabelInformationEdit from "@/components/Molecules/LabelInformationEdit/LabelInformationEdit";
@@ -80,7 +81,7 @@ const DoctorAppointmentHistory = ({
                 </div>
                 <LabelInformationEdit
                     label="Resumen"
-                    value={summary as string}
+                    value={summary}
                     setValue={(value: string) => {
                         setCurrentAppointment({
                             ...currentAppointment,
@@ -88,22 +89,10 @@ const DoctorAppointmentHistory = ({
                         });
                     }}
                 />
-                <LabelPointsEdit
-                    label="Síntomas"
-                    points={symptoms as string[]}
-                />
-                <LabelPointsEdit
-                    label="Diagnóstico"
-                    points={diagnosis as string[]}
-                />
-                <LabelPointsEdit
-                    label="Prescripción"
-                    points={prescription as string[]}
-                />
-                <LabelPointsEdit
-                    label="Tratamiento"
-                    points={treatment as string[]}
-                />
+                <LabelPointsEdit label="Síntomas" points={symptoms} />
+                <LabelPointsEdit label="Diagnóstico" points={diagnosis} />
+                <LabelPointsEdit label="Prescripción" points={prescription} />
+                <LabelPointsEdit label="Tratamiento" points={treatment} />
             </div>
         </div>
     );

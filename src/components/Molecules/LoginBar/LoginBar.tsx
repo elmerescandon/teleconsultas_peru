@@ -3,13 +3,15 @@ import ButtonSecondary from "@/components/Atoms/Buttons/ButtonSecondary/ButtonSe
 import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
 import { userLogOut } from "@/redux/action-creators/UserActionCreators";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import IUserState from "@/redux/state-interfaces/User/IUserState";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
 import React from "react";
 
 const LoginBar = () => {
-    const state = useAppSelector((state) => state.user);
-    const { logged } = state;
+    const state: IUserState = useAppSelector((state) => state.user);
+    const { logged, userInfo } = state;
+    const { role } = userInfo;
     const router = useRouter();
     const dispatch = useAppDispatch();
     return (
@@ -19,7 +21,11 @@ const LoginBar = () => {
                     <button
                         className="text-lg font-semibold"
                         onClick={() => {
-                            router.push(Routes.PATIENT_PROFILE);
+                            if (role === "doctor")
+                                router.push(Routes.DOCTOR_PROFILE);
+                            else if (role === "patient")
+                                router.push(Routes.PATIENT_PROFILE);
+                            else router.push(Routes.HOME);
                         }}
                     >
                         <img
