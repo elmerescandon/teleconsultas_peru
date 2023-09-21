@@ -10,8 +10,14 @@ import React, { useEffect, useState } from "react";
 
 const RegisterForm = () => {
     const [step, setStep] = useState(1);
+    const [validRegister, setValidRegister] = useState<boolean>(false);
     const router = useRouter();
     const formsState = useRegisterState();
+
+    useEffect(() => {
+        if (validRegister) {
+        }
+    }, [formsState]);
 
     return (
         <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-10 max-xl:w-2/3 max-md:w-full">
@@ -69,8 +75,9 @@ const RegisterForm = () => {
                             setStep(step - 1);
                         }}
                         nextFn={() => {
-                            router.push(Routes.REGISTER_COMPLETE);
-                            console.log(formsState);
+                            setValidRegister(true);
+                            // router.push(Routes.REGISTER_COMPLETE);
+                            // console.log(formsState);
                         }}
                     />
                 )}
