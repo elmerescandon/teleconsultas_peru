@@ -1,5 +1,4 @@
 interface IUser {
-  // TODO: Add terms and conditions as a required field
     _id: string;
     role: "patient" | "doctor";
     name: string;
@@ -23,7 +22,7 @@ interface IUser {
     weight?: string;
     bornDate?: string;
 
-    profile_picture?: string; // TODO: Make Optional
+    profile_picture?: string;
 
     // Patient fields
     allergies?: string[];
