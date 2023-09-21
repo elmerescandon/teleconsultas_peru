@@ -23,7 +23,7 @@ interface IUser {
     weight?: string;
     bornDate?: string;
 
-    profile_picture: string; // TODO: Make Optional
+    profile_picture?: string; // TODO: Make Optional
 
     // Patient fields
     allergies?: string[];
