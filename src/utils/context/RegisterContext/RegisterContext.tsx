@@ -40,6 +40,7 @@ const RegisterProvider = ({ children }: RegisterProviderProps) => {
         weight: "",
         phone: "",
         bornDate: "",
+        termsAndConditions: "",
     });
 
     return (
