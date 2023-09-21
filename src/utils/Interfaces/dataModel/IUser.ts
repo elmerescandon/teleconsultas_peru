@@ -7,7 +7,22 @@ interface IUser {
     password: string;
     termsAndConditions?: boolean;
     phone: string;
+
+    //  Location
+    region: string;
+    province: string;
+    district: string;
     address: string;
+    reference: string;
+    interiorNumber: string;
+
+    // Info
+    age?: string;
+    sex?: string;
+    height?: string;
+    weight?: string;
+    bornDate?: string;
+
     profile_picture: string; // TODO: Make Optional
 
     // Patient fields
