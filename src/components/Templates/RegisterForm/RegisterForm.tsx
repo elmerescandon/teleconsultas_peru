@@ -1,22 +1,36 @@
 "use client";
+import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
 import RegisterGeneral from "@/components/Organisms/RegisterGeneral/RegisterGeneral";
 import RegisterInformation from "@/components/Organisms/RegisterInformation/RegisterInformation";
 import RegisterLocation from "@/components/Organisms/RegisterLocation/RegisterLocation";
+import { registerUserPatient } from "@/firebase/User/addUser";
 import { useRegisterState } from "@/utils/context/RegisterContext/RegisterContext";
+import useFetch from "@/utils/hooks/useFetch";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const RegisterForm = () => {
     const [step, setStep] = useState(1);
-    const [validRegister, setValidRegister] = useState<boolean>(false);
-    const router = useRouter();
     const formsState = useRegisterState();
+    const [finalForms, setFinalForms] = useState<IRegister | null>(null);
+    const { correct, error, loading } = useFetch(
+        registerUserPatient,
+        finalForms!
+    );
+
+    const route = useRouter();
 
     useEffect(() => {
-        if (validRegister) {
+        if (correct) {
+            console.log("correct");
+            route.push(Routes.REGISTER_COMPLETE);
         }
-    }, [formsState]);
+    }, [correct]);
+
+    useEffect(() => {
+        console.log(loading);
+    }, [loading]);
 
     return (
         <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-10 max-xl:w-2/3 max-md:w-full">
@@ -74,13 +88,13 @@ const RegisterForm = () => {
                             setStep(step - 1);
                         }}
                         nextFn={() => {
-                            setValidRegister(true);
-                            // router.push(Routes.REGISTER_COMPLETE);
-                            // console.log(formsState);
+                            setFinalForms(formsState);
                         }}
                     />
                 )}
             </div>
+            {loading && <LoadingCircle />}
+            {error && <p>Error: {error.message}</p>}
         </div>
     );
 };
