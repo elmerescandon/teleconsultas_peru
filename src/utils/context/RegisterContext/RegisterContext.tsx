@@ -30,7 +30,7 @@ const RegisterProvider = ({ children }: RegisterProviderProps) => {
         province: "",
         district: "",
         address: "",
-        refference: "",
+        reference: "",
         interiorNumber: "",
 
         // Info
@@ -53,11 +53,11 @@ const RegisterProvider = ({ children }: RegisterProviderProps) => {
 
 const registerReducer = (register: IRegister, action: IRegisterActions) => {
     switch (action.type) {
-        case "SET_GENERAL":
+        case RegisterActions.SET_GENERAL:
             return { ...register, ...action.payload };
-        case "SET_LOCATION":
+        case RegisterActions.SET_LOCATION:
             return { ...register, ...action.payload };
-        case "SET_INFO":
+        case RegisterActions.SET_INFO:
             return { ...register, ...action.payload };
         default:
             return register;
