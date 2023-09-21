@@ -8,6 +8,7 @@ import InputSelect from "@/components/Atoms/Inputs/InputSelect/InputSelect";
 import { sexOptions } from "@/utils/constants/registerSelect";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
+import { Checkbox, FormControlLabel } from "@mui/material";
 
 type RegisterInformationProps = {
     nextFn: () => void;
@@ -31,6 +32,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     weight: formFields.weight.value,
                     phone: formFields.phone.value,
                     bornDate: formFields.bornDate.value,
+                    termsAndConditions: formFields.termsAndConditions.value,
                 },
             });
             nextFn();
@@ -77,7 +79,10 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                             value={formFields.bornDate.value}
                             onChange={(newValue) => {
                                 if (newValue !== null)
-                                    handleChange("bornDate", newValue);
+                                    handleChange(
+                                        "bornDate",
+                                        newValue.toString()
+                                    );
                             }}
                         />
                     </RegisterField>
@@ -126,6 +131,29 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     </RegisterField>
                 </RegisterRow>
             </div>
+            <RegisterField error={formFields.termsAndConditions.error} title="">
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            required
+                            color="primary"
+                            checked={
+                                formFields.termsAndConditions.value === "true"
+                                    ? true
+                                    : false
+                            }
+                            onChange={(e) => {
+                                handleChange(
+                                    "termsAndConditions",
+                                    e.target.checked === true ? "true" : "false"
+                                );
+                                console.log(e.target.checked);
+                            }}
+                        />
+                    }
+                    label="Acepto los terminos y condiciones"
+                />
+            </RegisterField>
 
             <div className="flex py-5 max-xl:px-10 gap-10">
                 <ButtonPrimary
