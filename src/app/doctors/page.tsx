@@ -22,7 +22,7 @@ const Doctors = () => {
                 <DoctorsCardSection />
                 <DoctorPersonsSection />
                 <InformationForm
-                    title={"¡Pertenece a Aika Salud y únete al cambio!"}
+                    title={"¡Pertenece a Salufy Salud y únete al cambio!"}
                 />
             </div>
             <Footer />

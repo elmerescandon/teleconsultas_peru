@@ -13,7 +13,7 @@ const LinkLogo = ({ size }: LinkLogoProps) => {
                 size === "big" ? "text-5xl" : "text-2xl"
             } font-semibold `}
         >
-            Aika Salud
+            Salufy Salud
         </Link>
     );
 };

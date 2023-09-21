@@ -28,7 +28,7 @@ const Footer = () => {
                         Atención al cliente
                     </LinkSecondary2>
                     <LinkSecondary2 to={""}>
-                        info@aikasalud.com.pe
+                        info@Salufysalud.com.pe
                     </LinkSecondary2>
                     <div className="footer-section__icons flex flex-row gap-2">
                         <LinkIcon to="">
@@ -48,14 +48,14 @@ const Footer = () => {
             </div>
             <div className="footer-section footer-section__2 flex flex-col gap-2 px-14 max-lg:px-0 max-xl:items-center">
                 <p className="text-3xl font-semibold text-basic-white">
-                    Aika Salud
+                    Salufy Salud
                 </p>
                 <p className="text-lg font-medium text-basic-white">
                     Conectando pacientes y doctores para una atención médica
                     personalizada en línea.
                 </p>
                 <p className="text-sm font-light text-basic-white">
-                    © 2021 Aika Salud. Todos los derechos reservados.
+                    © 2021 Salufy Salud. Todos los derechos reservados.
                 </p>
             </div>
         </div>

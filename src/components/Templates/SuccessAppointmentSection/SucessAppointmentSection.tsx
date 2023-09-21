@@ -37,8 +37,8 @@ const SucessAppointmentSection = () => {
             </div>
 
             <div className="text-lg py-3">
-                Gracias por agendar tu cita con Aika Salud. Brindándote atención
-                de calidad donde sea que estés.
+                Gracias por agendar tu cita con Salufy Salud. Brindándote
+                atención de calidad donde sea que estés.
             </div>
             <div className="text-xl font-semibold py-3">Resumen</div>
             <div className="pb-5">

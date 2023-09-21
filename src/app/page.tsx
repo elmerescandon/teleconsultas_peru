@@ -14,7 +14,7 @@ const Home = () => {
             <div className="page-body">
                 <MainSection
                     title={
-                        "Bienvenido a Aika Salud - Tu puerta a una atención de calidad"
+                        "Bienvenido a Salufy Salud - Tu puerta a una atención de calidad"
                     }
                     subtitle={
                         "Conectando pacientes y doctores para una atención médica personalizada en línea"
@@ -26,7 +26,7 @@ const Home = () => {
             </div>
             <SecondarySection
                 buttonInfo="Ver más..."
-                content="Aika Salud te conecta con profesionales de acuerdo a tu disponibilidad."
+                content="Salufy Salud te conecta con profesionales de acuerdo a tu disponibilidad."
                 miniHeader="Para Pacientes"
                 order="left"
                 pathImage="/doctors_1.jpg"

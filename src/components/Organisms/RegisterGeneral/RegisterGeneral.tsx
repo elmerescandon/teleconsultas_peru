@@ -74,7 +74,7 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
                             }}
                             value={formFields.email.value}
                             type="mail"
-                            placeholder="Ej. pedro.alva@aikasalud.com"
+                            placeholder="Ej. pedro.alva@Salufysalud.com"
                         />
                     </RegisterField>
                 </RegisterRow>

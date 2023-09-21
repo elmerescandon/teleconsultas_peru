@@ -24,7 +24,7 @@ const DataSection = () => {
         },
         {
             title: "76%",
-            subtitle: "consideran Aika Salud su primera opción",
+            subtitle: "consideran Salufy Salud su primera opción",
             color: "dark",
             position: "top",
         },

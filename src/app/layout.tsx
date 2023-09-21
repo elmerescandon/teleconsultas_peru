@@ -4,9 +4,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
-    title: "Aika Salud",
+    title: "Salufy Salud",
     description:
-        "At Aika Salud, our mission is to revolutionize the way healthcare is delivered by providing a user-friendly telemedicine platform that connects patients with qualified doctors from the comfort of their homes. We aim to empower patients with accessible, convenient, and high-quality medical consultations while enabling doctors to expand their reach and impact more lives.",
+        "At Salufy Salud, our mission is to revolutionize the way healthcare is delivered by providing a user-friendly telemedicine platform that connects patients with qualified doctors from the comfort of their homes. We aim to empower patients with accessible, convenient, and high-quality medical consultations while enabling doctors to expand their reach and impact more lives.",
 };
 
 const lato = localFont({
