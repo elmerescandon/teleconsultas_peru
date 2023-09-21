@@ -1,5 +1,4 @@
-interface IUser {
-    _id: string;
+interface IUserPost {
     role: "patient" | "doctor";
     name: string;
     lastName: string;
@@ -49,4 +48,4 @@ interface IUser {
     ingresos?: {date: string, ingreso: string}[];
 }
 
-export default IUser;
+export default IUserPost;

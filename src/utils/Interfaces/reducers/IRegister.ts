@@ -22,4 +22,5 @@ interface IRegister{
     weight: string,
     phone: string,
     bornDate: string,
+    termsAndConditions: string;
 }

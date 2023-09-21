@@ -32,6 +32,7 @@ type IRegisterActionSetInfo ={
         weight: string,
         phone: string,
         bornDate: string,
+        termsAndConditions: string,
     }
 }
 
