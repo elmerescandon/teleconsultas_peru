@@ -9,7 +9,7 @@ import patientsMockup from "@/utils/mockups/patientsMockup";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const page = ({
+const Page = ({
     params,
 }: {
     params: { patientId: string; appointmentId: string };
@@ -54,4 +54,4 @@ const page = ({
     );
 };
 
-export default page;
+export default Page;
