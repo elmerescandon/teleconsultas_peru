@@ -21,8 +21,8 @@ const DoctorAppointmentSection = () => {
     const [appointments, setAppointments] =
         useState<IAppointment[]>(AppointmentsMockup);
 
-    const appointmentCards = appointments.map((appointment) => {
-        return <PatientCard appointment={appointment} />;
+    const appointmentCards = appointments.map((appointment, index) => {
+        return <PatientCard appointment={appointment} key={index} />;
     });
 
     useEffect(() => {
