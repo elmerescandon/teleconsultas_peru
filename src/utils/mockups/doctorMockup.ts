@@ -3,13 +3,22 @@ import IUser from "../Interfaces/dataModel/IUser";
 const doctorMockup: IUser = {
     _id: "doctor1",
     role: "doctor",
-    name: "Rebeca Narvaez",
+    name: "Rebeca",
+    lastName: "Garcia",
     email: "rebeca_narvaez@Salufy.com",
     password: "hashed_password",
     phone: "978546123",
     address: "Av. Larco 230",
     profile_picture: "/doctora.jpg",
     other_fields: {},
+
+    region: "Lima",
+    province: "Lima",
+    district: "Miraflores",
+    reference: "Cerca al parque Kennedy",
+    interiorNumber: "2",
+    
+
     reserved_appointments: [
         { date: "2023-09-10", appointments: ["appointment1", "appointment2"] },
         {

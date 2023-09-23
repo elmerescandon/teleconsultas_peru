@@ -1,9 +1,9 @@
+import IUser from "@/utils/Interfaces/dataModel/IUser";
 import { UserActionTypes } from "../action-types";
-import IUserInfo from "../state-interfaces/User/IUserInfo";
 
 interface LogInUserAction{
     type: UserActionTypes.USER_LOGIN,
-    payload: IUserInfo
+    payload: IUser
 } 
 
 interface LogOutUserAction{

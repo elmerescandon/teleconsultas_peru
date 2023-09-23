@@ -2,9 +2,9 @@
 import { UserActionTypes } from "../action-types";
 import IUserInfo from "../state-interfaces/User/IUserInfo";
 
-export const userLogIn = (use: IUserInfo) => ({
+export const userLogIn = (user: IUserInfo) => ({
     type: UserActionTypes.USER_LOGIN,
-    payload: use,
+    payload: user,
 });
 
 export const userLogOut = () => ({
