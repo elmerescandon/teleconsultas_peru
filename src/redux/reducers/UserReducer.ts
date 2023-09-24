@@ -9,12 +9,18 @@ export const initialState: IUserState = {
         _id: "",
         role: "patient",
         name: "",
+        lastName: "",
         email: "",
         phone: "",
         address: "",
         profile_picture: "",
         active_prescriptions: [],
         reserved_appointments: undefined,
+        region: "",
+        province: "",
+        district: "",
+        reference: "",
+        interiorNumber: "",
     },
 };
 

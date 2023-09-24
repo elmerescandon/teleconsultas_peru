@@ -6,7 +6,6 @@ const doctorMockup: IUserInfo = {
     name: "Rebeca",
     lastName: "Garcia",
     email: "rebeca_narvaez@Salufy.com",
-    password: "hashed_password",
     phone: "978546123",
     address: "Av. Larco 230",
     profile_picture: "/doctora.jpg",
