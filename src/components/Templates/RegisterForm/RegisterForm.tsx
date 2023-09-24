@@ -3,34 +3,35 @@ import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
 import RegisterGeneral from "@/components/Organisms/RegisterGeneral/RegisterGeneral";
 import RegisterInformation from "@/components/Organisms/RegisterInformation/RegisterInformation";
 import RegisterLocation from "@/components/Organisms/RegisterLocation/RegisterLocation";
-import { registerUserPatient } from "@/firebase/User/addUser";
+import { registerUser } from "@/firebase/User/addUser";
+import IPosting from "@/utils/Interfaces/hooks/IPosting";
 import { useRegisterState } from "@/utils/context/RegisterContext/RegisterContext";
-import useFetch from "@/utils/hooks/useFetch";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const RegisterForm = () => {
     const [step, setStep] = useState(1);
-    const formsState = useRegisterState();
-    const [finalForms, setFinalForms] = useState<IRegister | null>(null);
-    const { correct, error, loading } = useFetch(
-        registerUserPatient,
-        finalForms!
-    );
-
+    const formState = useRegisterState();
     const route = useRouter();
+    const [posting, setPosting] = useState<IPosting>({
+        loading: false,
+        error: null,
+    });
 
-    useEffect(() => {
-        if (correct) {
-            console.log("correct");
+    const postUser = async () => {
+        setPosting({ loading: true, error: null });
+        try {
+            if (!(await registerUser(formState, "patient")))
+                throw new Error(
+                    "Error al registrar. El email o DNI ya existe, intente de nuevo."
+                );
+            setPosting({ loading: false, error: null });
             route.push(Routes.REGISTER_COMPLETE);
+        } catch (error) {
+            setPosting({ loading: false, error: error as Error });
         }
-    }, [correct]);
-
-    useEffect(() => {
-        console.log(loading);
-    }, [loading]);
+    };
 
     return (
         <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-10 max-xl:w-2/3 max-md:w-full">
@@ -64,7 +65,7 @@ const RegisterForm = () => {
                 </p>
             </div>
 
-            <div className="pb-10 flex flex-col justify-start">
+            <div className="pb-3 flex flex-col justify-start">
                 {step === 1 && (
                     <RegisterGeneral
                         nextFn={() => {
@@ -88,13 +89,17 @@ const RegisterForm = () => {
                             setStep(step - 1);
                         }}
                         nextFn={() => {
-                            setFinalForms(formsState);
+                            postUser();
                         }}
                     />
                 )}
             </div>
-            {loading && <LoadingCircle />}
-            {error && <p>Error: {error.message}</p>}
+            {posting.loading && <LoadingCircle />}
+            {posting.error && (
+                <p className="text-lg text-rose-600 font-bold">
+                    {posting.error.message}
+                </p>
+            )}
         </div>
     );
 };
