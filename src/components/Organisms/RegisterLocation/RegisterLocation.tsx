@@ -57,7 +57,7 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                     province: formFields.province.value,
                     district: formFields.district.value,
                     address: formFields.address.value,
-                    refference: formFields.refference.value,
+                    reference: formFields.refference.value,
                     interiorNumber: formFields.interiorNumber.value,
                 },
             });
