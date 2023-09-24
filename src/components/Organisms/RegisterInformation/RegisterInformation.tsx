@@ -9,6 +9,7 @@ import { sexOptions } from "@/utils/constants/registerSelect";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import { set } from "lodash";
 
 type RegisterInformationProps = {
     nextFn: () => void;
@@ -19,10 +20,11 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
     const { formFields, handleChange, handleRegister, handleValidations } =
         useRegister();
     const [checkForms, setCheckForms] = useState<boolean>(false);
+    const [readyToPost, setReadyToPost] = useState<boolean>(false);
     const dispatch = useRegisterDispatch();
 
     useEffect(() => {
-        if (checkForms && handleRegister("info")) {
+        if (handleRegister("info") && checkForms) {
             dispatch({
                 type: "SET_INFO",
                 payload: {
@@ -35,11 +37,18 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     termsAndConditions: formFields.termsAndConditions.value,
                 },
             });
-            nextFn();
+            setReadyToPost(true);
         } else {
+            setReadyToPost(false);
             setCheckForms(false);
         }
-    }, [formFields]);
+    }, [checkForms]);
+
+    useEffect(() => {
+        if (readyToPost) {
+            nextFn();
+        }
+    }, [readyToPost]);
 
     return (
         <div>
@@ -147,7 +156,6 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                                     "termsAndConditions",
                                     e.target.checked === true ? "true" : "false"
                                 );
-                                console.log(e.target.checked);
                             }}
                         />
                     }

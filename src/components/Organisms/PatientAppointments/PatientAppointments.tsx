@@ -14,7 +14,6 @@ const PatientAppointments = () => {
         IAppointment[]
     >([]);
     const { userInfo } = state;
-    console.log(userInfo);
     useEffect(() => {
         const getAppointments = async () => {
             const appointments: IAppointment[] = AppointmentsMockup.filter(
@@ -24,7 +23,6 @@ const PatientAppointments = () => {
             );
             setPatientAppointments(appointments);
         };
-        // Get appointments from user
         getAppointments();
     }, []);
 

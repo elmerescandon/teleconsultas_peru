@@ -17,7 +17,6 @@ const AppointmentsBar = ({
         <div className="flex items-end pt-5">
             {appointments.length > 0 ? (
                 appointments.map((appointment, index) => {
-                    console.log(appointment._id);
                     return (
                         <ButtonHistory
                             appointment={appointment}

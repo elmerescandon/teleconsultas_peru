@@ -25,10 +25,6 @@ const DoctorAppointmentSection = () => {
         return <PatientCard appointment={appointment} key={index} />;
     });
 
-    useEffect(() => {
-        console.log(filter);
-    }, [filter]);
-
     return (
         <div className="px-48">
             <p className="text-2xl font-semibold">Mis citas</p>

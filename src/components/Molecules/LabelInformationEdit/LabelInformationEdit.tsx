@@ -75,7 +75,6 @@ const LabelInformationEdit = ({
                     <ButtonPrimary
                         onClickFn={() => {
                             setValue("");
-                            console.log("asjdas");
                         }}
                     >{`Agregar ${label}`}</ButtonPrimary>
                 </div>
