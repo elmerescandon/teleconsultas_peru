@@ -9,12 +9,12 @@ interface IUser {
     phone: string;
 
     //  Location
-    region: string;
-    province: string;
-    district: string;
-    address: string;
-    reference: string;
-    interiorNumber: string;
+    region?: string;
+    province?: string;
+    district?: string;
+    address?: string;
+    reference?: string;
+    interiorNumber?: string;
 
     // Info
     age?: string;
