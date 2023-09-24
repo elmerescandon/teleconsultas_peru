@@ -109,12 +109,10 @@ const ReserveAppointmentForms = () => {
                         rows={5}
                         placeholder="Por favor, indique más detalles sobre su consulta"
                         message={details}
-                        onChange={(
-                            e: React.ChangeEvent<HTMLTextAreaElement>
-                        ) => {
+                        onChange={(value: string) => {
                             dispatch({
                                 type: "SET_DETAILS",
-                                payload: e.target.value,
+                                payload: value,
                             });
                         }}
                     />
