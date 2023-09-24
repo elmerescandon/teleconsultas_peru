@@ -1,6 +1,6 @@
-import IUser from "../Interfaces/dataModel/IUser";
+import IUserInfo from "@/redux/state-interfaces/User/IUserInfo";
 
-const doctorMockup: IUser = {
+const doctorMockup: IUserInfo = {
     _id: "doctor1",
     role: "doctor",
     name: "Rebeca",
