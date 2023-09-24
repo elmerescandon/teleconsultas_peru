@@ -139,7 +139,7 @@ const useRegister = () => {
     const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
     const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
     const infoField = ["age", "sex","height", "weight", "phone", "bornDate", "termsAndConditions"] as (keyof IFormFields)[];
-
+    
     switch (type) {
       case 'general':
         return generalField.every((field) => !formFields[field].error);

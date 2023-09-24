@@ -12,9 +12,6 @@ const useAppointments = (date : IDateRangeAppointment, setSelectedAppointment: (
                 return appointment.status === "completed";
             }
 
-            console.log(new Date(date.init));
-            console.log(new Date(date.finish));
-            console.log(new Date(appointment.date));
             return (
                 appointment.status === "completed" &&
                 new Date(appointment.date) >= new Date(date.init) &&

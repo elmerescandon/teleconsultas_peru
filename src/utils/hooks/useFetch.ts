@@ -33,7 +33,6 @@ function useFetch<T,U>(asyncFunction: AsyncFunction<T,U>, params: U): FetchResul
       }
     };
 
-    console.log("hello")
     if (firstRender) {
       setFirstRender(false);
       return;
