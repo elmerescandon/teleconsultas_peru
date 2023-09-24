@@ -4,6 +4,7 @@ const doctorUserMockup: IUser = {
     _id: "doctor123",
     role: "doctor",
     name: "Dr. Smith",
+    lastName: "Smith",
     email: "dr.smith@example.com",
     password: "hashed_password",
     specialties: ["Cardiology", "Internal Medicine"],
