@@ -4,7 +4,8 @@ const patientsMockup: IUser[] = [
     {
         _id: "patient1",
         role: "patient",
-        name: "Pedro Navaja",
+        name: "Pedro",
+        lastName: "Navaja",
         email: "pedro_navaja@Salufy.com",
         password: "hashed_password",
         phone: "943186710",
@@ -27,6 +28,7 @@ const patientsMockup: IUser[] = [
         _id: "patient2",
         role: "patient",
         name: "Juan Pedro",
+        lastName: "Alfonso",
         email: "juan_pedroa@Salufy.com",
         password: "hashed_password",
         phone: "943186710",
@@ -48,7 +50,8 @@ const patientsMockup: IUser[] = [
     {
         _id: "patient3",
         role: "patient",
-        name: "John Doe",
+        name: "John",
+        lastName: "Doe",
         email: "john_doe@Salufy.com",
         password: "hashed_password",
         phone: "943186710",

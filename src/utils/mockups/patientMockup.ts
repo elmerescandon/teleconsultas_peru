@@ -3,7 +3,8 @@ import IUser from "../Interfaces/dataModel/IUser";
 const patientMockup: IUser = {
     _id: "patient1",
     role: "patient",
-    name: "Pedro Navaja",
+    name: "Pedro",
+    lastName: "Navaja",
     email: "pedro_navaja@Salufy.com",
     password: "hashed_password",
     phone: "943186710",
