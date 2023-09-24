@@ -18,7 +18,7 @@ type IRegisterActionSetLocation ={
         province: string,
         district: string,
         address: string,
-        refference: string,
+        reference: string,
         interiorNumber: string,
     }
 }

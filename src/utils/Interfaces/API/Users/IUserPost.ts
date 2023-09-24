@@ -1,10 +1,12 @@
 interface IUserPost {
+    _id: string;
     role: "patient" | "doctor";
     name: string;
     lastName: string;
     email: string;
     password: string;
     termsAndConditions?: boolean;
+    id: string;
     phone: string;
 
     //  Location
