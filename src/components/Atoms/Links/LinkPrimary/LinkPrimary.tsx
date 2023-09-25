@@ -15,7 +15,7 @@ const LinkPrimary = ({ children, to, type }: LinkPrimaryProps) => {
                 type
                     ? "text-basic-black bg-basic-white"
                     : "text-basic-white bg-brand-600"
-            } rounded-lg px-6 text-md font-normal py-4`}
+            } rounded-lg px-6 text-md font-normal py-4 text-center w-full`}
         >
             {children}
         </Link>
