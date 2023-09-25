@@ -26,8 +26,8 @@ const RegisterForm = () => {
                 throw new Error(
                     "Error al registrar. El email o DNI ya existe, intente de nuevo."
                 );
-            setPosting({ loading: false, error: null });
             route.push(Routes.REGISTER_COMPLETE);
+            setPosting({ loading: false, error: null });
         } catch (error) {
             setPosting({ loading: false, error: error as Error });
         }
