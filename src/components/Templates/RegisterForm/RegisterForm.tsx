@@ -65,35 +65,37 @@ const RegisterForm = () => {
                 </p>
             </div>
 
-            <div className="pb-3 flex flex-col justify-start">
-                {step === 1 && (
-                    <RegisterGeneral
-                        nextFn={() => {
-                            setStep(step + 1);
-                        }}
-                    />
-                )}
-                {step === 2 && (
-                    <RegisterLocation
-                        prevFn={() => {
-                            setStep(step - 1);
-                        }}
-                        nextFn={() => {
-                            setStep(step + 1);
-                        }}
-                    />
-                )}
-                {step === 3 && (
-                    <RegisterInformation
-                        prevFn={() => {
-                            setStep(step - 1);
-                        }}
-                        nextFn={() => {
-                            postUser();
-                        }}
-                    />
-                )}
-            </div>
+            {!posting.loading && (
+                <div className="pb-3 flex flex-col justify-start">
+                    {step === 1 && (
+                        <RegisterGeneral
+                            nextFn={() => {
+                                setStep(step + 1);
+                            }}
+                        />
+                    )}
+                    {step === 2 && (
+                        <RegisterLocation
+                            prevFn={() => {
+                                setStep(step - 1);
+                            }}
+                            nextFn={() => {
+                                setStep(step + 1);
+                            }}
+                        />
+                    )}
+                    {step === 3 && (
+                        <RegisterInformation
+                            prevFn={() => {
+                                setStep(step - 1);
+                            }}
+                            nextFn={() => {
+                                postUser();
+                            }}
+                        />
+                    )}
+                </div>
+            )}
             {posting.loading && <LoadingCircle />}
             {posting.error && (
                 <p className="text-lg text-rose-600 font-bold">
