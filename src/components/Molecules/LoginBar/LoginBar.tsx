@@ -37,7 +37,7 @@ const LoginBar = () => {
                     <ButtonSecondary
                         onClickFn={() => {
                             dispatch(userLogOut());
-                            signOut();
+                            signOut({ redirect: false });
                             router.push(Routes.HOME);
                         }}
                     >
