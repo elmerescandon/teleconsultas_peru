@@ -1,5 +1,6 @@
 import { loginUser } from "@/firebase/User/loginUser";
 import ICredentials from "@/utils/Interfaces/API/Users/ICredentials";
+import IUser from "@/utils/Interfaces/dataModel/IUser";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -22,15 +23,12 @@ export const authOptions: NextAuthOptions = {
         role: { label: "Role", type: "text" },
       },
       async authorize(credentials) {
-        const userMock = { id: "1", name: "Admin", email: "admin@admin.com" };
         if (credentials === undefined)
           return null
-
         const credentialsLogin : ICredentials = {email: credentials.email, password: credentials.password, role: credentials.role};
-        const user = await loginUser(credentialsLogin);
-        console.log(user);
-        if (userMock){
-            return userMock;
+        const userDb = await loginUser(credentialsLogin) as IUser;
+        if (userDb !== null){
+            return {name: userDb.name, email: userDb.email, image: userDb.profile_picture, id: userDb._id}
         } else {
             return null;
         }
