@@ -1,6 +1,7 @@
 import { loginUser } from "@/firebase/User/loginUser";
 import ICredentials from "@/utils/Interfaces/API/Users/ICredentials";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
+import { dbToUser } from "@/utils/functions/utilsReducer";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -31,8 +32,7 @@ export const authOptions: NextAuthOptions = {
             return {name: userDb.name, email: userDb.email, image: userDb.profile_picture, id: userDb._id}
         } else {
             return null;
-        }
-        
+        }        
       },
     }),
   ],
