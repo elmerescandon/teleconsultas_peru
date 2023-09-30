@@ -7,6 +7,11 @@ import Loading from "@/components/Molecules/Loading/Loading";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import Routes from "@/utils/routes/Routes";
+import { getUser } from "@/firebase/User/getUser";
+import IUser from "@/utils/Interfaces/dataModel/IUser";
+import { dbToUser } from "@/utils/functions/utilsReducer";
+import { useAppDispatch } from "@/redux/hooks";
+import { userLogIn } from "@/redux/action-creators/UserActionCreators";
 
 const LoginForms = () => {
     const {
@@ -20,10 +25,18 @@ const LoginForms = () => {
     } = useUserValidation();
 
     const router = useRouter();
-    const { status } = useSession();
+    const dispatch = useAppDispatch();
+    const { data: session, status } = useSession();
 
     useEffect(() => {
+        const getUserInfo = async (email: string) => {
+            const userDb = (await getUser(email)) as IUser;
+            const user = dbToUser(userDb);
+            dispatch(userLogIn(user));
+        };
+
         if (status === "authenticated") {
+            getUserInfo(session.user!.email!);
             router.push(Routes.PATIENT_HOME);
         }
     }, [status]);
