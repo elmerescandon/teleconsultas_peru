@@ -7,8 +7,10 @@ import useUserValidation from "@/utils/hooks/useUserValidation";
 import doctorMockup from "@/utils/mockups/doctorMockup";
 import patientReduxMockup from "@/utils/mockups/patientReduxMockup";
 import Routes from "@/utils/routes/Routes";
+import { SignalIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
+import { signIn } from "next-auth/react";
 
 const LoginForms = () => {
     const { validateUser } = useUserValidation();
@@ -20,15 +22,23 @@ const LoginForms = () => {
 
     const handleSubmit = async () => {
         try {
-            await validateUser(username, password);
-            setError("");
-            if (username === "doctor123" && password === "doctor123") {
-                dispatch(userLogIn(doctorMockup));
-                router.push(Routes.DOCTOR_HOME);
-                return;
-            }
-            dispatch(userLogIn(patientReduxMockup));
-            router.push(Routes.PATIENT_HOME);
+            const userServer = await signIn("credentials", {
+                email: username,
+                password: password,
+                redirect: false,
+                role: "patient",
+            });
+            console.log(userServer);
+            // router.push(Routes.PATIENT_HOME);
+
+            // await validateUser(username, password);
+            // setError("");
+            // if (username === "doctor123" && password === "doctor123") {
+            //     dispatch(userLogIn(doctorMockup));
+            //     router.push(Routes.DOCTOR_HOME);
+            //     return;
+            // }
+            // dispatch(userLogIn(patientReduxMockup));
             // Continue with further actions, such as registering the user
         } catch (error: any) {
             setError(error.message);
