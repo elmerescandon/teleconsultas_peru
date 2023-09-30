@@ -1,54 +1,37 @@
 "use client";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import InputText from "@/components/Atoms/Inputs/InputText/InputText";
-import { userLogIn } from "@/redux/action-creators/UserActionCreators";
-import { useAppDispatch } from "@/redux/hooks";
 import useUserValidation from "@/utils/hooks/useUserValidation";
-import doctorMockup from "@/utils/mockups/doctorMockup";
-import patientReduxMockup from "@/utils/mockups/patientReduxMockup";
-import Routes from "@/utils/routes/Routes";
-import { SignalIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
-import React, { use, useState } from "react";
-import { signIn } from "next-auth/react";
+import Loading from "@/components/Molecules/Loading/Loading";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import Routes from "@/utils/routes/Routes";
 
 const LoginForms = () => {
-    const { validateUser } = useUserValidation();
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const {
+        username,
+        setUsername,
+        password,
+        setPassword,
+        error,
+        loading,
+        handleSubmit,
+    } = useUserValidation();
+
     const router = useRouter();
-    const dispatch = useAppDispatch();
+    const { status } = useSession();
 
-    const handleSubmit = async () => {
-        try {
-            const userServer = await signIn("credentials", {
-                email: username,
-                password: password,
-                redirect: false,
-                role: "patient",
-            });
-            console.log(userServer);
-            // router.push(Routes.PATIENT_HOME);
-
-            // await validateUser(username, password);
-            // setError("");
-            // if (username === "doctor123" && password === "doctor123") {
-            //     dispatch(userLogIn(doctorMockup));
-            //     router.push(Routes.DOCTOR_HOME);
-            //     return;
-            // }
-            // dispatch(userLogIn(patientReduxMockup));
-            // Continue with further actions, such as registering the user
-        } catch (error: any) {
-            setError(error.message);
+    useEffect(() => {
+        if (status === "authenticated") {
+            router.push(Routes.PATIENT_HOME);
         }
-    };
+    }, [status]);
 
     return (
         <div className="flex flex-col items-center gap-6">
             <InputText
-                placeholder="Usuario o Correo electrónico"
+                placeholder="Correo electrónico"
                 value={username}
                 onChangeFn={setUsername}
             />
@@ -58,9 +41,13 @@ const LoginForms = () => {
                 value={password}
                 onChangeFn={setPassword}
             />
-            <ButtonPrimary onClickFn={handleSubmit}>
-                Iniciar Sesión
-            </ButtonPrimary>
+            <div className="flex flex-col justify-start gap-10 items-center w-full">
+                <ButtonPrimary onClickFn={handleSubmit}>
+                    Iniciar Sesión
+                </ButtonPrimary>
+                {loading && <Loading />}
+            </div>
+
             {error && <p className="text-rose-600 font-bold">{error}</p>}
         </div>
     );
