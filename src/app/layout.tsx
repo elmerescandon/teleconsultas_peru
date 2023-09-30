@@ -2,6 +2,7 @@ import { Providers } from "@/redux/provider";
 import "../styles/globals.scss";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import NextAuthProvider from "@/utils/providers/NextAuthProvider";
 
 export const metadata: Metadata = {
     title: "Salufy Salud",
@@ -72,7 +73,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${lato.className}`}>
-                <Providers>{children}</Providers>
+                <Providers>
+                    <NextAuthProvider>{children}</NextAuthProvider>
+                </Providers>
             </body>
         </html>
     );
