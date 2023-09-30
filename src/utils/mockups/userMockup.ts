@@ -7,7 +7,7 @@ const doctorUserMockup: IUser = {
     lastName: "Smith",
     email: "dr.smith@example.com",
     password: "hashed_password",
-    specialties: ["Cardiology", "Internal Medicine"],
+    specialities: ["Cardiology", "Internal Medicine"],
     phone: "123-456-7890",
     address: "123 Medical St, City",
     profile_picture: "http://example.com/profile.jpg",

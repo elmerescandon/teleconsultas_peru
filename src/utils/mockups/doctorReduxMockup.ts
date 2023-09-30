@@ -18,7 +18,7 @@ const doctorReduxMockup : IUserInfo = {
     region: doctorMockup.region,
     reference: doctorMockup.reference,
     interiorNumber: doctorMockup.interiorNumber,
-    specialties: doctorMockup.specialties,
+    specialities: doctorMockup.specialities,
     active_prescriptions: doctorMockup.active_prescriptions,
     termsAndConditions: doctorMockup.termsAndConditions,
     age: doctorMockup.age,

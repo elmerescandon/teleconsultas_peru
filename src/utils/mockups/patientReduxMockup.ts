@@ -18,7 +18,7 @@ const patientReduxMockup : IUserInfo = {
     region: patientMockup.region!,
     reference: patientMockup.reference!,
     interiorNumber: patientMockup.interiorNumber!,
-    specialties: patientMockup.specialties,
+    specialities: patientMockup.specialities,
     active_prescriptions: patientMockup.active_prescriptions,
 };    
 

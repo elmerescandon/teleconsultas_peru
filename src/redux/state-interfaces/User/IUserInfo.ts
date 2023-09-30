@@ -18,7 +18,7 @@ interface IUserInfo {
     reserved_appointments?: {
       date: string, appointments: string[]; 
     }[];
-    specialties?: string[];
+    specialities?: string[];
     active_prescriptions?: string[];
     ingresos?: {date: string, ingreso: string}[];
     termsAndConditions?: boolean;

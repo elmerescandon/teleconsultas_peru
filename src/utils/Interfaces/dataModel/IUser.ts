@@ -31,7 +31,7 @@ interface IUser {
 
     // Doctor fields
 
-    specialties?: string[];
+    specialities?: string[];
     studies?: string[];
     curriculum?: string;
     cmpNumber?: string;
