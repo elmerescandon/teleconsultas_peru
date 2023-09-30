@@ -10,7 +10,7 @@ export const loginUser = async (credentials: ICredentials) => {
     if (querySnapshot.size === 1) {
         return querySnapshot.docs[0].data();
     } else {
-        return null;
+        throw new Error("Correo o contraseña incorrectos");
     }
     
 }
