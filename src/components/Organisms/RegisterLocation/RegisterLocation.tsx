@@ -126,7 +126,7 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                         />
                     </RegisterField>
                     <RegisterField
-                        title="Referencia"
+                        title="Referencia (Opcional)"
                         error={formFields.refference.error}
                     >
                         <InputText
@@ -139,7 +139,7 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                         />
                     </RegisterField>
                     <RegisterField
-                        title="Interior (Dpto, Mz, etc)"
+                        title="Interior (Opcional)"
                         error={formFields.interiorNumber.error}
                     >
                         <InputText
