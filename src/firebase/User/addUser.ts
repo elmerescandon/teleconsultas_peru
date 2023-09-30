@@ -6,7 +6,7 @@ import { isUserValid } from './isUserValid';
 
 const addUser = async (user: IUserPost) => {
     try {
-        const docRef = await addDoc(collection(dbFirestore, "users"), user);        
+        await addDoc(collection(dbFirestore, "users"), user);        
     } catch (e) {
         throw new Error("Error adding document: " + e);
     }
