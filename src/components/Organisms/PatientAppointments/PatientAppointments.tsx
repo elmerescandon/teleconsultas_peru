@@ -5,7 +5,6 @@ import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
 import React, { useEffect, useState } from "react";
-import Carrousel from "../Carrousel/Carrousel";
 import Pagination from "../Pagination/Pagination";
 
 const PatientAppointments = () => {
