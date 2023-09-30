@@ -5,6 +5,7 @@ import { userLogOut } from "@/redux/action-creators/UserActionCreators";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import Routes from "@/utils/routes/Routes";
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -36,6 +37,7 @@ const LoginBar = () => {
                     <ButtonSecondary
                         onClickFn={() => {
                             dispatch(userLogOut());
+                            signOut();
                             router.push(Routes.HOME);
                         }}
                     >
