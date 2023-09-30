@@ -34,3 +34,9 @@ export const selectDistricts = (department : string, province : string) => {
         };
     });
 }
+
+export const validatePhone = (phone : string) => {
+    // Validate a number that has 9 digits and is from 0 to 9
+    const regex = /^[0-9]{9}$/;
+    return regex.test(phone);
+}
