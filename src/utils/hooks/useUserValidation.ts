@@ -1,46 +1,54 @@
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+
 
 const useUserValidation = () => {
-  const isUsernameValid = (username: string): boolean => {
-    const minLength = 4;
-    const maxLength = 20;
-    const validCharacters = /^[a-zA-Z0-9_]+$/;
-    
-    return (
-      username.length >= minLength &&
-      username.length <= maxLength &&
-      validCharacters.test(username)
-    );
-  };
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState(""); 
 
-  const isPasswordValid = (password: string): boolean => {
-    const minLength = 8;
-    return password.length >= minLength;
-  };
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const isUsernameAvailable = async (username: string): Promise<boolean> => {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        const fakeDatabase = ['raul.escandon', 'kurt.neumann', 'alejandro.holder', 'alonso.laynes'];
-        const isAvailable = fakeDatabase.includes(username);
-        resolve(isAvailable);
-      }, 1000);
-    });
-  };
-
-  const validateUser = async (username: string, password: string): Promise<void> => {
-    const trimmedUsername = username.trim();
-    const trimmedPassword = password.trim();
-    
-    if (!isUsernameAvailable(trimmedUsername)) {
-      throw new Error('Usuario o contraseña incorrectos.');
+  const checkEmpty = (username: string, password: string) => {
+    if (!username || !password) {
+      throw new Error("Los campos no pueden estar vacíos");
     }
+  }
 
-    if (!isPasswordValid(trimmedPassword)) {
-      throw new Error('Usuario o contraseña incorrectos.');
+  const handleSubmit = async () => {
+    try {
+        setLoading(true);
+        checkEmpty(username, password)
+        const userServer = await signIn("credentials", {
+            email: username,
+            password: password,
+            redirect: false,
+            role: "patient",
+        });
+
+        if (userServer?.error)
+            throw new Error("Correo o contraseña incorrectos");
+        setError("");
+        setLoading(false);
+        // router.push(Routes.PATIENT_HOME);
+
+        // if (username === "doctor123" && password === "doctor123") {
+        //     dispatch(userLogIn(doctorMockup));
+        //     router.push(Routes.DOCTOR_HOME);
+        //     return;
+        // }
+        // dispatch(userLogIn(patientReduxMockup));
+    } catch (error: any) {
+        setLoading(false);
+        setError(error.message);
     }
-  };
+};
 
-  return { validateUser };
+  return {username, setUsername, password, setPassword, error, loading, handleSubmit}
+
+
+
+
 };
 
 export default useUserValidation;
