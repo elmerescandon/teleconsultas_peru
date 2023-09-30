@@ -1,3 +1,4 @@
+"use client";
 import PatientAppointments from "@/components/Organisms/PatientAppointments/PatientAppointments";
 import PatientMain from "@/components/Organisms/PatientMain/PatientMain";
 import PatientTreatments from "@/components/Organisms/PatientTreatments/PatientTreatments";
