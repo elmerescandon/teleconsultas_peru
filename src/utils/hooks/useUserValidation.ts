@@ -18,6 +18,7 @@ const useUserValidation = () => {
   const handleSubmit = async () => {
     try {
         setLoading(true);
+        setError("");
         checkEmpty(username, password)
         const userServer = await signIn("credentials", {
             email: username,
@@ -25,19 +26,12 @@ const useUserValidation = () => {
             redirect: false,
             role: "patient",
         });
-
-        if (userServer?.error)
-            throw new Error("Correo o contraseña incorrectos");
+        
+        if (userServer?.error){
+          throw new Error(userServer.error);
+        }
         setError("");
         setLoading(false);
-        // router.push(Routes.PATIENT_HOME);
-
-        // if (username === "doctor123" && password === "doctor123") {
-        //     dispatch(userLogIn(doctorMockup));
-        //     router.push(Routes.DOCTOR_HOME);
-        //     return;
-        // }
-        // dispatch(userLogIn(patientReduxMockup));
     } catch (error: any) {
         setLoading(false);
         setError(error.message);
