@@ -2,6 +2,8 @@
 import InputSelect from "@/components/Atoms/Inputs/InputSelect/InputSelect";
 import InputTextArea from "@/components/Atoms/Inputs/InputTextArea/InputTextArea";
 import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
+import { getSpecialities } from "@/firebase/Speciality/getSpecialities";
+import ISelectOptions from "@/utils/Interfaces/ISelectOptions";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
 import {
     useAppointment,
@@ -13,26 +15,39 @@ import {
 } from "@/utils/functions/utils";
 import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import reasonMockup from "@/utils/mockups/reasonMockup";
-import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import symptomsMockup from "@/utils/mockups/symptomsMockup";
 import React, { useEffect, useState } from "react";
 
 const ReserveAppointmentForms = () => {
     // TODO: Reason and Symptoms only enable when doctor is selected
 
-    const specialitiesOptions = getSpecialitiesOptions(specialitiesMockup);
-
     const dispatch = useAppointmentDispatch();
     const appointment = useAppointment();
     const { specialityId, doctorId, details } = appointment;
-
+    const [specialitiesOptions, setSpecialitiesOptions] = useState<
+        ISelectOptions[]
+    >([]);
     const [doctorsOptions, setDoctorsOptios] = useState<IUser[]>([]);
 
     useEffect(() => {
+        const getSpecialitiesFromDb = async () => {
+            const specialities = await getSpecialities();
+            if (specialities) {
+                setSpecialitiesOptions(getSpecialitiesOptions(specialities));
+            }
+        };
+        getSpecialitiesFromDb();
+    }, []);
+
+    useEffect(() => {
+        if (specialityId === "") {
+            setDoctorsOptios([]);
+        }
+
         if (appointment?.specialityId !== "") {
             const newDoctorOptions = doctorsMockup.filter((doctor) => {
-                if (doctor?.specialties) {
-                    return doctor.specialties.includes(specialityId);
+                if (doctor?.specialities) {
+                    return doctor.specialities.includes(specialityId);
                 }
             });
             setDoctorsOptios(newDoctorOptions);
