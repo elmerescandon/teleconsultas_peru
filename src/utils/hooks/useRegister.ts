@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { validatePhone } from '../functions/utilsRegister';
 
 export interface IFormField {
     value: string;
@@ -88,13 +89,13 @@ const useRegister = () => {
     province: (value : string) => (value ? '' : 'Provincia es requerido'),
     district: (value : string) => (value ? '' : 'Distrito es requerido'),
     address: (value : string) => (value ? '' : 'Dirección es requerido'),
-    refference: (value : string) => (value ? '' : 'Referencia es requerido'),
-    interiorNumber: (value : string) => (value ? '' : 'Interior es requerido'),
+    refference: (value : string) => (value ? '' : ''),
+    interiorNumber: (value : string) => (value ? '' : ''),
     age: (value : string) => (value ? '' : 'Edad es requerido'),  
     sex: (value: string) => (value ? '' : 'Sexo es requerido'),
     height: (value : string) => (value ? '' : 'Altura es requerido'),
     weight: (value : string) => (value ? '' : 'Peso es requerido'),
-    phone: (value : string) => (value ? '' : 'Teléfono es requerido'),
+    phone: (value : string) => (validatePhone(value) ? '' : 'Teléfono es requerido'),
     bornDate: (value : string) => (value ? '' : 'Fecha de nacimiento es requerido'),
     termsAndConditions: (value : string) => (value && value==='true' ? '' : 'Es necesario aceptar los términos y condiciones'),
     };
