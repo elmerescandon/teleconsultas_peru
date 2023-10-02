@@ -2,6 +2,7 @@
 import InputSelect from "@/components/Atoms/Inputs/InputSelect/InputSelect";
 import InputTextArea from "@/components/Atoms/Inputs/InputTextArea/InputTextArea";
 import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
+import { getDoctorsFromSpeciality } from "@/firebase/Doctor/getDoctorsFromSpeciality";
 import { getSpecialities } from "@/firebase/Speciality/getSpecialities";
 import ISelectOptions from "@/utils/Interfaces/ISelectOptions";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
@@ -27,7 +28,7 @@ const ReserveAppointmentForms = () => {
     const [specialitiesOptions, setSpecialitiesOptions] = useState<
         ISelectOptions[]
     >([]);
-    const [doctorsOptions, setDoctorsOptios] = useState<IUser[]>([]);
+    const [doctorsOptions, setDoctorsOptions] = useState<ISelectOptions[]>([]);
 
     useEffect(() => {
         const getSpecialitiesFromDb = async () => {
@@ -40,17 +41,19 @@ const ReserveAppointmentForms = () => {
     }, []);
 
     useEffect(() => {
+        const getDoctorsFromDb = async (specialityId: string) => {
+            const doctors = await getDoctorsFromSpeciality(specialityId);
+            if (doctors) {
+                setDoctorsOptions(getDoctorsOptions(doctors));
+            }
+        };
+
         if (specialityId === "") {
-            setDoctorsOptios([]);
+            setDoctorsOptions([]);
         }
 
         if (appointment?.specialityId !== "") {
-            const newDoctorOptions = doctorsMockup.filter((doctor) => {
-                if (doctor?.specialities) {
-                    return doctor.specialities.includes(specialityId);
-                }
-            });
-            setDoctorsOptios(newDoctorOptions);
+            getDoctorsFromDb(appointment.specialityId);
         }
     }, [specialityId, doctorId]);
 
@@ -78,7 +81,7 @@ const ReserveAppointmentForms = () => {
                         key={2}
                         selectId="doctor"
                         placeholder="Escoge al profesional de la salud"
-                        options={getDoctorsOptions(doctorsOptions)}
+                        options={doctorsOptions}
                         onChange={(e) => {
                             dispatch({
                                 type: "SET_DOCTOR",
