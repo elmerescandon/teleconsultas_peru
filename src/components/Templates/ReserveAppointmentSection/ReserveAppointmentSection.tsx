@@ -55,7 +55,7 @@ const ReserveAppointmentSection = () => {
     }, [appointment]);
 
     return (
-        <div className="px-48  py-10  max-xl:px-20 h-[90vh] max-xl:h-full max-md:px-5">
+        <div className="px-48  py-10  max-xl:px-20 max-md:px-5">
             <div className="flex max-xl:flex-col max-xl:items-center max-xl:justify-around ">
                 <ReserveAppointmentForms />
                 <div className="w-1/3 max-xl:w-full max-xl:flex max-md:flex-col max-xl:justify-around">
