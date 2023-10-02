@@ -21,7 +21,7 @@ export const getDoctorsOptions = (doctors: IUser[]) => {
   const options = doctors.map((doctor) => {
     return {
       value: doctor._id,
-      label: doctor.name,
+      label: `Dr. ${doctor.name} ${doctor.lastName} `,
     };
   });
   return options;
