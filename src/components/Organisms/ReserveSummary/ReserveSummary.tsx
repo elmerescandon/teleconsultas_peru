@@ -4,13 +4,10 @@ import {
     getAppointmentHours,
     getDoctorName,
     getSpecialityName,
-    statusToSpanish,
     stringToDate,
 } from "@/utils/functions/utils";
 import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
-import doctorUserMockup from "@/utils/mockups/userMockup";
-import React from "react";
 
 const ReserveSummary = () => {
     const appointment = useAppointment();
@@ -23,6 +20,7 @@ const ReserveSummary = () => {
         endDate,
         startDate,
     } = appointment;
+
     return (
         <div className="w-1/3 max-xl:w-full">
             <div className="text-2xl font-semibold py-4">Resumen</div>
