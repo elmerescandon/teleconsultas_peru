@@ -3,7 +3,12 @@ import Loading from "@/components/Molecules/Loading/Loading";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
-import { getAppointmentHours, stringToDate } from "@/utils/functions/utils";
+import {
+    getAppointmentHours,
+    getReasonName,
+    stringToDate,
+} from "@/utils/functions/utils";
+import reasonMockup from "@/utils/mockups/reasonMockup";
 import { useEffect, useState } from "react";
 
 const ReserveSummary = () => {
@@ -60,7 +65,10 @@ const ReserveSummary = () => {
             <div>
                 <LabelInformation label="Especialidad" value={specialityName} />
                 <LabelInformation label="Doctor" value={doctorName} />
-                <LabelInformation label="Razón de consulta" value={reason} />
+                <LabelInformation
+                    label="Razón de consulta"
+                    value={getReasonName(reasonMockup, reason)}
+                />
 
                 <LabelInformation
                     label="Fecha programada"
