@@ -1,5 +1,6 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import dbFirestore from "../config";
+import IUser from "@/utils/Interfaces/dataModel/IUser";
 
 
 export const getUser = async (email: string) => {
@@ -9,5 +10,5 @@ export const getUser = async (email: string) => {
         return null;
     }
     const user = snapShot.docs[0].data();
-    return user;
+    return user as IUser;
 }
