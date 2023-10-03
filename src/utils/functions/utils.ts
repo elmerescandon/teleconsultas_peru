@@ -83,7 +83,7 @@ export const getSpecialityName = (specialities : Ispeciality[], specialityId : s
 }
 
 
-export const getDoctorName = (doctors : IUser[], doctorId : string) => {
+export const getDoctorNameMockup = (doctors : IUser[], doctorId : string) => {
   const doctor = doctors.filter((doctor) => doctor._id === doctorId);
   if(doctor.length === 0) return '';
   return doctor[0].name;
