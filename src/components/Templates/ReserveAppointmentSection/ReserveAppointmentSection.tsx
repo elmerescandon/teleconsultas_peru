@@ -31,15 +31,15 @@ const ReserveAppointmentSection = () => {
     const [loadingDates, setLoadingDates] = useState<boolean>(false);
 
     const onClickReserve = (appointment: IAppointment) => {
-        if (!logged) {
-            setPopUpRegister(true);
-            return;
-        }
-
         if (validateAppointment(appointment)) {
+            if (!logged) {
+                setPopUpRegister(true);
+                return;
+            }
             router.push(Routes.RESERVE_PAYMENT);
         } else {
             setPopUp(true);
+            return;
         }
     };
 
@@ -104,6 +104,7 @@ const ReserveAppointmentSection = () => {
             )}
             {popUpRegister && (
                 <PopUpReservation
+                    requireSession={true}
                     title="¡Ya falta poco!"
                     message="Inicia sesión o regístrate para agendar una cita"
                     onClose={() => {
