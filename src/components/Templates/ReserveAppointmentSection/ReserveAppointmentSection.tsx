@@ -5,6 +5,7 @@ import ReserveAppointmentCalendar from "@/components/Organisms/ReserveAppointmen
 import ReserveAppointmentForms from "@/components/Organisms/ReserveAppointmentForms/ReserveAppointmentForms";
 import ReserveAppointmentHours from "@/components/Organisms/ReserveAppointmentHours/ReserveAppointmentHours";
 import ReserveSummary from "@/components/Organisms/ReserveSummary/ReserveSummary";
+import { getAvailableDates } from "@/firebase/Availability/getAvailableDates";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
@@ -44,13 +45,21 @@ const ReserveAppointmentSection = () => {
     };
 
     useEffect(() => {
-        if (date !== "") {
-            const available = getAvailableAppointments(
+        const getAvailableAppointments = async (appointment: IAppointment) => {
+            const { date, doctorId, specialityId } = appointment;
+            const availableDates = await getAvailableDates(
                 date,
                 doctorId,
                 specialityId
             );
-            setAvailableAppointments(available);
+
+            if (availableDates) {
+                setAvailableAppointments(availableDates);
+            }
+        };
+
+        if (date !== "") {
+            getAvailableAppointments(appointment);
         }
     }, [appointment]);
 
