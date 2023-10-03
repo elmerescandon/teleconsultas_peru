@@ -1,10 +1,16 @@
 import React from "react";
 
-const Loading = () => {
+type LoadingProps = {
+    size?: number;
+};
+
+const Loading = ({ size }: LoadingProps) => {
     return (
         <svg
             aria-hidden="true"
-            className="inline w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-brand-50 fill-blue-600"
+            className={`inline ${
+                size !== undefined ? `w-${size} h-${size}` : "w-10 h-10"
+            } mr-2 text-gray-200 animate-spin dark:text-brand-50 fill-blue-600`}
             viewBox="0 0 100 101"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
