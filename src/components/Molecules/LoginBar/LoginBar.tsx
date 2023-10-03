@@ -1,13 +1,18 @@
 "use client";
 import ButtonSecondary from "@/components/Atoms/Buttons/ButtonSecondary/ButtonSecondary";
 import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
-import { userLogOut } from "@/redux/action-creators/UserActionCreators";
+import { getUser } from "@/firebase/User/getUser";
+import {
+    userLogIn,
+    userLogOut,
+} from "@/redux/action-creators/UserActionCreators";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
+import { dbToUser } from "@/utils/functions/utilsReducer";
 import Routes from "@/utils/routes/Routes";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 const LoginBar = () => {
     const state: IUserState = useAppSelector((state) => state.user);
@@ -15,6 +20,21 @@ const LoginBar = () => {
     const { role } = userInfo;
     const router = useRouter();
     const dispatch = useAppDispatch();
+    const { data: session, status } = useSession();
+
+    useEffect(() => {
+        const getUserInfo = async (email: string) => {
+            const userDb = await getUser(email);
+            if (!userDb) return;
+            const user = dbToUser(userDb);
+            dispatch(userLogIn(user));
+        };
+
+        if (status === "authenticated") {
+            getUserInfo(session.user!.email!);
+        }
+    }, [status]);
+
     return (
         <div>
             {logged ? (
