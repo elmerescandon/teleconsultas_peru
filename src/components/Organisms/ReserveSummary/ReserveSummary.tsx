@@ -1,13 +1,11 @@
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
-import { getDoctorsFromSpeciality } from "@/firebase/Doctor/getDoctorsFromSpeciality";
+import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
 import {
     getAppointmentHours,
-    getDoctorName,
     getSpecialityName,
     stringToDate,
 } from "@/utils/functions/utils";
-import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import { useEffect, useState } from "react";
 
@@ -27,9 +25,9 @@ const ReserveSummary = () => {
 
     useEffect(() => {
         const getDoctorsFromDb = async (doctorId: string) => {
-            const doctors = await getDoctorsFromSpeciality(specialityId);
-            if (doctors) {
-                setDoctorName("");
+            const doctor = await getDoctorName(doctorId);
+            if (doctor) {
+                setDoctorName(`Dr. ${doctor.name} ${doctor.lastName}`);
             }
         };
         getDoctorsFromDb(doctorId);
@@ -43,10 +41,7 @@ const ReserveSummary = () => {
                     label="Especialidad"
                     value={getSpecialityName(specialitiesMockup, specialityId)}
                 />
-                <LabelInformation
-                    label="Doctor"
-                    value={getDoctorName(doctorsMockup, doctorId)}
-                />
+                <LabelInformation label="Doctor" value={doctorName} />
                 <LabelInformation label="Razón de consulta" value={reason} />
 
                 <LabelInformation
