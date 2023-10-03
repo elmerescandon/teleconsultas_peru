@@ -1,6 +1,5 @@
 const reasonMockup = [
-    { value: "consulta", label: "Consulta" },
-    { value: "control", label: "Control" },
+    { value: "atencion", label: "Atención" },
 ];
 
 export default reasonMockup;

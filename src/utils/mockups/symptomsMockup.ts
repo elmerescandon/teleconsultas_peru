@@ -1,6 +1,7 @@
 const symptomsMockup = [
-    { value: "dolor", label: "Dolor" },
-    { value: "fiebre", label: "Fiebre" },
+    { value: "ansiedad", label: "Ansiedad" },
+    { value: "depresion", label: "Depresión" },
+    { value: "otro", label: "Otro" },
 ];
 
 export default symptomsMockup;
