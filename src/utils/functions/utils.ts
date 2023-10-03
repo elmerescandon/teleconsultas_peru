@@ -4,6 +4,7 @@ import Ispeciality from "../Interfaces/dataModel/ISpeciality";
 import IUser from "../Interfaces/dataModel/IUser";
 import IAppointment from "../Interfaces/reducers/IAppointment";
 import doctorAvailabilityMockup from "../mockups/doctorAvailabilityMockup";
+import { parse } from "date-fns";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
@@ -46,7 +47,7 @@ export const validateAppointment = (appointment : IAppointment) => {
 export const  stringToDate = (date : string) => {
   if (date === "") return "";	
 
-  const spanishDate = new Date(date).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const spanishDate = parse(date, 'yyyy-MM-dd', new Date()).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     return spanishDate.charAt(0).toUpperCase() + spanishDate.slice(1);
 }
 
