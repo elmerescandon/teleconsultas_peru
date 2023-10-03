@@ -4,15 +4,10 @@ import IUser from "@/utils/Interfaces/dataModel/IUser";
 
 
 export const getDoctorName = async (doctorId: string) => {
-    const q = query(collection(dbFirestore, "users"), and(where("role", "==", "doctor"), where("specialities", "array-contains" , "speciality1")));
+    const q = query(collection(dbFirestore, "users"), and(where("role", "==", "doctor"), where("_id","==",doctorId)));
     const snapShot = await getDocs(q);
     if (snapShot.empty) {
         return null;
     }
-    const doctors: IUser[] = [];
-    snapShot.forEach((doc) => {
-        doctors.push(doc.data() as IUser);
-    });
-    
-    return doctors;
+    return snapShot.docs[0].data() as IUser;
 }   
