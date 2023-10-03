@@ -26,6 +26,8 @@ const ReserveAppointmentSection = () => {
         IAvailableAppointment[]
     >([]);
     const appointment = useAppointment();
+    const { date, doctorId, specialityId } = appointment;
+
     const [loadingDates, setLoadingDates] = useState<boolean>(false);
 
     const onClickReserve = (appointment: IAppointment) => {
@@ -42,8 +44,11 @@ const ReserveAppointmentSection = () => {
     };
 
     useEffect(() => {
-        const getAvailableAppointments = async (appointment: IAppointment) => {
-            const { date, doctorId, specialityId } = appointment;
+        const getAvailableAppointments = async (
+            date: string,
+            doctorId: string,
+            specialityId: string
+        ) => {
             setLoadingDates(true);
             const availableDates = await getAvailableDates(
                 date,
@@ -59,10 +64,10 @@ const ReserveAppointmentSection = () => {
             }
         };
 
-        if (appointment.date !== "") {
-            getAvailableAppointments(appointment);
+        if (date !== "") {
+            getAvailableAppointments(date, doctorId, specialityId);
         }
-    }, [appointment]);
+    }, [date, doctorId]);
 
     return (
         <div className="px-48  py-10  max-xl:px-20 max-md:px-5">
