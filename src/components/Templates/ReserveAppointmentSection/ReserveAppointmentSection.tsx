@@ -11,13 +11,10 @@ import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
-import {
-    getAvailableAppointments,
-    validateAppointment,
-} from "@/utils/functions/utils";
+import { validateAppointment } from "@/utils/functions/utils";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ReserveAppointmentSection = () => {
     const userState: IUserState = useAppSelector((state) => state.user);
@@ -29,7 +26,7 @@ const ReserveAppointmentSection = () => {
         IAvailableAppointment[]
     >([]);
     const appointment = useAppointment();
-    const { date, doctorId, specialityId } = appointment;
+    const [loadingDates, setLoadingDates] = useState<boolean>(false);
 
     const onClickReserve = (appointment: IAppointment) => {
         if (!logged) {
@@ -47,18 +44,22 @@ const ReserveAppointmentSection = () => {
     useEffect(() => {
         const getAvailableAppointments = async (appointment: IAppointment) => {
             const { date, doctorId, specialityId } = appointment;
+            setLoadingDates(true);
             const availableDates = await getAvailableDates(
                 date,
                 doctorId,
                 specialityId
             );
 
+            setLoadingDates(false);
             if (availableDates) {
                 setAvailableAppointments(availableDates);
+            } else {
+                setAvailableAppointments([]);
             }
         };
 
-        if (date !== "") {
+        if (appointment.date !== "") {
             getAvailableAppointments(appointment);
         }
     }, [appointment]);
@@ -70,6 +71,7 @@ const ReserveAppointmentSection = () => {
                 <div className="w-1/3 max-xl:w-full max-xl:flex max-md:flex-col max-xl:justify-around">
                     <ReserveAppointmentCalendar />
                     <ReserveAppointmentHours
+                        loading={loadingDates}
                         availableAppointments={availableAppointments}
                     />
                 </div>
