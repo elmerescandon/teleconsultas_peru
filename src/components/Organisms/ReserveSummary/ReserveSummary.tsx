@@ -1,4 +1,5 @@
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
+import { getDoctorsFromSpeciality } from "@/firebase/Doctor/getDoctorsFromSpeciality";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
 import {
     getAppointmentHours,
@@ -8,8 +9,11 @@ import {
 } from "@/utils/functions/utils";
 import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
+import { useEffect, useState } from "react";
 
 const ReserveSummary = () => {
+    const [doctorName, setDoctorName] = useState("");
+
     const appointment = useAppointment();
     const {
         date,
@@ -20,6 +24,16 @@ const ReserveSummary = () => {
         endDate,
         startDate,
     } = appointment;
+
+    useEffect(() => {
+        const getDoctorsFromDb = async (doctorId: string) => {
+            const doctors = await getDoctorsFromSpeciality(specialityId);
+            if (doctors) {
+                setDoctorName("");
+            }
+        };
+        getDoctorsFromDb(doctorId);
+    }, [doctorId]);
 
     return (
         <div className="w-1/3 max-xl:w-full">

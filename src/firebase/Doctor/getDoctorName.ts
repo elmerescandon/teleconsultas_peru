@@ -3,8 +3,8 @@ import dbFirestore from "../config";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
 
 
-export const getDoctorsFromSpeciality = async (speciality: string) => {
-    const q = query(collection(dbFirestore, "users"), and(where("role", "==", "doctor"), where("specialities", "array-contains" , speciality)));
+export const getDoctorName = async (doctorId: string) => {
+    const q = query(collection(dbFirestore, "users"), and(where("role", "==", "doctor"), where("specialities", "array-contains" , "speciality1")));
     const snapShot = await getDocs(q);
     if (snapShot.empty) {
         return null;
@@ -15,4 +15,4 @@ export const getDoctorsFromSpeciality = async (speciality: string) => {
     });
     
     return doctors;
-}
+}   

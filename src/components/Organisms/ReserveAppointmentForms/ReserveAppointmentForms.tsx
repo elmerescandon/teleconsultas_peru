@@ -5,7 +5,6 @@ import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
 import { getDoctorsFromSpeciality } from "@/firebase/Doctor/getDoctorsFromSpeciality";
 import { getSpecialities } from "@/firebase/Speciality/getSpecialities";
 import ISelectOptions from "@/utils/Interfaces/ISelectOptions";
-import IUser from "@/utils/Interfaces/dataModel/IUser";
 import {
     useAppointment,
     useAppointmentDispatch,
@@ -14,14 +13,11 @@ import {
     getSpecialitiesOptions,
     getDoctorsOptions,
 } from "@/utils/functions/utils";
-import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import reasonMockup from "@/utils/mockups/reasonMockup";
 import symptomsMockup from "@/utils/mockups/symptomsMockup";
 import React, { useEffect, useState } from "react";
 
 const ReserveAppointmentForms = () => {
-    // TODO: Reason and Symptoms only enable when doctor is selected
-
     const dispatch = useAppointmentDispatch();
     const appointment = useAppointment();
     const { specialityId, doctorId, details } = appointment;
