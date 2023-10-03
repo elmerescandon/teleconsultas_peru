@@ -5,6 +5,7 @@ import IUser from "../Interfaces/dataModel/IUser";
 import IAppointment from "../Interfaces/reducers/IAppointment";
 import doctorAvailabilityMockup from "../mockups/doctorAvailabilityMockup";
 import { parse } from "date-fns";
+import ISelectOptions from "../Interfaces/ISelectOptions";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
@@ -93,6 +94,12 @@ export const getPatientName = (patients : IUser[], patientId : string) => {
   const patient = patients.filter((patient) => patient._id === patientId);
   if(patient.length === 0) return '';
   return patient[0].name;
+}
+
+export const getReasonName = (reasons : ISelectOptions[], reasonId : string) => {
+  const reason = reasons.filter((reason) => reason.value === reasonId);
+  if(reason.length === 0) return '';
+  return reason[0].label;
 }
 
 export const areDatesEqual = (dateA : Date, dateB: Date) => {
