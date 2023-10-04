@@ -1,14 +1,10 @@
 import PopUpAppointment from "@/components/Atoms/PopUp/PopUpAppointment/PopUpAppointment";
+import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
+import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import {
-    getDoctorNameMockup as getDoctorName,
-    getSpecialityName,
-    stringToDate,
-} from "@/utils/functions/utils";
-import doctorsMockup from "@/utils/mockups/doctorsMockup";
-import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
+import { stringToDate } from "@/utils/functions/utils";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type PatientDateProps = {
     appointment: IAppointment;
@@ -18,6 +14,33 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
     // TODO: Add call from API to get Specialities
     const [popUpOpen, setPopUpOpen] = useState(false);
     const { doctorId, specialityId, date } = appointment;
+    const [summary, setSummary] = useState<{
+        doctorName: string;
+        specialityName: string;
+    }>({ doctorName: "", specialityName: "" });
+
+    useEffect(() => {
+        const getInfoFromDb = async (
+            doctorId: string,
+            specialityId: string
+        ) => {
+            if (doctorId === "" || specialityId === "") return;
+            const doctor = await getDoctorName(doctorId);
+            const speciality = await getSpecialityName(specialityId);
+
+            if (doctor && speciality) {
+                setSummary({
+                    specialityName: speciality.name,
+                    doctorName: `Dr. ${doctor.name} ${doctor.lastName}`,
+                });
+            } else {
+                setSummary({ doctorName: "", specialityName: "" });
+            }
+        };
+
+        getInfoFromDb(doctorId, specialityId);
+    }, []);
+
     return (
         <div className="w-full">
             <button
@@ -25,14 +48,10 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
                 onClick={() => setPopUpOpen(true)}
             >
                 <div>
-                    <div>
-                        {getSpecialityName(specialitiesMockup, specialityId)}
-                    </div>
+                    <div>{summary.specialityName}</div>
                     <div>{stringToDate(date)}</div>
                 </div>
-                <div className="w-36 text-left">
-                    {getDoctorName(doctorsMockup, doctorId)}
-                </div>
+                <div className="w-36 text-left">{summary.doctorName}</div>
                 <div className="flex gap-3 items-center">
                     <p className="text-brand-50">Ver más</p>
                     <BookOpenIcon className="w-8 h-8 text-brand-100" />
