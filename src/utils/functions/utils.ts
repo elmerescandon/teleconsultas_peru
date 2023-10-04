@@ -31,10 +31,14 @@ export const getDoctorsOptions = (doctors: IUser[]) => {
 
 export const getAvailableAppointments = (date: string, doctorId : string, specialityId: string) => {
   const availableDateDoctor = doctorAvailabilityMockup.filter((availability) => {
+    if(availability.availability_slots === undefined) return false;
     return availability.doctor_id === doctorId && availability.speciality_id === specialityId && availability.availability_slots.some((slot) => slot.date === date);
   });
 
   if(availableDateDoctor.length === 0) return [];
+
+  if(availableDateDoctor[0].availability_slots === undefined) return [];
+
   return availableDateDoctor[0].availability_slots.filter((slot) => slot.date === date)[0].slots as IAvailableAppointment[];
 };
 
