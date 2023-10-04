@@ -1,4 +1,4 @@
-import { BanknotesIcon } from "@heroicons/react/24/outline";
+import { CreditCardIcon } from "@heroicons/react/24/outline";
 import React from "react";
 type PaymentCardProps = {
     cardType: string;
@@ -26,12 +26,12 @@ const PaymentCard = ({
                 onClickPayment(index);
             }}
         >
-            <BanknotesIcon className="w-10 h-10 text-basic-black" />
+            <CreditCardIcon className="w-10 h-10 text-basic-black" />
             <div className="text-xl font-normal text-basic-black">
                 {cardType}
             </div>
             <div className="text-xl font-normal text-basic-black">
-                **** {lastDigits}
+                {lastDigits}
             </div>
         </button>
     );
