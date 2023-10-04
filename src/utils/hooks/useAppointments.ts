@@ -1,35 +1,22 @@
 import { useEffect, useState } from "react";
 import IAppointment from "../Interfaces/reducers/IAppointment";
 import IDateRangeAppointment from "../Interfaces/IDateRangeAppointment";
-import AppointmentsMockup from "../mockups/AppointmentsMockup";
+import getUserAppointments from "@/firebase/Appointments/getUserAppointments";
+import IUserInfo from "@/redux/state-interfaces/User/IUserInfo";
 
-const useAppointments = (date : IDateRangeAppointment, setSelectedAppointment: (value: string) => void ) : IAppointment[] => {
+const useAppointments = (date : IDateRangeAppointment, user: IUserInfo, setSelectedAppointment: (value: string) => void ) : IAppointment[] => {
 
+    const [appointments, setAppointments] = useState<IAppointment[]>([]);
 
-    const getAppointments = () => {
-        const data = AppointmentsMockup.filter((appointment) => {
-            if (date.init === null || date.finish === null) {
-                return appointment.status === "completed";
-            }
-
-            return (
-                appointment.status === "completed" &&
-                new Date(appointment.date) >= new Date(date.init) &&
-                new Date(appointment.date) <= new Date(date.finish)
-            );
-        });
-        return data;
+    const getAppointments = async () => {
+        console.log(user._id)
+        const appointments = await getUserAppointments(user._id, "pending");
+        console.log(appointments)
+        setAppointments(appointments);
     };
 
-    const [appointments, setAppointments] = useState<IAppointment[]>(getAppointments());
-
-
-
-
-
     useEffect(() => {
-        const newAppointments = getAppointments();
-        setAppointments(newAppointments);
+        getAppointments();
         setSelectedAppointment("");
     }, [date]);
 
