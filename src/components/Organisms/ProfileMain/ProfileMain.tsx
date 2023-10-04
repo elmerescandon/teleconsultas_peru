@@ -11,7 +11,7 @@ const ProfileMain = () => {
         <div className="w-1/3 flex justify-center flex-col items-center gap-10 py-6">
             <div className="flex gap-4 flex-col items-center">
                 <Image
-                    src="/girl_smiling_v2.jpg"
+                    src="/user-icon.jpg"
                     height={200}
                     width={200}
                     alt="profile-main"

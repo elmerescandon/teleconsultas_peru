@@ -7,19 +7,19 @@ const ReviewsSection = () => {
     const comments = [
         <CardComment
             key={0}
-            imagePath={"/girl_smiling_v2.jpg"}
+            imagePath={"/user-icon.jpg"}
             name="Mariella, 25"
             comment="MediConnect me ayudó a mejorar mi salud en todo momento todo lugar. ¡Recomendadísimo!"
         />,
         <CardComment
             key={1}
-            imagePath={"/girl_smiling_v2.jpg"}
+            imagePath={"/user-icon.jpg"}
             name="Mariella, 26"
             comment="MediConnect me ayudó a mejorar mi salud en todo momento todo lugar. ¡Recomendadísimo!"
         />,
         <CardComment
             key={2}
-            imagePath={"/girl_smiling_v2.jpg"}
+            imagePath={"/user-icon.jpg"}
             name="Mariella, 27"
             comment="MediConnect me ayudó a mejorar mi salud en todo momento todo lugar. ¡Recomendadísimo!"
         />,

@@ -19,7 +19,7 @@ const PatientMain = () => {
                 </p>
             </div>
             <Image
-                src="/girl_smiling_v2.jpg"
+                src="/user-icon.jpg"
                 height={150}
                 width={150}
                 alt="telemedicine-profile-person"

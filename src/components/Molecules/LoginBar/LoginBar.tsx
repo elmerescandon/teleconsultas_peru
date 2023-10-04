@@ -51,7 +51,7 @@ const LoginBar = () => {
                     >
                         <img
                             className="w-14 h-14 rounded-full"
-                            src="/girl_smiling_v2.jpg"
+                            src="/user-icon.jpg"
                         />
                     </button>
                     <ButtonSecondary
