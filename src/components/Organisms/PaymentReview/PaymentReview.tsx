@@ -1,21 +1,44 @@
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import PaymentItem from "@/components/Molecules/PaymentItem/PaymentItem";
+import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
+import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
-import {
-    getAppointmentHours,
-    getDoctorName,
-    getSpecialityName,
-    stringToDate,
-} from "@/utils/functions/utils";
-import doctorsMockup from "@/utils/mockups/doctorsMockup";
-import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
+import { getAppointmentHours, stringToDate } from "@/utils/functions/utils";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const PaymentReview = () => {
     const router = useRouter();
     const appointment = useAppointment();
     const { specialityId, doctorId, date, startDate, endDate } = appointment;
+    const [summary, setSummary] = useState<{
+        doctorName: string;
+        specialityName: string;
+    }>({ doctorName: "", specialityName: "" });
+
+    useEffect(() => {
+        const getInfoFromDb = async (
+            doctorId: string,
+            specialityId: string
+        ) => {
+            console.log(doctorId);
+            const doctor = await getDoctorName(doctorId);
+            const speciality = await getSpecialityName(specialityId);
+
+            if (doctor && speciality) {
+                setSummary({
+                    specialityName: speciality.name,
+                    doctorName: `Dr. ${doctor.name} ${doctor.lastName}`,
+                });
+            } else {
+                setSummary({ doctorName: "", specialityName: "" });
+            }
+        };
+
+        getInfoFromDb(doctorId, specialityId);
+    }, []);
+
     return (
         <div className="w-2/3 p-7 h-[60vh] max-lg:w-full max-lg:h-full">
             <div className="text-xl">Detalle</div>
@@ -23,12 +46,9 @@ const PaymentReview = () => {
             <div>
                 <PaymentItem
                     label="Especialidad"
-                    name={getSpecialityName(specialitiesMockup, specialityId)}
+                    name={summary.specialityName}
                 />
-                <PaymentItem
-                    label="Profesional"
-                    name={getDoctorName(doctorsMockup, doctorId)}
-                />
+                <PaymentItem label="Profesional" name={summary.doctorName} />
                 <PaymentItem label="Fecha" name={stringToDate(date)} />
                 <PaymentItem
                     label="Horario"
