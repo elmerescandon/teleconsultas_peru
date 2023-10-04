@@ -1,10 +1,14 @@
 "use client";
 import MonthGrid from "@/components/Molecules/MonthGrid/MonthGrid";
+import getUserAppointments from "@/firebase/Appointments/getUserAppointments";
+import { useAppSelector } from "@/redux/hooks";
+import IUserState from "@/redux/state-interfaces/User/IUserState";
+import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import useMonthYearChange from "@/utils/hooks/useCalendar";
 import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
 import AppointmentTest from "@/utils/mockups/AppointmentsTest";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const CalendarSection = () => {
     const monthToMonthName = [
@@ -23,6 +27,25 @@ const CalendarSection = () => {
     ];
     const { month, year, goToPreviousMonth, goToNextMonth } =
         useMonthYearChange(new Date().getMonth(), new Date().getFullYear());
+
+    const state: IUserState = useAppSelector((state) => state.user);
+    const [patientAppointments, setPatientAppointments] = useState<
+        IAppointment[]
+    >([]);
+    const { userInfo } = state;
+
+    useEffect(() => {
+        const getAppointments = async () => {
+            if (!userInfo) return;
+            const appointments = await getUserAppointments(
+                userInfo._id,
+                "pending"
+            );
+            setPatientAppointments(appointments);
+        };
+        getAppointments();
+    }, []);
+
     return (
         <div className="max-lg:pt-36">
             <h1 className="text-3xl pb-3 font-bold">Mis citas</h1>
@@ -42,7 +65,7 @@ const CalendarSection = () => {
             </div>
 
             <MonthGrid
-                monthAppointmentData={AppointmentsMockup}
+                monthAppointmentData={patientAppointments}
                 onAppointmentClick={() => {}}
                 month={month}
                 year={year}
