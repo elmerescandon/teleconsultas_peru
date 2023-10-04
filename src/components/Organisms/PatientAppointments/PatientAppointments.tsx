@@ -6,6 +6,7 @@ import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
 import React, { useEffect, useState } from "react";
 import Pagination from "../Pagination/Pagination";
+import getUserAppointments from "@/firebase/Appointments/getUserAppointments";
 
 const PatientAppointments = () => {
     const state: IUserState = useAppSelector((state) => state.user);
@@ -15,13 +16,15 @@ const PatientAppointments = () => {
     const { userInfo } = state;
     useEffect(() => {
         const getAppointments = async () => {
-            const appointments: IAppointment[] = AppointmentsMockup.filter(
-                (appointment) => {
-                    return appointment.patientId === userInfo._id;
-                }
+            if (!userInfo) return;
+            const appointments = await getUserAppointments(
+                userInfo._id,
+                "pending"
             );
+            console.log(appointments);
             setPatientAppointments(appointments);
         };
+        console.log(patientAppointments);
         getAppointments();
     }, []);
 
