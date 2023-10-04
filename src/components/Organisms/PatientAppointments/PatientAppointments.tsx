@@ -3,7 +3,6 @@ import PatientDate from "@/components/Molecules/PatientDate/PatientDate";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
 import React, { useEffect, useState } from "react";
 import Pagination from "../Pagination/Pagination";
 import getUserAppointments from "@/firebase/Appointments/getUserAppointments";
@@ -17,7 +16,7 @@ const PatientAppointments = () => {
 
     useEffect(() => {
         const getAppointments = async () => {
-            if (!userInfo) return;
+            if (userInfo._id === "" || !state.logged) return;
             const appointments = await getUserAppointments(
                 userInfo._id,
                 "pending"
