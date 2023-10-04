@@ -5,7 +5,7 @@ import SuccessRecommendations from "@/components/Molecules/SuccessRecommendation
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
 import {
     getAppointmentHours,
-    getDoctorName,
+    getDoctorNameMockup as getDoctorName,
     getSpecialityName,
     stringToDate,
 } from "@/utils/functions/utils";

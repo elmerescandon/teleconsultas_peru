@@ -1,7 +1,7 @@
 import PopUpAppointment from "@/components/Atoms/PopUp/PopUpAppointment/PopUpAppointment";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import {
-    getDoctorName,
+    getDoctorNameMockup as getDoctorName,
     getSpecialityName,
     stringToDate,
 } from "@/utils/functions/utils";

@@ -16,8 +16,7 @@ const AppointmentsMockup : IAppointment[] = [
         diagnosis: ['Gastritis', 'Colitis'],
         treatment: ['Reposo', 'Dieta blanda'],
         prescription: ['Omeprazol', 'Loperamida'],
-        summary: 'El paciente requiere reposo y dieta blanda. Se le recetó Omeprazol e Loperamida. Monitorear su progreso en la siguiente cita.'
-    
+        summary: 'El paciente requiere reposo y dieta blanda. Se le recetó Omeprazol e Loperamida. Monitorear su progreso en la siguiente cita.',
     },    
     {
         _id: "appointment2",

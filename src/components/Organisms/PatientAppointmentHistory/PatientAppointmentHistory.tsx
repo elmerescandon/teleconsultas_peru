@@ -2,7 +2,7 @@ import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelIn
 import LabelPoints from "@/components/Atoms/Labels/LabelPoints/LabelPoints";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import {
-    getDoctorName,
+    getDoctorNameMockup as getDoctorName,
     getSpecialityName,
     stringToDate,
 } from "@/utils/functions/utils";

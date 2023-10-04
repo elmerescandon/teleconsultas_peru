@@ -4,7 +4,7 @@ import ButtonPrimary from "../../Buttons/ButtonPrimary/ButtonPrimary";
 import LabelInformation from "../../Labels/LabelInformation/LabelInformation";
 import {
     getAppointmentHours,
-    getDoctorName,
+    getDoctorNameMockup as getDoctorName,
     getSpecialityName,
     statusToSpanish,
     stringToDate,
