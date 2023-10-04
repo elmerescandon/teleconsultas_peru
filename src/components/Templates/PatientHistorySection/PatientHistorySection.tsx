@@ -2,6 +2,9 @@
 import AppointmentsBar from "@/components/Molecules/AppointmentsBar/AppointmentsBar";
 import DateFilter from "@/components/Molecules/DateFilter/DateFilter";
 import PatientAppointmentHistory from "@/components/Organisms/PatientAppointmentHistory/PatientAppointmentHistory";
+import { useAppSelector } from "@/redux/hooks";
+import IUserState from "@/redux/state-interfaces/User/IUserState";
+import { IState } from "@/redux/store";
 import IDateRangeAppointment from "@/utils/Interfaces/IDateRangeAppointment";
 import useAppointments from "@/utils/hooks/useAppointments";
 import React, { useState } from "react";
@@ -12,7 +15,13 @@ const PatientHistorySection = () => {
         finish: null,
     });
     const [selectedAppointment, setSelectedAppointment] = useState<string>("");
-    const appointments = useAppointments(date, setSelectedAppointment);
+    const user: IUserState = useAppSelector((state: IState) => state.user);
+    const { userInfo } = user;
+    const appointments = useAppointments(
+        date,
+        userInfo,
+        setSelectedAppointment
+    );
 
     return (
         <div className="px-48 max-xl:px-10 pb-28 min-h-[90vh]">
