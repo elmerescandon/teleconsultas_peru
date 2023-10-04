@@ -14,6 +14,7 @@ const PatientAppointments = () => {
         IAppointment[]
     >([]);
     const { userInfo } = state;
+
     useEffect(() => {
         const getAppointments = async () => {
             if (!userInfo) return;
@@ -21,12 +22,10 @@ const PatientAppointments = () => {
                 userInfo._id,
                 "pending"
             );
-            console.log(appointments);
             setPatientAppointments(appointments);
         };
-        console.log(patientAppointments);
         getAppointments();
-    }, []);
+    }, [state]);
 
     return (
         <div className="w-2/3 rounded-3xl border-neutral-300 border-2 py-5 px-10 h-96 max-xl:h-full max-xl:w-full">
