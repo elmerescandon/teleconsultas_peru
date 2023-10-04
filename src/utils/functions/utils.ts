@@ -109,3 +109,14 @@ export const areDatesEqual = (dateA : Date, dateB: Date) => {
     dateA.getDate() === dateB.getDate()
   );
 }
+
+export const createAppointment = (appointment : IAppointment, patient : IUserInfo) => {
+  const { _id } = patient;
+  const newAppointment : IAppointment = {
+    ...appointment,
+    patientId: _id,
+    status: 'pending',
+    price: 80,
+  }
+  return newAppointment;
+}
