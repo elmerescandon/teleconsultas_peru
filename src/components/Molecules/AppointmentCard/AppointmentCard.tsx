@@ -2,7 +2,7 @@
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import {
     getAppointmentHours,
-    getDoctorName,
+    getDoctorNameMockup as getDoctorName,
     getSpecialityName,
 } from "@/utils/functions/utils";
 import doctorsMockup from "@/utils/mockups/doctorsMockup";

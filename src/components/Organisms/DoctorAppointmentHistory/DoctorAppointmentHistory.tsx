@@ -7,7 +7,7 @@ import LabelPointsEdit from "@/components/Molecules/LabelPointsEdit/LabelPointsE
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import {
     getAppointmentHours,
-    getDoctorName,
+    getDoctorNameMockup as getDoctorName,
     getSpecialityName,
     statusToSpanish,
     stringToDate,
