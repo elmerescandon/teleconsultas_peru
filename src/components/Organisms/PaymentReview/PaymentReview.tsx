@@ -1,15 +1,11 @@
-import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import PaymentItem from "@/components/Molecules/PaymentItem/PaymentItem";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
 import { getAppointmentHours, stringToDate } from "@/utils/functions/utils";
-import Routes from "@/utils/routes/Routes";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const PaymentReview = () => {
-    const router = useRouter();
     const appointment = useAppointment();
     const { specialityId, doctorId, date, startDate, endDate } = appointment;
     const [summary, setSummary] = useState<{
@@ -22,7 +18,7 @@ const PaymentReview = () => {
             doctorId: string,
             specialityId: string
         ) => {
-            console.log(doctorId);
+            if (doctorId === "" || specialityId === "") return;
             const doctor = await getDoctorName(doctorId);
             const speciality = await getSpecialityName(specialityId);
 
@@ -64,13 +60,6 @@ const PaymentReview = () => {
             <div className="w-full border my-5"></div>
             <PaymentItem label="Total" name="S/.80.00" />
             <div className="w-full border border-transparent my-5"></div>
-            <ButtonPrimary
-                onClickFn={() => {
-                    router.push(Routes.RESERVE_SUCCESS);
-                }}
-            >
-                Realizar Pago
-            </ButtonPrimary>
         </div>
     );
 };
