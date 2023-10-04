@@ -1,11 +1,17 @@
 "use client";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import LabelProfileMain from "@/components/Atoms/Labels/LabelProfileMain/LabelProfileMain";
+import { useAppSelector } from "@/redux/hooks";
+import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { PencilIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import React, { useState } from "react";
 
 const ProfileMain = () => {
+    const user: IUserState = useAppSelector((state) => state.user);
+    const { userInfo } = user;
+    const { name, lastName, email } = userInfo;
+
     const [isEditingPersonal, setIsEditingPersonal] = useState(false);
     return (
         <div className="w-1/3 flex justify-center flex-col items-center gap-10 py-6">
@@ -40,18 +46,18 @@ const ProfileMain = () => {
                 <div className="flex flex-col gap-4 pt-5">
                     <LabelProfileMain
                         label="Nombre(s)"
-                        value="Alvaro Pedro"
+                        value={name}
                         editable={isEditingPersonal}
                     />
                     <LabelProfileMain
                         editable={isEditingPersonal}
                         label="Apellidos(s)"
-                        value="Rodriguez Fernández"
+                        value={lastName}
                     />
                     <LabelProfileMain
                         editable={isEditingPersonal}
                         label="Correo(s)"
-                        value="alvaro.pedro@medicon"
+                        value={email}
                     />
                     <LabelProfileMain
                         editable={isEditingPersonal}

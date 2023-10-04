@@ -1,10 +1,17 @@
 "use client";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import LabelProfileMain from "@/components/Atoms/Labels/LabelProfileMain/LabelProfileMain";
+import { useAppSelector } from "@/redux/hooks";
+import IUserState from "@/redux/state-interfaces/User/IUserState";
+import { currentUbigeo } from "@/utils/constants/registerSelect";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const ProfileDetailed = () => {
+    const user: IUserState = useAppSelector((state) => state.user);
+    const { userInfo } = user;
+    const { region, province, district, address, phone, age, bornDate, sex } =
+        userInfo;
     const [isEditingAdditional, setIsEditingAdditional] = useState(false);
 
     return (
@@ -38,44 +45,65 @@ const ProfileDetailed = () => {
                 <div className="w-1/2 flex flex-col justify-around">
                     <LabelProfileMain
                         label="Región"
-                        value="Lima"
+                        value={
+                            currentUbigeo.find(
+                                (item) =>
+                                    item.departamento === region &&
+                                    item.provincia === "00" &&
+                                    item.distrito === "00"
+                            )?.nombre || ""
+                        }
                         editable={isEditingAdditional}
                     />
                     <LabelProfileMain
                         label="Provincia"
-                        value="Lima"
+                        value={
+                            currentUbigeo.find(
+                                (item) =>
+                                    item.departamento === region &&
+                                    item.provincia === province &&
+                                    item.distrito === "00"
+                            )?.nombre || ""
+                        }
                         editable={isEditingAdditional}
                     />
                     <LabelProfileMain
                         label="Distrito"
-                        value="Miraflores"
+                        value={
+                            currentUbigeo.find(
+                                (item) =>
+                                    item.departamento === region &&
+                                    item.provincia === province &&
+                                    item.distrito === district
+                            )?.nombre || ""
+                        }
                         editable={isEditingAdditional}
                     />
                     <LabelProfileMain
                         label="Dirección"
-                        value="Av. Larco 156"
+                        value={address}
                         editable={isEditingAdditional}
                     />
                 </div>
                 <div className="w-1/2 flex flex-col justify-around gap-10">
                     <LabelProfileMain
                         label="Teléfono"
-                        value="+51 942 235 231"
+                        value={phone}
                         editable={isEditingAdditional}
                     />
                     <LabelProfileMain
                         label="Edad"
-                        value="51"
+                        value={age ? age : ""}
                         editable={isEditingAdditional}
                     />
                     <LabelProfileMain
                         label="Nacimiento"
-                        value="15/08/1973"
+                        value={bornDate ? bornDate : ""}
                         editable={isEditingAdditional}
                     />
                     <LabelProfileMain
                         label="Sexo"
-                        value="Hombre"
+                        value={sex ? sex : ""}
                         editable={isEditingAdditional}
                     />
                 </div>
