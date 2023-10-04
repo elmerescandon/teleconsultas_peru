@@ -1,14 +1,12 @@
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
 import LabelPoints from "@/components/Atoms/Labels/LabelPoints/LabelPoints";
+import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
+import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import {
-    getDoctorNameMockup as getDoctorName,
-    getSpecialityName,
-    stringToDate,
-} from "@/utils/functions/utils";
+import { stringToDate } from "@/utils/functions/utils";
 import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type PatientAppointmentHistoryProps = {
     appointment: IAppointment;
@@ -28,22 +26,47 @@ const PatientAppointmentHistory = ({
         prescription,
         treatment,
     } = appointment;
+
+    const [summaryState, setSummaryState] = useState<{
+        doctorName: string;
+        specialityName: string;
+    }>({ doctorName: "", specialityName: "" });
+
+    useEffect(() => {
+        const getInfoFromDb = async (
+            doctorId: string,
+            specialityId: string
+        ) => {
+            if (doctorId === "" || specialityId === "") return;
+            const doctor = await getDoctorName(doctorId);
+            const speciality = await getSpecialityName(specialityId);
+
+            if (doctor && speciality) {
+                setSummaryState({
+                    specialityName: speciality.name,
+                    doctorName: `Dr. ${doctor.name} ${doctor.lastName}`,
+                });
+            } else {
+                setSummaryState({ doctorName: "", specialityName: "" });
+            }
+        };
+
+        getInfoFromDb(doctorId, specialityId);
+    }, []);
+
     return (
         <div className="rounded-t-xl rounded-r-xl border-2 p-10">
             <h1 className="text-2xl pb-5">{`Cita ${stringToDate(date)}`}</h1>
             <div className="px-36">
-                <div className="flex flex-row flex-grow gap-24 pb-10">
+                <div className="flex flex-row flex-grow gap-24 pb-10 items-start">
                     <div className="w-1/2">
                         <LabelInformation
                             label="Médico"
-                            value={getDoctorName(doctorsMockup, doctorId)}
+                            value={summaryState.doctorName}
                         />
                         <LabelInformation
                             label="Especialidad"
-                            value={getSpecialityName(
-                                specialitiesMockup,
-                                specialityId
-                            )}
+                            value={summaryState.specialityName}
                         />
                     </div>
                     <div className="w-1/2">
