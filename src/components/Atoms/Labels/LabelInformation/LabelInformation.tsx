@@ -7,7 +7,7 @@ type LabelInformationProps = {
 
 const LabelInformation = ({ label, value }: LabelInformationProps) => {
     return (
-        <div className="flex justify-start max-xl:flex-col items-center gap-5 py-4">
+        <div className="flex justify-start max-xl:flex-col items-start gap-5 py-4">
             <p className="text-lg text-gray-500 w-full">{label}</p>
             <p className="text-lg text-right w-full">
                 {value !== "" ? value : "-"}
