@@ -3,6 +3,7 @@ import IUser from "../Interfaces/dataModel/IUser";
 const doctorsMockup :IUser[] = [
     {
       "_id": "doctor1",
+      "id":"1234546",
       "role": "doctor",
       "name": "Dr. Smith",
       "lastName": "Smith",
@@ -16,6 +17,7 @@ const doctorsMockup :IUser[] = [
     },
     {
       "_id": "doctor2",
+      "id":"1234546",
       "role": "doctor",
       "name": "Dr. Johnson",
       "lastName": "Johnson",
@@ -29,6 +31,7 @@ const doctorsMockup :IUser[] = [
     },
     {
       "_id": "doctor3",
+      "id":"1234546",
       "role": "doctor",
       "name": "Dr. Williams",
       "lastName": "Williams",
@@ -41,6 +44,7 @@ const doctorsMockup :IUser[] = [
       "other_fields": {}
     },
     {
+      "id":"1234546",
       "_id": "doctor4",
       "role": "doctor",
       "name": "Dr. Brown",
@@ -54,6 +58,7 @@ const doctorsMockup :IUser[] = [
       "other_fields": {}
     },
     {
+      "id":"1234546",
       "_id": "doctor5",
       "role": "doctor",
       "name": "Dr. Taylor",
@@ -67,6 +72,7 @@ const doctorsMockup :IUser[] = [
       "other_fields": {}
     },
     {
+      "id":"1234546",
       "_id": "doctor6",
       "role": "doctor",
       "name": "Dr. Davis",
@@ -80,6 +86,7 @@ const doctorsMockup :IUser[] = [
       "other_fields": {}
     },
     {
+      "id":"1234546",
       "_id": "doctor7",
       "role": "doctor",
       "name": "Dr. Martinez",
