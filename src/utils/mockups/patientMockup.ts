@@ -2,6 +2,7 @@ import IUser from "../Interfaces/dataModel/IUser";
 
 const patientMockup: IUser = {
     _id: "patient1",
+    id:"1234546",
     role: "patient",
     name: "Pedro",
     lastName: "Navaja",

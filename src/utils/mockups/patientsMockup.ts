@@ -2,7 +2,8 @@ import IUser from "../Interfaces/dataModel/IUser";
 
 const patientsMockup: IUser[] = [
     {
-        _id: "patient1",
+      id:"1234546",
+      _id: "patient1",
         role: "patient",
         name: "Pedro",
         lastName: "Navaja",
@@ -25,7 +26,8 @@ const patientsMockup: IUser[] = [
         active_prescriptions: ["prescription1", "prescription2"],
     },
     {
-        _id: "patient2",
+      id:"1234546",
+      _id: "patient2",
         role: "patient",
         name: "Juan Pedro",
         lastName: "Alfonso",
@@ -48,7 +50,8 @@ const patientsMockup: IUser[] = [
         active_prescriptions: ["prescription1", "prescription2"],
     },
     {
-        _id: "patient3",
+      id:"1234546",
+      _id: "patient3",
         role: "patient",
         name: "John",
         lastName: "Doe",

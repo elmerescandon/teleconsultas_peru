@@ -3,7 +3,8 @@ import IUser from "../Interfaces/dataModel/IUser";
 const doctorUserMockup: IUser = {
     _id: "doctor123",
     role: "doctor",
-    name: "Dr. Smith",
+      id:"1234546",
+      name: "Dr. Smith",
     lastName: "Smith",
     email: "dr.smith@example.com",
     password: "hashed_password",
