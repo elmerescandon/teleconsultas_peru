@@ -2,6 +2,7 @@ import IUserInfo from "@/redux/state-interfaces/User/IUserInfo";
 
 const doctorMockup: IUserInfo = {
     _id: "doctor1",
+    id: "124564789",
     role: "doctor",
     name: "Rebeca",
     lastName: "Garcia",

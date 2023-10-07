@@ -4,6 +4,7 @@ import patientMockup from "./patientMockup";
 
 const patientReduxMockup : IUserInfo = {
     _id: patientMockup._id,
+    id: patientMockup.id,
     role: patientMockup.role,
     name: patientMockup.name,
     lastName: patientMockup.lastName,
