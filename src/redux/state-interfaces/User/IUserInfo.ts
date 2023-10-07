@@ -7,6 +7,7 @@ interface IUserInfo {
     address: string;
     profile_picture: string;
     lastName: string;
+    id: string;
     password?: string;
     //  Location
     region: string;

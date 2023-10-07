@@ -7,6 +7,7 @@ interface IUser {
     password: string;
     termsAndConditions?: boolean;
     phone: string;
+    id: string;
 
     //  Location
     region?: string;
