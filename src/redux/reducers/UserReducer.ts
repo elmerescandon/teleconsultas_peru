@@ -7,6 +7,7 @@ export const initialState: IUserState = {
     logged: false,
     userInfo: {
         _id: "",
+        id:"",
         role: "patient",
         name: "",
         lastName: "",
