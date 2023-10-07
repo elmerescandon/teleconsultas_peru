@@ -3,6 +3,7 @@ import IUser from "../Interfaces/dataModel/IUser";
 export const dbToUser = (userDb: IUser) => {
     const user : IUserInfo = {
       _id: userDb._id,
+      id: userDb.id,
       role: userDb.role,
       name: userDb.name,
       lastName: userDb.lastName,
