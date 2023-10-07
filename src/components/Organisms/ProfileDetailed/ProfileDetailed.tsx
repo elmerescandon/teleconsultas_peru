@@ -4,8 +4,9 @@ import LabelProfileMain from "@/components/Atoms/Labels/LabelProfileMain/LabelPr
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { currentUbigeo } from "@/utils/constants/registerSelect";
+import { stringToDate } from "@/utils/functions/utils";
 import { PencilIcon } from "@heroicons/react/24/outline";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const ProfileDetailed = () => {
     const user: IUserState = useAppSelector((state) => state.user);
@@ -98,12 +99,22 @@ const ProfileDetailed = () => {
                     />
                     <LabelProfileMain
                         label="Nacimiento"
-                        value={bornDate ? bornDate : ""}
+                        value={
+                            bornDate
+                                ? stringToDate(
+                                      new Date(bornDate)
+                                          .toISOString()
+                                          .split("T")[0]
+                                  )
+                                : ""
+                        }
                         editable={isEditingAdditional}
                     />
                     <LabelProfileMain
                         label="Sexo"
-                        value={sex ? sex : ""}
+                        value={
+                            sex ? (sex == "M" ? "Masculino" : "Femenino") : ""
+                        }
                         editable={isEditingAdditional}
                     />
                 </div>
