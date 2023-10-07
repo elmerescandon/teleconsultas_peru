@@ -10,7 +10,7 @@ import React, { useState } from "react";
 const ProfileMain = () => {
     const user: IUserState = useAppSelector((state) => state.user);
     const { userInfo } = user;
-    const { name, lastName, email } = userInfo;
+    const { name, lastName, email, id } = userInfo;
 
     const [isEditingPersonal, setIsEditingPersonal] = useState(false);
     return (
@@ -62,7 +62,7 @@ const ProfileMain = () => {
                     <LabelProfileMain
                         editable={isEditingPersonal}
                         label="DNI(s)"
-                        value="58479625"
+                        value={id}
                     />
                 </div>
                 {isEditingPersonal ? (
