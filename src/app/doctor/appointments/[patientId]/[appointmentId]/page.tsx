@@ -1,13 +1,14 @@
 "use client";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
+import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
 import DoctorAppointmentHistory from "@/components/Organisms/DoctorAppointmentHistory/DoctorAppointmentHistory";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
-import { getPatientName } from "@/utils/functions/utils";
-import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
-import patientsMockup from "@/utils/mockups/patientsMockup";
+import getAppointment from "@/firebase/Appointments/getAppointment";
+import { getPatientName } from "@/firebase/Patient/getPatientName";
+import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Page = ({
     params,
@@ -16,10 +17,32 @@ const Page = ({
 }) => {
     const router = useRouter();
     const { patientId, appointmentId } = params;
+    const [patientName, setPatientName] = useState<string>("");
+    const [appointment, setAppointment] = useState<IAppointment | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
-    const appointment = AppointmentsMockup.find((appointment) => {
-        return appointment._id === appointmentId;
-    });
+    useEffect(() => {
+        const getPatientInfo = async (
+            patientId: string,
+            appointmentId: string
+        ) => {
+            const patientInfo = await getPatientName(patientId);
+            const appointmentInfo = await getAppointment(appointmentId);
+
+            if (patientInfo && appointmentInfo) {
+                setPatientName(`${patientInfo.name} ${patientInfo.lastName}`);
+                setAppointment(appointmentInfo);
+            }
+        };
+
+        try {
+            setLoading(true);
+            getPatientInfo(patientId, appointmentId);
+            setLoading(false);
+        } catch (error) {
+            router.back();
+        }
+    }, []);
 
     return (
         <div>
@@ -27,10 +50,7 @@ const Page = ({
             <div className="px-48 max-xl:px-5 max-xl:pt-28 pb-28 min-h-[90vh]">
                 <div className="flex ">
                     <p className="text-2xl font-semibold py-5 w-full">
-                        {`Paciente: ${getPatientName(
-                            patientsMockup,
-                            patientId
-                        )}`}
+                        {`Paciente: ${patientName}`}
                     </p>
                     <div>
                         <ButtonPrimary
@@ -45,9 +65,8 @@ const Page = ({
 
                 {appointment ? (
                     <DoctorAppointmentHistory appointment={appointment} />
-                ) : (
-                    <p>Appointment not found</p>
-                )}
+                ) : null}
+                {loading ? <LoadingCircle /> : null}
             </div>
             <Footer />
         </div>
