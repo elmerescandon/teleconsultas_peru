@@ -32,15 +32,21 @@ const LoginForms = () => {
     const { data: session, status } = useSession();
 
     useEffect(() => {
-        const getUserInfo = async (email: string, role: string) => {
-            const userDb = (await getUser(email, role)) as IUser;
+        const getUserInfo = async (id: string) => {
+            const userDb = (await getUser(id)) as IUser;
             const user = dbToUser(userDb);
             dispatch(userLogIn(user));
+            return user.role;
         };
 
         if (status === "authenticated") {
-            getUserInfo(session.user!.email!, isDoctor ? "doctor" : "patient");
-            router.push(isDoctor ? Routes.DOCTOR_HOME : Routes.PATIENT_HOME);
+            getUserInfo(session.user!.name!);
+            const isDoctor = /doctor/.test(session.user!.name!);
+            if (isDoctor) {
+                router.push(Routes.DOCTOR_HOME);
+            } else {
+                router.push(Routes.PATIENT_HOME);
+            }
         }
     }, [status]);
 
