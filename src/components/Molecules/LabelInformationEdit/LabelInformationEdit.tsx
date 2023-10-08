@@ -16,6 +16,7 @@ const LabelInformationEdit = ({
     value,
     setValue,
 }: LabelInformationEditProps) => {
+    const [newValue, setNewValue] = useState<string>("");
     const [isEditing, setIsEditing] = useState<boolean>(false);
     return (
         <div>
@@ -49,9 +50,8 @@ const LabelInformationEdit = ({
                             <InputTextArea
                                 placeholder={"Ingresa el resumen del paciente"}
                                 onChange={(value: string) => {
-                                    setValue(value);
+                                    setNewValue(value);
                                 }}
-                                message={value}
                                 cols={30}
                                 rows={4}
                             />
@@ -62,6 +62,7 @@ const LabelInformationEdit = ({
                                 <button
                                     onClick={() => {
                                         setIsEditing(false);
+                                        setValue(newValue);
                                     }}
                                 >
                                     <CheckIcon className="h-6 w-6 text-gray-500" />
