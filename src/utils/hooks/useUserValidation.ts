@@ -5,6 +5,8 @@ import { signIn } from "next-auth/react";
 const useUserValidation = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState(""); 
+  const [isDoctor, setIsDoctor] = useState<boolean>(false);
+
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,7 +26,7 @@ const useUserValidation = () => {
             email: username,
             password: password,
             redirect: false,
-            role: "patient",
+            role: isDoctor ? "doctor" : "patient"
         });
         
         if (userServer?.error){
@@ -38,7 +40,7 @@ const useUserValidation = () => {
     }
 };
 
-  return {username, setUsername, password, setPassword, error, loading, handleSubmit}
+  return {username, setUsername, password, setPassword, error, loading, handleSubmit , isDoctor, setIsDoctor}
 
 
 
