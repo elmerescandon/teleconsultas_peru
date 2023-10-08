@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
         const credentialsLogin : ICredentials = {email: credentials.email, password: credentials.password, role: credentials.role};
         const userDb = await loginUser(credentialsLogin) as IUser;
         if (userDb !== null){
-            return {name: userDb.name, email: userDb.email, image: userDb.profile_picture, id: userDb._id}
+            return {name: userDb._id, email: userDb.email, image: userDb.profile_picture, id: userDb._id}
         } else {
             return null;
         }        
