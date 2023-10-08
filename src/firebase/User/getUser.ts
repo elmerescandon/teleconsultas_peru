@@ -3,8 +3,8 @@ import dbFirestore from "../config";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
 
 
-export const getUser = async (email: string, role: string) => {
-    const q = query(collection(dbFirestore, "users"), and(where("email", "==", email), where("role", "==", role)));
+export const getUser = async (id: string) => {
+    const q = query(collection(dbFirestore, "users"), and(where("_id", "==", id)));
     const snapShot = await getDocs(q);
     if (snapShot.empty) {
         return null;
