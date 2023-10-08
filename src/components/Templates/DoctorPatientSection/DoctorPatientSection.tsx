@@ -1,21 +1,35 @@
 "use client";
 import AppointmentCard from "@/components/Molecules/AppointmentCard/AppointmentCard";
 import Pagination from "@/components/Organisms/Pagination/Pagination";
-import IUser from "@/utils/Interfaces/dataModel/IUser";
-import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
-import React from "react";
+import getAllPatientAppointments from "@/firebase/Patient/getAllPatientAppointments";
+import { getPatientName } from "@/firebase/Patient/getPatientName";
+import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
+import React, { useEffect, useState } from "react";
 
 type DoctorPatientSectionProps = {
-    patient: IUser;
+    patientId: string;
 };
 
-const DoctorPatientSection = ({ patient }: DoctorPatientSectionProps) => {
-    const { name } = patient;
-    const patientAppointments = AppointmentsMockup.filter(
-        (appointment) => appointment.patientId === patient._id
-    );
+const DoctorPatientSection = ({ patientId }: DoctorPatientSectionProps) => {
+    const [appointment, setAppointment] = useState<IAppointment[]>([]);
+    const [name, setName] = useState<string>("");
 
-    const patientCards = patientAppointments.map((appointment) => (
+    useEffect(() => {
+        const getPatientInfo = async (patientId: string) => {
+            const patientInfo = await getPatientName(patientId);
+            const appointments = await getAllPatientAppointments(patientId);
+
+            if (patientInfo && appointments) {
+                setName(`${patientInfo.name} ${patientInfo.lastName}`);
+                setAppointment(appointments);
+            }
+        };
+        if (patientId) {
+            getPatientInfo(patientId);
+        }
+    }, []);
+
+    const patientCards = appointment.map((appointment) => (
         <AppointmentCard key={appointment._id} appointment={appointment} />
     ));
 
