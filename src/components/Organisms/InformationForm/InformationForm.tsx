@@ -55,7 +55,6 @@ const InformationForm = ({ title }: InformationFormProps) => {
                         rows={7}
                         cols={50}
                         onChange={() => {}}
-                        message=""
                         placeholder="Escribe algo"
                     />
                 </div>
