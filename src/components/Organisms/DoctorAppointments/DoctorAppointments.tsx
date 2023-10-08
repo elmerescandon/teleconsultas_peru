@@ -1,27 +1,39 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Pagination from "../Pagination/Pagination";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import PatientCard from "@/components/Molecules/PatientCard/PatientCard";
-import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
+import getDoctorAppointments from "@/firebase/Appointments/getDoctorAppointments";
+import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 
 const DoctorAppointments = () => {
-    // TODO: Filter according to the doctor's id and day
     const user: IUserState = useAppSelector((state) => state.user);
     const { _id } = user.userInfo;
-    const appointments = AppointmentsMockup.map((appointment) => {
+    const [appointments, setAppointments] = useState<IAppointment[]>([]);
+
+    const appointmentsElements = appointments.map((appointment) => {
         return <PatientCard key={appointment._id} appointment={appointment} />;
     });
+
+    useEffect(() => {
+        const getAppointments = async (id: string, status: string) => {
+            const appointments = await getDoctorAppointments(id, status);
+            if (appointments) {
+                setAppointments(appointments);
+            }
+        };
+        getAppointments(_id, "pending");
+    }, []);
 
     return (
         <div className="w-full">
             <p className="text-xl font-semibold pb-5">Tus citas para hoy</p>
             <div className="max-xl:px-5">
-                {appointments && appointments.length > 0 ? (
+                {appointmentsElements && appointmentsElements.length > 0 ? (
                     <Pagination
                         orientation="row"
-                        items={appointments as React.JSX.Element[]}
+                        items={appointmentsElements as React.JSX.Element[]}
                         itemsPerPage={5}
                     />
                 ) : (
