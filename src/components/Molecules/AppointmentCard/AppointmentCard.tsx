@@ -5,6 +5,7 @@ import {
     getDoctorNameMockup as getDoctorName,
     getSpecialityName,
 } from "@/utils/functions/utils";
+import useAppointmentInfo from "@/utils/hooks/useAppointmentInfo";
 import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import Routes from "@/utils/routes/Routes";
@@ -20,16 +21,15 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
     const router = useRouter();
     const { specialityId, patientId, startDate, endDate, _id, doctorId } =
         appointment;
+
+    const { summary } = useAppointmentInfo(doctorId, specialityId, patientId);
+
     return (
         <div className="bg-neutral-100 rounded-2xl w-full">
             <div className="flex justify-between items-start p-4 gap-2">
                 <div>
-                    <div className="text-lg">
-                        {getSpecialityName(specialitiesMockup, specialityId)}
-                    </div>
-                    <div className="text-lg italic">
-                        {getDoctorName(doctorsMockup, doctorId)}
-                    </div>
+                    <div className="text-lg">{summary.specialityName}</div>
+                    <div className="text-lg italic">{summary.doctorName}</div>
                 </div>
 
                 <div className="flex flex-col gap-2 ">
