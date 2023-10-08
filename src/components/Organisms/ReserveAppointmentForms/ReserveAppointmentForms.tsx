@@ -122,7 +122,6 @@ const ReserveAppointmentForms = () => {
                         cols={80}
                         rows={5}
                         placeholder="Por favor, indique más detalles sobre su consulta"
-                        message={details}
                         onChange={(value: string) => {
                             dispatch({
                                 type: "SET_DETAILS",
