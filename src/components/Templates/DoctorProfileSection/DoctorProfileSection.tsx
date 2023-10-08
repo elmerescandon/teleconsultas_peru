@@ -8,8 +8,8 @@ const DoctorProfileSection = () => {
         <div className="flex px-48 py-10 flex-wrap max-xl:px-4 max-xl:py-40 max-xl:flex-col h-[90vh]">
             <ProfileMain />
             <div className="w-2/3">
-                <ProfileDetailed />
                 <DoctorAvailabilityHours />
+                <ProfileDetailed />
             </div>
         </div>
     );
