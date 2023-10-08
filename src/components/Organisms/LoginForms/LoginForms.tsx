@@ -5,13 +5,14 @@ import useUserValidation from "@/utils/hooks/useUserValidation";
 import { useRouter } from "next/navigation";
 import Loading from "@/components/Molecules/Loading/Loading";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Routes from "@/utils/routes/Routes";
 import { getUser } from "@/firebase/User/getUser";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
 import { dbToUser } from "@/utils/functions/utilsReducer";
 import { useAppDispatch } from "@/redux/hooks";
 import { userLogIn } from "@/redux/action-creators/UserActionCreators";
+import { Checkbox } from "@mui/material";
 
 const LoginForms = () => {
     const {
@@ -22,6 +23,8 @@ const LoginForms = () => {
         error,
         loading,
         handleSubmit,
+        isDoctor,
+        setIsDoctor,
     } = useUserValidation();
 
     const router = useRouter();
@@ -29,15 +32,15 @@ const LoginForms = () => {
     const { data: session, status } = useSession();
 
     useEffect(() => {
-        const getUserInfo = async (email: string) => {
-            const userDb = (await getUser(email)) as IUser;
+        const getUserInfo = async (email: string, role: string) => {
+            const userDb = (await getUser(email, role)) as IUser;
             const user = dbToUser(userDb);
             dispatch(userLogIn(user));
         };
 
         if (status === "authenticated") {
-            getUserInfo(session.user!.email!);
-            router.push(Routes.PATIENT_HOME);
+            getUserInfo(session.user!.email!, isDoctor ? "doctor" : "patient");
+            router.push(isDoctor ? Routes.DOCTOR_HOME : Routes.PATIENT_HOME);
         }
     }, [status]);
 
@@ -54,11 +57,23 @@ const LoginForms = () => {
                 value={password}
                 onChangeFn={setPassword}
             />
-            <div className="flex flex-col justify-start gap-10 items-center w-full">
-                <ButtonPrimary onClickFn={handleSubmit}>
-                    Iniciar Sesión
-                </ButtonPrimary>
-                {loading && <Loading />}
+            <div className="w-full">
+                <div className="flex items-center pb-3">
+                    <Checkbox
+                        color="primary"
+                        checked={isDoctor}
+                        onChange={(e) => {
+                            setIsDoctor(!isDoctor);
+                        }}
+                    />
+                    <p>Ingresar como doctor</p>
+                </div>
+                <div className="flex flex-col justify-start gap-10 items-center w-full">
+                    <ButtonPrimary onClickFn={handleSubmit}>
+                        Iniciar Sesión
+                    </ButtonPrimary>
+                    {loading && <Loading />}
+                </div>
             </div>
 
             {error && <p className="text-rose-600 font-bold">{error}</p>}
