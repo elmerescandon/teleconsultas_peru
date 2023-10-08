@@ -23,15 +23,15 @@ const LoginBar = () => {
     const { data: session, status } = useSession();
 
     useEffect(() => {
-        const getUserInfo = async (email: string) => {
-            const userDb = await getUser(email);
+        const getUserInfo = async (email: string, role: string) => {
+            const userDb = await getUser(email, role);
             if (!userDb) return;
             const user = dbToUser(userDb);
             dispatch(userLogIn(user));
         };
 
         if (status === "authenticated") {
-            getUserInfo(session.user!.email!);
+            getUserInfo(session.user!.email!, role);
         }
     }, [status]);
 
