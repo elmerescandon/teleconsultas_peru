@@ -1,7 +1,5 @@
 "use client";
-import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
-import LabelPoints from "@/components/Atoms/Labels/LabelPoints/LabelPoints";
 import LabelInformationEdit from "@/components/Molecules/LabelInformationEdit/LabelInformationEdit";
 import LabelPointsEdit from "@/components/Molecules/LabelPointsEdit/LabelPointsEdit";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
@@ -12,6 +10,7 @@ import {
     statusToSpanish,
     stringToDate,
 } from "@/utils/functions/utils";
+import useAppointmentInfo from "@/utils/hooks/useAppointmentInfo";
 import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import React from "react";
@@ -38,7 +37,14 @@ const DoctorAppointmentHistory = ({
         startDate,
         endDate,
         status,
+        patientId,
     } = currentAppointment;
+
+    const { summary: dataSummary } = useAppointmentInfo(
+        doctorId,
+        specialityId,
+        patientId
+    );
 
     return (
         <div className="rounded-t-xl rounded-r-xl border-2 py-10 px-5">
@@ -48,14 +54,11 @@ const DoctorAppointmentHistory = ({
                     <div className="w-full">
                         <LabelInformation
                             label="Médico"
-                            value={getDoctorName(doctorsMockup, doctorId)}
+                            value={dataSummary.doctorName}
                         />
                         <LabelInformation
                             label="Especialidad"
-                            value={getSpecialityName(
-                                specialitiesMockup,
-                                specialityId
-                            )}
+                            value={dataSummary.specialityName}
                         />
                     </div>
                     <div className="w-full">
