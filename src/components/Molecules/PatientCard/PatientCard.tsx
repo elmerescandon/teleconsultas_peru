@@ -1,10 +1,9 @@
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import {
     getAppointmentHours,
-    getPatientName,
     getSpecialityName,
 } from "@/utils/functions/utils";
-import patientsMockup from "@/utils/mockups/patientsMockup";
+import useAppointmentInfo from "@/utils/hooks/useAppointmentInfo";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import Routes from "@/utils/routes/Routes";
 import {
@@ -21,21 +20,19 @@ type PatientCardProps = {
 
 const PatientCard = ({ appointment }: PatientCardProps) => {
     const router = useRouter();
-    const { specialityId, patientId, startDate, endDate, _id } = appointment;
+    const { specialityId, patientId, startDate, endDate, _id, doctorId } =
+        appointment;
+
+    const { summary } = useAppointmentInfo(doctorId, specialityId, patientId);
     return (
         <div className="bg-neutral-100 rounded-2xl w-72 max-w-md">
             <div className="flex flex-col justify-start items-start p-4 gap-2">
                 <div className="flex items-center gap-4">
                     <div className="flex flex-col">
                         <div className="text-lg font-semibold">
-                            {getPatientName(patientsMockup, patientId)}
+                            {summary.patientName}
                         </div>
-                        <div className="text-sm">
-                            {getSpecialityName(
-                                specialitiesMockup,
-                                specialityId
-                            )}
-                        </div>
+                        <div className="text-sm">{summary.specialityName}</div>
                     </div>
                 </div>
                 <div className="flex flex-col gap-2">
