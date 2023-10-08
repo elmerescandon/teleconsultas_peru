@@ -5,14 +5,10 @@ import LabelPointsEdit from "@/components/Molecules/LabelPointsEdit/LabelPointsE
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import {
     getAppointmentHours,
-    getDoctorNameMockup as getDoctorName,
-    getSpecialityName,
     statusToSpanish,
     stringToDate,
 } from "@/utils/functions/utils";
-import useAppointmentInfo from "@/utils/hooks/useAppointmentInfo";
-import doctorsMockup from "@/utils/mockups/doctorsMockup";
-import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
+import useAppointmentUpdate from "@/utils/hooks/useAppointmentUpdate";
 import React from "react";
 
 type DoctorAppointmentHistoryProps = {
@@ -22,12 +18,10 @@ type DoctorAppointmentHistoryProps = {
 const DoctorAppointmentHistory = ({
     appointment,
 }: DoctorAppointmentHistoryProps) => {
-    const [currentAppointment, setCurrentAppointment] =
-        React.useState<IAppointment>(appointment);
+    const { currentAppointment, setCurrentAppointment, dataSummary } =
+        useAppointmentUpdate(appointment);
     const {
         date,
-        doctorId,
-        specialityId,
         price,
         summary,
         diagnosis,
@@ -37,14 +31,7 @@ const DoctorAppointmentHistory = ({
         startDate,
         endDate,
         status,
-        patientId,
     } = currentAppointment;
-
-    const { summary: dataSummary } = useAppointmentInfo(
-        doctorId,
-        specialityId,
-        patientId
-    );
 
     return (
         <div className="rounded-t-xl rounded-r-xl border-2 py-10 px-5">
@@ -92,10 +79,46 @@ const DoctorAppointmentHistory = ({
                         });
                     }}
                 />
-                <LabelPointsEdit label="Síntomas" points={symptoms} />
-                <LabelPointsEdit label="Diagnóstico" points={diagnosis} />
-                <LabelPointsEdit label="Prescripción" points={prescription} />
-                <LabelPointsEdit label="Tratamiento" points={treatment} />
+                <LabelPointsEdit
+                    label="Síntomas"
+                    points={symptoms}
+                    changePoints={(symptoms) => {
+                        setCurrentAppointment({
+                            ...currentAppointment,
+                            symptoms: symptoms,
+                        });
+                    }}
+                />
+                <LabelPointsEdit
+                    label="Diagnóstico"
+                    points={diagnosis}
+                    changePoints={(diagnosis) => {
+                        setCurrentAppointment({
+                            ...currentAppointment,
+                            diagnosis: diagnosis,
+                        });
+                    }}
+                />
+                <LabelPointsEdit
+                    label="Prescripción"
+                    points={prescription}
+                    changePoints={(prescription) => {
+                        setCurrentAppointment({
+                            ...currentAppointment,
+                            prescription: prescription,
+                        });
+                    }}
+                />
+                <LabelPointsEdit
+                    label="Tratamiento"
+                    points={treatment}
+                    changePoints={(treatment) => {
+                        setCurrentAppointment({
+                            ...currentAppointment,
+                            treatment: treatment,
+                        });
+                    }}
+                />
             </div>
         </div>
     );
