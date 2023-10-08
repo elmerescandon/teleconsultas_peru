@@ -1,14 +1,17 @@
 "use client";
-
 import DoctorAppointmentFilter from "@/components/Organisms/DoctorAppointmentFilter/DoctorAppointmentFilter";
 import React, { useEffect, useState } from "react";
 import IAppointmentFilter from "@/utils/Interfaces/IAppointmentFilter";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import Pagination from "@/components/Organisms/Pagination/Pagination";
 import PatientCard from "@/components/Molecules/PatientCard/PatientCard";
-import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
+import { useAppSelector } from "@/redux/hooks";
+import IUserState from "@/redux/state-interfaces/User/IUserState";
+import getDoctorAppointments from "@/firebase/Appointments/getDoctorAppointments";
 
 const DoctorAppointmentSection = () => {
+    const user: IUserState = useAppSelector((state) => state.user);
+    const { _id } = user.userInfo;
     const [filter, setFilter] = useState<IAppointmentFilter>({
         date: {
             init: null,
@@ -18,8 +21,17 @@ const DoctorAppointmentSection = () => {
         patientName: "",
     });
 
-    const [appointments, setAppointments] =
-        useState<IAppointment[]>(AppointmentsMockup);
+    const [appointments, setAppointments] = useState<IAppointment[]>([]);
+
+    useEffect(() => {
+        const getAppointments = async (id: string, status: string) => {
+            const appointments = await getDoctorAppointments(id, status);
+            if (appointments) {
+                setAppointments(appointments);
+            }
+        };
+        getAppointments(_id, "pending");
+    }, []);
 
     const appointmentCards = appointments.map((appointment, index) => {
         return <PatientCard appointment={appointment} key={index} />;
