@@ -1,14 +1,24 @@
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import { PencilIcon, TrashIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import {
+    CheckIcon,
+    PencilIcon,
+    TrashIcon,
+    XMarkIcon,
+} from "@heroicons/react/24/solid";
 import React, { useEffect, useState } from "react";
 
 type LabelPointsEditProps = {
     label: string;
     points: string[] | undefined;
+    changePoints: (points: string[]) => void;
 };
 
-const LabelPointsEdit = ({ label, points }: LabelPointsEditProps) => {
+const LabelPointsEdit = ({
+    label,
+    points,
+    changePoints,
+}: LabelPointsEditProps) => {
     const [newPoint, setNewPoint] = useState<string>("");
     const [updatedPoints, setUpdatedPoints] = useState<string[] | undefined>(
         points
@@ -100,11 +110,22 @@ const LabelPointsEdit = ({ label, points }: LabelPointsEditProps) => {
                             >
                                 <PlusIcon className="w-6 h-6" />
                             </button>
+
                             <button
                                 onClick={handleCancelEdit}
                                 className="text-gray-500 ml-2"
                             >
                                 <XMarkIcon className="w-6 h-6" />
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setIsEditing(false);
+                                    if (updatedPoints)
+                                        changePoints(updatedPoints);
+                                }}
+                                className="text-gray-500 ml-2"
+                            >
+                                <CheckIcon className="w-6 h-6" />
                             </button>
                         </div>
                     ) : (
