@@ -24,7 +24,7 @@ const MainSection = ({ title, subtitle }: MainSectionProps) => {
                             Soy un profesional de la salud
                         </div>
                     </LinkPrimary>
-                    <LinkPrimary to={Routes.LOGIN}>
+                    <LinkPrimary to={Routes.RESERVE_DOCTORS}>
                         <div className="w-36 flex items-center  justify-center h-full">
                             Soy un paciente
                         </div>
