@@ -11,7 +11,7 @@ const DataSection = () => {
             position: "bottom",
         },
         {
-            title: "200",
+            title: "+20K",
             subtitle: "pacientes atendidos",
             color: "normal",
             position: "top",
@@ -21,12 +21,6 @@ const DataSection = () => {
             subtitle: "profesionales trabajando con nosotros",
             color: "light",
             position: "bottom",
-        },
-        {
-            title: "76%",
-            subtitle: "consideran Salufy Salud su primera opción",
-            color: "dark",
-            position: "top",
         },
     ];
     return (
