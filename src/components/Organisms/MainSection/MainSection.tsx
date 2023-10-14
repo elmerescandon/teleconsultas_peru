@@ -1,4 +1,3 @@
-import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
 import Routes from "@/utils/routes/Routes";
 import React from "react";
