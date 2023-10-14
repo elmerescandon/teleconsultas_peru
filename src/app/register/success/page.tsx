@@ -10,7 +10,7 @@ const RegisterSuccess = () => {
             <div className="flex flex-row justify-between items-center py-12 px-48 max-2xl:px-10">
                 <LinkLogo />
             </div>
-            <div className="flex-grow w-1/2 flex flex-col items-center h-[60vh] justify-center mx-auto gap-7">
+            <div className="flex-grow w-1/2 flex flex-col items-center h-[63vh] justify-center mx-auto gap-7">
                 <div className="text-4xl font-semibold text-center py-8">
                     ¡Gracias por registrarte a Salufy!
                 </div>
