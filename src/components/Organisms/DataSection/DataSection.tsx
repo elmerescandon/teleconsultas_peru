@@ -6,19 +6,19 @@ const DataSection = () => {
     const dataFeatures: IDataSection[] = [
         {
             title: "9.3/10",
-            subtitle: "Es la satisfaccion de nuestras consultas",
+            subtitle: "en satisfacción",
             color: "light",
             position: "bottom",
         },
         {
-            title: "85%",
-            subtitle: "de nuestros clientes nos recomiendan",
+            title: "200",
+            subtitle: "pacientes atendidos",
             color: "normal",
             position: "top",
         },
         {
-            title: "80%",
-            subtitle: "de nuestros clientes están satisfechos",
+            title: "+10",
+            subtitle: "profesionales trabajando con nosotros",
             color: "light",
             position: "bottom",
         },
