@@ -13,14 +13,10 @@ const Home = () => {
             <Header />
             <div className="page-body">
                 <MainSection
-                    title={
-                        "Bienvenido a Salufy Salud - Tu puerta a una atención de calidad"
-                    }
+                    title={"Bienvenido a Salufy, salud a un clic de distancia"}
                     subtitle={
-                        "Conectando pacientes y doctores para una atención médica personalizada en línea"
+                        "Conectamos profesionales de la salud con pacientes para una atención personalizada en línea."
                     }
-                    linkRef={Routes.RESERVE}
-                    linkName={"¡Reserva tu cita ya!"}
                 />
                 <CardSection />
             </div>
