@@ -12,11 +12,13 @@ const RegisterSuccess = () => {
             </div>
             <div className="flex-grow w-1/2 flex flex-col items-center h-[60vh] justify-center mx-auto gap-7">
                 <div className="text-4xl font-semibold text-center py-8">
-                    ¡Gracias por registrarte a Salufy Salud!
+                    ¡Gracias por registrarte a Salufy!
                 </div>
                 <div className="flex flex-col gap-5 w-72">
                     <LinkPrimary to={Routes.HOME}>Volver al incio</LinkPrimary>
-                    <LinkPrimary to={Routes.LOGIN}>Inicia Sesión</LinkPrimary>
+                    <LinkPrimary to={Routes.LOGIN}>
+                        Siguiente página
+                    </LinkPrimary>
                 </div>
             </div>
             <Footer />
