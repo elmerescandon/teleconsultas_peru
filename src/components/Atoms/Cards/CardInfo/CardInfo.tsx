@@ -6,7 +6,7 @@ type CardInfoProps = {
 
 const CardInfo = ({ text }: CardInfoProps) => {
     return (
-        <div className="text-lg py-3 px-5 bg-brand-500 text-basic-white rounded-xl w-1/4">
+        <div className="text-lg py-3 px-5 bg-brand-50 rounded-xl w-1/4 text-brand-900">
             {text}
         </div>
     );
