@@ -23,7 +23,7 @@ const CardFeatureDetail = ({ title, info, color }: CardFeatureDetailProps) => {
     const colorSelected = colorClass(color);
     return (
         <div
-            className={`flex flex-col gap-5 p-10 px-20 ${colorSelected.bg} ${colorSelected.text} rounded-3xl w-96 max-lg:w-full`}
+            className={`flex flex-col gap-3 py-5 px-10 ${colorSelected.bg} ${colorSelected.text} rounded-3xl w-96 max-lg:w-full h-60 justify-center`}
         >
             <h1 className="text-2xl font-semibold">{title}</h1>
             <p className="text-normal">{info}</p>
