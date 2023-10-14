@@ -12,13 +12,13 @@ const Patients = () => {
         <main>
             <Header />
             <div className="page-body">
-                <MainSection
+                {/* <MainSection
                     title={"Mejora tu Experiencia de Salud con MediConnect"}
                     subtitle={
                         "Consultas Médicas de Calidad desde la Comodidad de tu Hogar"
                     }
-                />
-                <CardFeaturesSection title="Accede a todos nuestros beneficios..." />
+                /> */}
+                <CardFeaturesSection title="Pacientes Salufy" />
             </div>
             <StepsSection />
             <div className="page-body">
