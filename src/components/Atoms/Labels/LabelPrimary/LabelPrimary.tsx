@@ -6,7 +6,7 @@ type LabelPrimaryProps = {
 
 const LabelPrimary = ({ content }: LabelPrimaryProps) => {
     return (
-        <div className="text-lg bg-brand-700 text-basic-white rounded-2xl p-3">
+        <div className="text-lg bg-brand-700 text-basic-white rounded-2xl p-3 flex-grow text-center">
             {content}
         </div>
     );
