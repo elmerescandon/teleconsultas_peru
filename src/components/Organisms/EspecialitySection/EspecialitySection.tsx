@@ -47,6 +47,7 @@ const EspecialitySection = () => {
             </div>
             <div className="flex flex-row justify-center w-full gap-7 flex-wrap">
                 <CardSpeciality
+                    title="Salud Mental"
                     icon={
                         <LightBulbIcon className="w-16 h-16 text-brand-900" />
                     }
@@ -54,6 +55,7 @@ const EspecialitySection = () => {
                     specialities={specialityMental}
                 />
                 <CardSpeciality
+                    title="Salud Física"
                     icon={<HeartIcon className="w-16 h-16 text-brand-900" />}
                     features={featurePhysical}
                     specialities={specialityPhysical}
