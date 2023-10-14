@@ -8,14 +8,18 @@ const NavigationBarGeneral = () => {
             <LinkSecondary to={Routes.RESERVE_DOCTORS}>
                 {"¡Reserva tu cita!"}
             </LinkSecondary>
-            <LinkSecondary to={Routes.PATIENTS}>{"Doctores"}</LinkSecondary>
-            <LinkSecondary to={Routes.DOCTORS}>{"Psicólogos"}</LinkSecondary>
-            <LinkSecondary to={Routes.ESPECIALITY}>
+            <LinkSecondary to={Routes.DOCTORS_GENERAL}>
+                {"Doctores"}
+            </LinkSecondary>
+            <LinkSecondary to={Routes.DOCTORS_PSYCHOLOGISTS}>
+                {"Psicólogos"}
+            </LinkSecondary>
+            <LinkSecondary to={Routes.DOCTORS_NUTRITIONISTS}>
                 {"Nutricionistas"}
             </LinkSecondary>
-            <LinkSecondary to={Routes.ESPECIALITY}>
+            {/* <LinkSecondary to={Routes.ESPECIALITY}>
                 {"Otras especialidades"}
-            </LinkSecondary>
+            </LinkSecondary> */}
         </div>
     );
 };
