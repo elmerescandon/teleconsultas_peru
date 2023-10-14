@@ -5,7 +5,6 @@ import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
 import MainSection from "@/components/Organisms/MainSection/MainSection";
 import SecondarySection from "@/components/Organisms/SecondarySection/SecondarySection";
-import Routes from "@/utils/routes/Routes";
 
 const Home = () => {
     return (
