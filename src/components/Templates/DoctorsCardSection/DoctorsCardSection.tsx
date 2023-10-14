@@ -11,24 +11,24 @@ import {
 const DoctorsCardSection = () => {
     const cardsContent: ICardContent[] = [
         {
-            title: "Eficiente gestión de pacientes",
+            title: "Horarios adaptados a tu disponibilidad",
             logo: <ComputerDesktopIcon className="w-16 h-16 text-brand-900" />,
         },
         {
-            title: "Flexibilidad en horarios para mayor conveniencia.",
+            title: "Mayor exposición y crecimiento profesional",
             logo: <LockClosedIcon className="w-16 h-16 text-brand-900" />,
         },
         {
-            title: "Expansión del alcance profesional y geográfico.",
+            title: "Facilidad de registro y administración.",
             logo: <ClockIcon className="w-16 h-16 text-brand-900" />,
         },
         {
-            title: "Salvaguardia de datos confidenciales garantizada.",
+            title: "Aumento de la cartera de clientes",
             logo: <VideoCameraIcon className="w-16 h-16 text-brand-900" />,
         },
     ];
     return (
-        <div className="flex gap-10 justify-center flex-wrap max-md:flex-col max-md:items-center py-20">
+        <div className="flex gap-10 justify-center flex-wrap max-md:flex-col max-md:items-center py-10">
             {cardsContent.map((cardContent, index) => {
                 return (
                     <CardFeature
