@@ -16,8 +16,8 @@ const LinkLogo = ({ size }: LinkLogoProps) => {
         >
             <Image
                 src="/LOGO_SALUFY.png"
-                width={size === "big" ? 200 : 100}
-                height={size === "big" ? 200 : 100}
+                width={size === "big" ? 300 : 150}
+                height={size === "big" ? 300 : 150}
                 alt="salufy-logo"
             />
         </Link>
