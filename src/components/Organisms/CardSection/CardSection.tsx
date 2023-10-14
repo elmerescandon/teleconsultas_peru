@@ -28,7 +28,7 @@ const CardSection = () => {
         },
     ];
     return (
-        <div className="flex gap-10 justify-center flex-wrap py-20 max-lg:10 max-lg:items-center">
+        <div className="flex gap-10 justify-center flex-wrap py-5 max-lg:10 max-lg:items-center">
             {cardsContent.map((cardContent, index) => {
                 return (
                     <CardFeature
