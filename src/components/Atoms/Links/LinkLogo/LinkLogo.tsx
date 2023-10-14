@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -13,7 +14,12 @@ const LinkLogo = ({ size }: LinkLogoProps) => {
                 size === "big" ? "text-5xl" : "text-2xl"
             } font-semibold `}
         >
-            Salufy Salud
+            <Image
+                src="/LOGO_SALUFY.png"
+                width={size === "big" ? 200 : 100}
+                height={size === "big" ? 200 : 100}
+                alt="salufy-logo"
+            />
         </Link>
     );
 };
