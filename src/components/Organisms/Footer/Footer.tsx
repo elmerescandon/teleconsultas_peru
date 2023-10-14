@@ -21,7 +21,9 @@ const Footer = () => {
                     <LinkSecondary2 to={Routes.CONTACT_US}>
                         Atención al cliente
                     </LinkSecondary2>
-                    <LinkSecondary2 to={""}>soporte@salufy.com</LinkSecondary2>
+                    <LinkSecondary2 to={""}>
+                        soporte@salufyorg.com
+                    </LinkSecondary2>
                     <div className="footer-section__icons flex flex-row gap-2">
                         <LinkIcon to="">
                             <GoogleIcon size={20} />
