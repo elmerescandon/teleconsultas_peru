@@ -8,33 +8,33 @@ type CardFeaturesSectionProps = {
 const CardFeaturesSection = ({ title }: CardFeaturesSectionProps) => {
     const cardFeatures = [
         {
-            title: "Registro Sencillo",
-            info: "Regístrate, accede a médicos calificados para atención enfocada en tu bienestar.",
+            title: "Ahorro de tiempo y dinero",
+            info: "Evita largas esperas y costosos desplazamientos con nuestras consultas en línea y con precios muy accesibles.",
             color: "black",
         },
         {
-            title: "Registro Sencillo",
-            info: "Regístrate, accede a médicos calificados para atención enfocada en tu bienestar.",
+            title: "Alta calidad",
+            info: "Profesionales calificados para un cuidado de salud excepcional.",
             color: "blue",
         },
         {
-            title: "Registro Sencillo",
-            info: "Regístrate, accede a médicos calificados para atención enfocada en tu bienestar.",
+            title: "Variedad de Especialistas",
+            info: "Encuentra el profesional de salud adecuado para tus necesidades.",
             color: "gray",
         },
         {
-            title: "Registro Sencillo",
-            info: "Regístrate, accede a médicos calificados para atención enfocada en tu bienestar.",
+            title: "Comodidad a distancia",
+            info: "Consultas en línea desde tu hogar, oficina o el lugar que mejor te adecúe.",
             color: "gray",
         },
         {
-            title: "Registro Sencillo",
-            info: "Regístrate, accede a médicos calificados para atención enfocada en tu bienestar.",
+            title: "Seguridad y privacidad",
+            info: "Protegemos tus datos y consultas, manteniendo la confidencialidad y la integridad de tu información personal en todo momento.",
             color: "black",
         },
         {
-            title: "Registro Sencillo",
-            info: "Regístrate, accede a médicos calificados para atención enfocada en tu bienestar.",
+            title: "Apoyo integral para tu bienestar",
+            info: "Ofrecemos un enfoque completo para cuidar tu salud y bienestar.",
             color: "blue",
         },
     ];
