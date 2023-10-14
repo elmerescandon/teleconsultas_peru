@@ -39,7 +39,10 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
         <div>
             <div className="flex flex-row justify-around max-xl:flex-col max-xl:items-center gap-10 max-xl:gap-0 max-xl:px-10">
                 <RegisterRow>
-                    <RegisterField title="Nombre" error={formFields.name.error}>
+                    <RegisterField
+                        title="Nombre*"
+                        error={formFields.name.error}
+                    >
                         <InputText
                             onChangeFn={(name) => {
                                 handleChange("name", name);
@@ -51,7 +54,7 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
                     </RegisterField>
 
                     <RegisterField
-                        title="Apellido (s)"
+                        title="Apellido (s)*"
                         error={formFields.lastname.error}
                     >
                         <InputText
@@ -65,7 +68,7 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
                     </RegisterField>
 
                     <RegisterField
-                        title="Correo Electrónico"
+                        title="Correo Electrónico*"
                         error={formFields.email.error}
                     >
                         <InputText
@@ -81,7 +84,7 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
 
                 <RegisterRow>
                     <RegisterField
-                        title="Documento de Identidad"
+                        title="Documento de Identidad*"
                         error={formFields.id.error}
                     >
                         <InputText
@@ -95,7 +98,7 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
                     </RegisterField>
 
                     <RegisterField
-                        title="Contraseña"
+                        title="Contraseña*"
                         error={formFields.password.error}
                     >
                         <InputText
@@ -109,7 +112,7 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
                     </RegisterField>
 
                     <RegisterField
-                        title="Validar Contraseña"
+                        title="Validar Contraseña*"
                         error={formFields.repeatPassword.error}
                     >
                         <InputText
@@ -123,7 +126,7 @@ const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
                     </RegisterField>
                 </RegisterRow>
             </div>
-
+            <p>*Campos obligatorios</p>
             <div className="flex py-5 max-xl:px-10">
                 <ButtonPrimary
                     type="button"

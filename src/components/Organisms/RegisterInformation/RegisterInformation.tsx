@@ -54,7 +54,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
         <div>
             <div className="flex flex-row justify-around max-xl:flex-col max-xl:items-center gap-10 max-xl:gap-0 max-xl:px-10">
                 <RegisterRow>
-                    <RegisterField title="Edad" error={formFields.age.error}>
+                    <RegisterField title="Edad*" error={formFields.age.error}>
                         <InputText
                             onChangeFn={(age) => {
                                 handleChange("age", age);
@@ -65,7 +65,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                         />
                     </RegisterField>
 
-                    <RegisterField title="Sexo" error={formFields.sex.error}>
+                    <RegisterField title="Sexo*" error={formFields.sex.error}>
                         <InputSelect
                             selectId="sexo"
                             onChange={(sex) => {
@@ -77,7 +77,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     </RegisterField>
 
                     <RegisterField
-                        title="Fecha de Nacimiento"
+                        title="Fecha de Nacimiento*"
                         error={formFields.bornDate.error}
                     >
                         <DatePicker
@@ -98,7 +98,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                 </RegisterRow>
                 <RegisterRow>
                     <RegisterField
-                        title="Talla (en cm)"
+                        title="Talla (en cm)*"
                         error={formFields.height.error}
                     >
                         <InputText
@@ -112,7 +112,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     </RegisterField>
 
                     <RegisterField
-                        title="Peso (en kilogramos)"
+                        title="Peso (en kilogramos)*"
                         error={formFields.weight.error}
                     >
                         <InputText
@@ -126,7 +126,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     </RegisterField>
 
                     <RegisterField
-                        title="Número Telefónico"
+                        title="Número Telefónico*"
                         error={formFields.phone.error}
                     >
                         <InputText
@@ -162,6 +162,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     label="Acepto los terminos y condiciones"
                 />
             </RegisterField>
+            <p>*Campos obligatorios</p>
 
             <div className="flex py-5 max-xl:px-10 gap-10">
                 <ButtonPrimary

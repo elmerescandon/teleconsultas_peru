@@ -72,7 +72,7 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
             <div className="flex flex-row justify-around max-xl:flex-col max-xl:items-center gap-10 max-xl:gap-0 max-xl:px-10">
                 <RegisterRow>
                     <RegisterField
-                        title="Región"
+                        title="Región*"
                         error={formFields.region.error}
                     >
                         <InputSelect
@@ -85,7 +85,7 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                         />
                     </RegisterField>
                     <RegisterField
-                        title="Provincia"
+                        title="Provincia*"
                         error={formFields.province.error}
                     >
                         <InputSelect
@@ -98,7 +98,7 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                         />
                     </RegisterField>
                     <RegisterField
-                        title="Distrito"
+                        title="Distrito*"
                         error={formFields.district.error}
                     >
                         <InputSelect
@@ -113,7 +113,7 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                 </RegisterRow>
                 <RegisterRow>
                     <RegisterField
-                        title="Dirección"
+                        title="Dirección*"
                         error={formFields.address.error}
                     >
                         <InputText
@@ -153,6 +153,7 @@ const RegisterLocation = ({ prevFn, nextFn }: RegisterLocationProps) => {
                     </RegisterField>
                 </RegisterRow>
             </div>
+            <p>*Campos obligatorios</p>
             <div className="flex py-5 max-xl:px-10 gap-10">
                 <ButtonPrimary
                     type="button"
