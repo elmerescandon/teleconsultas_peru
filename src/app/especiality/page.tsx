@@ -16,8 +16,6 @@ const Especiality = () => {
                     subtitle={
                         "Si eres un profesional de la salud y quieres ejercer tu especialidad en línea, nosotros te ayudamos a lograrlo."
                     }
-                    linkRef={Routes.RESERVE}
-                    linkName={"¡Regístrate ya!"}
                 />
             </div>
             <EspecialitySection />
