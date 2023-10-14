@@ -21,23 +21,19 @@ const Home = () => {
                 <CardSection />
             </div>
             <SecondarySection
-                buttonInfo="Ver más..."
-                content="Salufy Salud te conecta con profesionales de acuerdo a tu disponibilidad."
-                miniHeader="Para Pacientes"
+                content="Salufy te conecta con profesionales de la salud en base a tus necesidades y disponibilidad."
+                miniHeader=""
                 order="left"
                 pathImage="/doctors_1.jpg"
                 title="Agenda tu cita donde quieras cuando quieras"
-                to={Routes.PATIENTS}
                 sizeImage={500}
             />
             <SecondarySection
-                buttonInfo="Ver más..."
-                content="Nuestra plataforma contiene todas las herramientas necesarias para ti."
-                miniHeader="Para Doctores"
+                content="Nuestra plataforma te permitirá ver todo tu historial de citas e historia médica (recetas, diagnóstico, profesional de la salud) y demás información necesaria para que puedas realizar un mejor seguimiento."
+                miniHeader=""
                 order="right"
                 pathImage="/doctors_2.jpg"
-                title="Atiende sin pensar en reportes y recetas"
-                to={Routes.DOCTORS}
+                title="Lleva un registro de tus citas e historial médico."
                 sizeImage={500}
             />
             <div className="page-body">

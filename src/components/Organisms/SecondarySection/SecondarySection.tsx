@@ -7,20 +7,16 @@ type SecondarySectionProps = {
     miniHeader: string;
     title: string;
     content: string;
-    to: string;
     pathImage: string;
-    buttonInfo: string;
     sizeImage: number;
 };
 
 const SecondarySection = ({
     order,
-    buttonInfo,
     content,
     miniHeader,
     pathImage,
     title,
-    to,
     sizeImage,
 }: SecondarySectionProps) => {
     return (
@@ -30,11 +26,9 @@ const SecondarySection = ({
             } items-center bg-brand-50 justify-center flex-wrap py-10`}
         >
             <InformationLanding
-                buttonInfo={buttonInfo}
                 content={content}
                 miniHeader={miniHeader}
                 title={title}
-                to={to}
             />
 
             <Image
