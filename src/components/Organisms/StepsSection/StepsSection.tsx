@@ -6,12 +6,12 @@ const StepsSection = () => {
         {
             stepNumber: 1,
             title: "Regístrate",
-            info: "Ingresa tu nombre completo, DNI y número telefónico.",
+            info: "Ingresa tus datos.",
         },
         {
             stepNumber: 2,
             title: "Reserva tu cita",
-            info: "Selecciona la fecha y hora con 24 horas de anticipación.",
+            info: "Selecciona la fecha y hora.",
         },
         {
             stepNumber: 3,
