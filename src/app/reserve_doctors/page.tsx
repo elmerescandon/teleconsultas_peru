@@ -26,7 +26,7 @@ const page = () => {
     return (
         <div>
             <Header />
-            <div className="flex flex-row justify-center w-full gap-7 flex-wrap">
+            <div className="flex flex-row justify-center w-full gap-7 flex-wrap py-10 max-xl:flex-col max-xl:px-16 max-xl:pt-28">
                 <CardSpeciality
                     title="Medicina General"
                     icon={
