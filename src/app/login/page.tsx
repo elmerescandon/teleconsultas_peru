@@ -1,11 +1,11 @@
-import LoginSection from "@/components/Templates/LoginSection/LoginSection";
+import LoginSelection from "@/components/Templates/LoginSelection/LoginSelection";
 import Image from "next/image";
 import React from "react";
 
 const Reserve = () => {
     return (
         <div className="flex w-full">
-            <LoginSection />
+            <LoginSelection />
             <Image
                 src="/telecom_landing.jpg"
                 alt="landing-telemedicine"
