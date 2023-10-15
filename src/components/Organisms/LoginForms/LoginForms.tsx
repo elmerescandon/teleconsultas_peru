@@ -12,9 +12,12 @@ import IUser from "@/utils/Interfaces/dataModel/IUser";
 import { dbToUser } from "@/utils/functions/utilsReducer";
 import { useAppDispatch } from "@/redux/hooks";
 import { userLogIn } from "@/redux/action-creators/UserActionCreators";
-import { Checkbox } from "@mui/material";
 
-const LoginForms = () => {
+type LoginFormsProps = {
+    role: string;
+};
+
+const LoginForms = ({ role }: LoginFormsProps) => {
     const {
         username,
         setUsername,
@@ -23,7 +26,6 @@ const LoginForms = () => {
         error,
         loading,
         handleSubmit,
-        isDoctor,
         setIsDoctor,
     } = useUserValidation();
 
@@ -38,6 +40,8 @@ const LoginForms = () => {
             dispatch(userLogIn(user));
             return user.role;
         };
+
+        role == "doctor" ? setIsDoctor(true) : setIsDoctor(false);
 
         if (status === "authenticated") {
             getUserInfo(session.user!.name!);
@@ -64,16 +68,6 @@ const LoginForms = () => {
                 onChangeFn={setPassword}
             />
             <div className="w-full">
-                {/* <div className="flex items-center pb-3">
-                    <Checkbox
-                        color="primary"
-                        checked={isDoctor}
-                        onChange={(e) => {
-                            setIsDoctor(!isDoctor);
-                        }}
-                    />
-                    <p>Ingresar como doctor</p>
-                </div> */}
                 <div className="flex flex-col justify-start gap-10 items-center w-full">
                     <ButtonPrimary onClickFn={handleSubmit}>
                         Iniciar Sesión
