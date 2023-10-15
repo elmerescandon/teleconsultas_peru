@@ -5,6 +5,11 @@ enum Routes{
     TERMS = '/terms',
     CONTACT_US = '/contact_us',
     LOGIN = '/login',
+
+    LOGIN_DOCTOR = '/login/doctor',
+    LOGIN_PATIENT = '/login/patient',
+
+
     REGISTER = '/register',
     REGISTER_COMPLETE = '/register/success',
     NOT_FOUND = '/not-found',
