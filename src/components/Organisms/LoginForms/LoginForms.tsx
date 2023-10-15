@@ -64,7 +64,7 @@ const LoginForms = () => {
                 onChangeFn={setPassword}
             />
             <div className="w-full">
-                <div className="flex items-center pb-3">
+                {/* <div className="flex items-center pb-3">
                     <Checkbox
                         color="primary"
                         checked={isDoctor}
@@ -73,7 +73,7 @@ const LoginForms = () => {
                         }}
                     />
                     <p>Ingresar como doctor</p>
-                </div>
+                </div> */}
                 <div className="flex flex-col justify-start gap-10 items-center w-full">
                     <ButtonPrimary onClickFn={handleSubmit}>
                         Iniciar Sesión
