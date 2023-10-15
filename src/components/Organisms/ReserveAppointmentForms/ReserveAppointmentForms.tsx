@@ -15,12 +15,15 @@ import {
 } from "@/utils/functions/utils";
 import reasonMockup from "@/utils/mockups/reasonMockup";
 import symptomsMockup from "@/utils/mockups/symptomsMockup";
+import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const ReserveAppointmentForms = () => {
+    const searchParams = useSearchParams();
+
     const dispatch = useAppointmentDispatch();
     const appointment = useAppointment();
-    const { specialityId, doctorId, details } = appointment;
+    const { specialityId, doctorId } = appointment;
     const [specialitiesOptions, setSpecialitiesOptions] = useState<
         ISelectOptions[]
     >([]);
@@ -34,6 +37,14 @@ const ReserveAppointmentForms = () => {
             }
         };
         getSpecialitiesFromDb();
+        const defaultSpeciality = searchParams.get("spec");
+        if (defaultSpeciality) {
+            console.log("hello");
+            dispatch({
+                type: "SET_SPECIALITY",
+                payload: defaultSpeciality,
+            });
+        }
     }, []);
 
     useEffect(() => {
@@ -46,10 +57,8 @@ const ReserveAppointmentForms = () => {
 
         if (specialityId === "") {
             setDoctorsOptions([]);
-        }
-
-        if (appointment?.specialityId !== "") {
-            getDoctorsFromDb(appointment.specialityId);
+        } else {
+            getDoctorsFromDb(specialityId);
         }
     }, [specialityId, doctorId]);
 
@@ -69,6 +78,7 @@ const ReserveAppointmentForms = () => {
                                 payload: e,
                             });
                         }}
+                        fistValue={searchParams.get("spec") || ""}
                     />
                 </RegisterField>
 
