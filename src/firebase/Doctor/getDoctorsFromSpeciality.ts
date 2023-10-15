@@ -7,7 +7,7 @@ export const getDoctorsFromSpeciality = async (speciality: string) => {
     const q = query(collection(dbFirestore, "users"), and(where("role", "==", "doctor"), where("specialities", "array-contains" , speciality)));
     const snapShot = await getDocs(q);
     if (snapShot.empty) {
-        return null;
+        return [];
     }
     const doctors: IUser[] = [];
     snapShot.forEach((doc) => {
