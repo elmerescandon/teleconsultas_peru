@@ -8,6 +8,7 @@ type InputSelectProps = {
     placeholder: string;
     onChange: (selectedValue: string) => void;
     size?: "small" | "medium" | "large";
+    fistValue?: string;
 };
 
 const InputSelect = ({
@@ -16,8 +17,9 @@ const InputSelect = ({
     placeholder,
     onChange,
     size,
+    fistValue,
 }: InputSelectProps) => {
-    const [selectedValue, setSelectedValue] = useState<string>("");
+    const [selectedValue, setSelectedValue] = useState<string>(fistValue || "");
 
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const newValue = event.target.value;
