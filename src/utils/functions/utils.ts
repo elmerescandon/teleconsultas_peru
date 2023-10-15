@@ -44,8 +44,8 @@ export const getAvailableAppointments = (date: string, doctorId : string, specia
 
 export const validateAppointment = (appointment : IAppointment) => {
   // TODO: Create a better validation
-  const { specialityId, doctorId, reason, symptoms, details, date, startDate, endDate} = appointment;
-  if(!specialityId || !doctorId || !reason || !symptoms || !details || !date || !startDate || !endDate) return false;
+  const { specialityId, doctorId, reason, date, startDate, endDate} = appointment;
+  if(!specialityId || !doctorId || !reason || !date || !startDate || !endDate) return false;
   return true;
 }
 
