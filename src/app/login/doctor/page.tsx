@@ -5,7 +5,7 @@ import React from "react";
 const Reserve = () => {
     return (
         <div className="flex w-full">
-            <LoginSection type="Doctores" />
+            <LoginSection role="doctor" label="Doctores" />
             <Image
                 src="/telecom_landing.jpg"
                 alt="landing-telemedicine"
