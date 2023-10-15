@@ -41,7 +41,7 @@ const LoginForms = ({ role }: LoginFormsProps) => {
             return user.role;
         };
 
-        role == "doctor" ? setIsDoctor(true) : setIsDoctor(false);
+        role === "doctor" ? setIsDoctor(true) : setIsDoctor(false);
 
         if (status === "authenticated") {
             getUserInfo(session.user!.name!);
