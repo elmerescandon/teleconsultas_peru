@@ -65,6 +65,8 @@ const ReserveAppointmentForms = () => {
     return (
         <div className="max-xl:pb-8 px-5 flex-grow max-xl:w-full ">
             <div className="text-xl font-semibold py-4">Escoge tu cita</div>
+            <p className="italic font-semibold pb-5">* Campo obligatorio</p>
+
             <div className="flex gap-5 flex-col">
                 <RegisterField title="Especialidad*" error="">
                     <InputSelect
