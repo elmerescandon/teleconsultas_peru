@@ -2,6 +2,7 @@
 import CardSpeciality from "@/components/Molecules/CardSpeciality/CardSpeciality";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
+import QueryReserve from "@/utils/constants/queryReserve";
 import Routes from "@/utils/routes/Routes";
 import { LightBulbIcon } from "@heroicons/react/24/outline";
 import React from "react";
@@ -36,7 +37,7 @@ const page = () => {
                     }
                     features={featureMedicine}
                     specialities={[]}
-                    to={`${Routes.RESERVE}?spec=gen`}
+                    to={`${Routes.RESERVE}?spec=${QueryReserve.GENERAL}`}
                     buttonContent="Reserva una cita"
                 />
                 <CardSpeciality
@@ -46,7 +47,7 @@ const page = () => {
                     }
                     features={featureMental}
                     specialities={[]}
-                    to={`${Routes.RESERVE}?spec=psic`}
+                    to={`${Routes.RESERVE}?spec=${QueryReserve.PSYCHOLOGY}`}
                     buttonContent="Reserva una cita"
                 />
                 <CardSpeciality
@@ -56,7 +57,7 @@ const page = () => {
                     }
                     features={featureNutrition}
                     specialities={[]}
-                    to={`${Routes.RESERVE}?spec=nutri`}
+                    to={`${Routes.RESERVE}?spec=${QueryReserve.NUTRITION}`}
                     buttonContent="Reserva una cita"
                 />
             </div>
