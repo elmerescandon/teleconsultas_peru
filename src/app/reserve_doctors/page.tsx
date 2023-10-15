@@ -1,6 +1,8 @@
+"use client";
 import CardSpeciality from "@/components/Molecules/CardSpeciality/CardSpeciality";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
+import Routes from "@/utils/routes/Routes";
 import { LightBulbIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
@@ -34,7 +36,7 @@ const page = () => {
                     }
                     features={featureMedicine}
                     specialities={[]}
-                    to="/reserve_doctors/medicina_general"
+                    to={`${Routes.RESERVE}?spec=gen`}
                     buttonContent="Reserva una cita"
                 />
                 <CardSpeciality
@@ -44,7 +46,7 @@ const page = () => {
                     }
                     features={featureMental}
                     specialities={[]}
-                    to="/reserve_doctors/medicina_general"
+                    to={`${Routes.RESERVE}?spec=psic`}
                     buttonContent="Reserva una cita"
                 />
                 <CardSpeciality
@@ -54,7 +56,7 @@ const page = () => {
                     }
                     features={featureNutrition}
                     specialities={[]}
-                    to="/reserve_doctors/medicina_general"
+                    to={`${Routes.RESERVE}?spec=nutri`}
                     buttonContent="Reserva una cita"
                 />
             </div>
