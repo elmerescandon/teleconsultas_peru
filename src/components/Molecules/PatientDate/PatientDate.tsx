@@ -11,7 +11,6 @@ type PatientDateProps = {
 };
 
 const PatientDate = ({ appointment }: PatientDateProps) => {
-    // TODO: Add call from API to get Specialities
     const [popUpOpen, setPopUpOpen] = useState(false);
     const { doctorId, specialityId, date } = appointment;
     const [summary, setSummary] = useState<{
