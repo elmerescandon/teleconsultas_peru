@@ -5,8 +5,6 @@ import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import useMonthYearChange from "@/utils/hooks/useCalendar";
-import AppointmentsMockup from "@/utils/mockups/AppointmentsMockup";
-import AppointmentTest from "@/utils/mockups/AppointmentsTest";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import React, { useEffect, useState } from "react";
 
