@@ -1,12 +1,12 @@
-import DoctorEarnings from "@/components/Molecules/DoctorEarnings/DoctorEarnings";
 import React from "react";
-import DoctorAnalytics from "../DoctorAnalytics/DoctorAnalytics";
+import DoctorPatients from "@/components/Molecules/DoctorPatients/DoctorPatients";
 
 const DoctorDashboard = () => {
     return (
         <div className="flex justify-around w-full max-xl:flex-col">
-            <DoctorEarnings />
-            <DoctorAnalytics />
+            <DoctorPatients />
+            {/* <DoctorEarnings /> */}
+            {/* <DoctorAnalytics /> */}
         </div>
     );
 };
