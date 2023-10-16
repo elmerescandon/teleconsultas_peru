@@ -39,15 +39,13 @@ const HistoryCard = ({ appointment }: HistoryCardProps) => {
     }, []);
 
     return (
-        <div className="w-full">
+        <div className="w-full border-2 rounded-lg px-4 py-2 border-brand-50">
             <div>
-                <div>{summary.specialityName}</div>
                 <div>{stringToDate(date)}</div>
+                <div className="w-36 text-left">{summary.doctorName}</div>
             </div>
-            <div className="w-36 text-left">{summary.doctorName}</div>
             <div className="flex gap-3 items-center">
-                <p className="text-brand-50">Ver más</p>
-                <BookOpenIcon className="w-8 h-8 text-brand-100" />
+                <button className="text-brand-50">Ver más</button>
             </div>
         </div>
     );
