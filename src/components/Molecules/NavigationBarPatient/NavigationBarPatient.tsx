@@ -11,7 +11,7 @@ const NavigationBarPatient = () => {
             </LinkSecondary>
             <LinkSecondary to={Routes.RESERVE}>{"Reserva"}</LinkSecondary>
             <LinkSecondary to={Routes.PATIENT_APPOINTMENTS}>
-                {"Citas"}
+                {"Calendario"}
             </LinkSecondary>
         </div>
     );

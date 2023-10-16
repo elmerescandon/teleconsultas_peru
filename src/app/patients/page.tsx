@@ -18,7 +18,7 @@ const Patients = () => {
                         "Consultas Médicas de Calidad desde la Comodidad de tu Hogar"
                     }
                 /> */}
-                <CardFeaturesSection title="Pacientes Salufy" />
+                <CardFeaturesSection title="Beneficios" />
             </div>
             <StepsSection />
             <div className="page-body">
