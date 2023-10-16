@@ -15,7 +15,7 @@ const SelectReservation = ({ type, setType }: SelectReservationProps) => {
                 }}
                 selected={type === 0}
             >
-                Reserva según especialista
+                Reserva según doctor
             </ButtonPrimary>
             <ButtonPrimary
                 onClickFn={() => {

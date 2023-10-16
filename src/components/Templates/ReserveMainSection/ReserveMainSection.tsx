@@ -8,8 +8,8 @@ const ReserveMainSection = () => {
     return (
         <div>
             <SelectReservation type={type} setType={setType} />
-            {type === 0 ? <ReserveAppointmentSection /> : null}
-            {type === 1 ? <ReserveAvailabilitySection /> : null}
+            {type === 0 ? <ReserveAvailabilitySection /> : null}
+            {type === 1 ? <ReserveAppointmentSection /> : null}
         </div>
     );
 };
