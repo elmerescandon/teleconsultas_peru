@@ -11,11 +11,18 @@ const SpecialityCard = ({
     specialityId,
     appointments,
 }: SpecialityCardProps) => {
-    useEffect(() => {}, []);
+    const getSpeciality = (specialityId: string) => {
+        if (specialityId === "speciality1") return "Psicología";
+        if (specialityId === "speciality2") return "Medicina General";
+        if (specialityId === "speciality3") return "Nutrición";
+        return "";
+    };
 
     return (
-        <div>
-            <p>{specialityId}</p>
+        <div className="w-full">
+            <p className="font-2xl font-semibold py-2 underline">
+                {getSpeciality(specialityId)}
+            </p>
             <div>
                 {appointments.map((appointment) => {
                     return <HistoryCard appointment={appointment} />;
