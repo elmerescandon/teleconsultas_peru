@@ -9,12 +9,7 @@ type MonthGridProps = {
     onAppointmentClick: (appointment: IAppointment) => void;
 };
 
-const MonthGrid = ({
-    year,
-    month,
-    monthAppointmentData,
-    onAppointmentClick,
-}: MonthGridProps) => {
+const MonthGrid = ({ year, month, monthAppointmentData }: MonthGridProps) => {
     const daysInMonth = new Date(year, month, 0).getDate();
     const days = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sáb"];
     const monthGrid = [];
