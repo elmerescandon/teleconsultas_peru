@@ -24,8 +24,10 @@ const SpecialityCard = ({
                 {getSpeciality(specialityId)}
             </p>
             <div>
-                {appointments.map((appointment) => {
-                    return <HistoryCard appointment={appointment} />;
+                {appointments.map((appointment, index) => {
+                    return (
+                        <HistoryCard key={index} appointment={appointment} />
+                    );
                 })}
             </div>
         </div>
