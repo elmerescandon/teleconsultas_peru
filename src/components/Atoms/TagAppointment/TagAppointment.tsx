@@ -3,6 +3,7 @@ import PopUpAppointment from "../PopUp/PopUpAppointment/PopUpAppointment";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { getSpecialityName } from "@/utils/functions/utils";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
+import useAppointmentInfo from "@/utils/hooks/useAppointmentInfo";
 
 type TagAppointmentProps = {
     appointment: IAppointment;
@@ -16,6 +17,9 @@ const TagAppointment = ({ appointment, onClickFn }: TagAppointmentProps) => {
         height: 3000,
         width: 3000,
     });
+
+    const { specialityId, patientId, doctorId } = appointment;
+    const { summary } = useAppointmentInfo(doctorId, specialityId, patientId);
 
     useEffect(() => {
         const handleResize = () => {
@@ -38,12 +42,7 @@ const TagAppointment = ({ appointment, onClickFn }: TagAppointmentProps) => {
                 }}
             >
                 <div className="bg-brand-600 text-basic-white px-2 py-1 rounded text-ellipsis whitespace-nowrap overflow-hidden">
-                    {dimensions.width >= 1024
-                        ? getSpecialityName(
-                              specialitiesMockup,
-                              appointment.specialityId
-                          )
-                        : "..."}
+                    {dimensions.width >= 1024 ? summary.specialityName : "..."}
                 </div>
             </button>
 
