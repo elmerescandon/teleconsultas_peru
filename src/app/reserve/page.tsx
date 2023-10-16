@@ -1,19 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
-import ReserveAppointmentSection from "@/components/Templates/ReserveAppointmentSection/ReserveAppointmentSection";
-import SelectReservation from "@/components/Organisms/SelectReservation/SelectReservation";
-import ReserveAvailabilitySection from "@/components/Templates/ReserveAvailabilitySection/ReserveAvailabilitySection";
+import ReserveMainSection from "@/components/Templates/ReserveMainSection/ReserveMainSection";
 
 const page = () => {
-    const [type, setType] = useState(0);
     return (
         <div>
             <Header />
-            <SelectReservation type={type} setType={setType} />
-            {type === 0 ? <ReserveAppointmentSection /> : null}
-            {type === 1 ? <ReserveAvailabilitySection /> : null}
+            <ReserveMainSection />
             <Footer />
         </div>
     );
