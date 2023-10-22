@@ -9,7 +9,6 @@ import { sexOptions } from "@/utils/constants/registerSelect";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 import { Checkbox, FormControlLabel } from "@mui/material";
-import { set } from "lodash";
 
 type RegisterInformationProps = {
     nextFn: () => void;
