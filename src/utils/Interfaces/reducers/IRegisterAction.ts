@@ -36,6 +36,21 @@ type IRegisterActionSetInfo ={
     }
 }
 
-type IRegisterActions = IRegisterActionSetGeneral | IRegisterActionSetLocation | IRegisterActionSetInfo;
 
-export default IRegisterActions;
+type IRegisterActionSetCert ={
+    type: 'SET_CERTIFICACIONS',
+    payload: {
+        age: string,
+        sex: string,
+        height: string,
+        weight: string,
+        phone: string,
+        bornDate: string,
+        termsAndConditions: string,
+    }
+}
+
+
+export type IRegisterActions = IRegisterActionSetGeneral | IRegisterActionSetLocation | IRegisterActionSetInfo;
+export type IRegisterDoctorActions = IRegisterActionSetGeneral | IRegisterActionSetLocation |  IRegisterActionSetCert;
+
