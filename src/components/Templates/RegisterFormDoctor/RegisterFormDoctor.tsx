@@ -32,7 +32,7 @@ const RegisterFormDoctor = () => {
                 throw new Error(
                     "Error al registrar. El email o DNI ya existe, intente de nuevo."
                 );
-            route.push(Routes.REGISTER_COMPLETE);
+            route.push(Routes.REGISTER_DOCTOR_COMPLETE);
             setPosting({ loading: false, error: null });
         } catch (error) {
             setPosting({ loading: false, error: error as Error });

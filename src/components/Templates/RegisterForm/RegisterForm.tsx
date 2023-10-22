@@ -27,11 +27,16 @@ const RegisterForm = ({ role }: RegisterFormProps) => {
     const postUser = async () => {
         setPosting({ loading: true, error: null });
         try {
-            if (!(await registerUser(formState, role)))
+            if (
+                !(await registerUser(
+                    formState as IRegister & IRegisterDoctor,
+                    role
+                ))
+            )
                 throw new Error(
                     "Error al registrar. El email o DNI ya existe, intente de nuevo."
                 );
-            route.push(Routes.REGISTER_COMPLETE);
+            route.push(Routes.REGISTER_PATIENT_COMPLETE);
             setPosting({ loading: false, error: null });
         } catch (error) {
             setPosting({ loading: false, error: error as Error });
