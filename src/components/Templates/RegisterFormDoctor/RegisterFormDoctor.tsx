@@ -54,6 +54,7 @@ const RegisterFormDoctor = () => {
                     )}
                     {step === 2 && (
                         <RegisterLocation
+                            role="doctor"
                             prevFn={() => {
                                 setStep(step - 1);
                             }}
