@@ -12,8 +12,9 @@ const addUser = async (user: IUserPost) => {
     }
 }
 
-export const registerUser = async (registerPatient: IRegister, type: "patient" | "doctor") => {
-    let user : IUserPost = {
+export const registerUser = async (registerPatient: IRegister & IRegisterDoctor, type: "patient" | "doctor") => {
+    
+    let user : IUserPost = type === "patient" ? {
         _id: "",
         name: registerPatient.name,
         lastName: registerPatient.lastname,
@@ -36,8 +37,33 @@ export const registerUser = async (registerPatient: IRegister, type: "patient" |
         height: registerPatient.height,
         weight: registerPatient.weight,
         bornDate: registerPatient.bornDate,
-    } 
+    } : {
+        _id: "",
+        name: registerPatient.name,
+        lastName: registerPatient.lastname,
+        email: registerPatient.email,
+        password: registerPatient.password,
+        role: type,
+        id: registerPatient.id,
+        phone: registerPatient.phone,
+        termsAndConditions: true,
+        
+        region: registerPatient.region,
+        province: registerPatient.province,
+        district: registerPatient.district,
+        address: registerPatient.address,
+        reference: registerPatient.reference,
+        interiorNumber: registerPatient.interiorNumber,
 
+        age: registerPatient.age,
+        sex: registerPatient.sex,
+        specialities: registerPatient.specialities,
+        curriculum: registerPatient.curriculum,
+        cmpNumber: registerPatient.cmpNumber,
+    }
+
+    console.log(user);
+    
     if (!await isUserValid(user))
         return false
 
