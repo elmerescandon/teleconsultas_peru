@@ -18,8 +18,12 @@ interface IRegister{
     // Info
     age: string,
     sex: string,
-    height: string,
-    weight: string,
+    height?: string,
+    weight?: string,
+    specialities?: string[];
+    curriculum?: string;
+    cmpNumber?: string;
+
     phone: string,
     bornDate: string,
     termsAndConditions: string;
