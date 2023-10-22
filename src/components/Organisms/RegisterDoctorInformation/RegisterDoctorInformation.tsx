@@ -78,7 +78,7 @@ const RegisterDoctorInformation = ({
                                 handleChange("specialities", speciality);
                             }}
                             options={specialityOptions}
-                            placeholder="Escoge tu sexo"
+                            placeholder="Escoge tu especialidad"
                         />
                     </RegisterField>
 
