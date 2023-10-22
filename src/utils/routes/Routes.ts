@@ -12,6 +12,12 @@ enum Routes{
 
     REGISTER = '/register',
     REGISTER_COMPLETE = '/register/success',
+
+    REGISTER_DOCTOR = '/register/doctor',
+    REGISTER_PATIENT = '/register/patient',
+
+
+
     NOT_FOUND = '/not-found',
     PATIENTS = '/patients',
     PROFILE = '/profile',
