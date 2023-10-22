@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import RegisterProvider from "@/utils/context/RegisterContext/RegisterContext";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import DoctorRegisterProvider from "@/utils/context/RegisterDoctorContext";
 
 type RegisterLayoutProps = {
     children: React.ReactNode;
@@ -11,7 +11,7 @@ type RegisterLayoutProps = {
 const RegisterLayout = ({ children }: RegisterLayoutProps) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <RegisterProvider>{children}</RegisterProvider>
+            <DoctorRegisterProvider>{children}</DoctorRegisterProvider>
         </LocalizationProvider>
     );
 };
