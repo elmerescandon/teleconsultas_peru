@@ -1,5 +1,6 @@
 "use client";
 import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
+import RegisterDoctorInformation from "@/components/Organisms/RegisterDoctorInformation/RegisterDoctorInformation";
 import RegisterGeneral from "@/components/Organisms/RegisterGeneral/RegisterGeneral";
 import RegisterHeaders from "@/components/Organisms/RegisterHeaders/RegisterHeaders";
 import RegisterInformation from "@/components/Organisms/RegisterInformation/RegisterInformation";
@@ -45,6 +46,7 @@ const RegisterFormDoctor = () => {
                 <div className="pb-3 flex flex-col justify-start">
                     {step === 1 && (
                         <RegisterGeneral
+                            role="doctor"
                             nextFn={() => {
                                 setStep(step + 1);
                             }}
@@ -61,7 +63,7 @@ const RegisterFormDoctor = () => {
                         />
                     )}
                     {step === 3 && (
-                        <RegisterInformation
+                        <RegisterDoctorInformation
                             prevFn={() => {
                                 setStep(step - 1);
                             }}
