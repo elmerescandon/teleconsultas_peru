@@ -13,6 +13,12 @@ export const sexOptions = [
 ];
 
 
+export const specialityOptions = [
+  { value: 'speciality1', label: 'Psciología' },
+  { value: 'speciality2', label: 'Medicina General' },
+  { value: 'speciality3', label: 'Nutrición' },
+]
+
 export const hoursOptions = [
   { value: '07:00', label: '07:00' },
   { value: '07:30', label: '07:30' },
