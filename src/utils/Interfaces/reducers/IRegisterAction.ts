@@ -37,20 +37,20 @@ type IRegisterActionSetInfo ={
 }
 
 
-type IRegisterActionSetCert ={
-    type: 'SET_CERTIFICACIONS',
+type IRegisterActionSetDocInfo ={
+    type: 'SET_DOCINFO',
     payload: {
         age: string,
         sex: string,
-        height: string,
-        weight: string,
+        specialities: string[],
+        cmpNumber: string,
+        curriculum: string,
         phone: string,
-        bornDate: string,
         termsAndConditions: string,
     }
 }
 
 
 export type IRegisterActions = IRegisterActionSetGeneral | IRegisterActionSetLocation | IRegisterActionSetInfo;
-export type IRegisterDoctorActions = IRegisterActionSetGeneral | IRegisterActionSetLocation |  IRegisterActionSetCert;
+export type IRegisterDoctorActions = IRegisterActionSetGeneral | IRegisterActionSetLocation |  IRegisterActionSetDocInfo;
 
