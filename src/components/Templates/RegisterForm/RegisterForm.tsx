@@ -8,9 +8,13 @@ import IPosting from "@/utils/Interfaces/hooks/IPosting";
 import { useRegisterState } from "@/utils/context/RegisterContext/RegisterContext";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
-const RegisterForm = () => {
+type RegisterFormProps = {
+    role: "doctor" | "patient";
+};
+
+const RegisterForm = ({ role }: RegisterFormProps) => {
     const [step, setStep] = useState(1);
     const formState = useRegisterState();
     const route = useRouter();
@@ -22,7 +26,7 @@ const RegisterForm = () => {
     const postUser = async () => {
         setPosting({ loading: true, error: null });
         try {
-            if (!(await registerUser(formState, "patient")))
+            if (!(await registerUser(formState, role)))
                 throw new Error(
                     "Error al registrar. El email o DNI ya existe, intente de nuevo."
                 );

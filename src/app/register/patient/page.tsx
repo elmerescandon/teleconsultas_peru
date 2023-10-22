@@ -9,7 +9,7 @@ const Register = () => {
             <div className="flex flex-row justify-between items-center py-12 px-48 max-xl:justify-center max-xl:px-0">
                 <LinkLogo />
             </div>
-            <RegisterForm />
+            <RegisterForm role="patient" />
             <Footer />
         </div>
     );
