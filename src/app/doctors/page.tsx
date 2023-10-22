@@ -21,7 +21,7 @@ const Doctors = () => {
                         <div className="flex justify-center py-5 text-center gap-10">
                             <LinkPrimary to={Routes.REGISTER}>
                                 <div className="w-48 flex items-center justify-center h-full text-xl">
-                                    Soy un profesional de la salud
+                                    ¡Pertenece al equipo Salufy!
                                 </div>
                             </LinkPrimary>
                         </div>

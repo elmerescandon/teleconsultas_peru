@@ -1,18 +1,20 @@
-import LinkLogo from "@/components/Atoms/Links/LinkLogo/LinkLogo";
-import Footer from "@/components/Organisms/Footer/Footer";
-import RegisterForm from "@/components/Templates/RegisterForm/RegisterForm";
+import RegisterSelection from "@/components/Templates/RegisterSelection/RegisterSelection";
+import Image from "next/image";
 import React from "react";
 
-const Register = () => {
+const page = () => {
     return (
-        <div>
-            <div className="flex flex-row justify-between items-center py-12 px-48 max-xl:justify-center max-xl:px-0">
-                <LinkLogo />
-            </div>
-            <RegisterForm />
-            <Footer />
+        <div className="flex w-full">
+            <RegisterSelection />
+            <Image
+                src="/telecom_landing.jpg"
+                alt="landing-telemedicine"
+                width={1000}
+                height={1000}
+                className="w-1/2 max-h-screen max-xl:hidden object-cover"
+            />
         </div>
     );
 };
 
-export default Register;
+export default page;
