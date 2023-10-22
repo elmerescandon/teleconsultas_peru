@@ -3,18 +3,17 @@ import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
 import RegisterDoctorInformation from "@/components/Organisms/RegisterDoctorInformation/RegisterDoctorInformation";
 import RegisterGeneral from "@/components/Organisms/RegisterGeneral/RegisterGeneral";
 import RegisterHeaders from "@/components/Organisms/RegisterHeaders/RegisterHeaders";
-import RegisterInformation from "@/components/Organisms/RegisterInformation/RegisterInformation";
 import RegisterLocation from "@/components/Organisms/RegisterLocation/RegisterLocation";
 import { registerUser } from "@/firebase/User/addUser";
 import IPosting from "@/utils/Interfaces/hooks/IPosting";
-import { useRegisterState } from "@/utils/context/RegisterContext/RegisterContext";
+import { useDoctorRegisterState } from "@/utils/context/RegisterDoctorContext";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const RegisterFormDoctor = () => {
     const [step, setStep] = useState(1);
-    const formState = useRegisterState();
+    const formState = useDoctorRegisterState();
     const route = useRouter();
     const [posting, setPosting] = useState<IPosting>({
         loading: false,
@@ -24,7 +23,12 @@ const RegisterFormDoctor = () => {
     const postUser = async () => {
         setPosting({ loading: true, error: null });
         try {
-            if (!(await registerUser(formState, "doctor")))
+            if (
+                !(await registerUser(
+                    formState as IRegister & IRegisterDoctor,
+                    "doctor"
+                ))
+            )
                 throw new Error(
                     "Error al registrar. El email o DNI ya existe, intente de nuevo."
                 );
@@ -49,6 +53,7 @@ const RegisterFormDoctor = () => {
                             role="doctor"
                             nextFn={() => {
                                 setStep(step + 1);
+                                console.log(formState);
                             }}
                         />
                     )}
@@ -60,6 +65,7 @@ const RegisterFormDoctor = () => {
                             }}
                             nextFn={() => {
                                 setStep(step + 1);
+                                console.log(formState);
                             }}
                         />
                     )}
@@ -69,6 +75,7 @@ const RegisterFormDoctor = () => {
                                 setStep(step - 1);
                             }}
                             nextFn={() => {
+                                console.log(formState);
                                 postUser();
                             }}
                         />
