@@ -16,9 +16,7 @@ const RegisterSuccess = () => {
                 </div>
                 <div className="flex flex-col gap-5 w-72">
                     <LinkPrimary to={Routes.HOME}>Volver al incio</LinkPrimary>
-                    <LinkPrimary to={Routes.LOGIN}>
-                        Siguiente página
-                    </LinkPrimary>
+                    <LinkPrimary to={Routes.LOGIN}>¡Inicia Sesión!</LinkPrimary>
                 </div>
             </div>
             <Footer />
