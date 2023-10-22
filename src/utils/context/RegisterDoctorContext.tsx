@@ -16,7 +16,7 @@ type RegisterProviderProps = {
     children: React.ReactNode;
 };
 
-const RegisterProvider = ({ children }: RegisterProviderProps) => {
+const DoctorRegisterProvider = ({ children }: RegisterProviderProps) => {
     const [register, dispatch] = useReducer(registerReducer, {
         name: "",
         lastname: "",
@@ -68,12 +68,12 @@ const registerReducer = (
     }
 };
 
-export const useRegisterState = () => {
+export const useDoctorRegisterState = () => {
     return useContext(RegisterDoctorContext);
 };
 
-export const useRegisterDispatch = () => {
+export const useDoctorRegisterDispatch = () => {
     return useContext(RegisterDispatchContext);
 };
 
-export default RegisterProvider;
+export default DoctorRegisterProvider;
