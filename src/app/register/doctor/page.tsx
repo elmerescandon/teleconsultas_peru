@@ -1,6 +1,6 @@
 import LinkLogo from "@/components/Atoms/Links/LinkLogo/LinkLogo";
 import Footer from "@/components/Organisms/Footer/Footer";
-import RegisterForm from "@/components/Templates/RegisterForm/RegisterForm";
+import RegisterFormDoctor from "@/components/Templates/RegisterFormDoctor/RegisterFormDoctor";
 import React from "react";
 
 const Register = () => {
@@ -9,7 +9,7 @@ const Register = () => {
             <div className="flex flex-row justify-between items-center py-12 px-48 max-xl:justify-center max-xl:px-0">
                 <LinkLogo />
             </div>
-            <RegisterForm role="doctor" />
+            <RegisterFormDoctor />
             <Footer />
         </div>
     );
