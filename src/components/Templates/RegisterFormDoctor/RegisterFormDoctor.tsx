@@ -1,9 +1,10 @@
 "use client";
 import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
+import RegisterDoctorGeneral from "@/components/Organisms/RegisterDoctorGeneral/RegisterDoctorGeneral";
 import RegisterDoctorInformation from "@/components/Organisms/RegisterDoctorInformation/RegisterDoctorInformation";
+import RegisterDoctorLocation from "@/components/Organisms/RegisterDoctorLocation/RegisterDoctorLocation";
 import RegisterGeneral from "@/components/Organisms/RegisterGeneral/RegisterGeneral";
 import RegisterHeaders from "@/components/Organisms/RegisterHeaders/RegisterHeaders";
-import RegisterLocation from "@/components/Organisms/RegisterLocation/RegisterLocation";
 import { registerUser } from "@/firebase/User/addUser";
 import IPosting from "@/utils/Interfaces/hooks/IPosting";
 import { useDoctorRegisterState } from "@/utils/context/RegisterDoctorContext";
@@ -49,7 +50,7 @@ const RegisterFormDoctor = () => {
             {!posting.loading && (
                 <div className="pb-3 flex flex-col justify-start">
                     {step === 1 && (
-                        <RegisterGeneral
+                        <RegisterDoctorGeneral
                             role="doctor"
                             nextFn={() => {
                                 setStep(step + 1);
@@ -58,7 +59,7 @@ const RegisterFormDoctor = () => {
                         />
                     )}
                     {step === 2 && (
-                        <RegisterLocation
+                        <RegisterDoctorLocation
                             role="doctor"
                             prevFn={() => {
                                 setStep(step - 1);

@@ -14,13 +14,17 @@ import ISelectOptions from "@/utils/Interfaces/ISelectOptions";
 import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext";
 
-type RegisterLocationProps = {
+type RegisterDoctorLocationProps = {
     role: string;
     prevFn: () => void;
     nextFn: () => void;
 };
 
-const RegisterLocation = ({ role, prevFn, nextFn }: RegisterLocationProps) => {
+const RegisterDoctorLocation = ({
+    role,
+    prevFn,
+    nextFn,
+}: RegisterDoctorLocationProps) => {
     const { formFields, handleChange, handleRegister, handleValidations } =
         useRegister();
     const [checkForms, setCheckForms] = useState<boolean>(false);
@@ -30,7 +34,7 @@ const RegisterLocation = ({ role, prevFn, nextFn }: RegisterLocationProps) => {
     const [districtOptions, setDistrictOptions] = useState<ISelectOptions[]>(
         []
     );
-    const dispatch = useRegisterDispatch();
+    const dispatch = useDoctorRegisterDispatch();
 
     useEffect(() => {
         if (formFields.region.value !== "") {
@@ -179,4 +183,4 @@ const RegisterLocation = ({ role, prevFn, nextFn }: RegisterLocationProps) => {
     );
 };
 
-export default RegisterLocation;
+export default RegisterDoctorLocation;
