@@ -1,6 +1,7 @@
 "use client";
 import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
 import RegisterGeneral from "@/components/Organisms/RegisterGeneral/RegisterGeneral";
+import RegisterHeaders from "@/components/Organisms/RegisterHeaders/RegisterHeaders";
 import RegisterInformation from "@/components/Organisms/RegisterInformation/RegisterInformation";
 import RegisterLocation from "@/components/Organisms/RegisterLocation/RegisterLocation";
 import { registerUser } from "@/firebase/User/addUser";
@@ -35,35 +36,10 @@ const RegisterFormDoctor = () => {
 
     return (
         <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-14 max-xl:w-2/3 max-md:w-full">
-            <div className="flex flex-row items-center justify-center gap-36 pb-10">
-                <p
-                    className={`text-3xl font-semibold ${
-                        step === 1
-                            ? "text-basic-black font-semibold max-xl:block"
-                            : "text-neutral-300 max-xl:hidden"
-                    }`}
-                >
-                    Registro
-                </p>
-                <p
-                    className={`text-3xl ${
-                        step === 2
-                            ? "text-basic-black font-semibold max-xl:block"
-                            : "text-neutral-300 max-xl:hidden"
-                    }`}
-                >
-                    Ubicacion
-                </p>
-                <p
-                    className={`text-3xl ${
-                        step === 3
-                            ? "text-basic-black font-semibold max-xl:block"
-                            : "text-neutral-300 max-xl:hidden"
-                    }`}
-                >
-                    Informacion
-                </p>
-            </div>
+            <RegisterHeaders
+                currentStep={step}
+                steps={["General", "Ubicación", "Certificaciones"]}
+            />
 
             {!posting.loading && (
                 <div className="pb-3 flex flex-col justify-start">
