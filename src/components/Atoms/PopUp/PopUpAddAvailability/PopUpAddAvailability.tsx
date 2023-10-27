@@ -2,21 +2,23 @@
 import React, { useState } from "react";
 import ButtonPrimary from "../../Buttons/ButtonPrimary/ButtonPrimary";
 import { DatePicker } from "@mui/x-date-pickers";
-import InputSearch from "../../Inputs/InputSearch/InputSearch";
 import InputSelect from "../../Inputs/InputSelect/InputSelect";
 import { hoursOptions } from "@/utils/constants/registerSelect";
 
 type PopUpAddAvailabilityProps = {
     onClose: () => void;
     doctorId: string;
+    specialityId: string;
 };
 
 const PopUpAddAvailability = ({
     onClose,
     doctorId,
+    specialityId,
 }: PopUpAddAvailabilityProps) => {
     const [date, setDate] = useState<string | null>();
     const [startTime, setStartTime] = useState<string | null>();
+    const [endTime, setEndTime] = useState<string | null>();
 
     const addNewSchedule = async () => {
         console.log("agregar disponibilidad");
@@ -51,12 +53,30 @@ const PopUpAddAvailability = ({
                             setStartTime(newTime);
                         }}
                         placeholder="Inicio"
-                        selectId="final-day-availability"
+                        selectId="begin-day-availability"
                         options={hoursOptions}
                         key={1}
                         size="small"
                     />
-                    {startTime && <p>{`Horario: ${date} `}</p>}
+                    <p className="py-3"></p>
+                    <InputSelect
+                        onChange={(newTime: string) => {
+                            setEndTime(newTime);
+                        }}
+                        placeholder="Final"
+                        selectId="final-day-availability"
+                        options={hoursOptions}
+                        key={2}
+                        size="small"
+                    />
+                    {date && (
+                        <p className="pt-2 text-lg">{`Fecha: ${
+                            new Date(date).toLocaleString().split(",")[0]
+                        } `}</p>
+                    )}
+                    {startTime && endTime && (
+                        <p className="pt-3 text-lg">{`Horario: ${startTime} - ${endTime}`}</p>
+                    )}
                 </div>
 
                 <div className="flex flex-col gap-5">

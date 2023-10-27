@@ -9,7 +9,7 @@ import React, { useState } from "react";
 const DoctorAvailabilityHours = () => {
     const user: IUserState = useAppSelector((state) => state.user);
     const { userInfo } = user;
-    const { _id } = userInfo;
+    const { _id, specialities } = userInfo;
     const [showAddAvailability, setShowAddAvailability] =
         useState<boolean>(false);
     return (
@@ -21,7 +21,7 @@ const DoctorAvailabilityHours = () => {
             >
                 Agregar disponibilidad
             </ButtonPrimary>
-            <div className="flex items-center gap-5">
+            {/* <div className="flex items-center gap-5">
                 <div>
                     <DayAvailability day="Lunes" />
                     <DayAvailability day="Martes" />
@@ -32,9 +32,14 @@ const DoctorAvailabilityHours = () => {
                     <DayAvailability day="Viernes" />
                     <DayAvailability day="Sábado" />
                 </div>
-            </div>
+            </div> */}
             {showAddAvailability && (
                 <PopUpAddAvailability
+                    specialityId={
+                        specialities && specialities.length > 0
+                            ? specialities[0]
+                            : ""
+                    }
                     onClose={() => {
                         setShowAddAvailability(false);
                     }}
