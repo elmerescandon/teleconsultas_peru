@@ -10,7 +10,7 @@ const NavigationBarGeneral = () => {
                 {"¡Reserva tu cita!"}
             </LinkSecondary>
             <LinkSecondary to={Routes.DOCTORS_GENERAL}>
-                {"Doctores"}
+                {"Medicina General"}
             </LinkSecondary>
             <LinkSecondary to={Routes.DOCTORS_PSYCHOLOGISTS}>
                 {"Psicólogos"}

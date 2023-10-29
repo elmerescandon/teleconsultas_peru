@@ -13,10 +13,10 @@ const PhoneSteps = ({ color }: PhoneStepsProps) => {
             colorValue = "bg-brand-200";
             break;
         case "psicology":
-            colorValue = "bg-salufy-psico";
+            colorValue = "bg-salufy-psico-light";
             break;
         case "nutrition":
-            colorValue = "bg-salufy-nutri";
+            colorValue = "bg-salufy-nutri-light";
             break;
         default:
             colorValue = "bg-brand-200";
@@ -24,7 +24,9 @@ const PhoneSteps = ({ color }: PhoneStepsProps) => {
     }
 
     return (
-        <div className={`flex justify-center py-5 ${colorValue} items-center`}>
+        <div
+            className={`flex justify-center py-5 ${colorValue} items-center mr-16 rounded-r-3xl`}
+        >
             <div className="max-w-[50vh]">
                 <p className="text-5xl font-semibold text-salufy-blue text-right pb-5">
                     Agenda tu cita donde quieras cuando quieras

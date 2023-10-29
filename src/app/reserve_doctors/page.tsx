@@ -1,10 +1,14 @@
 "use client";
 import CardSpeciality from "@/components/Molecules/CardSpeciality/CardSpeciality";
+import EspecialityInformation from "@/components/Organisms/EspecialityInformation/EspecialityInformation";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
+import PhoneSteps from "@/components/Organisms/PhoneSteps/PhoneSteps";
+import ReviewDoctorSection from "@/components/Organisms/ReviewDoctorSection/ReviewDoctorSection";
 import QueryReserve from "@/utils/constants/queryReserve";
 import Routes from "@/utils/routes/Routes";
 import { LightBulbIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import React from "react";
 
 const page = () => {
@@ -29,39 +33,57 @@ const page = () => {
     return (
         <div>
             <Header />
-            <div className="flex flex-row justify-center w-full gap-7 flex-wrap py-10 max-xl:flex-col max-xl:px-16 max-xl:pt-28">
-                <CardSpeciality
+            <div className="flex flex-row justify-center w-full gap-16 flex-wrap py-10 max-xl:flex-col max-xl:px-16 max-xl:pt-28">
+                <EspecialityInformation
+                    color="normal"
+                    image={
+                        <Image
+                            src="/GENERAL_IMAGE.png"
+                            alt="salufy-general-image"
+                            width={500}
+                            height={500}
+                        />
+                    }
+                    items={featureMedicine}
+                    more={Routes.DOCTORS_GENERAL}
+                    reserve={Routes.RESERVE}
                     title="Medicina General"
-                    icon={
-                        <LightBulbIcon className="w-16 h-16 text-brand-900" />
-                    }
-                    features={featureMedicine}
-                    specialities={[]}
-                    to={`${Routes.RESERVE}?spec=${QueryReserve.GENERAL}`}
-                    buttonContent="Reserva una cita"
                 />
-                <CardSpeciality
+
+                <EspecialityInformation
+                    color="psicology"
+                    image={
+                        <Image
+                            src="/PSICO_IMAGE.png"
+                            alt="salufy-general-image"
+                            width={500}
+                            height={500}
+                        />
+                    }
+                    items={featureMedicine}
+                    more={Routes.DOCTORS_PSYCHOLOGISTS}
+                    reserve={Routes.RESERVE}
                     title="Psicología"
-                    icon={
-                        <LightBulbIcon className="w-16 h-16 text-brand-900" />
-                    }
-                    features={featureMental}
-                    specialities={[]}
-                    to={`${Routes.RESERVE}?spec=${QueryReserve.PSYCHOLOGY}`}
-                    buttonContent="Reserva una cita"
                 />
-                <CardSpeciality
-                    title="Nutrición"
-                    icon={
-                        <LightBulbIcon className="w-16 h-16 text-brand-900" />
+
+                <EspecialityInformation
+                    color="nutrition"
+                    image={
+                        <Image
+                            src="/NUTRI_IMAGE.png"
+                            alt="salufy-general-image"
+                            width={500}
+                            height={500}
+                        />
                     }
-                    features={featureNutrition}
-                    specialities={[]}
-                    to={`${Routes.RESERVE}?spec=${QueryReserve.NUTRITION}`}
-                    buttonContent="Reserva una cita"
+                    items={featureMedicine}
+                    more={Routes.DOCTORS_NUTRITIONISTS}
+                    reserve={Routes.RESERVE}
+                    title="Nutrición"
                 />
             </div>
-
+            <PhoneSteps color="normal" />
+            <ReviewDoctorSection />
             <Footer />
         </div>
     );
