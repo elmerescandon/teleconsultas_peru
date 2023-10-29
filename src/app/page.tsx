@@ -3,6 +3,7 @@ import CardSection from "@/components/Organisms/CardSection/CardSection";
 import DataSection from "@/components/Organisms/DataSection/DataSection";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
+import MainHomeSection from "@/components/Organisms/MainHomeSection/MainHomeSection";
 import MainSection from "@/components/Organisms/MainSection/MainSection";
 import SecondarySection from "@/components/Organisms/SecondarySection/SecondarySection";
 
@@ -11,12 +12,7 @@ const Home = () => {
         <main>
             <Header />
             <div className="page-body">
-                <MainSection
-                    title={"Bienvenido a Salufy, salud a un clic de distancia"}
-                    subtitle={
-                        "Conectamos profesionales de la salud con pacientes para una atención personalizada en línea."
-                    }
-                />
+                <MainHomeSection />
                 <CardSection />
             </div>
             <SecondarySection
