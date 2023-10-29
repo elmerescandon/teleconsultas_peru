@@ -48,6 +48,9 @@ module.exports = {
                 "rose-50": "var(--rose-50)",
 
                 "salufy-blue": "var(--salufy-blue)",
+                "salufy-gray": "var(--salufy-gray)",
+                "salufy-psico": "var(--salufy-psico)",
+                "salufy-nutri": "var(--salufy-nutri)",
             },
         },
     },
