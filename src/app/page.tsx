@@ -5,6 +5,7 @@ import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
 import MainHomeSection from "@/components/Organisms/MainHomeSection/MainHomeSection";
 import PhoneSteps from "@/components/Organisms/PhoneSteps/PhoneSteps";
+import SecondaryHomeSection from "@/components/Organisms/SecondaryHomeSection/SecondaryHomeSection";
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
             </div>
             <PhoneSteps color="normal" />
             <div className="page-body">
+                <SecondaryHomeSection />
                 <DataSection />
             </div>
             <Footer />
