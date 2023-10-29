@@ -8,7 +8,7 @@ const DataSection = () => {
             title: "9.3/10",
             subtitle: "en satisfacción",
             color: "light",
-            position: "bottom",
+            position: "top",
         },
         {
             title: "+20K",
@@ -20,11 +20,11 @@ const DataSection = () => {
             title: "+10",
             subtitle: "profesionales trabajando con nosotros",
             color: "light",
-            position: "bottom",
+            position: "top",
         },
     ];
     return (
-        <div className="flex py-20 pt-36 justify-center max-lg:flex-col max-lg:items-center max-lg:py-5 max-lg:pb-16">
+        <div className="flex py-10 justify-center max-lg:flex-col max-lg:items-center max-lg:py-5 max-lg:pb-16">
             {dataFeatures.map((dataFeature, index) => {
                 return (
                     <CircleFeature
