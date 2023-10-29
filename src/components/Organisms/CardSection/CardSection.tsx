@@ -7,24 +7,53 @@ import {
     VideoCameraIcon,
     ComputerDesktopIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 const CardSection = () => {
     const cardsContent: ICardContent[] = [
         {
             title: "A un click de distancia",
-            logo: <ComputerDesktopIcon className="w-16 h-16 text-brand-900" />,
+            logo: (
+                <Image
+                    src="./icons/ICON_SEGURIDAD.svg"
+                    alt="salufy-icon-corazon"
+                    width={150}
+                    height={150}
+                />
+            ),
         },
         {
             title: "Privacidad y seguridad",
-            logo: <LockClosedIcon className="w-16 h-16 text-brand-900" />,
+            logo: (
+                <Image
+                    src="./icons/ICON_CORAZON.svg"
+                    alt="salufy-icon-corazon"
+                    width={150}
+                    height={150}
+                />
+            ),
         },
         {
             title: "Reserva de citas inmediata",
-            logo: <ClockIcon className="w-16 h-16 text-brand-900" />,
+            logo: (
+                <Image
+                    src="./icons/ICON_CALENDARIO.svg"
+                    alt="salufy-icon-corazon"
+                    width={150}
+                    height={150}
+                />
+            ),
         },
         {
             title: "Consultas por videollamada",
-            logo: <VideoCameraIcon className="w-16 h-16 text-brand-900" />,
+            logo: (
+                <Image
+                    src="./icons/ICON_VIDEOLLAMADA.svg"
+                    alt="salufy-icon-corazon"
+                    width={150}
+                    height={150}
+                />
+            ),
         },
     ];
     return (
