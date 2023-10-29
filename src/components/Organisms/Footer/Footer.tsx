@@ -6,11 +6,12 @@ import LinkIcon from "@/components/Atoms/Links/LinkIcon/LinkIcon";
 import LinkLogo from "@/components/Atoms/Links/LinkLogo/LinkLogo";
 import LinkSecondary2 from "@/components/Atoms/Links/LinkSecondary/LinkSecondary2";
 import Routes from "@/utils/routes/Routes";
+import Image from "next/image";
 import React from "react";
 
 const Footer = () => {
     return (
-        <div className="flex flex-row bg-brand-900 px-48 py-14 max-lg:px-5 max-xl:flex-col max-xl:gap-10">
+        <div className="flex flex-row bg-salufy-blue px-48 py-14 max-lg:px-5 max-xl:flex-col max-xl:gap-10">
             <div className="flex flex-row justify-between gap-14 flex-wrap max-xl:items-center max-xl:justify-center">
                 <div className="flex flex-col gap-2 flex-wrap">
                     <LinkSecondary2 to={Routes.HOME}>Inicio </LinkSecondary2>
@@ -42,7 +43,12 @@ const Footer = () => {
                 </div>
             </div>
             <div className="footer-section footer-section__2 flex flex-col gap-2 px-14 max-lg:px-0 max-xl:items-center">
-                <LinkLogo size="small" />
+                <Image
+                    src="/LOGO_SALUFY_BLANCO.png"
+                    width={200}
+                    height={200}
+                    alt="logo-salufy-white"
+                />
                 <p className="text-lg font-medium text-basic-white">
                     Salud a un click de distancia.
                 </p>
