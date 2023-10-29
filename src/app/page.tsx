@@ -4,7 +4,7 @@ import DataSection from "@/components/Organisms/DataSection/DataSection";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
 import MainHomeSection from "@/components/Organisms/MainHomeSection/MainHomeSection";
-import MainSection from "@/components/Organisms/MainSection/MainSection";
+import PhoneSteps from "@/components/Organisms/PhoneSteps/PhoneSteps";
 import SecondarySection from "@/components/Organisms/SecondarySection/SecondarySection";
 
 const Home = () => {
@@ -15,6 +15,7 @@ const Home = () => {
                 <MainHomeSection />
                 <CardSection />
             </div>
+            <PhoneSteps color="normal" />
             <SecondarySection
                 content="Salufy te conecta con profesionales de la salud en base a tus necesidades y disponibilidad."
                 miniHeader=""
