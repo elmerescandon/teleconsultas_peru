@@ -19,8 +19,8 @@ const EspecialityMain = ({
     let colorText = "text-basic-black";
 
     switch (type) {
-        case "psicology":
-            colorText = "text-salufy-psico-strong";
+        case "psychology":
+            colorText = "text-salufy-psycho-strong";
             break;
         case "nutrition":
             colorText = "text-salufy-nutri-strong";

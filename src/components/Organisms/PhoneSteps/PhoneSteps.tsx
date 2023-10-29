@@ -12,8 +12,8 @@ const PhoneSteps = ({ color }: PhoneStepsProps) => {
         case "normal":
             colorValue = "bg-brand-200";
             break;
-        case "psicology":
-            colorValue = "bg-salufy-psico-light";
+        case "psychology":
+            colorValue = "bg-salufy-psycho-light";
             break;
         case "nutrition":
             colorValue = "bg-salufy-nutri-light";

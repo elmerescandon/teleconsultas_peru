@@ -24,8 +24,8 @@ const EspecialityInformation = ({
         case "normal":
             colorValue = "bg-brand-200";
             break;
-        case "psicology":
-            colorValue = "bg-salufy-psico";
+        case "psychology":
+            colorValue = "bg-salufy-psycho";
             break;
         case "nutrition":
             colorValue = "bg-salufy-nutri";
@@ -58,8 +58,12 @@ const EspecialityInformation = ({
                 })}
             </div>
             <div className="pt-10 flex gap-5 justify-center">
-                <LinkPrimary to={reserve}>Agenda una cita</LinkPrimary>
-                <LinkPrimary to={more}>Conoce más</LinkPrimary>
+                <LinkPrimary color={color} to={reserve}>
+                    Agenda una cita
+                </LinkPrimary>
+                <LinkPrimary color={color} to={more}>
+                    Conoce más
+                </LinkPrimary>
             </div>
         </div>
     );
