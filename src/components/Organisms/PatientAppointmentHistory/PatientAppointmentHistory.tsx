@@ -1,5 +1,7 @@
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
 import LabelPoints from "@/components/Atoms/Labels/LabelPoints/LabelPoints";
+import LinkNew from "@/components/Atoms/Links/LinkNew/LinkNew";
+import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
@@ -25,6 +27,7 @@ const PatientAppointmentHistory = ({
         symptoms,
         prescription,
         treatment,
+        joinURL,
     } = appointment;
 
     const [summaryState, setSummaryState] = useState<{
@@ -94,6 +97,11 @@ const PatientAppointmentHistory = ({
                 ) : null}
                 {treatment ? (
                     <LabelPoints label="Prescripción" points={treatment} />
+                ) : null}
+                {joinURL ? (
+                    <LinkNew to={joinURL} newTab={true}>
+                        Unirse a la cita
+                    </LinkNew>
                 ) : null}
             </div>
         </div>
