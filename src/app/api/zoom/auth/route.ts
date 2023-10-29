@@ -1,4 +1,5 @@
 import { zoomAuthURL } from "@/utils/constants/APIConstants"
+import { NextResponse } from "next/server";
 
 export async function GET(){
     const res = await fetch(`${zoomAuthURL}${process.env.ZOOM_ACCOUNT_ID}`,{
@@ -10,5 +11,5 @@ export async function GET(){
         cache: 'no-cache',
     });
     const data = await res.json();
-    return Response.json({data});
+    return NextResponse.json({data});
 }

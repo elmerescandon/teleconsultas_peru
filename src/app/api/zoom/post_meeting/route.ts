@@ -1,5 +1,6 @@
 import getTokenAuth from "@/lib/zoom/getTokenAuth";
 import { sessionDuration, sessionSettings, sessionTimeZone, zoomMeetingURL } from "@/utils/constants/APIConstants"
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request){
     const {searchParams } = new URL(request.url);
@@ -30,9 +31,9 @@ export async function GET(request: Request){
         });
     
         const data = await res.json();
-        return Response.json({data});
+        return NextResponse.json({data});
     } catch (error) {
-        return Response.json({error});
+        return NextResponse.json({error});
     }
 
 
