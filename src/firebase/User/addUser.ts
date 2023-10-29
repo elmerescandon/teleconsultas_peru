@@ -62,7 +62,6 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
         cmpNumber: registerPatient.cmpNumber,
     }
 
-    console.log(user);
     
     if (!await isUserValid(user))
         return false
