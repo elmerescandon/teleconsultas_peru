@@ -9,9 +9,7 @@ const useAppointments = (date : IDateRangeAppointment, user: IUserInfo, setSelec
     const [appointments, setAppointments] = useState<IAppointment[]>([]);
 
     const getAppointments = async () => {
-        console.log(user._id)
         const appointments = await getUserAppointments(user._id, "pending");
-        console.log(appointments)
         setAppointments(appointments);
     };
 
