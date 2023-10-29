@@ -43,7 +43,9 @@ const EspecialityMain = ({
                     {subtitle}
                 </div>
                 <div>
-                    <LinkPrimary to={to}>¡Reserva tu cita!</LinkPrimary>
+                    <LinkPrimary to={to} color={type}>
+                        ¡Reserva tu cita!
+                    </LinkPrimary>
                 </div>
             </div>
             {image}
