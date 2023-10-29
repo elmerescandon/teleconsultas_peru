@@ -14,12 +14,12 @@ const page = () => {
         <div>
             <Header />
             <EspecialityMain
-                title="Psicología"
+                title="psychología"
                 subtitle="En Salufy sabemos que la salud mental es un componente esencial en la salud general, por eso nuestro compromiso y esfuerzo en impulsarlo."
                 to={Routes.RESERVE}
                 image={
                     <Image
-                        src="/PSICO_IMAGE.png"
+                        src="/psycho_IMAGE.png"
                         alt="salufy-nutri"
                         width={500}
                         height={500}

@@ -51,10 +51,10 @@ const page = () => {
                 />
 
                 <EspecialityInformation
-                    color="psicology"
+                    color="psychology"
                     image={
                         <Image
-                            src="/PSICO_IMAGE.png"
+                            src="/PSYCHO_IMAGE.png"
                             alt="salufy-general-image"
                             width={500}
                             height={500}
