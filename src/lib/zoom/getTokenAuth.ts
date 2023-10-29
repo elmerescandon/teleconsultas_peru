@@ -3,7 +3,7 @@ import RoutesZoom from "@/utils/routes/RoutesZoom";
 
 const getTokenAuth = async () => {
     try{    
-        const res = await fetch(`http://localhost:3000/${RoutesZoom.ZOOM_AUTH}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_MYPAGE_URL}${RoutesZoom.ZOOM_AUTH}`);
         const dataResponse : IAuthResponse = await res.json();
         return dataResponse.data.access_token;
 
