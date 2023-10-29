@@ -28,8 +28,18 @@ const page = () => {
             />
             <EspecialityDetails
                 type="psychology"
-                risks={["A"]}
-                symptoms={["asdad"]}
+                risks={[
+                    "Baja autoestima.",
+                    "Ansiedad generalizada.",
+                    "Irriabilidad",
+                    "Descontrol emocional.",
+                ]}
+                symptoms={[
+                    "Agresividad",
+                    "Sobreprotección",
+                    "Incomodidad con uno mismo",
+                    "Dificultad para relacionarse con los demás",
+                ]}
             />
             <PhoneSteps color="psychology" />
             <ReviewDoctorSection />
