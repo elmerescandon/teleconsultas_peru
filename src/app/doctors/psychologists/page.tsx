@@ -1,5 +1,4 @@
-import CardInfo from "@/components/Atoms/Cards/CardInfo/CardInfo";
-import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
+import EspecialityDetails from "@/components/Organisms/EspecialityDetails /EspecialityDetails";
 import EspecialityMain from "@/components/Organisms/EspecialityMain/EspecialityMain";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
@@ -14,18 +13,23 @@ const page = () => {
         <div>
             <Header />
             <EspecialityMain
-                title="psychología"
+                title="Psicología"
                 subtitle="En Salufy sabemos que la salud mental es un componente esencial en la salud general, por eso nuestro compromiso y esfuerzo en impulsarlo."
                 to={Routes.RESERVE}
                 image={
                     <Image
-                        src="/psycho_IMAGE.png"
+                        src="/PSYCHO_IMAGE.png"
                         alt="salufy-nutri"
                         width={500}
                         height={500}
                     />
                 }
                 type="psychology"
+            />
+            <EspecialityDetails
+                type="psychology"
+                risks={["A"]}
+                symptoms={["asdad"]}
             />
             <PhoneSteps color="psychology" />
             <ReviewDoctorSection />
