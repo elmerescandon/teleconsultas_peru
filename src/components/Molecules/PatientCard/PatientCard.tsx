@@ -7,6 +7,7 @@ import useAppointmentInfo from "@/utils/hooks/useAppointmentInfo";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import Routes from "@/utils/routes/Routes";
 import {
+    ComputerDesktopIcon,
     PencilSquareIcon,
     TrashIcon,
     UserIcon,
@@ -20,8 +21,15 @@ type PatientCardProps = {
 
 const PatientCard = ({ appointment }: PatientCardProps) => {
     const router = useRouter();
-    const { specialityId, patientId, startDate, endDate, _id, doctorId } =
-        appointment;
+    const {
+        specialityId,
+        patientId,
+        startDate,
+        endDate,
+        _id,
+        doctorId,
+        joinURL,
+    } = appointment;
 
     const { summary } = useAppointmentInfo(doctorId, specialityId, patientId);
     return (
@@ -62,9 +70,9 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
                     >
                         <PencilSquareIcon className="w-5 h-5" />
                     </button>
-                    <button>
-                        <TrashIcon className="w-5 h-5" />
-                    </button>
+                    <a href={joinURL} target="_blank">
+                        <ComputerDesktopIcon className="w-5 h-5" />
+                    </a>
                 </div>
             </div>
         </div>
