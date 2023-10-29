@@ -26,7 +26,7 @@ const EspecialityMain = ({
             colorText = "text-salufy-nutri-strong";
             break;
         case "medicine":
-            colorText = "text-medicine";
+            colorText = "text-brand-600";
             break;
         default:
             colorText = "text-basic-black";
