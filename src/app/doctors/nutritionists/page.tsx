@@ -1,5 +1,6 @@
 import CardInfo from "@/components/Atoms/Cards/CardInfo/CardInfo";
 import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
+import EspecialityDetails from "@/components/Organisms/EspecialityDetails /EspecialityDetails";
 import EspecialityMain from "@/components/Organisms/EspecialityMain/EspecialityMain";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
@@ -14,18 +15,33 @@ const page = () => {
         <div>
             <Header />
             <EspecialityMain
-                title="psychología"
-                subtitle="En Salufy sabemos que la salud mental es un componente esencial en la salud general, por eso nuestro compromiso y esfuerzo en impulsarlo."
+                title="Nutrición"
+                subtitle="En Salufy estamos comprometidos en promover la salud a través de un asesoramiento nutricional de calidad y apoyo en la búsqueda de hábitos alimenticios más saludables."
                 to={Routes.RESERVE}
                 image={
                     <Image
-                        src="/psycho_IMAGE.png"
+                        src="/NUTRI_IMAGE.png"
                         alt="salufy-nutri"
                         width={500}
                         height={500}
                     />
                 }
                 type="nutrition"
+            />
+            <EspecialityDetails
+                type="nutrition"
+                symptoms={[
+                    "Fatiga e irritabilidad.",
+                    "Vista borrosa.",
+                    "Necesidad frecuentes de orinar.",
+                    "Péridad o aumento excesivo de peso.",
+                ]}
+                risks={[
+                    "Mala alimentación.",
+                    "Factores genéticos.",
+                    "Poca actividad física.",
+                    "Consumo de alcohol y tabaco.",
+                ]}
             />
             <PhoneSteps color="nutrition" />
             <ReviewDoctorSection />
