@@ -49,9 +49,9 @@ module.exports = {
 
                 "salufy-blue": "var(--salufy-blue)",
                 "salufy-gray": "var(--salufy-gray)",
-                "salufy-psico": "var(--salufy-psico)",
-                "salufy-psico-light": "var(--salufy-psico-light)",
-                "salufy-psico-strong": "var(--salufy-psico-strong)",
+                "salufy-psycho": "var(--salufy-psycho)",
+                "salufy-psycho-light": "var(--salufy-psycho-light)",
+                "salufy-psycho-strong": "var(--salufy-psycho-strong)",
                 "salufy-nutri": "var(--salufy-nutri)",
                 "salufy-nutri-light": "var(--salufy-nutri-light)",
                 "salufy-nutri-strong": "var(--salufy-nutri-strong)",
