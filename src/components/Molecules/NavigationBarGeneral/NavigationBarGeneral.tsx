@@ -5,7 +5,7 @@ import React from "react";
 const NavigationBarGeneral = () => {
     return (
         <div className="navigation-bar flex flex-row items-center gap-7 max-xl:gap-4 ">
-            <LinkSecondary to={Routes.PATIENTS}>{"Pacientes"}</LinkSecondary>
+            {/* <LinkSecondary to={Routes.PATIENTS}>{"Pacientes"}</LinkSecondary> */}
             <LinkSecondary to={Routes.RESERVE_DOCTORS}>
                 {"¡Reserva tu cita!"}
             </LinkSecondary>
