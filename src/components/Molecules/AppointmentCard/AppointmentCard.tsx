@@ -10,6 +10,7 @@ import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import Routes from "@/utils/routes/Routes";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { ComputerDesktopIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -19,8 +20,15 @@ type AppointmentCardProps = {
 
 const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
     const router = useRouter();
-    const { specialityId, patientId, startDate, endDate, _id, doctorId } =
-        appointment;
+    const {
+        specialityId,
+        patientId,
+        startDate,
+        endDate,
+        _id,
+        doctorId,
+        joinURL,
+    } = appointment;
 
     const { summary } = useAppointmentInfo(doctorId, specialityId, patientId);
 
@@ -40,7 +48,10 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
                         {getAppointmentHours(startDate, endDate)}
                     </div>
                 </div>
-                <div className="flex gap-5 py-1">
+                <div className="flex gap-5 py-1 items-center justify-center">
+                    <a href={joinURL} target="_blank">
+                        <ComputerDesktopIcon className="w-5 h-5" />
+                    </a>
                     <button
                         onClick={() => {
                             router.push(
