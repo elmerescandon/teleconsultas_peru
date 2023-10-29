@@ -16,6 +16,7 @@ interface IAppointment {
     treatment?: string[],
     prescription?: string[],
     summary?: string,    
+    joinURL?: string,
 }
 
 export default IAppointment;
