@@ -43,9 +43,9 @@ const EspecialityInformation = ({
                 {title}
             </p>
             <div className="flex flex-col gap-3 pt-5">
-                {items.map((item) => {
+                {items.map((item, key) => {
                     return (
-                        <div className="flex gap-3">
+                        <div className="flex gap-3" key={key}>
                             <Image
                                 src="./icons/ICON_CRUZ_BLUE.svg"
                                 width={30}
