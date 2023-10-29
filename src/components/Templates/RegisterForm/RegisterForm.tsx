@@ -54,7 +54,6 @@ const RegisterForm = ({ role }: RegisterFormProps) => {
                 <div className="pb-3 flex flex-col justify-start">
                     {step === 1 && (
                         <RegisterGeneral
-                            role={role}
                             nextFn={() => {
                                 setStep(step + 1);
                             }}

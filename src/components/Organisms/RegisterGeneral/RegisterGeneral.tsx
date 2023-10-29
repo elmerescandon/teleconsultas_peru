@@ -5,19 +5,16 @@ import useRegister from "@/utils/hooks/useRegister";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import { useEffect, useState } from "react";
 import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
-import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext";
 
 type RegisterGeneralProps = {
-    role: string;
     nextFn: () => void;
 };
 
-const RegisterGeneral = ({ nextFn, role }: RegisterGeneralProps) => {
+const RegisterGeneral = ({ nextFn }: RegisterGeneralProps) => {
     const { formFields, handleChange, handleValidations, handleRegister } =
         useRegister();
     const [checkForms, setCheckForms] = useState<boolean>(false);
-    const dispatch =
-        role === "doctor" ? useDoctorRegisterDispatch() : useRegisterDispatch();
+    const dispatch = useRegisterDispatch();
 
     useEffect(() => {
         if (checkForms && handleRegister("general")) {
