@@ -27,7 +27,7 @@ const PhoneSteps = ({ color }: PhoneStepsProps) => {
         <div
             className={`flex justify-center py-5 ${colorValue} items-center mr-48 rounded-r-3xl`}
         >
-            <div className="max-w-[50vh]">
+            <div className="max-w-[80vh]">
                 <p className="text-5xl font-semibold text-salufy-blue text-right pb-5">
                     Agenda tu cita donde quieras cuando quieras
                 </p>
@@ -36,7 +36,7 @@ const PhoneSteps = ({ color }: PhoneStepsProps) => {
                     tus necesidades y disponibilidad
                 </p>
                 <div className="w-full">
-                    <p className="text-5xl text-salufy-gray font-semibold pb-5">
+                    <p className="text-5xl text-salufy-gray font-semibold pb-5 text-right">
                         ¡Empezar es sencillo!
                     </p>
                     <div className="flex flex-col justify-end w-full items-end gap-5">
