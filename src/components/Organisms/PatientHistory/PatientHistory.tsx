@@ -50,8 +50,6 @@ const PatientHistory = () => {
         appointmentsBySpecialty
     );
 
-    console.log(appointmentsBySpecialty);
-
     return (
         <div className="w-1/3 rounded-3xl border-neutral-300 border-2 py-5 px-10 h-96 max-xl:h-full max-xl:w-full">
             <div className="text-xl font-semibold">Historial Médico</div>

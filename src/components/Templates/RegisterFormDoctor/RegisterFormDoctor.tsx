@@ -54,7 +54,6 @@ const RegisterFormDoctor = () => {
                             role="doctor"
                             nextFn={() => {
                                 setStep(step + 1);
-                                console.log(formState);
                             }}
                         />
                     )}
@@ -66,7 +65,6 @@ const RegisterFormDoctor = () => {
                             }}
                             nextFn={() => {
                                 setStep(step + 1);
-                                console.log(formState);
                             }}
                         />
                     )}
@@ -76,7 +74,6 @@ const RegisterFormDoctor = () => {
                                 setStep(step - 1);
                             }}
                             nextFn={() => {
-                                console.log(formState);
                                 postUser();
                             }}
                         />

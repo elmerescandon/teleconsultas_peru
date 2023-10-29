@@ -39,7 +39,6 @@ const ReserveAppointmentForms = () => {
         getSpecialitiesFromDb();
         const defaultSpeciality = searchParams.get("spec");
         if (defaultSpeciality) {
-            console.log("hello");
             dispatch({
                 type: "SET_SPECIALITY",
                 payload: defaultSpeciality,
