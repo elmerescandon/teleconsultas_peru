@@ -19,7 +19,7 @@ const CircleFeature = ({
                 return {
                     bg: "bg-neutral-50",
                     border: "border-brand-500",
-                    titleColor: "text-classic-black",
+                    titleColor: "text-salufy-blue",
                     subtitleColor: "text-neutral-600",
                     position: position === "top" ? "-mt-20" : "",
                 };
