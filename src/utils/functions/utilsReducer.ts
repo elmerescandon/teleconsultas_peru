@@ -21,6 +21,7 @@ export const dbToUser = (userDb: IUser) => {
       region: userDb.region!,
       reference: userDb.reference!,
       interiorNumber: userDb.interiorNumber!,
+      specialities: userDb.specialities!,
     }; 
     return user;
 }
