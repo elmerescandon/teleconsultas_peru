@@ -22,6 +22,7 @@ export const initialState: IUserState = {
         district: "",
         reference: "",
         interiorNumber: "",
+        specialities: [],
     },
 };
 
