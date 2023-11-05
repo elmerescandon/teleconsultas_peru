@@ -4,7 +4,7 @@ import PopUpAddAvailability from "@/components/Atoms/PopUp/PopUpAddAvailability/
 import DayAvailability from "@/components/Molecules/DayAvailability/DayAvailability";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const DoctorAvailabilityHours = () => {
     const user: IUserState = useAppSelector((state) => state.user);
@@ -12,6 +12,7 @@ const DoctorAvailabilityHours = () => {
     const { _id, specialities } = userInfo;
     const [showAddAvailability, setShowAddAvailability] =
         useState<boolean>(false);
+
     return (
         <div className="flex flex-col items-center gap-1">
             <ButtonPrimary
@@ -35,11 +36,7 @@ const DoctorAvailabilityHours = () => {
             </div> */}
             {showAddAvailability && (
                 <PopUpAddAvailability
-                    specialityId={
-                        specialities && specialities.length > 0
-                            ? specialities[0]
-                            : ""
-                    }
+                    specialityId={specialities ? specialities[0] : ""}
                     onClose={() => {
                         setShowAddAvailability(false);
                     }}
