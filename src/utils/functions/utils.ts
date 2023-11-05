@@ -6,6 +6,7 @@ import IAppointment from "../Interfaces/reducers/IAppointment";
 import doctorAvailabilityMockup from "../mockups/doctorAvailabilityMockup";
 import { parse } from "date-fns";
 import ISelectOptions from "../Interfaces/ISelectOptions";
+import dayjs from "dayjs";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
@@ -124,3 +125,28 @@ export const createAppointment = (appointment : IAppointment, patient : IUserInf
   }
   return newAppointment;
 }
+
+export const createAvailabilitiesSlots = (date: string, startTime: string, endTime: string) => {
+  const dates : IAvailableAppointment[] = [];
+  const start = dayjs(date)
+      .hour(parseInt(startTime.split(":")[0]))
+      .minute(parseInt(startTime.split(":")[1]));
+  const end = dayjs(date)
+      .hour(parseInt(endTime.split(":")[0]))
+      .minute(parseInt(endTime.split(":")[1]));
+
+  for (let i = start; i.isBefore(end); i = i.add(30, "minute")) {
+      let startDate = new Date(i.toDate());
+      let startDateCorrected = new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000).toISOString().slice(0, -1);
+
+      let endDate = new Date(i.add(30,"minute").toDate());
+      let endDateCorrected = new Date(endDate.getTime() - endDate.getTimezoneOffset() * 60000).toISOString().slice(0, -1);
+
+      dates.push({
+        available: true,
+        startDate: startDateCorrected,
+        endDate: endDateCorrected,
+      });
+  }
+  return dates;
+};
