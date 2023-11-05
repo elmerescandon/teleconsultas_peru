@@ -4,6 +4,8 @@ import ButtonPrimary from "../../Buttons/ButtonPrimary/ButtonPrimary";
 import { DatePicker } from "@mui/x-date-pickers";
 import InputSelect from "../../Inputs/InputSelect/InputSelect";
 import { hoursOptions } from "@/utils/constants/registerSelect";
+import dayjs, { Dayjs } from "dayjs";
+import { createAvailabilitiesSlots } from "@/utils/functions/utils";
 
 type PopUpAddAvailabilityProps = {
     onClose: () => void;
@@ -16,12 +18,17 @@ const PopUpAddAvailability = ({
     doctorId,
     specialityId,
 }: PopUpAddAvailabilityProps) => {
-    const [date, setDate] = useState<string | null>();
+    const [date, setDate] = useState<string>("");
     const [startTime, setStartTime] = useState<string | null>();
     const [endTime, setEndTime] = useState<string | null>();
 
     const addNewSchedule = async () => {
-        console.log("agregar disponibilidad");
+        console.log(date, startTime, endTime, doctorId, specialityId);
+
+        if (!date || !startTime || !endTime) {
+            return;
+        }
+        const dates = createAvailabilitiesSlots(date, startTime, endTime);
     };
 
     return (
@@ -33,12 +40,19 @@ const PopUpAddAvailability = ({
                 <div className="flex flex-col gap-2"></div>
 
                 <div>
-                    <p className="placeholder-cyan-300">Selecciona la fecha:</p>
+                    <p className="placeholder-cyan-300 pb-5">
+                        Selecciona la fecha:
+                    </p>
                     <DatePicker
+                        minDate={
+                            dayjs(
+                                new Date().setDate(new Date().getDate() + 1)
+                            ) as any
+                        }
                         sx={{
                             width: "100%",
                         }}
-                        label=""
+                        label="Fecha disponibilidad"
                         value={date}
                         onChange={(newValue) => {
                             if (newValue !== null) setDate(newValue.toString());
@@ -56,7 +70,6 @@ const PopUpAddAvailability = ({
                         selectId="begin-day-availability"
                         options={hoursOptions}
                         key={1}
-                        size="small"
                     />
                     <p className="py-3"></p>
                     <InputSelect
@@ -67,7 +80,6 @@ const PopUpAddAvailability = ({
                         selectId="final-day-availability"
                         options={hoursOptions}
                         key={2}
-                        size="small"
                     />
                     {date && (
                         <p className="pt-2 text-lg">{`Fecha: ${
