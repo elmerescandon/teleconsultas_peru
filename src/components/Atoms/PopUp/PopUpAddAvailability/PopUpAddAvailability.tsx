@@ -6,6 +6,9 @@ import InputSelect from "../../Inputs/InputSelect/InputSelect";
 import { hoursOptions } from "@/utils/constants/registerSelect";
 import dayjs, { Dayjs } from "dayjs";
 import { createAvailabilitiesSlots } from "@/utils/functions/utils";
+import addAvailabilities from "@/firebase/Availability/addAvailabilities";
+import { tr } from "date-fns/locale";
+import { set } from "lodash";
 
 type PopUpAddAvailabilityProps = {
     onClose: () => void;
@@ -21,14 +24,24 @@ const PopUpAddAvailability = ({
     const [date, setDate] = useState<string>("");
     const [startTime, setStartTime] = useState<string | null>();
     const [endTime, setEndTime] = useState<string | null>();
+    const [error, setError] = useState<string>("");
 
     const addNewSchedule = async () => {
-        console.log(date, startTime, endTime, doctorId, specialityId);
-
-        if (!date || !startTime || !endTime) {
-            return;
+        try {
+            console.log(date, specialityId);
+            if (!date || !startTime || !endTime) {
+                setError("Por favor, completa todos los campos");
+                return;
+            }
+            const slots = createAvailabilitiesSlots(date, startTime, endTime);
+            const dateInput = new Date().toISOString().split("T")[0];
+            await addAvailabilities(dateInput, specialityId, doctorId, slots);
+            setError("");
+        } catch (error) {
+            setError(
+                (error as Error).message || "Error al agregar disponibilidad"
+            );
         }
-        const dates = createAvailabilitiesSlots(date, startTime, endTime);
     };
 
     return (
@@ -37,6 +50,10 @@ const PopUpAddAvailability = ({
                 <h2 className="text-3xl font-semibold mb-2">
                     Agregar disponibilidad
                 </h2>
+                {error !== "" && (
+                    <p className="text-red-500 font-semibold">{error}</p>
+                )}
+
                 <div className="flex flex-col gap-2"></div>
 
                 <div>
