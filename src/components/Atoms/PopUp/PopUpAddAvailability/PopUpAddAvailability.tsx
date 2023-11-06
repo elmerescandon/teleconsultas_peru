@@ -7,8 +7,6 @@ import { hoursOptions } from "@/utils/constants/registerSelect";
 import dayjs, { Dayjs } from "dayjs";
 import { createAvailabilitiesSlots } from "@/utils/functions/utils";
 import addAvailabilities from "@/firebase/Availability/addAvailabilities";
-import { tr } from "date-fns/locale";
-import { set } from "lodash";
 
 type PopUpAddAvailabilityProps = {
     onClose: () => void;
