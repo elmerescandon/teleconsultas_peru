@@ -2,6 +2,7 @@
 import React from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "dayjs/locale/es-mx";
 
 type HistoryLayoutProps = {
     children: React.ReactNode;
@@ -9,7 +10,7 @@ type HistoryLayoutProps = {
 
 const HistoryLayout = ({ children }: HistoryLayoutProps) => {
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es-mx">
             {children}
         </LocalizationProvider>
     );

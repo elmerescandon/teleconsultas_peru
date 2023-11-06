@@ -1,6 +1,7 @@
 "use client";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "dayjs/locale/es-mx";
 import React from "react";
 
 type RegisterLayoutProps = {
@@ -9,7 +10,7 @@ type RegisterLayoutProps = {
 
 const DoctorProfileLayout = ({ children }: RegisterLayoutProps) => {
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es-mx">
             {children}
         </LocalizationProvider>
     );
