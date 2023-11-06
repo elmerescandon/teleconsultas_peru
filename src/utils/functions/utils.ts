@@ -150,3 +150,9 @@ export const createAvailabilitiesSlots = (date: string, startTime: string, endTi
   }
   return dates;
 };
+
+
+export const dateToSpanish = (date : string) => {
+  const spanishDate = parse(date, 'yyyy-MM-dd', new Date()).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  return spanishDate.charAt(0).toUpperCase() + spanishDate.slice(1);
+}
