@@ -49,12 +49,15 @@ const PopUpMyAvailability = ({
                     {loading && <LoadingCircle />}
                     {allAvailabilities && (
                         <div className="flex flex-col gap-5">
-                            {allAvailabilities.map((availability) => (
-                                <div className="flex flex-col gap-5">
+                            {allAvailabilities.map((availability, index) => (
+                                <div
+                                    className="flex flex-col gap-5"
+                                    key={index}
+                                >
                                     <p className="text-xl font-semibold">
                                         {dateToSpanish(availability.date)}
                                     </p>
-                                    <div className="flex gap-5">
+                                    <div className="flex gap-5 flex-wrap">
                                         {availability.slots.map(
                                             (slot, index) => (
                                                 <SlotAppointment
