@@ -3,7 +3,6 @@ import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
 import RegisterDoctorGeneral from "@/components/Organisms/RegisterDoctorGeneral/RegisterDoctorGeneral";
 import RegisterDoctorInformation from "@/components/Organisms/RegisterDoctorInformation/RegisterDoctorInformation";
 import RegisterDoctorLocation from "@/components/Organisms/RegisterDoctorLocation/RegisterDoctorLocation";
-import RegisterGeneral from "@/components/Organisms/RegisterGeneral/RegisterGeneral";
 import RegisterHeaders from "@/components/Organisms/RegisterHeaders/RegisterHeaders";
 import { registerUser } from "@/firebase/User/addUser";
 import IPosting from "@/utils/Interfaces/hooks/IPosting";
@@ -20,6 +19,14 @@ const RegisterFormDoctor = () => {
         loading: false,
         error: null,
     });
+
+    const nextStep = () => {
+        setStep(step + 1);
+    };
+
+    const prevStep = () => {
+        setStep(step - 1);
+    };
 
     const postUser = async () => {
         setPosting({ loading: true, error: null });
@@ -49,30 +56,16 @@ const RegisterFormDoctor = () => {
 
             {!posting.loading && (
                 <div className="pb-3 flex flex-col justify-start">
-                    {step === 1 && (
-                        <RegisterDoctorGeneral
-                            role="doctor"
-                            nextFn={() => {
-                                setStep(step + 1);
-                            }}
-                        />
-                    )}
+                    {step === 1 && <RegisterDoctorGeneral nextFn={nextStep} />}
                     {step === 2 && (
                         <RegisterDoctorLocation
-                            role="doctor"
-                            prevFn={() => {
-                                setStep(step - 1);
-                            }}
-                            nextFn={() => {
-                                setStep(step + 1);
-                            }}
+                            prevFn={prevStep}
+                            nextFn={nextStep}
                         />
                     )}
                     {step === 3 && (
                         <RegisterDoctorInformation
-                            prevFn={() => {
-                                setStep(step - 1);
-                            }}
+                            prevFn={prevStep}
                             nextFn={() => {
                                 postUser();
                             }}

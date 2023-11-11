@@ -7,14 +7,10 @@ import { useEffect, useState } from "react";
 import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext";
 
 type RegisterDoctorGeneralProps = {
-    role: string;
     nextFn: () => void;
 };
 
-const RegisterDoctorGeneral = ({
-    nextFn,
-    role,
-}: RegisterDoctorGeneralProps) => {
+const RegisterDoctorGeneral = ({ nextFn }: RegisterDoctorGeneralProps) => {
     const { formFields, handleChange, handleValidations, handleRegister } =
         useRegister();
     const [checkForms, setCheckForms] = useState<boolean>(false);

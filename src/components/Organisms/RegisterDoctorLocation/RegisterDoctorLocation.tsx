@@ -11,17 +11,14 @@ import {
     selectProvinces,
 } from "@/utils/functions/utilsRegister";
 import ISelectOptions from "@/utils/Interfaces/ISelectOptions";
-import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext";
 
 type RegisterDoctorLocationProps = {
-    role: string;
     prevFn: () => void;
     nextFn: () => void;
 };
 
 const RegisterDoctorLocation = ({
-    role,
     prevFn,
     nextFn,
 }: RegisterDoctorLocationProps) => {
