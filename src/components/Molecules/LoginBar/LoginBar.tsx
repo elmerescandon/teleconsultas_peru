@@ -1,5 +1,6 @@
 "use client";
 import ButtonSecondary from "@/components/Atoms/Buttons/ButtonSecondary/ButtonSecondary";
+import InputSelectSmall from "@/components/Atoms/Inputs/InputSelectSmall/InputSelectSmall";
 import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
 import { getUser } from "@/firebase/User/getUser";
 import {
@@ -12,7 +13,7 @@ import { dbToUser } from "@/utils/functions/utilsReducer";
 import Routes from "@/utils/routes/Routes";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const LoginBar = () => {
     const state: IUserState = useAppSelector((state) => state.user);
@@ -21,6 +22,8 @@ const LoginBar = () => {
     const router = useRouter();
     const dispatch = useAppDispatch();
     const { data: session, status } = useSession();
+
+    const [selectRole, setSelectRole] = useState("");
 
     useEffect(() => {
         const getUserInfo = async (email: string) => {
@@ -65,11 +68,39 @@ const LoginBar = () => {
                     </ButtonSecondary>
                 </div>
             ) : (
-                <div className="login-bar flex flex-row items-center gap-7">
-                    <LinkPrimary to={Routes.LOGIN}>
+                <div className="login-bar flex flex-row items-center justify-center gap-7 bg-brand-600 rounded-2xl px-5">
+                    <InputSelectSmall
+                        onChange={(e) => {
+                            setSelectRole(e);
+                        }}
+                        placeholder="Escoge"
+                        selectId="user-type"
+                        options={[
+                            { value: "patient", label: "Paciente" },
+                            { value: "doctor", label: "Profesional" },
+                        ]}
+                    />
+
+                    <LinkPrimary
+                        to={
+                            selectRole === "patient"
+                                ? Routes.LOGIN_PATIENT
+                                : selectRole === "doctor"
+                                ? Routes.LOGIN_DOCTOR
+                                : Routes.LOGIN
+                        }
+                    >
                         {"Iniciar Sesión"}
                     </LinkPrimary>
-                    <LinkPrimary to={Routes.REGISTER}>
+                    <LinkPrimary
+                        to={
+                            selectRole === "patient"
+                                ? Routes.REGISTER_PATIENT
+                                : selectRole === "doctor"
+                                ? Routes.REGISTER_DOCTOR
+                                : Routes.REGISTER
+                        }
+                    >
                         {"Regístrate"}
                     </LinkPrimary>
                 </div>
