@@ -31,7 +31,7 @@ const page = () => {
         <div>
             <Header />
             <EspecialityMain
-                title="Psicología"
+                title="Medicina General"
                 subtitle="En Salufy sabemos que la salud mental es un componente esencial en la salud general, por eso nuestro compromiso y esfuerzo en impulsarlo."
                 to={Routes.RESERVE}
                 image={
