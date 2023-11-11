@@ -31,16 +31,16 @@ const page = () => {
             <EspecialityDetails
                 type="nutrition"
                 symptoms={[
-                    "Fatiga e irritabilidad.",
-                    "Vista borrosa.",
-                    "Necesidad frecuentes de orinar.",
-                    "Péridad o aumento excesivo de peso.",
+                    "Fatiga.",
+                    "Dolor de cabeza.",
+                    "Problemas digestivos.",
+                    "Problemas de piel.",
                 ]}
                 risks={[
-                    "Mala alimentación.",
-                    "Factores genéticos.",
+                    "Trastornos alimentarios.",
+                    "Problemas de salud mental.",
                     "Poca actividad física.",
-                    "Consumo de alcohol y tabaco.",
+                    "Estrés.",
                 ]}
             />
             <PhoneSteps color="nutrition" />

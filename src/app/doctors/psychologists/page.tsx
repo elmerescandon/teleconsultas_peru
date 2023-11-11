@@ -29,16 +29,16 @@ const page = () => {
             <EspecialityDetails
                 type="psychology"
                 risks={[
-                    "Baja autoestima.",
-                    "Ansiedad generalizada.",
-                    "Irriabilidad",
-                    "Descontrol emocional.",
+                    "Ansiedad.",
+                    "Depresión.",
+                    "Trastornos alimentarios",
+                    "Desanimo.",
                 ]}
                 symptoms={[
-                    "Agresividad",
-                    "Sobreprotección",
-                    "Incomodidad con uno mismo",
-                    "Dificultad para relacionarse con los demás",
+                    "Historial de abuso o negligencia",
+                    "Abuso de sustancias",
+                    "Dificultad para dormir",
+                    "Problemas de salud física",
                 ]}
             />
             <PhoneSteps color="psychology" />
