@@ -1,5 +1,5 @@
 import { Dispatch, createContext, useContext, useReducer } from "react";
-import { IRegisterDoctorActions } from "../Interfaces/reducers/IRegisterAction";
+import { IRegisterDoctorActions } from "../../Interfaces/reducers/IRegisterAction";
 
 enum RegisterActions {
     SET_GENERAL = "SET_GENERAL",

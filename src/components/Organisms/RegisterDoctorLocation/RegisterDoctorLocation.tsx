@@ -11,7 +11,7 @@ import {
     selectProvinces,
 } from "@/utils/functions/utilsRegister";
 import ISelectOptions from "@/utils/Interfaces/ISelectOptions";
-import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext";
+import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext/RegisterDoctorContext";
 
 type RegisterDoctorLocationProps = {
     prevFn: () => void;

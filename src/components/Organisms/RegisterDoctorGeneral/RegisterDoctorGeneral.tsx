@@ -4,7 +4,7 @@ import RegisterRow from "../RegisterRow/RegisterRow";
 import useRegister from "@/utils/hooks/useRegister";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import { useEffect, useState } from "react";
-import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext";
+import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext/RegisterDoctorContext";
 
 type RegisterDoctorGeneralProps = {
     nextFn: () => void;

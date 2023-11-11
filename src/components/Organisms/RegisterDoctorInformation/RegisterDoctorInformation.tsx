@@ -7,7 +7,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { Checkbox, FormControlLabel } from "@mui/material";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import useDoctorRegister from "@/utils/hooks/useDoctorRegister";
-import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext";
+import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext/RegisterDoctorContext";
 import { specialityOptions } from "@/utils/constants/registerSelect";
 
 type RegisterDoctorInformationProps = {

@@ -6,7 +6,7 @@ import RegisterDoctorLocation from "@/components/Organisms/RegisterDoctorLocatio
 import RegisterHeaders from "@/components/Organisms/RegisterHeaders/RegisterHeaders";
 import { registerUser } from "@/firebase/User/addUser";
 import IPosting from "@/utils/Interfaces/hooks/IPosting";
-import { useDoctorRegisterState } from "@/utils/context/RegisterDoctorContext";
+import { useDoctorRegisterState } from "@/utils/context/RegisterDoctorContext/RegisterDoctorContext";
 import Routes from "@/utils/routes/Routes";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
