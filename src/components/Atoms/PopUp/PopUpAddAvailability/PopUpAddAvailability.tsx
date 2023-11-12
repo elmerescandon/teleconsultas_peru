@@ -1,12 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import ButtonPrimary from "../../Buttons/ButtonPrimary/ButtonPrimary";
-import { DatePicker } from "@mui/x-date-pickers";
+import AddAvailabilityByDate from "@/components/Molecules/AddAvailabilityByDate/AddAvailabilityByDate";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 import InputSelect from "../../Inputs/InputSelect/InputSelect";
-import { hoursOptions } from "@/utils/constants/registerSelect";
-import dayjs, { Dayjs } from "dayjs";
-import { createAvailabilitiesSlots } from "@/utils/functions/utils";
-import addAvailabilities from "@/firebase/Availability/addAvailabilities";
+import AddAvailabilityByPrevDay from "@/components/Molecules/AddAvailabilityByPrevDay/AddAvailabilityByPrevDay";
 
 type PopUpAddAvailabilityProps = {
     onClose: () => void;
@@ -19,97 +16,57 @@ const PopUpAddAvailability = ({
     doctorId,
     specialityId,
 }: PopUpAddAvailabilityProps) => {
-    const [date, setDate] = useState<string>("");
-    const [startTime, setStartTime] = useState<string | null>();
-    const [endTime, setEndTime] = useState<string | null>();
-    const [error, setError] = useState<string>("");
-
-    const addNewSchedule = async () => {
-        try {
-            if (!date || !startTime || !endTime) {
-                setError("Por favor, completa todos los campos");
-                return;
-            }
-            const slots = createAvailabilitiesSlots(date, startTime, endTime);
-            const dateInput = new Date().toISOString().split("T")[0];
-            await addAvailabilities(dateInput, specialityId, doctorId, slots);
-            setError("");
-        } catch (error) {
-            setError(
-                (error as Error).message || "Error al agregar disponibilidad"
-            );
-        }
-    };
-
+    const [state, setState] = useState<string>("1");
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-28 rounded-3xl flex flex-col gap-5">
-                <h2 className="text-3xl font-semibold mb-2">
-                    Agregar disponibilidad
-                </h2>
-                {error !== "" && (
-                    <p className="text-red-500 font-semibold">{error}</p>
-                )}
+            <div className="bg-white p-10 rounded-3xl flex flex-col gap-5 h-2/3">
+                <button onClick={onClose}>
+                    <XMarkIcon className="w-10 h-10 ml-auto" />
+                </button>
 
-                <div className="flex flex-col gap-2"></div>
+                <div className="px-10 pb-10 h-full">
+                    <h2 className="text-3xl font-semibold mb-2">
+                        Agregar disponibilidad
+                    </h2>
 
-                <div>
-                    <p className="placeholder-cyan-300 pb-5">
-                        Selecciona la fecha:
-                    </p>
-                    <DatePicker
-                        minDate={
-                            dayjs(
-                                new Date().setDate(new Date().getDate() + 1)
-                            ) as any
-                        }
-                        sx={{
-                            width: "100%",
-                        }}
-                        label="Fecha disponibilidad"
-                        value={date}
-                        onChange={(newValue) => {
-                            if (newValue !== null) setDate(newValue.toString());
-                        }}
-                    />
-                </div>
+                    <div className="px-5 py-5 bg-brand-600 rounded-2xl my-5">
+                        <InputSelect
+                            selectId="select-availability-type"
+                            placeholder="Tipo de disponibilidad"
+                            onChange={(value) => {
+                                setState(value);
+                            }}
+                            fistValue="1"
+                            options={[
+                                {
+                                    label: "Agregar disponibilidad",
+                                    value: "1",
+                                },
+                                {
+                                    label: "Replicar disponibilidad",
+                                    value: "2",
+                                },
+                            ]}
+                        />
+                    </div>
 
-                <div>
-                    <p className="py-3">Indica nuevo horario disponible</p>
-                    <InputSelect
-                        onChange={(newTime: string) => {
-                            setStartTime(newTime);
-                        }}
-                        placeholder="Inicio"
-                        selectId="begin-day-availability"
-                        options={hoursOptions}
-                        key={1}
-                    />
-                    <p className="py-3"></p>
-                    <InputSelect
-                        onChange={(newTime: string) => {
-                            setEndTime(newTime);
-                        }}
-                        placeholder="Final"
-                        selectId="final-day-availability"
-                        options={hoursOptions}
-                        key={2}
-                    />
-                    {date && (
-                        <p className="pt-2 text-lg">{`Fecha: ${
-                            new Date(date).toLocaleString().split(",")[0]
-                        } `}</p>
+                    {state !== "2" && state !== "1" && (
+                        <p className="h-full text-xl w-72 text-center text-gray-500">
+                            Selecciona cómo desea agregar su disponibilidad
+                        </p>
                     )}
-                    {startTime && endTime && (
-                        <p className="pt-3 text-lg">{`Horario: ${startTime} - ${endTime}`}</p>
+                    {state === "2" && (
+                        <AddAvailabilityByPrevDay
+                            doctorId={doctorId}
+                            specialityId={specialityId}
+                        />
                     )}
-                </div>
-
-                <div className="flex flex-col gap-5">
-                    <ButtonPrimary onClickFn={addNewSchedule}>
-                        Agregar
-                    </ButtonPrimary>
-                    <ButtonPrimary onClickFn={onClose}>Cerrar</ButtonPrimary>
+                    {state === "1" && (
+                        <AddAvailabilityByDate
+                            doctorId={doctorId}
+                            specialityId={specialityId}
+                        />
+                    )}
                 </div>
             </div>
         </div>
