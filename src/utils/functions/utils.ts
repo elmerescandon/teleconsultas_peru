@@ -7,6 +7,8 @@ import doctorAvailabilityMockup from "../mockups/doctorAvailabilityMockup";
 import { parse } from "date-fns";
 import ISelectOptions from "../Interfaces/ISelectOptions";
 import dayjs from "dayjs";
+import IAvailabilitySlots from "../Interfaces/dataModel/IAvailabilitySlots";
+import { da } from "date-fns/locale";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
@@ -155,4 +157,20 @@ export const createAvailabilitiesSlots = (date: string, startTime: string, endTi
 export const dateToSpanish = (date : string) => {
   const spanishDate = parse(date, 'yyyy-MM-dd', new Date()).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   return spanishDate.charAt(0).toUpperCase() + spanishDate.slice(1);
+}
+
+export const replicateAvailabilities = (newDate: string, availability : IAvailableAppointment[], ) => {
+  const dateInput = new Date(newDate).toISOString().split("T")[0];
+
+  const newAvailability : IAvailabilitySlots = {
+    date: dateInput,
+    slots: availability.map((slot) => {
+      return {
+        available: true,
+        startDate: dateInput + "T" + slot.startDate.split("T")[1],
+        endDate : dateInput + "T" + slot.endDate.split("T")[1],
+      }
+    })
+  }
+  return newAvailability;
 }
