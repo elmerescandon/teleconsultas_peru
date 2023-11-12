@@ -3,6 +3,7 @@ import dbFirestore from '../config';
 import IUserPost from '@/utils/Interfaces/API/Users/IUserPost';
 import { readPatientsSize } from './readUsersSize';
 import { isUserValid } from './isUserValid';
+import { uploadDoctorData } from '../Doctor/uploadDoctorData';
 
 const addUser = async (user: IUserPost) => {
     try {
@@ -58,8 +59,6 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
         age: registerPatient.age,
         sex: registerPatient.sex,
         specialities: registerPatient.specialities,
-        curriculum: registerPatient.curriculum,
-        cmpNumber: registerPatient.cmpNumber,
     }
 
     
@@ -70,6 +69,13 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
     const userId = sizePatients === undefined ? 1 : sizePatients + 1;
     user = {...user, _id: `${type}${userId}`}
     await addUser(user);
+    if (type === "doctor"){
+        if (registerPatient.curriculum !== null)
+            uploadDoctorData(registerPatient.curriculum, `${type}${userId}_cv.pdf`, 'curriculum');
+
+        if (registerPatient.cmpNumber !== null)
+            uploadDoctorData(registerPatient.cmpNumber, `${type}${userId}_cmp.pdf`, 'colegiatura');
+    }
     return true;
 }
 
