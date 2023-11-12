@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import RegisterRow from "../RegisterRow/RegisterRow";
 import RegisterField from "@/components/Molecules/RegisterField/RegisterField";
@@ -9,6 +10,7 @@ import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimar
 import useDoctorRegister from "@/utils/hooks/useDoctorRegister";
 import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext/RegisterDoctorContext";
 import { specialityOptions } from "@/utils/constants/registerSelect";
+import InputFile from "@/components/Atoms/Inputs/InputFile/InputFile";
 
 type RegisterDoctorInformationProps = {
     nextFn: () => void;
@@ -34,8 +36,8 @@ const RegisterDoctorInformation = ({
                     sex: formFields.sex.value as string,
                     phone: formFields.phone.value as string,
                     specialities: formFields.specialities.value as string[],
-                    cmpNumber: formFields.cmpNumber.value as string,
-                    curriculum: formFields.curriculum.value as string,
+                    cmpNumber: formFields.cmpNumber.value as File,
+                    curriculum: formFields.curriculum.value as File,
                     termsAndConditions: formFields.termsAndConditions
                         .value as string,
                 },
@@ -70,7 +72,7 @@ const RegisterDoctorInformation = ({
 
                     <RegisterField
                         title="Especialidad*"
-                        error={formFields.sex.error}
+                        error={formFields.specialities.error}
                     >
                         <InputSelect
                             selectId="especialidad"
@@ -104,30 +106,24 @@ const RegisterDoctorInformation = ({
                 </RegisterRow>
                 <RegisterRow>
                     <RegisterField
-                        title="Número de Colegiado*"
+                        title="Certificado de Colegiado*"
                         error={formFields.cmpNumber.error}
                     >
-                        <InputText
-                            onChangeFn={(height) => {
-                                handleChange("cmpNumber", height);
+                        <InputFile
+                            onChange={(file: File) => {
+                                handleChange("cmpNumber", file);
                             }}
-                            value={formFields.cmpNumber.value as string}
-                            type="number"
-                            placeholder=""
                         />
                     </RegisterField>
 
                     <RegisterField
-                        title="URL de tu CV*"
+                        title="Curriculum (solo PDF)*"
                         error={formFields.curriculum.error}
                     >
-                        <InputText
-                            onChangeFn={(weight) => {
-                                handleChange("curriculum", weight);
+                        <InputFile
+                            onChange={(file: File) => {
+                                handleChange("curriculum", file);
                             }}
-                            value={formFields.curriculum.value as string}
-                            type="text"
-                            placeholder=""
                         />
                     </RegisterField>
 
