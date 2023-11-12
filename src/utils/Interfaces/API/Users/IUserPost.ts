@@ -34,8 +34,6 @@ interface IUserPost {
 
     specialities?: string[];
     studies?: string[];
-    curriculum?: string;
-    cmpNumber?: string;
     cmpPicture?: string;
     availableHours?: {
       date: string,
