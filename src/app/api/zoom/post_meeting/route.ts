@@ -1,4 +1,7 @@
+import getAppointment from "@/firebase/Appointments/getAppointment";
+import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import getTokenAuth from "@/lib/zoom/getTokenAuth";
+import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { sessionDuration, sessionSettings, sessionTimeZone, zoomMeetingURL } from "@/utils/constants/APIConstants"
 import { NextResponse } from "next/server";
 
@@ -13,6 +16,16 @@ export async function GET(request: Request){
     const appointmentMatch = appointmentId.replace(/\D/g, '') as string;
 
     try {
+
+        const appointment = await getAppointment(appointmentId);
+        if (!appointment) return Response.redirect('/404', 301);
+
+        const doctorData = await getDoctorName(appointment.doctorId);
+        if (!doctorData) return Response.redirect('/404', 301);
+
+
+
+
         const zoomToken = await getTokenAuth();
         const res = await fetch(`${zoomMeetingURL}`,{
             headers: {
@@ -21,7 +34,7 @@ export async function GET(request: Request){
             },
             method: 'POST',
             body: JSON.stringify({
-                topic: `Salufy Salud: Cita ${appointmentMatch}`,
+                topic: `Salufy Salud: ${doctorData.name} ${doctorData.lastName} -  Cita ${appointmentMatch}`,
                 type: 2,
                 start_time: startTime.replace('.000', ''),
                 duration: sessionDuration,
