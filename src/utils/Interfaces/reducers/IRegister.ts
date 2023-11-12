@@ -21,8 +21,8 @@ interface IRegister{
     height?: string,
     weight?: string,
     specialities?: string[];
-    curriculum?: string;
-    cmpNumber?: string;
+    curriculum?: File | null;
+    cmpNumber?: File | null;
 
     phone: string,
     bornDate: string,
