@@ -30,7 +30,7 @@ const LinkPrimary = ({ children, to, type, color }: LinkPrimaryProps) => {
             href={to}
             className={`${
                 type ? "text-basic-black bg-basic-white" : `${colorValue}`
-            } rounded-lg px-6 text-md font-semibold py-4 text-center`}
+            } rounded-lg px-6 text-md font-semibold py-4 text-center hover:opacity-80 transition-opacity bg-opacity-80`}
         >
             {children}
         </Link>
