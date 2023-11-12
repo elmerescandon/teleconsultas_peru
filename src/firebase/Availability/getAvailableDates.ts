@@ -8,6 +8,7 @@ export const getAvailableDates = async (date: string, doctorId : string, special
     const snapShot = await getDocs(q);
 
     if (snapShot.empty) {
+        console.log('No hay citas disponibles');
         return null;
     }
 
@@ -17,6 +18,7 @@ export const getAvailableDates = async (date: string, doctorId : string, special
     const dateDocs = await getDocs(dateQuey);
 
     if (dateDocs.empty) {
+        console.log('No hay citas en esta fecha');
         return null;
     }
 
