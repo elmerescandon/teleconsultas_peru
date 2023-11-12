@@ -26,7 +26,6 @@ const PopUpAddAvailability = ({
 
     const addNewSchedule = async () => {
         try {
-            console.log(date, specialityId);
             if (!date || !startTime || !endTime) {
                 setError("Por favor, completa todos los campos");
                 return;
