@@ -43,8 +43,8 @@ type IRegisterActionSetDocInfo ={
         age: string,
         sex: string,
         specialities: string[],
-        cmpNumber: string,
-        curriculum: string,
+        cmpNumber: File,
+        curriculum: File,
         phone: string,
         termsAndConditions: string,
     }
