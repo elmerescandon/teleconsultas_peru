@@ -1,12 +1,11 @@
 import { ref, uploadBytes } from "firebase/storage"
 import { storage } from "../config"
 
-export const uploadDoctorData = async (doctorData: File, dataName: string) => {
+export const uploadDoctorData = async (doctorData: File, dataName: string, subfolder: string) => {
     try{
-        const storageRef = ref(storage, `doctors/${dataName}`);
+        const storageRef = ref(storage, `doctors/${subfolder}/${dataName}`);
         await uploadBytes(storageRef, doctorData);
-        console.log("File uploaded successfully")
     } catch (error) {
-        console.log(error)
+        throw error;
     }
 }
