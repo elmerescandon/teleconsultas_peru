@@ -7,8 +7,6 @@ import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 const addAvailabilities = async (date:string, specialityIdId : string, doctorId : string, slots: IAvailableAppointment[]) => {
 
     try {
-        console.log("heme aqui")
-        console.log(date, specialityIdId, doctorId, slots)
         const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId), where("speciality_id", "==", specialityIdId)));
         const snapShot = await getDocs(q);
     
