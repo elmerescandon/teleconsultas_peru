@@ -12,7 +12,6 @@ import {
 } from "@/utils/functions/utilsRegister";
 import ISelectOptions from "@/utils/Interfaces/ISelectOptions";
 import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
-import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext";
 
 type RegisterLocationProps = {
     role: string;
