@@ -25,7 +25,6 @@ const InputSelectSmall = ({
         onChange(newValue);
     };
     useEffect(() => {
-        console.log(selectedValue);
         if (selectedValue === "" && options.length > 0) {
             setSelectedValue(""); // Set the first option as selected initially
         }
