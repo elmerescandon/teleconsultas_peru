@@ -19,8 +19,8 @@ interface IRegisterDoctor{
     age: string,
     sex: string,
     specialities: string[],
-    cmpNumber: string,
-    curriculum: string,
+    cmpNumber: File | null,
+    curriculum: File | null,
     phone: string,
     termsAndConditions: string,
 }
