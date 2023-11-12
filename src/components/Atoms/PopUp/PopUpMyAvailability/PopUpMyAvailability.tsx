@@ -33,7 +33,7 @@ const PopUpMyAvailability = ({
                 setAllAvailabilities(allAvailabilities);
                 setLoading(false);
             } catch (error) {
-                console.log(error);
+                throw error;
             }
         };
         getAvailabilities();
