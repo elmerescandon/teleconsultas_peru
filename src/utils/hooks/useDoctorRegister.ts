@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { validatePhone } from '../functions/utilsRegister';
+import { fi } from 'date-fns/locale';
 
 export interface IFormField {
-    value: string | string[];
+    value: string | string[] | File;
     error: string;
   }
   
@@ -66,7 +67,7 @@ const useDoctorRegister = () => {
 
   const [formFields, setFormFields] = useState<IFormFields>(fields);
 
-  const handleChange = (fieldName : keyof IFormFields, value : string) => {
+  const handleChange = (fieldName : keyof IFormFields, value : string | File) => {
     setFormFields({
       ...formFields,
       [fieldName]: { ...formFields[fieldName], value },
@@ -94,9 +95,9 @@ const useDoctorRegister = () => {
         refference: (value : string) => (value ? '' : ''),
         interiorNumber: (value : string) => (value ? '' : ''),
         age: (value : string) => (value ? '' : 'Edad es requerido'),  
-        sex: (value: string) => (value ? '' : 'Sexo es requerido'),
-        cmpNumber: (value: string) => (value ? '' : 'Tu número de CMP es requerido'),
-        curriculum: (value: string) => (value ? '' : 'Ajunta link de tu curriculum'),
+        sex: (value: string) => (value ? '' : 'Especialidad es requerido'),
+        cmpNumber: (value: string) => (value ? '' : 'Adjunta tu certificado'),
+        curriculum: (value: string) => (value ? '' : 'Adjunta tu curriculum'),
         phone: (value : string) => (validatePhone(value) ? '' : 'Teléfono es requerido'),
         bornDate: (value : string) => (value ? '' : 'Fecha de nacimiento es requerido'),
         termsAndConditions: (value : string) => (value && value==='true' ? '' : 'Es necesario aceptar los términos y condiciones'),
@@ -115,22 +116,21 @@ const useDoctorRegister = () => {
         const newFormFields = { ...formFields };
         let error = '';
         paramsToValidate.forEach((fieldName) => {
-        const value = formFields[fieldName].value;
-        if(fieldName==='specialities'){
-            const error = validationsArray[fieldName](value as string[]);
-            setFormFields({
-                ...formFields,
-                [fieldName]: { value, error },
-            });
-            return;
-        }else{
-            const error = validations[fieldName](value as string);
-            setFormFields({
-            ...formFields,
-            [fieldName]: { value, error },
-            });
-        }
-        newFormFields[fieldName] = { value, error };
+            const value = formFields[fieldName].value;
+            if(fieldName==='specialities'){
+
+                const value = formFields[fieldName].value;
+                error = validationsArray[fieldName](value as string[]);
+            }
+            else if (fieldName==='curriculum'){
+                const value = formFields[fieldName].value;
+                error = validations[fieldName]((value as File).name);
+            }
+            else{
+                const value = formFields[fieldName].value;
+                error = validations[fieldName](value as string);
+            }
+            newFormFields[fieldName] = { value, error };
         });
         setFormFields(newFormFields);
     };
@@ -138,7 +138,7 @@ const useDoctorRegister = () => {
     const handleValidations = (type: 'general' | 'location' | 'info') => {
         const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
         const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
-        const infoField = ["age", "sex", "cmpNumber", "curriculum", "phone", "bornDate", "termsAndConditions"] as (keyof IFormFields)[];
+        const infoField = ["age", "specialities", "cmpNumber", "curriculum", "phone", "bornDate", "termsAndConditions"] as (keyof IFormFields)[];
         switch (type) {
         case 'general':
             validateAllFields(generalField as (keyof IFormFields)[]);
@@ -155,7 +155,7 @@ const useDoctorRegister = () => {
     const handleRegister = (type: 'general' | 'location' | 'info') => {
         const generalField = ["name", "lastname", "email", "id", "password", "repeatPassword"] as (keyof IFormFields)[];
         const locationField = ["region", "province", "district", "address", "refference", "interiorNumber"] as (keyof IFormFields)[];
-        const infoField = ["age", "sex","cmpNumber", "curriculum", "phone", "bornDate", "termsAndConditions"] as (keyof IFormFields)[];
+        const infoField = ["age", "specialities","cmpNumber", "curriculum", "phone", "bornDate", "termsAndConditions"] as (keyof IFormFields)[];
         
         switch (type) {
         case 'general':
