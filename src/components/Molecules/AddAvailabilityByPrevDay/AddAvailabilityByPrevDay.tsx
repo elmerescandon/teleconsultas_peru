@@ -67,6 +67,11 @@ const AddAvailabilityByPrevDay = ({
             <div>
                 <p className="pb-5">Selecciona la fecha:</p>
                 {error && <p className="text-red-500 font-semibold">{error}</p>}
+                {uploaded && (
+                    <p className="font-semibold py-2 text-emerald-500 text-center">
+                        Se agregó la información correctamente
+                    </p>
+                )}
                 <div className="flex flex-col gap-5 py-5">
                     <DatePicker
                         maxDate={
@@ -107,11 +112,6 @@ const AddAvailabilityByPrevDay = ({
                     </ButtonPrimary>
                 </div>
                 {loading && <LoadingHorizontal />}
-                {uploaded && (
-                    <p className="font-semibold py-2 text-emerald-500 text-center">
-                        Se agregó la información correctamente
-                    </p>
-                )}
             </div>
         </div>
     );
