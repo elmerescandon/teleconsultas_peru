@@ -19,7 +19,7 @@ const PopUpAddAvailability = ({
     const [state, setState] = useState<string>("1");
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-10 rounded-3xl flex flex-col gap-5 h-2/3">
+            <div className="bg-white p-10 rounded-3xl flex flex-col gap-5">
                 <button onClick={onClose}>
                     <XMarkIcon className="w-10 h-10 ml-auto" />
                 </button>
