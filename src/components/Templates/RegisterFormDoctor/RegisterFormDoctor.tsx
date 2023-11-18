@@ -1,5 +1,5 @@
 "use client";
-import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
+import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 import RegisterDoctorGeneral from "@/components/Organisms/RegisterDoctorGeneral/RegisterDoctorGeneral";
 import RegisterDoctorInformation from "@/components/Organisms/RegisterDoctorInformation/RegisterDoctorInformation";
 import RegisterDoctorLocation from "@/components/Organisms/RegisterDoctorLocation/RegisterDoctorLocation";

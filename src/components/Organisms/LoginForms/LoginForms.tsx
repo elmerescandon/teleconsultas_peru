@@ -3,7 +3,7 @@ import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimar
 import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import useUserValidation from "@/utils/hooks/useUserValidation";
 import { useRouter } from "next/navigation";
-import Loading from "@/components/Molecules/Loading/Loading";
+import Loading from "@/components/Molecules/Loaders/Loading/Loading";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Routes from "@/utils/routes/Routes";

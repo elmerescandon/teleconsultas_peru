@@ -5,8 +5,8 @@ import { replicateAvailabilities } from "@/utils/functions/utils";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import React, { useState } from "react";
-import LoadingCircle from "../LoadingCircle/LoadingCircle";
-import Loading from "../Loading/Loading";
+import LoadingCircle from "../Loaders/LoadingCircle/LoadingCircle";
+import Loading from "../Loaders/Loading/Loading";
 
 type AddAvailabilityByPrevDayProps = {
     doctorId: string;

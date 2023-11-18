@@ -1,5 +1,5 @@
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
-import Loading from "@/components/Molecules/Loading/Loading";
+import Loading from "@/components/Molecules/Loaders/Loading/Loading";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";

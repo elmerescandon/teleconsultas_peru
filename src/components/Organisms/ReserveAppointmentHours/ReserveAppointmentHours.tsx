@@ -1,5 +1,5 @@
 import SlotAppointment from "@/components/Atoms/SlotAppointment/SlotAppointment";
-import Loading from "@/components/Molecules/Loading/Loading";
+import Loading from "@/components/Molecules/Loaders/Loading/Loading";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import React, { useState } from "react";
 

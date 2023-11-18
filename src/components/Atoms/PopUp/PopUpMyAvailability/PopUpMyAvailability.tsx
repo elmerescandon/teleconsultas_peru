@@ -3,7 +3,7 @@ import ButtonPrimary from "../../Buttons/ButtonPrimary/ButtonPrimary";
 import { getAllAvailableDates } from "@/firebase/Availability/getAllAvailableDates";
 import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots";
 import SlotAppointment from "../../SlotAppointment/SlotAppointment";
-import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
+import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 import { dateToSpanish } from "@/utils/functions/utils";
 
 type PopUpMyAvailabilityProps = {

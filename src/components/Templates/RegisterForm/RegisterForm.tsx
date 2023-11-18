@@ -1,5 +1,5 @@
 "use client";
-import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
+import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 import RegisterGeneral from "@/components/Organisms/RegisterGeneral/RegisterGeneral";
 import RegisterHeaders from "@/components/Organisms/RegisterHeaders/RegisterHeaders";
 import RegisterInformation from "@/components/Organisms/RegisterInformation/RegisterInformation";

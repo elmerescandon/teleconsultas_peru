@@ -1,6 +1,6 @@
 "use client";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
-import LoadingCircle from "@/components/Molecules/LoadingCircle/LoadingCircle";
+import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 import DoctorAppointmentHistory from "@/components/Organisms/DoctorAppointmentHistory/DoctorAppointmentHistory";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";

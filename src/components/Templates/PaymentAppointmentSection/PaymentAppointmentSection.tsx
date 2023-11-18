@@ -1,6 +1,6 @@
 "use client";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
-import Loading from "@/components/Molecules/Loading/Loading";
+import Loading from "@/components/Molecules/Loaders/Loading/Loading";
 import PaymentOptions from "@/components/Organisms/PaymentOptions/PaymentOptions";
 import PaymentReview from "@/components/Organisms/PaymentReview/PaymentReview";
 import addAppointment from "@/firebase/Appointments/addAppointment";
