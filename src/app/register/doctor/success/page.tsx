@@ -12,13 +12,13 @@ const RegisterSuccess = () => {
             </div>
             <div className="flex-grow w-1/2 flex flex-col items-center h-[63vh] justify-center mx-auto gap-7">
                 <div className="text-4xl font-semibold text-center py-8">
-                    ¡Gracias por registrarte a Salufy! Estamos validando tu
-                    información.
+                    <div>¡Gracias por registrarte a Salufy!</div>
+                    <div>Estamos validando tu información.</div>
                 </div>
                 <p className="text-xl font-semibold text-center py-8">
-                    En unos días recibirás un correo sobre el estado de tu
+                    Recibirás un correo a la brevedad sobre el estado de tu
                     inscripción. Si tienes alguna consulta, comunícate con
-                    nostros a soporte@salufy.com
+                    nostros a soporte@salufyorg.com
                 </p>
                 <div className="flex flex-col gap-5 w-72">
                     <LinkPrimary to={Routes.HOME}>Volver al incio</LinkPrimary>
