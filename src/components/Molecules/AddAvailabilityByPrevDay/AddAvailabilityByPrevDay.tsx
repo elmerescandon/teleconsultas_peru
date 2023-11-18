@@ -5,8 +5,7 @@ import { replicateAvailabilities } from "@/utils/functions/utils";
 import { DatePicker } from "@mui/x-date-pickers";
 import dayjs from "dayjs";
 import React, { useState } from "react";
-import LoadingCircle from "../Loaders/LoadingCircle/LoadingCircle";
-import Loading from "../Loaders/Loading/Loading";
+import LoadingHorizontal from "../Loaders/LoadingHorizontal/LoadingHorizontal";
 
 type AddAvailabilityByPrevDayProps = {
     doctorId: string;
@@ -21,9 +20,11 @@ const AddAvailabilityByPrevDay = ({
     const [newDate, setNewDate] = useState<string>("");
     const [error, setError] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+    const [uploaded, setUploaded] = useState<boolean>(false);
 
     const addNewSchedule = async () => {
         try {
+            setUploaded(false);
             setError("");
             setLoading(true);
             if (!newDate || !prevDate) {
@@ -55,6 +56,9 @@ const AddAvailabilityByPrevDay = ({
             setError(
                 (error as Error).message || "Error al agregar disponibilidad"
             );
+        } finally {
+            setLoading(false);
+            setUploaded(true);
         }
     };
 
@@ -102,6 +106,12 @@ const AddAvailabilityByPrevDay = ({
                         Agregar
                     </ButtonPrimary>
                 </div>
+                {loading && <LoadingHorizontal />}
+                {uploaded && (
+                    <p className="font-semibold py-2 text-emerald-500 text-center">
+                        Se agregó la información correctamente
+                    </p>
+                )}
             </div>
         </div>
     );
