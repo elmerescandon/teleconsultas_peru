@@ -48,7 +48,7 @@ const RegisterFormDoctor = () => {
     };
 
     return (
-        <div className="w-1/2 flex flex-col justify-center m-auto h-fit py-14 max-xl:w-2/3 max-md:w-full">
+        <div className="w-1/2 flex flex-col justify-center m-auto max-xl:w-2/3 max-md:w-full h-2/3 max-xl:h-full">
             <RegisterHeaders
                 currentStep={step}
                 steps={["General", "Ubicación", "Certificaciones"]}
