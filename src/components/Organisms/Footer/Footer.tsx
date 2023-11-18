@@ -3,7 +3,6 @@ import GoogleIcon from "@/components/Atoms/Icons/GoogleIcon";
 import InstagramIcon from "@/components/Atoms/Icons/InstagramIcon";
 import YoutubeIcon from "@/components/Atoms/Icons/YoutubeIcon";
 import LinkIcon from "@/components/Atoms/Links/LinkIcon/LinkIcon";
-import LinkLogo from "@/components/Atoms/Links/LinkLogo/LinkLogo";
 import LinkSecondary2 from "@/components/Atoms/Links/LinkSecondary/LinkSecondary2";
 import Routes from "@/utils/routes/Routes";
 import Image from "next/image";
