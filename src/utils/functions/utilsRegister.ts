@@ -2,12 +2,17 @@ import ISelectOptions from "../Interfaces/ISelectOptions";
 import { currentUbigeo, departments } from "../constants/registerSelect";
 
 
-export const selectDepartments : ISelectOptions[] = departments.map((department) => {
+// selectDepartments must sort all departments alphabetically
+export const selectDepartments: ISelectOptions[] = departments
+  .map((department) => {
     return {
-        value: department.departamento,
-        label: department.nombre,
+      value: department.departamento,
+      label: department.nombre,
     };
-});
+  })
+  .sort((a, b) => a.label.localeCompare(b.label));
+
+
 
 export const selectProvinces = (department : string) => {
     const provinces = currentUbigeo.filter((item) => {
@@ -19,7 +24,7 @@ export const selectProvinces = (department : string) => {
             value: province.provincia,
             label: province.nombre,
         };
-    });
+    }).sort((a, b) => a.label.localeCompare(b.label));;
 }
 
 export const selectDistricts = (department : string, province : string) => {
@@ -32,7 +37,7 @@ export const selectDistricts = (department : string, province : string) => {
             value: district.distrito,
             label: district.nombre,
         };
-    });
+    }).sort((a, b) => a.label.localeCompare(b.label));;
 }
 
 export const validatePhone = (phone : string) => {
