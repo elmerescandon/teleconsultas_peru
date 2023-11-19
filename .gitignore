@@ -40,3 +40,6 @@ next-env.d.ts
 .env.test.local
 .env.production.local
 .env
+
+#api
+__pycache__
