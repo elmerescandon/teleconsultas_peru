@@ -5,6 +5,7 @@ import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots"
 import SlotAppointment from "../../SlotAppointment/SlotAppointment";
 import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 import { dateToSpanish } from "@/utils/functions/utils";
+import SlotAppointmentVisible from "../../SlotAppointmentVisible/SlotAppointmentVisible";
 
 type PopUpMyAvailabilityProps = {
     onClose: () => void;
@@ -21,6 +22,7 @@ const PopUpMyAvailability = ({
         IAvailabilitySlots[]
     >([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string>("");
 
     useEffect(() => {
         const getAvailabilities = async () => {
@@ -33,11 +35,17 @@ const PopUpMyAvailability = ({
                 setAllAvailabilities(allAvailabilities);
                 setLoading(false);
             } catch (error) {
-                throw error;
+                setError((error as Error).message);
+                setLoading(false);
             }
         };
         getAvailabilities();
     }, []);
+
+    // sort by date
+    const newSortedDates = allAvailabilities.sort((a, b) => {
+        return new Date(a.date).getTime() - new Date(b.date).getTime();
+    });
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
@@ -46,10 +54,15 @@ const PopUpMyAvailability = ({
                     Mi disponibilidad
                 </h2>
                 <div className="flex flex-col justify-between h-full gap-10">
+                    {error && (
+                        <p className="text-red-500 font-semibold py-5">
+                            {error}
+                        </p>
+                    )}
                     {loading && <LoadingCircle />}
-                    {allAvailabilities && (
+                    {newSortedDates && (
                         <div className="flex flex-col gap-5">
-                            {allAvailabilities.map((availability, index) => (
+                            {newSortedDates.map((availability, index) => (
                                 <div
                                     className="flex flex-col gap-5"
                                     key={index}
@@ -60,12 +73,9 @@ const PopUpMyAvailability = ({
                                     <div className="flex gap-5 flex-wrap">
                                         {availability.slots.map(
                                             (slot, index) => (
-                                                <SlotAppointment
+                                                <SlotAppointmentVisible
                                                     key={index}
                                                     availableAppointment={slot}
-                                                    id={index + 1000}
-                                                    currentId={index}
-                                                    setId={() => {}}
                                                 />
                                             )
                                         )}
