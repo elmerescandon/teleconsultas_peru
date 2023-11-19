@@ -7,7 +7,7 @@ import BurgerHeader from "../BurgerHeader/BurgerHeader";
 const Header = () => {
     return (
         <header>
-            <BurgerHeader />
+            {/* <BurgerHeader /> */}
             <div className="max-lg:hidden flex flex-row justify-between items-center py-12 px-48 max-2xl:px-10">
                 <LinkLogo />
                 <div className="flex gap-28 max-xl:gap-8">
