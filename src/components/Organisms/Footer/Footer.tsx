@@ -10,22 +10,31 @@ import React from "react";
 
 const Footer = () => {
     return (
-        <div className="flex flex-row bg-salufy-blue px-48 py-14 max-lg:px-5 max-xl:flex-col max-xl:gap-10">
-            <div className="flex flex-row justify-between gap-14 flex-wrap max-xl:items-center max-xl:justify-center">
-                <div className="flex flex-col gap-2 flex-wrap">
+        <div
+            className="flex flex-row bg-salufy-blue px-48 py-14 
+            max-lg:px-2 max-xl:flex-col max-xl:gap-10 max-xl:py-5"
+        >
+            <div
+                className="flex flex-row justify-between gap-14 flex-wrap 
+                            max-xl:gap-2"
+            >
+                <div
+                    className="flex flex-col justify-between gap-1 flex-wrap
+                                max-xl:justify-start"
+                >
                     <LinkSecondary2 to={Routes.HOME}>Inicio </LinkSecondary2>
                     <LinkSecondary2 to={Routes.TERMS}>
                         Términos y Condiciones
                     </LinkSecondary2>
                 </div>
-                <div className="footer-section footer-section__2 flex flex-col gap-2">
+                <div className="flex flex-col gap-1">
                     <LinkSecondary2 to={Routes.CONTACT_US}>
                         Atención al cliente
                     </LinkSecondary2>
                     <LinkSecondary2 to={""}>
                         soporte@salufyorg.com
                     </LinkSecondary2>
-                    <div className="footer-section__icons flex flex-row gap-2">
+                    <div className="footer-section__icons flex flex-row gap-2 pt-5">
                         <LinkIcon to="">
                             <GoogleIcon size={20} />
                         </LinkIcon>
@@ -47,8 +56,9 @@ const Footer = () => {
                     width={200}
                     height={200}
                     alt="logo-salufy-white"
+                    className="max-xl:w-1/2 max-xl:h-1/2"
                 />
-                <p className="text-lg font-medium text-basic-white">
+                <p className="text-lg font-medium text-basic-white max-lg:text-base">
                     Salud a un click de distancia.
                 </p>
                 <p className="text-sm font-light text-basic-white">
