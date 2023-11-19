@@ -9,17 +9,15 @@ import SecondaryHomeSection from "@/components/Organisms/SecondaryHomeSection/Se
 
 const Home = () => {
     return (
-        <main>
+        <main className="h-screen">
             <Header />
-            <div className="page-body">
-                <MainHomeSection />
-                <CardSection />
-            </div>
-            <PhoneSteps color="normal" />
-            <div className="page-body">
-                <SecondaryHomeSection />
-                <DataSection />
-            </div>
+            <MainHomeSection />
+            {/* <CardSection /> */}
+            {/* <PhoneSteps color="normal" /> */}
+            {/* <div className="page-body"> */}
+            {/* <SecondaryHomeSection /> */}
+            {/* <DataSection /> */}
+            {/* </div> */}
             <Footer />
         </main>
     );
