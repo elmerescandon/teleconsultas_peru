@@ -6,8 +6,9 @@ import Image from "next/image";
 const MainHomeSection = () => {
     return (
         <div
-            className="mx-48 relative max-2xl:mx-10 
-                        max-lg:bg-neutral-200 my-10
+            className="mx-48 relative my-10 
+                        max-2xl:mx-10 
+                        max-lg:bg-neutral-200 max-lg:mt-32
                         max-lg:rounded-t-2xl
                         "
         >
