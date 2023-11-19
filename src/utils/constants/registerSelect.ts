@@ -20,10 +20,10 @@ export const specialityOptions = [
 ]
 
 export const hoursOptions = [
-  { value: '07:00', label: '07:00' },
-  { value: '07:30', label: '07:30' },
-  { value: '08:00', label: '08:00' },
-  { value: '08:30', label: '08:30' },
+  // { value: '07:00', label: '07:00' },
+  // { value: '07:30', label: '07:30' },
+  // { value: '08:00', label: '08:00' },
+  // { value: '08:30', label: '08:30' },
   { value: '09:00', label: '09:00' },
   { value: '09:30', label: '09:30' },
   { value: '10:00', label: '10:00' },
@@ -43,9 +43,9 @@ export const hoursOptions = [
   { value: '17:00', label: '17:00' },
   { value: '17:30', label: '17:30' },
   { value: '18:00', label: '18:00' },
-  { value: '18:30', label: '18:30' },
-  { value: '19:00', label: '19:00' },
-  { value: '19:30', label: '19:30' },
+  // { value: '18:30', label: '18:30' },
+  // { value: '19:00', label: '19:00' },
+  // { value: '19:30', label: '19:30' },
 ];
 
 
