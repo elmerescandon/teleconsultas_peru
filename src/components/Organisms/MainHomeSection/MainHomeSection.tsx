@@ -20,19 +20,19 @@ const MainHomeSection = () => {
                 <h1
                     className="text-3xl text-salufy-blue font-semibold 
                                max-xl:text-2xl max-lg:text-2xl
-                               max-md:text-lg"
+                               max-md:text-3xl max-md:text-center"
                 >
                     Bienvenido a Salufy, salud a un click de distancia
                 </h1>
                 <h4
                     className="text-2xl text-brand-600 font-medium 
                                 max-xl:text-xl max-lg:text-xl
-                                max-md:text-base"
+                                max-md:text-xl max-md:text-center max-md:pt-7"
                 >
                     Conectamos profesionales de la salud con pacientes para una
                     atención personalizada.
                 </h4>
-                <div className="pt-7 max-md:pt-3">
+                <div className="pt-7 max-md:pt-10 max-md:text-center">
                     <LinkPrimary to={Routes.DOCTORS_GENERAL}>
                         Iniciar Sesión
                     </LinkPrimary>
@@ -49,7 +49,7 @@ const MainHomeSection = () => {
                 className="w-full 
                            max-lg:rounded-b-2xl max-lg:block hidden max-lg:pt-4 max-lg:bg-transparent
                            max-md:pt-28
-                           max-sm:pt-44"
+                           max-sm:pt-72"
                 src="/MAIN_HOME_BANNER_MOBILE.png"
                 alt="main-home-banner"
                 width={2000}

@@ -12,7 +12,7 @@ const Footer = () => {
     return (
         <div
             className="flex flex-row bg-salufy-blue px-48 py-14 
-            max-lg:px-2 max-xl:flex-col max-xl:gap-10 max-xl:py-5"
+            max-lg:px-24 max-xl:flex-col max-xl:gap-10 max-xl:py-5"
         >
             <div
                 className="flex flex-row justify-between gap-14 flex-wrap 
