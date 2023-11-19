@@ -52,7 +52,7 @@ const MainHomeSection = () => {
                            max-sm:pt-44"
                 src="/MAIN_HOME_BANNER_MOBILE.png"
                 alt="main-home-banner"
-                width={2000}
+                width={200}
                 height={1000}
             />
         </div>
