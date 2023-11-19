@@ -26,10 +26,10 @@ const PhoneStepsMobile = ({ color }: PhoneStepsProps) => {
     return (
         <div
             className={`flex flex-col ${colorValue} 
-            max-xl:m-0 max-xl:rounded-none max-xl:px-5 py-10 hidden max-xl:block `}
+            max-xl:m-0 max-xl:rounded-none max-xl:px-5 py-10 hidden max-lg:block `}
         >
-            <div className="max-w-[80vh] flex">
-                <div className="flex flex-col items-center justify-center ">
+            <div className="flex w-full justify-end">
+                <div className="flex flex-col items-start justify-center ">
                     <p className="text-3xl text-salufy-gray font-semibold pb-5 text-right max-xl:xl">
                         ¡Empezar es sencillo!
                     </p>
@@ -48,14 +48,14 @@ const PhoneStepsMobile = ({ color }: PhoneStepsProps) => {
                 />
             </div>
 
-            <div>
+            <div className="pt-10">
                 <p
                     className="text-5xl font-semibold text-salufy-blue text-right pb-5
                     max-xl:text-3xl"
                 >
                     Agenda tu cita donde quieras cuando quieras
                 </p>
-                <p className="text-md text-salufy-gray text-right pb-5 font-semibold text-right">
+                <p className="text-md text-salufy-gray text-right pb-5 font-semibold">
                     Salufy te conectar con profesionales de la salud en base a
                     tus necesidades y disponibilidad
                 </p>

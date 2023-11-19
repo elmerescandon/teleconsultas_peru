@@ -25,7 +25,7 @@ const PhoneSteps = ({ color }: PhoneStepsProps) => {
 
     return (
         <div
-            className={`flex justify-center py-5 ${colorValue} items-center mr-48 max-2xl:mr-20 rounded-r-3xl max-xl:hidden`}
+            className={`flex justify-center py-5 ${colorValue} items-center mr-48 max-2xl:mr-20 rounded-r-3xl max-lg:hidden`}
         >
             <div className="max-w-[80vh]">
                 <p className="text-5xl font-semibold text-salufy-blue text-right pb-5">
