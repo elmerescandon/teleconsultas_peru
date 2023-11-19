@@ -12,7 +12,7 @@ const Home = () => {
         <main className="h-screen">
             <Header />
             <MainHomeSection />
-            {/* <CardSection /> */}
+            <CardSection />
             {/* <PhoneSteps color="normal" /> */}
             {/* <div className="page-body"> */}
             {/* <SecondaryHomeSection /> */}
