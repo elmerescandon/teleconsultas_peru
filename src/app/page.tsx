@@ -1,5 +1,6 @@
 "use client";
 import CardSection from "@/components/Organisms/CardSection/CardSection";
+import CardSectionMobile from "@/components/Organisms/CardSection/CardSectionMobile";
 import DataSection from "@/components/Organisms/DataSection/DataSection";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
@@ -13,6 +14,7 @@ const Home = () => {
             <Header />
             <MainHomeSection />
             <CardSection />
+            <CardSectionMobile />
             {/* <PhoneSteps color="normal" /> */}
             {/* <div className="page-body"> */}
             {/* <SecondaryHomeSection /> */}
