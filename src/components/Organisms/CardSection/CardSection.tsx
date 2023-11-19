@@ -1,12 +1,5 @@
 import CardFeature from "@/components/Molecules/CardFeature/CardFeature";
 import ICardContent from "@/utils/Interfaces/ICardContent";
-
-import {
-    LockClosedIcon,
-    ClockIcon,
-    VideoCameraIcon,
-    ComputerDesktopIcon,
-} from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 const CardSection = () => {
@@ -57,7 +50,10 @@ const CardSection = () => {
         },
     ];
     return (
-        <div className="flex gap-10 justify-center flex-wrap py-5 max-lg:10 max-lg:items-center">
+        <div
+            className="flex gap-10 justify-center flex-wrap py-5 
+                       max-lg:items-center max-lg:hidden"
+        >
             {cardsContent.map((cardContent, index) => {
                 return (
                     <CardFeature

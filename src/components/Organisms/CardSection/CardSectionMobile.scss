@@ -1,0 +1,14 @@
+.carousel{
+    cursor: grab;
+    overflow: hidden;
+    padding: 0 40px;
+    display: none;
+    @media (max-width: 1024px) {
+        display: block;
+    }
+}
+
+.inner-carousel{
+    display: flex;
+    gap: 40px;
+}
