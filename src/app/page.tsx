@@ -6,6 +6,7 @@ import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
 import MainHomeSection from "@/components/Organisms/MainHomeSection/MainHomeSection";
 import PhoneSteps from "@/components/Organisms/PhoneSteps/PhoneSteps";
+import PhoneStepsMobile from "@/components/Organisms/PhoneSteps/PhoneStepsMobile";
 import SecondaryHomeSection from "@/components/Organisms/SecondaryHomeSection/SecondaryHomeSection";
 
 const Home = () => {
@@ -15,9 +16,10 @@ const Home = () => {
             <MainHomeSection />
             <CardSection />
             <CardSectionMobile />
-            {/* <PhoneSteps color="normal" /> */}
+            <PhoneSteps color="normal" />
+            <PhoneStepsMobile color="normal" />
             {/* <div className="page-body"> */}
-            {/* <SecondaryHomeSection /> */}
+            <SecondaryHomeSection />
             {/* <DataSection /> */}
             {/* </div> */}
             <Footer />
