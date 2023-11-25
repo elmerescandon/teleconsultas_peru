@@ -14,7 +14,7 @@ const getUserAppointmentsFiltered = async (userId: string, status: string, date:
     const q = query(collection(dbFirestore, "appointments"), and(where("patientId", "==", userId),
                                                                  where("status", "==", status), 
                                                                  where("specialityId", "==", specialityId),
-                                                                 and(where("date", ">=",initDate), where("date", "<=", finishDate))
+                                                                //  and(where("date", ">=",initDate), where("date", "<=", finishDate))
                                                                  ));
     
     const snapShot = await getDocs(q);

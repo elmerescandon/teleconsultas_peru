@@ -5,17 +5,17 @@ import IUserInfo from "@/redux/state-interfaces/User/IUserInfo";
 import getUserAppointmentsFiltered from "@/firebase/Appointments/getUserAppointmentsFiltered";
 import getUserAppointments from "@/firebase/Appointments/getUserAppointments";
 
-const useAppointments = (date : IDateRangeAppointment, user: IUserInfo, setSelectedAppointment: (value: string) => void ) : IAppointment[] => {
+const useAppointments = (date : IDateRangeAppointment, user: IUserInfo, specialityId : string ,setSelectedAppointment: (value: string) => void ) : IAppointment[] => {
 
     const [appointments, setAppointments] = useState<IAppointment[]>([]);
 
     const getAppointments = async () => {
         let appointments: IAppointment[] = [];
 
-        if (date.init === null || date.finish === null) {
+        if (specialityId === "") {
             appointments = await getUserAppointments(user._id, "pending");
         }else{
-            appointments = await getUserAppointmentsFiltered(user._id, "pending", date, "speciality1");
+            appointments = await getUserAppointmentsFiltered(user._id, "pending", date, specialityId);
         }
         setAppointments(appointments);
     };
