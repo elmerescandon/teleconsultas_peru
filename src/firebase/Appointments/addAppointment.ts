@@ -3,15 +3,16 @@ import dbFirestore from '../config';
 import IAppointment from '@/utils/Interfaces/reducers/IAppointment';
 import getAppointmentId from './getAppointmentId';
 import createZoomAppointment from '@/lib/zoom/createZoomAppointment';
+import updateAppointmentField from './updateAppointmentField';
 
 const addAppointment = async (appointment: IAppointment) => {
     try {
         const newAppointment = await getAppointmentId(appointment);
-        const joinURL = await createZoomAppointment(newAppointment._id, newAppointment.startDate);
-        newAppointment.joinURL = joinURL;
         await addDoc(collection(dbFirestore, "appointments"), newAppointment);        
+        const joinURL = await createZoomAppointment(newAppointment._id, newAppointment.startDate);
+        updateAppointmentField(newAppointment._id, "joinURL", joinURL);
     } catch (e) {
-        throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego. Error:" + e);
+        throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego." + e);
     }
 }
 
