@@ -1,13 +1,14 @@
 "use client";
 import AppointmentsBar from "@/components/Molecules/AppointmentsBar/AppointmentsBar";
 import DateFilter from "@/components/Molecules/DateFilter/DateFilter";
+import SpecialityFilter from "@/components/Molecules/SpecialityFilter/SpecialityFilter";
 import PatientAppointmentHistory from "@/components/Organisms/PatientAppointmentHistory/PatientAppointmentHistory";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { IState } from "@/redux/store";
 import IDateRangeAppointment from "@/utils/Interfaces/IDateRangeAppointment";
 import useAppointments from "@/utils/hooks/useAppointments";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const PatientHistorySection = () => {
     const [date, setDate] = useState<IDateRangeAppointment>({
@@ -27,6 +28,7 @@ const PatientHistorySection = () => {
         <div className="px-48 max-xl:px-10 pb-28 min-h-[90vh]">
             <div className="flex justify-between">
                 <h1 className="font-semibold text-4xl py-5">Historia</h1>
+                <SpecialityFilter />
                 <DateFilter date={date} setDate={setDate} />
             </div>
             <AppointmentsBar
