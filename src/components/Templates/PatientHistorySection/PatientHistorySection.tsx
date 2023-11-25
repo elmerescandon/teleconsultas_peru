@@ -3,12 +3,13 @@ import AppointmentsBar from "@/components/Molecules/AppointmentsBar/Appointments
 import DateFilter from "@/components/Molecules/DateFilter/DateFilter";
 import SpecialityFilter from "@/components/Molecules/SpecialityFilter/SpecialityFilter";
 import PatientAppointmentHistory from "@/components/Organisms/PatientAppointmentHistory/PatientAppointmentHistory";
+import { getSpecialities } from "@/firebase/Speciality/getSpecialities";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { IState } from "@/redux/store";
 import IDateRangeAppointment from "@/utils/Interfaces/IDateRangeAppointment";
 import useAppointments from "@/utils/hooks/useAppointments";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const PatientHistorySection = () => {
     const [date, setDate] = useState<IDateRangeAppointment>({
@@ -16,11 +17,13 @@ const PatientHistorySection = () => {
         finish: null,
     });
     const [selectedAppointment, setSelectedAppointment] = useState<string>("");
+    const [specialityId, setSpecialityId] = useState<string>("");
     const user: IUserState = useAppSelector((state: IState) => state.user);
     const { userInfo } = user;
     const appointments = useAppointments(
         date,
         userInfo,
+        specialityId,
         setSelectedAppointment
     );
 
@@ -28,8 +31,10 @@ const PatientHistorySection = () => {
         <div className="px-48 max-xl:px-10 pb-28 min-h-[90vh]">
             <div className="flex justify-between">
                 <h1 className="font-semibold text-4xl py-5">Historia</h1>
-                <SpecialityFilter />
-                <DateFilter date={date} setDate={setDate} />
+                <div className="flex gap-5">
+                    <SpecialityFilter setSpeciality={setSpecialityId} />
+                    <DateFilter date={date} setDate={setDate} />
+                </div>
             </div>
             <AppointmentsBar
                 appointments={appointments}
