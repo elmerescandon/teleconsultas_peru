@@ -38,7 +38,7 @@ const InputSelect = ({
                 id={selectId}
                 className={`text-basic-black focus:text-classic-black border-neutral-300 border-2 rounded-md ${
                     size === "small" ? "h-10" : "h-14"
-                } px-4 pr-10 max-xl:w-full`}
+                } px-4 pr-10 max-xl:w-full w-full`}
                 onChange={handleChange}
                 value={selectedValue}
             >
