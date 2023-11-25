@@ -16,8 +16,11 @@ const ProfileDetailed = () => {
     const [isEditingAdditional, setIsEditingAdditional] = useState(false);
 
     return (
-        <div className="h-2/3 pt-16 flex flex-col gap-7">
-            <div className="flex w-full justify-start gap-10 items-center">
+        <div
+            className="h-2/3 pt-10 flex flex-col gap-7
+                        max-2xl:h-full max-2xl:w-full"
+        >
+            <div className="flex w-full justify-start gap-4 items-center">
                 <div className="text-xl font-semibold">
                     Información Adicional
                 </div>
@@ -38,12 +41,19 @@ const ProfileDetailed = () => {
                             setIsEditingAdditional(true);
                         }}
                     >
-                        <PencilIcon className="h-6 w-6 text-brand-600" />
+                        <PencilIcon className="h-5 w-5 text-brand-600" />
                     </button>
                 )}
             </div>
-            <div className="flex flex-row max-xl:flex-col gap-5">
-                <div className="w-1/2 flex flex-col justify-around">
+            <div
+                className="flex flex-row gap-5
+                            max-2xl:w-full
+                            max-md:flex-col max-md:gap-7"
+            >
+                <div
+                    className="w-1/2 flex flex-col justify-around
+                                max-md:w-full max-md:gap-7"
+                >
                     <LabelProfileMain
                         label="Región"
                         value={
@@ -86,7 +96,10 @@ const ProfileDetailed = () => {
                         editable={isEditingAdditional}
                     />
                 </div>
-                <div className="w-1/2 flex flex-col justify-around gap-10">
+                <div
+                    className="w-1/2 flex flex-col justify-around gap-10
+                                max-md:w-full max-md:gap-7"
+                >
                     <LabelProfileMain
                         label="Teléfono"
                         value={phone}
