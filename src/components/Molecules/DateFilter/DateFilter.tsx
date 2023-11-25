@@ -14,7 +14,7 @@ const DateFilter = ({ date, setDate }: DateFilterProps) => {
                 label="Fecha Inicio"
                 value={date.init}
                 onChange={(newDate) => {
-                    setDate({ ...date, init: newDate });
+                    if (newDate) setDate({ ...date, init: newDate });
                 }}
             />
             <DatePicker
