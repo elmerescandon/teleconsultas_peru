@@ -19,7 +19,10 @@ const ProfileMain = () => {
                         max-2xl:w-full max-2xl:flex-row
                         max-md:flex-col"
         >
-            <div className="flex gap-4 flex-col items-center">
+            <div
+                className="flex gap-4 flex-col items-center
+                            max-md:w-full"
+            >
                 <Image
                     src="/user-icon.jpg"
                     height={200}
@@ -32,7 +35,10 @@ const ProfileMain = () => {
                     <span className="text-brand-600 text-lg">Cambiar foto</span>
                 </button>
             </div>
-            <div className="flex flex-col w-full pr-10  max-xl:w-auto max-xl:items-center gap-5">
+            <div
+                className="flex flex-col w-full pr-10 gap-5
+                            max-md:w-full"
+            >
                 <div className="flex justify-start gap-3 items-center">
                     <p className="text-lg font-semibold">
                         Información Personal
@@ -47,7 +53,10 @@ const ProfileMain = () => {
                         </button>
                     ) : null}
                 </div>
-                <div className="flex flex-col gap-4 pt-5">
+                <div
+                    className="flex flex-col gap-4 pt-5
+                                max-md:w-full max-md:gap-7"
+                >
                     <LabelProfileMain
                         label="Nombre(s)"
                         value={name}
