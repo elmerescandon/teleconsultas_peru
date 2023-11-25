@@ -13,7 +13,11 @@ const LabelProfileMain = ({
     editable,
 }: LabelProfileMainProps) => {
     return (
-        <div className="flex justify-start max-xl:flex-col items-center gap-5 h-12">
+        <div
+            className="flex justify-start items-center gap-5 h-full
+                        max-2xl:h-full
+                        max-md:flex-col max-md:items-start max-md:gap-1"
+        >
             <p className="text-gray-500 w-36">{label}</p>
             {editable ? (
                 <InputText onChangeFn={() => {}} placeholder="" value="" />
