@@ -11,6 +11,7 @@ const useAppointments = (date : IDateRangeAppointment, user: IUserInfo, setSelec
 
     const getAppointments = async () => {
         let appointments: IAppointment[] = [];
+
         if (date.init === null || date.finish === null) {
             appointments = await getUserAppointments(user._id, "pending");
         }else{
