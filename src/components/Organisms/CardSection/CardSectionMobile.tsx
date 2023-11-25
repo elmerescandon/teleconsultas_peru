@@ -56,7 +56,6 @@ const CardSectionMobile = () => {
     ];
 
     useEffect(() => {
-        console.log(carousel.current.scrollWidth);
         setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
     }, []);
 
