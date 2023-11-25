@@ -14,7 +14,11 @@ const ProfileMain = () => {
 
     const [isEditingPersonal, setIsEditingPersonal] = useState(false);
     return (
-        <div className="w-1/3 flex justify-center flex-col items-center gap-10 py-6">
+        <div
+            className="w-1/3 flex justify-center flex-col items-center gap-10 py-6
+                        max-2xl:w-full max-2xl:flex-row
+                        max-md:flex-col"
+        >
             <div className="flex gap-4 flex-col items-center">
                 <Image
                     src="/user-icon.jpg"
@@ -29,7 +33,7 @@ const ProfileMain = () => {
                 </button>
             </div>
             <div className="flex flex-col w-full pr-10  max-xl:w-auto max-xl:items-center gap-5">
-                <div className="flex justify-start gap-20">
+                <div className="flex justify-start gap-3 items-center">
                     <p className="text-lg font-semibold">
                         Información Personal
                     </p>
@@ -39,7 +43,7 @@ const ProfileMain = () => {
                                 setIsEditingPersonal(true);
                             }}
                         >
-                            <PencilIcon className="h-6 w-6 text-brand-600" />
+                            <PencilIcon className="h-5 w-5 text-brand-600 -mb-1" />
                         </button>
                     ) : null}
                 </div>
