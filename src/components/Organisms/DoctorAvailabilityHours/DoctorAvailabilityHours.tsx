@@ -15,20 +15,24 @@ const DoctorAvailabilityHours = () => {
 
     const [myAvaialability, setMyAvailability] = useState<boolean>(false);
     return (
-        <div className="flex  items-center gap-1">
+        <div
+            className="flex items-center gap-4
+                        max-2xl:w-full
+                        max-md:flex-col"
+        >
             <ButtonPrimary
                 onClickFn={() => {
                     setMyAvailability(true);
                 }}
             >
-                Ver mi disponibilidad
+                Ver horario
             </ButtonPrimary>
             <ButtonPrimary
                 onClickFn={() => {
                     setShowAddAvailability(true);
                 }}
             >
-                Agregar disponibilidad
+                Agregar horario
             </ButtonPrimary>
 
             {myAvaialability && (
