@@ -38,7 +38,9 @@ const DoctorAppointmentHistory = ({
 
     return (
         <div className="rounded-t-xl rounded-r-xl border-2 py-10 px-5">
-            <h1 className="text-2xl pb-5">{`Cita ${stringToDate(date)}`}</h1>
+            <h1 className="text-2xl pb-5">{`Cita ${stringToDate(
+                date as unknown as Timestamp
+            )}`}</h1>
             <div className="px-5 max-xl:px-0">
                 <div className="flex flex-row flex-grow gap-24 max-xl:gap-0 pb-10 max-xl:flex-col v max-xl:pb-0 xl:items-center">
                     <div className="w-full">
