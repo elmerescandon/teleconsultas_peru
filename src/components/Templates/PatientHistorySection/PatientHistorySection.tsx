@@ -28,7 +28,7 @@ const PatientHistorySection = () => {
     );
 
     return (
-        <div className="px-48 max-xl:px-10 pb-28 min-h-[90vh]">
+        <div className="px-48 max-xl:px-10 pb-28 h-full">
             <div className="flex justify-between">
                 <h1 className="font-semibold text-4xl py-5">Historia</h1>
                 <div className="flex gap-5">
