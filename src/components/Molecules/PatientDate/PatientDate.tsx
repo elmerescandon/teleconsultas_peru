@@ -50,9 +50,7 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
                 <div>
                     <div>{summary.specialityName}</div>
                     <div>
-                        {(appointment.date as unknown as Timestamp)
-                            .toDate()
-                            .toDateString()}
+                        {stringToDate(appointment.date as unknown as Timestamp)}
                     </div>
                 </div>
                 <div className="w-36 text-left">{summary.doctorName}</div>
