@@ -44,11 +44,17 @@ const page = () => {
                 }
                 type="medicine"
             />
-            <div className="px-72 flex flex-col justify-center items-center">
+            <div
+                className="px-72 flex flex-col justify-center items-center
+                            max-2xl:px-10"
+            >
                 <p className="text-4xl text-brand-600 font-semibold py-5">
                     Especialidades
                 </p>
-                <div className="flex gap-5 py-10 px-48  flex-wrap items-center justify-center">
+                <div
+                    className="flex gap-5 py-10 px-48  flex-wrap items-center justify-center
+                                max-2xl:px-10 max-2xl:gap-2 max-2xl:flex-wrap"
+                >
                     {specialityPhysical.map((speciality, index) => (
                         <LabelPrimary content={speciality} key={index} />
                     ))}
