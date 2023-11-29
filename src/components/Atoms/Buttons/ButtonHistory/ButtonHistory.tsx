@@ -24,9 +24,9 @@ const ButtonHistory = ({
             onClick={() => {
                 onClickFn(appointment._id);
             }}
-        >{`Cita ${(appointment.date as unknown as Timestamp)
-            .toDate()
-            .toDateString()}`}</button>
+        >{`Cita ${stringToDate(
+            appointment.date as unknown as Timestamp
+        )}`}</button>
     );
 };
 
