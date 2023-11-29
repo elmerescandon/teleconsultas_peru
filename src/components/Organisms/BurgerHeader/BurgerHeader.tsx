@@ -35,18 +35,27 @@ const BurgerHeader = () => {
                     <div className="flex flex-col items-start pt-20">
                         <ul className="w-full">
                             <li className="pl-4  py-4">
-                                <LinkSecondary to={Routes.PATIENTS}>
-                                    Pacientes
+                                <LinkSecondary to={Routes.RESERVE_DOCTORS}>
+                                    {"¡Reserva tu cita!"}
                                 </LinkSecondary>
                             </li>
                             <li className="pl-4  py-4">
-                                <LinkSecondary to={Routes.DOCTORS}>
-                                    Doctores
+                                <LinkSecondary to={Routes.DOCTORS_GENERAL}>
+                                    {"Medicina General"}
                                 </LinkSecondary>
                             </li>
                             <li className="pl-4 py-4">
-                                <LinkSecondary to={Routes.ESPECIALITY}>
-                                    Especialidades
+                                <LinkSecondary
+                                    to={Routes.DOCTORS_PSYCHOLOGISTS}
+                                >
+                                    {"Psicólogos"}
+                                </LinkSecondary>
+                            </li>
+                            <li className="pl-4 py-4">
+                                <LinkSecondary
+                                    to={Routes.DOCTORS_NUTRITIONISTS}
+                                >
+                                    {"Nutricionistas"}
                                 </LinkSecondary>
                             </li>
                             <li className="pl-4 py-6 bg-brand-600 -ml-4">
