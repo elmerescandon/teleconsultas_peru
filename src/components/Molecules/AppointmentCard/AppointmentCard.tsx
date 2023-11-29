@@ -11,6 +11,7 @@ import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import Routes from "@/utils/routes/Routes";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { ComputerDesktopIcon } from "@heroicons/react/24/solid";
+import { Timestamp } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -42,7 +43,9 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
 
                 <div className="flex flex-col gap-2 ">
                     <div className="text-md font-semibold">
-                        {appointment.date}
+                        {(appointment.date as unknown as Timestamp)
+                            .toDate()
+                            .toLocaleDateString()}
                     </div>
                     <div className="text-md">
                         {getAppointmentHours(startDate, endDate)}
