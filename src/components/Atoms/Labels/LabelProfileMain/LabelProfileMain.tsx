@@ -14,8 +14,8 @@ const LabelProfileMain = ({
 }: LabelProfileMainProps) => {
     return (
         <div
-            className="flex justify-start items-center gap-5 h-full
-                        max-2xl:h-full w-full
+            className="flex justify-start items-center gap-5
+                        max-2xl:w-full
                         max-md:flex-col max-md:items-start max-md:gap-1"
         >
             <p className="text-gray-500 w-36">{label}</p>
