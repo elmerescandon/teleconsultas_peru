@@ -17,8 +17,8 @@ const ProfileDetailed = () => {
 
     return (
         <div
-            className="h-2/3 pt-10 flex flex-col gap-7
-                        max-2xl:h-full max-2xl:w-full"
+            className="pt-10 flex flex-col gap-3 
+                        max-2xl:h-full max-2xl:w-full max-2xl:gap-7"
         >
             <div className="flex w-full justify-start gap-4 items-center">
                 <div className="text-xl font-semibold">
@@ -51,7 +51,7 @@ const ProfileDetailed = () => {
                             max-md:flex-col max-md:gap-7"
             >
                 <div
-                    className="w-1/2 flex flex-col justify-around
+                    className="w-1/2 flex flex-col justify-start gap-5
                                 max-md:w-full max-md:gap-7"
                 >
                     <LabelProfileMain
@@ -97,7 +97,7 @@ const ProfileDetailed = () => {
                     />
                 </div>
                 <div
-                    className="w-1/2 flex flex-col justify-around gap-10
+                    className="w-1/2 flex flex-col justify-start gap-5
                                 max-md:w-full max-md:gap-7"
                 >
                     <LabelProfileMain
