@@ -37,12 +37,20 @@ const EspecialityDetails = ({
 
     return (
         <div
-            className={`flex items-center mx-48 mb-10 ${colorValue} rounded-3xl justify-between`}
+            className={`flex items-center mx-48 mb-10 ${colorValue} rounded-3xl justify-between 
+                        mx-10
+                        max-2xl:flex-col`}
         >
             {type === "psychology" ? PsychologyContent.banner : null}
             {type === "nutrition" ? NutritionContent.banner : null}
-            <div className="flex pr-32 gap-20 w-full">
-                <div className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit pb-10">
+            <div
+                className="flex pr-32 gap-20 w-full
+                            max-2xl:flex-col max-2xl:gap-10 max-2xl:p-5"
+            >
+                <div
+                    className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit pb-10
+                                max-2xl:w-full"
+                >
                     {type === "psychology" ? PsychologyContent.ratio : null}
                     {type === "nutrition" ? NutritionContent.ratio : null}
                     <p
@@ -67,7 +75,10 @@ const EspecialityDetails = ({
                         ))}
                     </div>
                 </div>
-                <div className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit pb-10">
+                <div
+                    className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit pb-10
+                                max-2xl:w-full"
+                >
                     {type === "psychology" ? PsychologyContent.risk : null}
                     {type === "nutrition" ? NutritionContent.risk : null}
 
