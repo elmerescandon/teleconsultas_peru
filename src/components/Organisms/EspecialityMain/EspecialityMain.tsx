@@ -34,12 +34,22 @@ const EspecialityMain = ({
     }
 
     return (
-        <div className="flex gap-5 px-48 w-full py-20 items-center justify-center">
-            <div className="flex flex-col gap-7 w-1/2 justify-center">
-                <div className={`text-5xl font-semibold ${colorText}`}>
+        <div
+            className="flex gap-5 px-48 w-full py-20 items-center justify-center
+                max-2xl:px-10 max-2xl:flex-col max-2xl:pt-48"
+        >
+            <div
+                className="flex flex-col gap-7 w-1/2 justify-center
+                            max-2xl:w-full max-2xl:items-center max-2xl:gap-10"
+            >
+                <div
+                    className={`text-5xl font-semibold ${colorText} max-2xl:text-center`}
+                >
                     {title}
                 </div>
-                <div className={`text-2xl font-medium ${colorText}`}>
+                <div
+                    className={`text-2xl font-medium ${colorText} max-2xl:text-center`}
+                >
                     {subtitle}
                 </div>
                 <div>
