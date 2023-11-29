@@ -4,6 +4,7 @@ import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { stringToDate } from "@/utils/functions/utils";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
+import { Timestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 
 type PatientDateProps = {
@@ -48,7 +49,11 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
             >
                 <div>
                     <div>{summary.specialityName}</div>
-                    <div>{stringToDate(date)}</div>
+                    <div>
+                        {(appointment.date as unknown as Timestamp)
+                            .toDate()
+                            .toDateString()}
+                    </div>
                 </div>
                 <div className="w-36 text-left">{summary.doctorName}</div>
                 <div className="flex gap-3 items-center">
