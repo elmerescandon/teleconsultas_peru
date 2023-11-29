@@ -114,11 +114,7 @@ const ProfileDetailed = () => {
                         label="Nacimiento"
                         value={
                             bornDate
-                                ? stringToDate(
-                                      new Date(bornDate)
-                                          .toISOString()
-                                          .split("T")[0]
-                                  )
+                                ? new Date(bornDate).toISOString().split("T")[0]
                                 : ""
                         }
                         editable={isEditingAdditional}

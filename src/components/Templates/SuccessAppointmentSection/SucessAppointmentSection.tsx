@@ -71,7 +71,7 @@ const SucessAppointmentSection = () => {
                     name={summary.specialityName}
                 />
                 <PaymentItem label="Profesional" name={summary.doctorName} />
-                <PaymentItem label="Fecha" name={stringToDate(date)} />
+                <PaymentItem label="Fecha" name={date} />
                 <PaymentItem
                     label="Horario"
                     name={getAppointmentHours(startDate, endDate)}

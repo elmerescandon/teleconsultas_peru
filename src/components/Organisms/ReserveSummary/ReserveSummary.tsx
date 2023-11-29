@@ -70,10 +70,7 @@ const ReserveSummary = () => {
                     value={getReasonName(reasonMockup, reason)}
                 />
 
-                <LabelInformation
-                    label="Fecha programada"
-                    value={stringToDate(date)}
-                />
+                <LabelInformation label="Fecha programada" value={date} />
                 <LabelInformation
                     label="Hora programada"
                     value={getAppointmentHours(startDate, endDate)}
