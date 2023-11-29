@@ -10,6 +10,7 @@ import {
     stringToDate,
 } from "@/utils/functions/utils";
 import useAppointmentUpdate from "@/utils/hooks/useAppointmentUpdate";
+import { Timestamp } from "firebase/firestore";
 import React from "react";
 
 type DoctorAppointmentHistoryProps = {
@@ -53,7 +54,9 @@ const DoctorAppointmentHistory = ({
                     <div className="w-full">
                         <LabelInformation
                             label="Fecha"
-                            value={stringToDate(date)}
+                            value={(date as unknown as Timestamp)
+                                .toDate()
+                                .toLocaleDateString()}
                         />
                         <LabelInformation
                             label="Monto"
