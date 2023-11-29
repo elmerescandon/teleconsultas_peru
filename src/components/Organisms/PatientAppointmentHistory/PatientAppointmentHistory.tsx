@@ -2,6 +2,7 @@ import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelIn
 import LabelPoints from "@/components/Atoms/Labels/LabelPoints/LabelPoints";
 import LinkNew from "@/components/Atoms/Links/LinkNew/LinkNew";
 import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
+import NutritionNotesPatient from "@/components/Molecules/NutritionNotesPatient/NutritionNotesPatient";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
@@ -83,6 +84,9 @@ const PatientAppointmentHistory = ({
                         />
                     </div>
                 </div>
+                {specialityId === "speciality3" ? (
+                    <NutritionNotesPatient appointment={appointment} />
+                ) : null}
                 {summary ? (
                     <LabelInformation label="Resumen" value={summary} />
                 ) : null}
