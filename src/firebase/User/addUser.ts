@@ -71,10 +71,10 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
     await addUser(user);
     if (type === "doctor"){
         if (registerPatient.curriculum !== null)
-            uploadDoctorData(registerPatient.curriculum, `${type}${userId}_cv.pdf`, 'curriculum');
+            uploadDoctorData(registerPatient.curriculum, `${type}${userId}.pdf`, 'curriculum');
 
         if (registerPatient.cmpNumber !== null)
-            uploadDoctorData(registerPatient.cmpNumber, `${type}${userId}_cmp.pdf`, 'colegiatura');
+            uploadDoctorData(registerPatient.cmpNumber, `${type}${userId}.pdf`, 'colegiatura');
     }
     return true;
 }
