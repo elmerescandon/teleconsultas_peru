@@ -1,5 +1,6 @@
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { stringToDate } from "@/utils/functions/utils";
+import { Timestamp } from "firebase/firestore";
 import React from "react";
 
 type ButtonHistoryProps = {
@@ -23,7 +24,9 @@ const ButtonHistory = ({
             onClick={() => {
                 onClickFn(appointment._id);
             }}
-        >{`Cita ${stringToDate(appointment.date)}`}</button>
+        >{`Cita ${(appointment.date as unknown as Timestamp)
+            .toDate()
+            .toDateString()}`}</button>
     );
 };
 
