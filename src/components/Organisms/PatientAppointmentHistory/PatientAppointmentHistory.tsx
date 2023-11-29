@@ -1,14 +1,12 @@
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
 import LabelPoints from "@/components/Atoms/Labels/LabelPoints/LabelPoints";
 import LinkNew from "@/components/Atoms/Links/LinkNew/LinkNew";
-import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
 import NutritionNotesPatient from "@/components/Molecules/NutritionNotesPatient/NutritionNotesPatient";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { stringToDate } from "@/utils/functions/utils";
-import doctorsMockup from "@/utils/mockups/doctorsMockup";
-import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
+import { Timestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 
 type PatientAppointmentHistoryProps = {
@@ -60,7 +58,9 @@ const PatientAppointmentHistory = ({
 
     return (
         <div className="rounded-t-xl rounded-r-xl border-2 p-10">
-            <h1 className="text-2xl pb-5">{`Cita ${stringToDate(date)}`}</h1>
+            <h1 className="text-2xl pb-5">{`Cita ${stringToDate(
+                date as unknown as Timestamp
+            )}`}</h1>
             <div className="px-36">
                 <div className="flex flex-row flex-grow gap-24 pb-10 items-start">
                     <div className="w-1/2">
@@ -76,7 +76,7 @@ const PatientAppointmentHistory = ({
                     <div className="w-1/2">
                         <LabelInformation
                             label="Fecha"
-                            value={stringToDate(date)}
+                            value={stringToDate(date as unknown as Timestamp)}
                         />
                         <LabelInformation
                             label="Monto"
@@ -103,9 +103,11 @@ const PatientAppointmentHistory = ({
                     <LabelPoints label="Prescripción" points={treatment} />
                 ) : null}
                 {joinURL ? (
-                    <LinkNew to={joinURL} newTab={true}>
-                        Unirse a la cita
-                    </LinkNew>
+                    <div className="pt-10">
+                        <LinkNew to={joinURL} newTab={true}>
+                            Unirse a la cita
+                        </LinkNew>
+                    </div>
                 ) : null}
             </div>
         </div>
