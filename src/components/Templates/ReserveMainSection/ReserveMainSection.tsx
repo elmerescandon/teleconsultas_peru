@@ -4,11 +4,11 @@ import ReserveAppointmentSection from "../ReserveAppointmentSection/ReserveAppoi
 import ReserveAvailabilitySection from "../ReserveAvailabilitySection/ReserveAvailabilitySection";
 
 const ReserveMainSection = () => {
-    const [type, setType] = useState(0);
+    const [type, setType] = useState(1);
     return (
         <div>
-            <SelectReservation type={type} setType={setType} />
-            {type === 0 ? <ReserveAvailabilitySection /> : null}
+            {/* <SelectReservation type={type} setType={setType} /> */}
+            {/* {type === 0 ? <ReserveAvailabilitySection /> : null} */}
             {type === 1 ? <ReserveAppointmentSection /> : null}
         </div>
     );
