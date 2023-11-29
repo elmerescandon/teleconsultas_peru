@@ -4,10 +4,10 @@ import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots"
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 
 
-const addAvailabilities = async (date:string, specialityIdId : string, doctorId : string, slots: IAvailableAppointment[]) => {
+const addAvailabilities = async (date:string, specialityId : string, doctorId : string, slots: IAvailableAppointment[]) => {
 
     try {
-        const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId), where("speciality_id", "==", specialityIdId)));
+        const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId), where("speciality_id", "==", specialityId)));
         const snapShot = await getDocs(q);
     
         if (snapShot.empty) {
