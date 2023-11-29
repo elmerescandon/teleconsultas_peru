@@ -18,6 +18,7 @@ const DoctorAppointments = () => {
 
     useEffect(() => {
         const getAppointments = async (id: string, status: string) => {
+            if (!id) return console.log("No hay id");
             const appointments = await getDoctorAppointments(id, status);
             if (appointments) {
                 setAppointments(appointments);
