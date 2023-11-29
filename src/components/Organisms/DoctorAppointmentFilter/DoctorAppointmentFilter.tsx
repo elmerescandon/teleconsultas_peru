@@ -21,14 +21,14 @@ const DoctorAppointmentFilter = ({
     return (
         <div className="flex gap-14 justify-between py-5">
             <div className="flex gap-5">
-                <InputSelect
+                {/* <InputSelect
                     onChange={(e: string) => {
                         setFilter({ ...filter, speciality: e });
                     }}
                     placeholder="Escoge tu especialidad"
                     selectId="doctor-speciality"
                     options={specialitiesOptions}
-                />
+                /> */}
                 <DateFilter
                     date={date}
                     setDate={(date) => {
@@ -36,12 +36,12 @@ const DoctorAppointmentFilter = ({
                     }}
                 />
             </div>
-            <InputSearch
+            {/* <InputSearch
                 placeholder="Busca a un paciente"
                 onInputChange={(e: string) => {
                     setFilter({ ...filter, patientName: e });
                 }}
-            />
+            /> */}
         </div>
     );
 };
