@@ -1,3 +1,4 @@
+"use client";
 import SelectReservation from "@/components/Organisms/SelectReservation/SelectReservation";
 import React, { useState } from "react";
 import ReserveAppointmentSection from "../ReserveAppointmentSection/ReserveAppointmentSection";
