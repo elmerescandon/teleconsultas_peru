@@ -12,6 +12,7 @@ import {
     TrashIcon,
     UserIcon,
 } from "@heroicons/react/24/solid";
+import { Timestamp } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -45,7 +46,9 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
                 </div>
                 <div className="flex flex-col gap-2">
                     <div className="text-sm font-semibold">
-                        {appointment.date}
+                        {(appointment.date as unknown as Timestamp)
+                            .toDate()
+                            .toDateString()}
                     </div>
                     <div className="text-sm">
                         {getAppointmentHours(startDate, endDate)}
