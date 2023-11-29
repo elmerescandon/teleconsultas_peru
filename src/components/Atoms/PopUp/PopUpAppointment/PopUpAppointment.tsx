@@ -9,6 +9,7 @@ import {
 } from "@/utils/functions/utils";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
+import { Timestamp } from "firebase/firestore";
 
 type PopUpAppointmentProps = {
     onClose: () => void;
@@ -45,7 +46,7 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-28 rounded-3xl flex flex-col gap-5">
+            <div className="bg-white p-28 rounded-3xl flex flex-col gap-5 w-1/2">
                 <h2 className="text-3xl font-semibold mb-2">
                     {summary.specialityName}{" "}
                 </h2>
@@ -57,7 +58,9 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
 
                     <LabelInformation
                         label="Fecha"
-                        value={stringToDate(appointment.date)}
+                        value={stringToDate(
+                            appointment.date as unknown as Timestamp
+                        )}
                     />
                     <LabelInformation
                         label="Estado"
