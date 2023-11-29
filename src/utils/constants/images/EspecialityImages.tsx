@@ -7,7 +7,7 @@ export const PsychologyContent = {
             alt="salufy-nutri"
             width={600}
             height={500}
-            className="rounded-3xl"
+            className="rounded-3xl max-2xl:hidden"
         />
     ),
     risk: (
@@ -43,7 +43,7 @@ export const NutritionContent = {
             alt="salufy-nutri"
             width={600}
             height={500}
-            className="rounded-3xl"
+            className="rounded-3xl  max-2xl:hidden"
         />
     ),
     risk: (
