@@ -7,19 +7,19 @@ import Image from "next/image";
 const SecondaryHomeSection = () => {
     return (
         <div
-            className="mx-48 relative max-2xl:mx-10 
-                       max-lg:bg-neutral-200 my-10
+            className="mx-48 relative my-10 
+                       max-lg:bg-neutral-200 max-2xl:mx-10  
                        max-lg:rounded-2xl"
         >
             <div
-                className="absolute top-1/3 w-2/5 pr-20 right-0
-                            max-xl:w-3/6 max-xl:static
-                            max-lg:w-fit max-lg:top-0 max-lg:p-5 max-lg:rounded-t-2xl max-lg:z-10 max-lg:py-10"
+                className="absolute top-1/4 w-2/5 pr-20 right-0
+                            max-xl:w-3/6 max-xl:right-0
+                            max-lg:w-fit max-lg:top-0 max-lg:p-5 max-lg:rounded-t-2xl max-lg:z-10 max-lg:py-10 max-lg:static"
             >
                 <p
                     className="text-3xl text-salufy-blue font-semibold text-right
-                    max-xl:text-4xl 
-                    max-md:text-4xl max-md:text-center"
+                    max-xl:text-3xl 
+                    max-md:text-2xl max-md:text-center"
                 >
                     Lleva un registro de tus citas e historial médico
                 </p>
