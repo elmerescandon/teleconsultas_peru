@@ -3,7 +3,6 @@ import EspecialityMain from "@/components/Organisms/EspecialityMain/EspecialityM
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
 import PhoneSteps from "@/components/Organisms/PhoneSteps/PhoneSteps";
-import ReviewDoctorSection from "@/components/Organisms/ReviewDoctorSection/ReviewDoctorSection";
 import Routes from "@/utils/routes/Routes";
 import Image from "next/image";
 import React from "react";
@@ -42,7 +41,7 @@ const page = () => {
                 ]}
             />
             <PhoneSteps color="psychology" />
-            <ReviewDoctorSection />
+            {/* <ReviewDoctorSection /> */}
             <Footer />
         </div>
     );
