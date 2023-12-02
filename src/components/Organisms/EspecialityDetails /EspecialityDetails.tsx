@@ -37,28 +37,33 @@ const EspecialityDetails = ({
 
     return (
         <div
-            className={`flex items-center mx-48 mb-10 ${colorValue} rounded-3xl justify-between 
-                        mx-10
-                        max-2xl:flex-col`}
+            className={`flex mb-10 ${colorValue} rounded-3xl mx-48 
+                        max-2xl:mx-20 max-2xl:mb-10
+                        max-lg:flex-col
+                        max-md:mx-5`}
         >
             {type === "psychology" ? PsychologyContent.banner : null}
             {type === "nutrition" ? NutritionContent.banner : null}
             <div
-                className="flex pr-32 gap-20 w-full
-                            max-2xl:flex-col max-2xl:gap-10 max-2xl:p-5"
+                className="flex pr-10 gap-10 w-full
+                             max-2xl:gap-10 max-2xl:py-5 max-2xl:px-10
+                             max-lg:flex-col max-lg:gap-10 max-lg:py-10
+                             max-md:gap-5 max-md:py-5 max-md:px-5"
             >
                 <div
-                    className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit pb-10
-                                max-2xl:w-full"
+                    className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit my-10 pb-10
+                                max-2xl:w-full max-2xl:flex-grow
+                                max-lg:my-0 max-lg:pb-10 max-lg:items-center"
                 >
                     {type === "psychology" ? PsychologyContent.ratio : null}
                     {type === "nutrition" ? NutritionContent.ratio : null}
                     <p
-                        className={`${colorText} text-3xl -mt-10 font-semibold pb-5`}
+                        className={`${colorText} text-3xl -mt-10 font-semibold pb-5
+                                    max-md:text-2xl`}
                     >
-                        Síntomas más comúnes
+                        Síntomas comúnes
                     </p>
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 w-full">
                         {symptoms.map((symptom, index) => (
                             <div
                                 key={index}
@@ -70,24 +75,28 @@ const EspecialityDetails = ({
                                 {type === "nutrition"
                                     ? NutritionContent.item
                                     : null}
-                                <p className="text-lg">{symptom}</p>
+                                <p className="text-lg max-md:text-base">
+                                    {symptom}
+                                </p>
                             </div>
                         ))}
                     </div>
                 </div>
                 <div
-                    className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit pb-10
-                                max-2xl:w-full"
+                    className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit my-10 pb-10
+                                max-2xl:w-full max-2xl:flex-grow
+                                max-lg:my-0 max-lg:pb-10 max-lg:items-center"
                 >
                     {type === "psychology" ? PsychologyContent.risk : null}
                     {type === "nutrition" ? NutritionContent.risk : null}
 
                     <p
-                        className={`${colorText} text-3xl -mt-10 font-semibold pb-5`}
+                        className={`${colorText} text-3xl -mt-10 font-semibold pb-5
+                                    max-md:text-2xl`}
                     >
                         Factores de riesgo
                     </p>
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 w-full">
                         {risks.map((risk, index) => (
                             <div
                                 key={index}
@@ -99,7 +108,9 @@ const EspecialityDetails = ({
                                 {type === "nutrition"
                                     ? NutritionContent.item
                                     : null}
-                                <p className="text-lg">{risk} </p>
+                                <p className="text-lg max-md:text-base">
+                                    {risk}{" "}
+                                </p>
                             </div>
                         ))}
                     </div>

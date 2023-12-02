@@ -3,11 +3,12 @@ import Image from "next/image";
 export const PsychologyContent = {
     banner: (
         <Image
+            className="rounded-3xl w-auto
+                        max-2xl:hidden"
             src="/PSYCHO_BANNER.png"
             alt="salufy-nutri"
             width={600}
             height={500}
-            className="rounded-3xl max-2xl:hidden"
         />
     ),
     risk: (
