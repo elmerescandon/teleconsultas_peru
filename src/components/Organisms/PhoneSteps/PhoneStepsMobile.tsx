@@ -26,7 +26,7 @@ const PhoneStepsMobile = ({ color }: PhoneStepsProps) => {
     return (
         <div
             className={`flex flex-col ${colorValue} py-5 hidden 
-                        max-xl:m-0 max-xl:rounded-none max-xl:px-5 
+                        max-xl:m-0 max-xl:rounded-none max-xl:px-5 max-xl:mb-10 
                         max-lg:block`}
         >
             <div className="flex w-full justify-end">
