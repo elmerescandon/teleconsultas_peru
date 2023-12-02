@@ -1,11 +1,8 @@
-import CardInfo from "@/components/Atoms/Cards/CardInfo/CardInfo";
-import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
 import EspecialityDetails from "@/components/Organisms/EspecialityDetails /EspecialityDetails";
 import EspecialityMain from "@/components/Organisms/EspecialityMain/EspecialityMain";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
 import PhoneSteps from "@/components/Organisms/PhoneSteps/PhoneSteps";
-import ReviewDoctorSection from "@/components/Organisms/ReviewDoctorSection/ReviewDoctorSection";
 import Routes from "@/utils/routes/Routes";
 import Image from "next/image";
 import React from "react";
@@ -44,7 +41,7 @@ const page = () => {
                 ]}
             />
             <PhoneSteps color="nutrition" />
-            <ReviewDoctorSection />
+            {/* <ReviewDoctorSection /> */}
             <Footer />
         </div>
     );
