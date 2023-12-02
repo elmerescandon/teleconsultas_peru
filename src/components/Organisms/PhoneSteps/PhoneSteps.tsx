@@ -29,7 +29,7 @@ const PhoneSteps = ({ color }: PhoneStepsProps) => {
         >
             <div className="max-w-[80vh]">
                 <p className="text-5xl font-semibold text-salufy-blue text-right pb-5">
-                    Agenda tu cita donde quieras cuando quieras
+                    Agenda tu cita donde quieras, cuando quieras
                 </p>
                 <p className="text-xl text-salufy-gray text-right pb-5">
                     Salufy te conectar con profesionales de la salud en base a

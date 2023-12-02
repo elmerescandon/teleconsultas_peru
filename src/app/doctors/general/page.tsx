@@ -52,8 +52,8 @@ const page = () => {
                     Especialidades
                 </p>
                 <div
-                    className="flex gap-5 py-10 px-48  flex-wrap items-center justify-center
-                                max-2xl:px-10 max-2xl:gap-2 max-2xl:flex-wrap"
+                    className="flex gap-5 py-10 px-48 flex-wrap items-center justify-center
+                                max-2xl:px-2 max-2xl:gap-4 max-2xl:flex-row max-2xl:justify-center"
                 >
                     {specialityPhysical.map((speciality, index) => (
                         <LabelPrimary content={speciality} key={index} />
@@ -61,7 +61,7 @@ const page = () => {
                 </div>
             </div>
             <PhoneSteps color="medicine" />
-            <ReviewDoctorSection />
+            {/* <ReviewDoctorSection /> */}
             <Footer />
         </div>
     );

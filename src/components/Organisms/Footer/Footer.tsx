@@ -19,7 +19,7 @@ const Footer = () => {
                             max-xl:gap-2"
             >
                 <div
-                    className="flex flex-col justify-between gap-1 flex-wrap
+                    className="flex flex-col justify-start gap-1 flex-wrap
                                 max-xl:justify-start"
                 >
                     <LinkSecondary2 to={Routes.HOME}>Inicio </LinkSecondary2>
