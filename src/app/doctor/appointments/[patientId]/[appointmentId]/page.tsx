@@ -47,9 +47,15 @@ const Page = ({
     return (
         <div>
             <Header />
-            <div className="px-48 max-xl:px-5 max-xl:pt-28 pb-28 min-h-[90vh]">
-                <div className="flex ">
-                    <p className="text-2xl font-semibold py-5 w-full">
+            <div
+                className="px-48  pb-28
+                            max-xl:px-5 max-xl:pt-24"
+            >
+                <div className="flex items-center">
+                    <p
+                        className="text-2xl font-semibold py-5 w-full
+                                    max-xl:text-xl"
+                    >
                         {`Paciente: ${patientName}`}
                     </p>
                     <div>
