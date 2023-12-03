@@ -43,7 +43,10 @@ const LabelInformationEdit = ({
 
                     <div className="flex gap-3 w-full flex-col items-end">
                         {!isEditing ? (
-                            <p className="text-lg text-right w-full">
+                            <p
+                                className="text-lg text-right w-full
+                                            max-xl:text-left"
+                            >
                                 {value !== "" ? value : "-"}
                             </p>
                         ) : (

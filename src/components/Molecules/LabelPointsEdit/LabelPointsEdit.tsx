@@ -71,7 +71,9 @@ const LabelPointsEdit = ({
                     </div>
                     <ul
                         className={`flex w-full pl-24 ${
-                            isEditing ? "flex-col" : "flex-row"
+                            isEditing
+                                ? "flex-col max-xl:justify-start max-xl:pl-4"
+                                : "flex-row max-xl:justify-start max-xl:pl-4"
                         }`}
                     >
                         {updatedPoints!.map((point, index) => (
@@ -96,7 +98,10 @@ const LabelPointsEdit = ({
                         ))}
                     </ul>
                     {isEditing ? (
-                        <div className="flex w-full pl-16 items-center">
+                        <div
+                            className="flex w-full pl-16 items-center
+                                        max-xl:pl-4 max-xl:flex-col max-xl:items-start"
+                        >
                             <input
                                 type="text"
                                 placeholder="Agrega un nuevo punto"
@@ -104,29 +109,31 @@ const LabelPointsEdit = ({
                                 onChange={handleInputChange}
                                 className="border rounded-md p-2 mr-2"
                             />
-                            <button
-                                onClick={handleAddPoint}
-                                className="text-gray-500 p-2"
-                            >
-                                <PlusIcon className="w-6 h-6" />
-                            </button>
+                            <div>
+                                <button
+                                    onClick={handleAddPoint}
+                                    className="text-gray-500 p-2"
+                                >
+                                    <PlusIcon className="w-6 h-6" />
+                                </button>
 
-                            <button
-                                onClick={handleCancelEdit}
-                                className="text-gray-500 ml-2"
-                            >
-                                <XMarkIcon className="w-6 h-6" />
-                            </button>
-                            <button
-                                onClick={() => {
-                                    setIsEditing(false);
-                                    if (updatedPoints)
-                                        changePoints(updatedPoints);
-                                }}
-                                className="text-gray-500 ml-2"
-                            >
-                                <CheckIcon className="w-6 h-6" />
-                            </button>
+                                <button
+                                    onClick={handleCancelEdit}
+                                    className="text-gray-500 ml-2"
+                                >
+                                    <XMarkIcon className="w-6 h-6" />
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setIsEditing(false);
+                                        if (updatedPoints)
+                                            changePoints(updatedPoints);
+                                    }}
+                                    className="text-gray-500 ml-2"
+                                >
+                                    <CheckIcon className="w-6 h-6" />
+                                </button>
+                            </div>
                         </div>
                     ) : (
                         <div className="w-full flex justify-end"></div>
