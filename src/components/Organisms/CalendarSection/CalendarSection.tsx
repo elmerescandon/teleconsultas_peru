@@ -45,7 +45,7 @@ const CalendarSection = () => {
     }, []);
 
     return (
-        <div className="max-lg:pt-36">
+        <div className="max-lg:pt-24">
             <h1 className="text-3xl pb-3 font-bold">Mis citas</h1>
             <div className="flex gap-4 items-center justify-end">
                 <button onClick={goToPreviousMonth}>
