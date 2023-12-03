@@ -35,7 +35,10 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
 
     return (
         <div className="bg-neutral-100 rounded-2xl w-full">
-            <div className="flex justify-between items-start p-4 gap-2">
+            <div
+                className="flex justify-between items-start p-4 gap-2
+                            max-xl:flex-col"
+            >
                 <div>
                     <div className="text-lg">{summary.specialityName}</div>
                     <div className="text-lg italic">{summary.doctorName}</div>

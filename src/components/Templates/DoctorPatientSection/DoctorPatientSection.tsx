@@ -34,7 +34,10 @@ const DoctorPatientSection = ({ patientId }: DoctorPatientSectionProps) => {
     ));
 
     return (
-        <div className="flex flex-col px-48 py-10 max-xl:pt-36 gap-5 max-xl:px-5 w-full  h-[60vh]">
+        <div
+            className="flex flex-col px-48 py-10 w-full h-screen
+                        max-xl:pt-24 gap-5 max-xl:px-5 "
+        >
             <p className="text-2xl font-semibold">{name}</p>
             <Pagination
                 orientation="col"
