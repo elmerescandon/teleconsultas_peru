@@ -61,16 +61,28 @@ const NutritionNotes = ({ appointment }: NutritionNotesProps) => {
     }, [correct]);
 
     return (
-        <div className="py-5">
-            <h1 className="text-xl">Notas de nutrición</h1>
-            <div className="flex">
+        <div
+            className="py-5 
+                        max-xl:flex max-xl:gap-5 max-xl:items-center"
+        >
+            <h1
+                className="text-xl 
+                            max-xl:w-full max-xl:text-base max-xl:pb-0"
+            >
+                Notas de nutrición
+            </h1>
+            <div className="flex w-full">
                 {documentUrl !== "" ? (
                     <a
-                        className="flex flex-col items-center justify-center w-36 h-36 p-5"
+                        className="flex flex-col items-center justify-center w-36 h-36 p-5
+                                 max-xl:h-auto max-xl:p-2 max-xl:flex-row max-xl:items-center max-xl:gap-5 max-xl:w-full max-xl:bg-slate-200 max-xl:rounded-3xl"
                         href={documentUrl}
                         target="_blank"
                     >
-                        <PaperClipIcon className="w-10 h-10 text-brand-600" />
+                        <PaperClipIcon
+                            className="w-10 h-10 text-brand-600
+                                                    max-xl:w-5 max-xl:h-5"
+                        />
                         <div className="mt-2 text-sm font-medium text-center">{`Ver dieta`}</div>
                     </a>
                 ) : (
