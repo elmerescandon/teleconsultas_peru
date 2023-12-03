@@ -1,12 +1,12 @@
 "use client";
 import BurgerButton from "@/components/Atoms/Buttons/ButtonBurger/BurgerButton";
 import LinkLogo from "@/components/Atoms/Links/LinkLogo/LinkLogo";
-import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
-import LinkSecondary from "@/components/Atoms/Links/LinkSecondary/LinkSecondary";
-import Routes from "@/utils/routes/Routes";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
+import { useAppSelector } from "@/redux/hooks";
+import IUserState from "@/redux/state-interfaces/User/IUserState";
+import { IState } from "@/redux/store";
 import React, { useState } from "react";
+import BurgerHeaderMain from "./BurgerHeaderMain";
+import BurgerHeaderPatient from "./BurgerHeaderPatient";
 
 const BurgerHeader = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -15,32 +15,11 @@ const BurgerHeader = () => {
         setIsOpen(!isOpen);
     };
 
-    const linkRoutes = [
-        {
-            name: "¡Reserva tu cita!",
-            route: Routes.RESERVE_DOCTORS,
-        },
-        {
-            name: "Medicina General",
-            route: Routes.DOCTORS_GENERAL,
-        },
-        {
-            name: "Psicólogos",
-            route: Routes.DOCTORS_PSYCHOLOGISTS,
-        },
-        {
-            name: "Nutricionistas",
-            route: Routes.DOCTORS_NUTRITIONISTS,
-        },
-        {
-            name: "Iniciar Sesión",
-            route: Routes.LOGIN,
-        },
-        {
-            name: "Regístrate",
-            route: Routes.REGISTER,
-        },
-    ];
+    const state: IUserState = useAppSelector(
+        (state: IState) => state.user as IUserState
+    );
+    const { logged, userInfo } = state;
+    const { role } = userInfo;
 
     return (
         <div className="lg:hidden fixed inset-0 z-50 h-20 ">
@@ -49,27 +28,8 @@ const BurgerHeader = () => {
                 <LinkLogo />
             </div>
 
-            {isOpen && (
-                <div className="flex flex-col items-start bg-basic-white animate-open-menu">
-                    {linkRoutes.map((linkRoute, index) => {
-                        const bgColor =
-                            linkRoute.name === "Iniciar Sesión" ||
-                            linkRoute.name === "Regístrate"
-                                ? "bg-brand-700 text-basic-white"
-                                : "bg-basic-white text-brand-700";
-
-                        return (
-                            <Link
-                                key={index}
-                                href={linkRoute.route}
-                                className={`text-base font-semibold pl-5 py-4 ${bgColor}  w-full`}
-                            >
-                                {linkRoute.name}
-                            </Link>
-                        );
-                    })}
-                </div>
-            )}
+            {isOpen && !logged && <BurgerHeaderMain />}
+            {isOpen && logged && role === "patient" && <BurgerHeaderPatient />}
         </div>
     );
 };
