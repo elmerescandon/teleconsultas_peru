@@ -49,7 +49,10 @@ const PaymentAppointmentSection = () => {
     };
 
     return (
-        <div className="h-[95vh] max-lg:h-full max-lg:pt-36 px-48 max-lg:px-10">
+        <div
+            className="h-screen max-lg:h-full 
+                        max-lg:pt-24 max-lg:px-5"
+        >
             <div className="text-2xl font-semibold py-5">
                 Realiza el pago de tu cita
             </div>

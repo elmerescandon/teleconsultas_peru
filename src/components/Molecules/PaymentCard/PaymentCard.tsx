@@ -26,11 +26,20 @@ const PaymentCard = ({
                 onClickPayment(index);
             }}
         >
-            <CreditCardIcon className="w-10 h-10 text-basic-black" />
-            <div className="text-xl font-normal text-basic-black">
+            <CreditCardIcon
+                className="w-10 h-10 text-basic-black
+                                        max-xl:w-5 max-xl:h-5"
+            />
+            <div
+                className="text-xl font-normal text-basic-black
+                            max-xl:text-base max-xl:font-semibold"
+            >
                 {cardType}
             </div>
-            <div className="text-xl font-normal text-basic-black">
+            <div
+                className="text-xl font-normal text-basic-black
+                            max-xl:text-base"
+            >
                 {lastDigits}
             </div>
         </button>

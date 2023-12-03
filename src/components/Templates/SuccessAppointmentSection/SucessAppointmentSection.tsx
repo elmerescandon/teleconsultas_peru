@@ -44,9 +44,15 @@ const SucessAppointmentSection = () => {
         getInfoFromDb(doctorId, specialityId);
     }, []);
     return (
-        <div className="px-72 pb-10 max-2xl:px-10 max-lg:pt-36">
+        <div
+            className="px-72 pb-10 
+                        max-2xl:px-10 max-lg:pt-24"
+        >
             <div className="flex justify-between">
-                <div className="text-2xl font-semibold py-3">
+                <div
+                    className="text-2xl font-semibold py-3
+                                max-xl:text-lg max-xl:font-semibold"
+                >
                     ¡Pago Realizado con éxito
                 </div>
                 <div>

@@ -57,13 +57,23 @@ const PatientAppointmentHistory = ({
     }, []);
 
     return (
-        <div className="rounded-t-xl rounded-r-xl border-2 p-10">
-            <h1 className="text-2xl pb-5">{`Cita ${stringToDate(
-                date as unknown as Timestamp
-            )}`}</h1>
-            <div className="px-36">
-                <div className="flex flex-row flex-grow gap-24 pb-10 items-start">
-                    <div className="w-1/2">
+        <div
+            className="rounded-t-xl rounded-r-xl border-2 p-10
+                        max-xl:px-5"
+        >
+            <h1
+                className="text-2xl pb-5
+                            max-xl:text-xl"
+            >{`Cita ${stringToDate(date as unknown as Timestamp)}`}</h1>
+            <div
+                className="px-36
+                            max-xl:px-0"
+            >
+                <div
+                    className="flex flex-row flex-grow gap-24 pb-10 items-start
+                                max-xl:flex-col max-xl:gap-0"
+                >
+                    <div className="w-1/2 max-xl:w-full">
                         <LabelInformation
                             label="Médico"
                             value={summaryState.doctorName}
@@ -73,7 +83,7 @@ const PatientAppointmentHistory = ({
                             value={summaryState.specialityName}
                         />
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-1/2 max-xl:w-full">
                         <LabelInformation
                             label="Fecha"
                             value={stringToDate(date as unknown as Timestamp)}

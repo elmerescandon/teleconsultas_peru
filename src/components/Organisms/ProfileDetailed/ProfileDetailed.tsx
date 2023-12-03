@@ -52,7 +52,7 @@ const ProfileDetailed = () => {
             >
                 <div
                     className="w-1/2 flex flex-col justify-start gap-5
-                                max-md:w-full max-md:gap-7"
+                                max-xl:w-full max-md:gap-7"
                 >
                     <LabelProfileMain
                         label="Región"

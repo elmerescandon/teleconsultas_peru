@@ -8,7 +8,7 @@ type DateFilterProps = {
 
 const DateFilter = ({ date, setDate }: DateFilterProps) => {
     return (
-        <div className="flex gap-5 justify-end">
+        <div className="flex gap-5 justify-end max-xl:flex-col">
             <DatePicker
                 maxDate={date.finish}
                 label="Fecha Inicio"

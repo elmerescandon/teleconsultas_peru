@@ -28,10 +28,16 @@ const PatientHistorySection = () => {
     );
 
     return (
-        <div className="px-48 max-xl:px-10 pb-28 h-full">
-            <div className="flex justify-between">
+        <div
+            className="px-48 pb-28 h-full
+                        max-xl:pt-20 max-xl:px-5"
+        >
+            <div
+                className="flex justify-between
+                            max-xl:flex-col max-xl:justify-start"
+            >
                 <h1 className="font-semibold text-4xl py-5">Historia</h1>
-                <div className="flex gap-5">
+                <div className="flex gap-5 max-xl:flex-col">
                     <SpecialityFilter setSpeciality={setSpecialityId} />
                     <DateFilter date={date} setDate={setDate} />
                 </div>
