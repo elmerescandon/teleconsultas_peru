@@ -56,6 +56,15 @@ module.exports = {
                 "salufy-nutri-light": "var(--salufy-nutri-light)",
                 "salufy-nutri-strong": "var(--salufy-nutri-strong)",
             },
+            keyframes: {
+                "open-menu": {
+                    "0%": { transform: "translateX(-100%)" },
+                    "100%": { transform: "translateX(0%)" },
+                },
+            },
+            animation: {
+                "open-menu": "open-menu 0.6s ease-out",
+            },
         },
     },
     plugins: [],

@@ -50,7 +50,7 @@ const BurgerHeader = () => {
             </div>
 
             {isOpen && (
-                <div className="flex flex-col items-start bg-basic-white">
+                <div className="flex flex-col items-start bg-basic-white animate-open-menu">
                     {linkRoutes.map((linkRoute, index) => {
                         const bgColor =
                             linkRoute.name === "Iniciar Sesión" ||
