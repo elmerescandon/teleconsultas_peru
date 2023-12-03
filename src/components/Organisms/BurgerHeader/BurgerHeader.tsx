@@ -7,6 +7,7 @@ import { IState } from "@/redux/store";
 import React, { useState } from "react";
 import BurgerHeaderMain from "./BurgerHeaderMain";
 import BurgerHeaderPatient from "./BurgerHeaderPatient";
+import BurgerHeaderDoctor from "./BurgerHeaderDoctor";
 
 const BurgerHeader = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,12 @@ const BurgerHeader = () => {
             </div>
 
             {isOpen && !logged && <BurgerHeaderMain />}
-            {isOpen && logged && role === "patient" && <BurgerHeaderPatient />}
+            {isOpen && logged && role === "patient" && (
+                <BurgerHeaderPatient toggleMenu={toggleMenu} />
+            )}
+            {isOpen && logged && role === "doctor" && (
+                <BurgerHeaderDoctor toggleMenu={toggleMenu} />
+            )}
         </div>
     );
 };
