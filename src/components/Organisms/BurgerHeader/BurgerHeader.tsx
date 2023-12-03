@@ -62,7 +62,7 @@ const BurgerHeader = () => {
                             <Link
                                 key={index}
                                 href={linkRoute.route}
-                                className={`text-base font-semibold pl-5 py-4 ${bgColor}  w-full  `}
+                                className={`text-base font-semibold pl-5 py-4 ${bgColor}  w-full`}
                             >
                                 {linkRoute.name}
                             </Link>
