@@ -3,6 +3,7 @@ import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelIn
 import LabelInformationEdit from "@/components/Molecules/LabelInformationEdit/LabelInformationEdit";
 import LabelPointsEdit from "@/components/Molecules/LabelPointsEdit/LabelPointsEdit";
 import NutritionNotes from "@/components/Molecules/NutritionNotes/NutritionNotes";
+import PsychologyNotes from "@/components/Molecules/PsychologyNotes/PsychologyNotes";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import {
     getAppointmentHours,
@@ -78,6 +79,9 @@ const DoctorAppointmentHistory = ({
                 </div>
                 {specialityId === "speciality3" ? (
                     <NutritionNotes appointment={currentAppointment} />
+                ) : null}
+                {specialityId === "speciality1" ? (
+                    <PsychologyNotes appointment={currentAppointment} />
                 ) : null}
                 <LabelInformationEdit
                     label="Resumen"

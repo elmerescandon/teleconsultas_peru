@@ -2,9 +2,11 @@ import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelIn
 import LabelPoints from "@/components/Atoms/Labels/LabelPoints/LabelPoints";
 import LinkNew from "@/components/Atoms/Links/LinkNew/LinkNew";
 import NutritionNotesPatient from "@/components/Molecules/NutritionNotesPatient/NutritionNotesPatient";
+import PsychologyNotesPatient from "@/components/Molecules/PsychologyNotesPatient/PsychologyNotesPatient";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
+import { PsychologyContent } from "@/utils/constants/images/EspecialityImages";
 import { stringToDate } from "@/utils/functions/utils";
 import { Timestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -96,6 +98,9 @@ const PatientAppointmentHistory = ({
                 </div>
                 {specialityId === "speciality3" ? (
                     <NutritionNotesPatient appointment={appointment} />
+                ) : null}
+                {specialityId === "speciality1" ? (
+                    <PsychologyNotesPatient appointment={appointment} />
                 ) : null}
                 {summary ? (
                     <LabelInformation label="Resumen" value={summary} />
