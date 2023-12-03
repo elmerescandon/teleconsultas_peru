@@ -44,17 +44,31 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
     return (
         <div className="w-full">
             <button
-                className="flex items-center w-full px-10 py-3 justify-between bg-brand-600 text-basic-white rounded-3xl"
+                className="flex items-center w-full px-10 py-3 justify-between bg-brand-600 text-basic-white rounded-3xl
+                            max-lg:flex-col max-lg:items-start max-lg:gap-2
+                            max-md:px-5"
                 onClick={() => setPopUpOpen(true)}
             >
-                <div>
-                    <div>{summary.specialityName}</div>
-                    <div>
-                        {stringToDate(appointment.date as unknown as Timestamp)}
+                <div
+                    className="flex w-full items-center justify-between pr-5 gap-5
+                                max-xl:justify-between 
+                                max-md:flex-col max-md:items-start max-md:gap-2"
+                >
+                    <div
+                        className="text-xl 
+                                    max-lg:font-semibold"
+                    >
+                        {summary.specialityName}
                     </div>
+                    <p
+                        className="italic 
+                                  max-md:text-left"
+                    >
+                        {stringToDate(appointment.date as unknown as Timestamp)}
+                    </p>
                 </div>
-                <div className="w-36 text-left">{summary.doctorName}</div>
-                <div className="flex gap-3 items-center">
+                <div className="text-left w-full">{summary.doctorName}</div>
+                <div className="flex gap-3 items-center w-auto">
                     <p className="text-brand-50">Ver más</p>
                     <BookOpenIcon className="w-8 h-8 text-brand-100" />
                 </div>

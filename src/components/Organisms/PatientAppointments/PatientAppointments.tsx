@@ -27,9 +27,16 @@ const PatientAppointments = () => {
     }, [state]);
 
     return (
-        <div className="w-2/3 rounded-3xl border-neutral-300 border-2 py-5 px-10 h-96 max-xl:h-full max-xl:w-full">
+        <div
+            className="w-2/3 rounded-3xl border-neutral-300 border-2 py-5 px-10 h-96 
+                        max-xl:h-full max-xl:w-full
+                        max-md:px-5"
+        >
             <div className="text-xl font-semibold">Citas Agendadas</div>
-            <div className="flex flex-col items-center py-5 gap-4">
+            <div
+                className="flex flex-col items-center py-5 gap-4
+                            max-md:py-5"
+            >
                 <Pagination
                     orientation="col"
                     itemsPerPage={3}

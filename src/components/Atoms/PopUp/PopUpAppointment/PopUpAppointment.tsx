@@ -45,12 +45,15 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
     }, []);
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-28 rounded-3xl flex flex-col gap-5 w-1/2">
-                <h2 className="text-3xl font-semibold mb-2">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div
+                className="bg-white p-28 rounded-3xl flex flex-col gap-5 w-1/2
+                              max-xl:w-5/6 max-xl:mt-10 max-xl:p-10 max-xl:gap-2"
+            >
+                <h2 className="text-3xl font-semibold">
                     {summary.specialityName}{" "}
                 </h2>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col">
                     <LabelInformation
                         label="Doctor"
                         value={summary.doctorName}
