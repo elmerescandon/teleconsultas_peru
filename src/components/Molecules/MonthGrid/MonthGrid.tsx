@@ -1,6 +1,7 @@
 "use client";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import DayCell from "../DayCell/DayCell";
+import { Timestamp } from "firebase/firestore";
 
 type MonthGridProps = {
     month: number;
@@ -22,7 +23,9 @@ const MonthGrid = ({ year, month, monthAppointmentData }: MonthGridProps) => {
         let currentDate = new Date(year, month, i);
         let appointments: IAppointment[] = monthAppointmentData.filter(
             (appointment) => {
-                const date = new Date(appointment.date);
+                const date = (
+                    appointment.date as unknown as Timestamp
+                ).toDate();
                 return (
                     date.getDate() === currentDate.getDate() &&
                     date.getMonth() === currentDate.getMonth() &&
@@ -50,7 +53,7 @@ const MonthGrid = ({ year, month, monthAppointmentData }: MonthGridProps) => {
         );
     }
     return (
-        <div className="w-full grid grid-cols-7 py-3 pb-24">
+        <div className="w-full grid grid-cols-7 py-3 pb-10">
             {days.map((day) => {
                 return (
                     <div
