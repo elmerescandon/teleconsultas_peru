@@ -34,9 +34,7 @@ const MainHomeSection = () => {
                     atención personalizada.
                 </h4>
                 <div className="pt-7 max-md:pt-10 max-md:text-center">
-                    <LinkPrimary to={Routes.DOCTORS_GENERAL}>
-                        Iniciar Sesión
-                    </LinkPrimary>
+                    <LinkPrimary to={Routes.LOGIN}>Iniciar Sesión</LinkPrimary>
                 </div>
             </div>
             <Image
