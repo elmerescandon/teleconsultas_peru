@@ -35,7 +35,7 @@ const EspecialityInformation = ({
             break;
     }
     return (
-        <div className="flex flex-col justify-center max-w-sm">
+        <div className="flex flex-col max-w-sm">
             {image}
             <p
                 className={`${colorValue} text-5xl text-basic-white font-semibold text-center py-3 px-10 rounded-lg h-28 flex items-center justify-center`}
