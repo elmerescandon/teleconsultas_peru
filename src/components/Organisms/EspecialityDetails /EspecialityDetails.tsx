@@ -61,7 +61,7 @@ const EspecialityDetails = ({
                         className={`${colorText} text-3xl -mt-10 font-semibold pb-5
                                     max-md:text-2xl`}
                     >
-                        Síntomas comúnes
+                        Dirigido a
                     </p>
                     <div className="flex flex-col gap-3 w-full">
                         {symptoms.map((symptom, index) => (
@@ -94,7 +94,7 @@ const EspecialityDetails = ({
                         className={`${colorText} text-3xl -mt-10 font-semibold pb-5
                                     max-md:text-2xl`}
                     >
-                        Factores de riesgo
+                        Beneficios
                     </p>
                     <div className="flex flex-col gap-3 w-full">
                         {risks.map((risk, index) => (
