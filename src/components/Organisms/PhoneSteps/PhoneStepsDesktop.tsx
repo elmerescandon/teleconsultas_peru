@@ -25,7 +25,7 @@ const PhoneStepsDestkop = ({ color }: PhoneStepsDestkopProps) => {
 
     return (
         <div
-            className={`flex justify-center py-5 ${colorValue} items-center mr-48 rounded-r-3xl 
+            className={`flex justify-center py-5 my-5 ${colorValue} items-center mr-48 rounded-r-3xl 
                         max-2xl:mr-20 
                         max-lg:hidden`}
         >
