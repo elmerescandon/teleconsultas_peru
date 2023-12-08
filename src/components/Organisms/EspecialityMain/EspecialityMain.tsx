@@ -36,7 +36,7 @@ const EspecialityMain = ({
     return (
         <div
             className="flex gap-5 px-48 w-full py-20 items-center justify-center
-                max-2xl:px-10 max-2xl:flex-col max-2xl:pt-48"
+                max-2xl:px-10 max-2xl:flex-col max-2xl:pt-24"
         >
             <div
                 className="flex flex-col gap-7 w-1/2 justify-center
