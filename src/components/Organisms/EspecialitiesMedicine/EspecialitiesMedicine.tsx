@@ -41,6 +41,12 @@ const EspecialitiesMedicine = () => {
             >
                 Especialidades
             </p>
+            <div
+                className="flex flex-wrap justify-center gap-5 
+                            max-lg:hidden py-5"
+            >
+                {specialityColumns.map((speciality, index) => speciality)}
+            </div>
             <ElementSlider items={specialityColumns} />
         </div>
     );
