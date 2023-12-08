@@ -73,7 +73,7 @@ const LoginBar = () => {
                         onChange={(e) => {
                             setSelectRole(e);
                         }}
-                        placeholder="Escoge"
+                        placeholder="Selecciona"
                         selectId="user-type"
                         options={[
                             { value: "patient", label: "Paciente" },
