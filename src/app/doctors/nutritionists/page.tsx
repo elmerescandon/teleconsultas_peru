@@ -28,16 +28,17 @@ const page = () => {
             <EspecialityDetails
                 type="nutrition"
                 symptoms={[
-                    "Fatiga.",
-                    "Dolor de cabeza.",
+                    // Dirigido a personas que:
+                    "Mejorar bienestar general.",
+                    "Mejorar rendimiento deportivo.",
                     "Problemas digestivos.",
-                    "Problemas de piel.",
+                    "Objetivos corporales o de salud específicos.",
                 ]}
                 risks={[
-                    "Trastornos alimentarios.",
-                    "Problemas de salud mental.",
-                    "Poca actividad física.",
-                    "Estrés.",
+                    "Educación nutricional.",
+                    "Mejora de hábitos alimenticios.",
+                    "Prevención de enfermedades crónicas.",
+                    "Mayor energía y vitalidad.",
                 ]}
             />
             <PhoneSteps color="nutrition" />
