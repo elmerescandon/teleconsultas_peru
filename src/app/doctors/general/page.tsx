@@ -1,5 +1,3 @@
-import LabelPrimary from "@/components/Atoms/Labels/LabelPrimary/LabelPrimary";
-import ElementSlider from "@/components/Organisms/ElementSlider/ElementSlider";
 import EspecialitiesMedicine from "@/components/Organisms/EspecialitiesMedicine/EspecialitiesMedicine";
 import EspecialityMain from "@/components/Organisms/EspecialityMain/EspecialityMain";
 import Footer from "@/components/Organisms/Footer/Footer";
