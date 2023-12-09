@@ -41,7 +41,7 @@ const Pagination: React.FC<PaginationProps> = ({
                     orientation === "col"
                         ? "flex-col"
                         : "flex-row justify-start items-start"
-                } gap-2 max-xl:flex-col flex-wrap`}
+                } gap-2 max-xl:flex-col`}
             >
                 {currentItems.map((item, index) => (
                     <div key={index}>{item}</div>
