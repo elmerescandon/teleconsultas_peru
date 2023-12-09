@@ -4,6 +4,7 @@ import IUser from "@/utils/Interfaces/dataModel/IUser";
 import { dbToUser } from "@/utils/functions/utilsReducer";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -35,5 +36,10 @@ export const authOptions: NextAuthOptions = {
         }        
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      
+    })
   ],
 };
