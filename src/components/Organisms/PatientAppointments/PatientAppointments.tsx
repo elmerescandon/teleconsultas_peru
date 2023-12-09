@@ -28,7 +28,7 @@ const PatientAppointments = () => {
 
     return (
         <div
-            className="w-2/3 rounded-3xl border-neutral-300 border-2 py-5 px-10 h-96 
+            className="w-2/3 rounded-3xl border-neutral-300 border-2 py-5 px-10  
                         max-xl:h-full max-xl:w-full
                         max-md:px-5"
         >
@@ -39,7 +39,7 @@ const PatientAppointments = () => {
             >
                 <Pagination
                     orientation="col"
-                    itemsPerPage={3}
+                    itemsPerPage={4}
                     items={patientAppointments.map((appointment, index) => {
                         return (
                             <PatientDate
