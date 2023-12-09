@@ -6,6 +6,7 @@ import SlotAppointment from "../../SlotAppointment/SlotAppointment";
 import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 import { dateToSpanish } from "@/utils/functions/utils";
 import SlotAppointmentVisible from "../../SlotAppointmentVisible/SlotAppointmentVisible";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 type PopUpMyAvailabilityProps = {
     onClose: () => void;
@@ -49,10 +50,23 @@ const PopUpMyAvailability = ({
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-28 rounded-3xl flex flex-col gap-5 h-3/4 w-1/2 overflow-auto">
-                <h2 className="text-3xl font-semibold mb-2">
-                    Mi disponibilidad
-                </h2>
+            <div
+                className="bg-white p-10 rounded-3xl flex flex-col gap-5 h-3/4 w-1/2 overflow-auto
+                                max-2xl:px-10
+                                max-lg:w-10/12"
+            >
+                <div className="flex justify-between items-center">
+                    <h2
+                        className="text-3xl font-semibold
+                                max-lg:text-2xl"
+                    >
+                        Mi disponibilidad
+                    </h2>
+                    <button onClick={onClose}>
+                        <XMarkIcon className="w-10 h-10 ml-auto" />
+                    </button>
+                </div>
+
                 <div className="flex flex-col justify-between h-full gap-10">
                     {error && (
                         <p className="text-red-500 font-semibold py-5">
@@ -67,7 +81,10 @@ const PopUpMyAvailability = ({
                                     className="flex flex-col gap-5"
                                     key={index}
                                 >
-                                    <p className="text-xl font-semibold">
+                                    <p
+                                        className="text-xl font-semibold
+                                                    max-lg:text-lg"
+                                    >
                                         {dateToSpanish(availability.date)}
                                     </p>
                                     <div className="flex gap-5 flex-wrap">
@@ -84,11 +101,6 @@ const PopUpMyAvailability = ({
                             ))}
                         </div>
                     )}
-                    <div className="flex flex-col gap-5 pb-10">
-                        <ButtonPrimary onClickFn={onClose}>
-                            Cerrar
-                        </ButtonPrimary>
-                    </div>
                 </div>
             </div>
         </div>
