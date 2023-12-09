@@ -2,16 +2,19 @@
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import useUserValidation from "@/utils/hooks/useUserValidation";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Loading from "@/components/Molecules/Loaders/Loading/Loading";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Routes from "@/utils/routes/Routes";
 import { getUser } from "@/firebase/User/getUser";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
 import { dbToUser } from "@/utils/functions/utilsReducer";
 import { useAppDispatch } from "@/redux/hooks";
-import { userLogIn } from "@/redux/action-creators/UserActionCreators";
+import {
+    userLogIn,
+    userLogOut,
+} from "@/redux/action-creators/UserActionCreators";
 
 type LoginFormsProps = {
     role: string;
@@ -35,10 +38,17 @@ const LoginForms = ({ role }: LoginFormsProps) => {
 
     useEffect(() => {
         const getUserInfo = async (id: string) => {
-            const userDb = (await getUser(id)) as IUser;
-            const user = dbToUser(userDb);
-            dispatch(userLogIn(user));
-            return user.role;
+            try {
+                if (!id) throw new Error("No contiene información");
+                const userDb = (await getUser(id)) as IUser;
+                const user = dbToUser(userDb);
+                dispatch(userLogIn(user));
+                return user.role;
+            } catch (err) {
+                dispatch(userLogOut());
+                signOut();
+                router.push(Routes.HOME);
+            }
         };
 
         role === "doctor" ? setIsDoctor(true) : setIsDoctor(false);
