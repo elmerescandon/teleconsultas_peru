@@ -10,6 +10,8 @@ import {
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { Timestamp } from "firebase/firestore";
+import { XMarkIcon } from "@heroicons/react/24/solid";
+import LinkPrimary from "../../Links/LinkPrimary/LinkPrimary";
 
 type PopUpAppointmentProps = {
     onClose: () => void;
@@ -50,9 +52,15 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
                 className="bg-white p-28 rounded-3xl flex flex-col gap-5 w-1/2
                               max-xl:w-5/6 max-xl:mt-10 max-xl:p-10 max-xl:gap-2"
             >
-                <h2 className="text-3xl font-semibold">
-                    {summary.specialityName}{" "}
-                </h2>
+                <div className="flex justify-between items-center">
+                    <h2 className="text-3xl font-semibold">
+                        {summary.specialityName}{" "}
+                    </h2>
+                    <button onClick={onClose}>
+                        <XMarkIcon className="w-10 h-10 ml-auto" />
+                    </button>
+                </div>
+
                 <div className="flex flex-col">
                     <LabelInformation
                         label="Doctor"
@@ -82,9 +90,15 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
                     />
                 </div>
 
-                <div>
-                    <ButtonPrimary onClickFn={onClose}>Cerrar</ButtonPrimary>
-                </div>
+                <a
+                    className="px-4 py-5 bg-brand-600 rounded-2xl text-basic-white text-center font-semibold
+                                hover:bg-brand-700 transition duration-300 ease-in-out
+                                active:bg-brand-800 active:scale-95"
+                    target="_blank"
+                    href={appointment.joinURL}
+                >
+                    Conectarse a la sesión
+                </a>
             </div>
         </div>
     );
