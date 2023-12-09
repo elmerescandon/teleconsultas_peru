@@ -2,7 +2,7 @@ import PopUpAppointment from "@/components/Atoms/PopUp/PopUpAppointment/PopUpApp
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { stringToDate } from "@/utils/functions/utils";
+import { dateToHours, stringToDate } from "@/utils/functions/utils";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 import { Timestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -64,12 +64,22 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
                         className="italic 
                                   max-md:text-left"
                     >
-                        {stringToDate(appointment.date as unknown as Timestamp)}
+                        <p>
+                            {stringToDate(
+                                appointment.date as unknown as Timestamp
+                            )}
+                        </p>
+                        <p>
+                            {dateToHours(
+                                appointment.startDate,
+                                appointment.endDate
+                            )}
+                        </p>
                     </p>
                 </div>
                 <div className="text-left w-full">{summary.doctorName}</div>
-                <div className="flex gap-3 items-center w-auto">
-                    <p className="text-brand-50">Ver más</p>
+                <div className="flex gap-3 items-center w-1/3">
+                    <p className="text-brand-50 w-full">Ver más</p>
                     <BookOpenIcon className="w-8 h-8 text-brand-100" />
                 </div>
             </button>
