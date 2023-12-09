@@ -29,7 +29,7 @@ const PatientHistorySection = () => {
 
     return (
         <div
-            className="px-48 pb-28 h-screen
+            className="px-48 pb-10
                         max-xl:pt-20 max-xl:px-5 max-xl:h-auto"
         >
             <div
