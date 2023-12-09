@@ -1,8 +1,10 @@
+"use client";
 import GoogleColoredIcon from "@/components/Atoms/Icons/GoogleColoredIcon";
 import React from "react";
 import AppleColoredIcon from "@/components/Atoms/Icons/AppleColoredIcon";
 import FacebookColoredIcon from "@/components/Atoms/Icons/FacebookColoredIcon";
 import OutlookColoredIcon from "@/components/Atoms/Icons/OutlookColoredIcon";
+import { signIn } from "next-auth/react";
 
 const LoginOptions = () => {
     return (
@@ -15,10 +17,10 @@ const LoginOptions = () => {
                 <div className="flex-grow h-px bg-neutral-400"></div>
             </div>
             <div className="flex gap-10 justify-center">
-                <button>
+                <button onClick={() => signIn("google")}>
                     <GoogleColoredIcon />
                 </button>
-                <button>
+                {/* <button>
                     <AppleColoredIcon />
                 </button>
                 <button>
@@ -26,7 +28,7 @@ const LoginOptions = () => {
                 </button>
                 <button>
                     <OutlookColoredIcon />
-                </button>
+                </button> */}
             </div>
         </div>
     );
