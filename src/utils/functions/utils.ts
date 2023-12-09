@@ -219,3 +219,9 @@ export const  formatDate = (date: Date): string => {
 
   return `${year}-${month}-${day}`;
 }
+
+export const dateToHours = (startDate : string, endDate: string) => `${new Date(startDate)
+    .toLocaleTimeString()
+    .replace(/:\d+ /, " ")} - ${new Date(endDate)
+    .toLocaleTimeString()
+    .replace(/:\d+ /, " ")} `;
