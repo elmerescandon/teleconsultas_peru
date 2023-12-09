@@ -12,7 +12,7 @@ import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { dbToUser } from "@/utils/functions/utilsReducer";
 import Routes from "@/utils/routes/Routes";
 import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const LoginBar = () => {
@@ -26,13 +26,19 @@ const LoginBar = () => {
     const [selectRole, setSelectRole] = useState("");
 
     useEffect(() => {
-        const getUserInfo = async (email: string) => {
-            const userDb = await getUser(email);
-            if (!userDb) return;
-            const user = dbToUser(userDb);
-            dispatch(userLogIn(user));
+        const getUserInfo = async (id: string) => {
+            try {
+                if (!id) throw new Error("No contiene información");
+                const userDb = await getUser(id);
+                if (!userDb) return;
+                const user = dbToUser(userDb);
+                dispatch(userLogIn(user));
+            } catch (err) {
+                dispatch(userLogOut());
+                signOut();
+                redirect(Routes.HOME);
+            }
         };
-
         if (status === "authenticated") {
             getUserInfo(session.user!.name!);
         }
