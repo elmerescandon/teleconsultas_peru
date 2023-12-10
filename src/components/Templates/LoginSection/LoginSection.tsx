@@ -4,7 +4,7 @@ import LoginForms from "@/components/Organisms/LoginForms/LoginForms";
 import LoginOptions from "@/components/Organisms/LoginOptions/LoginOptions";
 import { BellAlertIcon } from "@heroicons/react/24/solid";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 type LoginSectionProps = {
     role: string;
@@ -12,6 +12,10 @@ type LoginSectionProps = {
 };
 
 const LoginSection = ({ role, label }: LoginSectionProps) => {
+    useEffect(() => {
+        console.log(process.env.NEXT_PUBLIC_API_URL);
+        console.log(process.env.GOOGLE_CLIENT_ID);
+    }, []);
     const params = useSearchParams();
     const loginStatus = params.get("signin");
     return (
