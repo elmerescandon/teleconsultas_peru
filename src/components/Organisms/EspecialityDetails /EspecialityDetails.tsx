@@ -37,18 +37,18 @@ const EspecialityDetails = ({
 
     return (
         <div
-            className={`flex mb-10 ${colorValue} rounded-3xl mx-48 
-                        max-2xl:mx-20 max-2xl:mb-10
-                        max-lg:flex-col
-                        max-md:mx-5`}
+            className={`flex mb-10  rounded-3xl mx-48  max-h-[500px]
+                        max-2xl:mx-20 max-2xl:mb-10 
+                        max-lg:flex-col max-lg:max-h-max
+                        max-md:mx-5 `}
         >
             {type === "psychology" ? PsychologyContent.banner : null}
             {type === "nutrition" ? NutritionContent.banner : null}
             <div
-                className="flex pr-10 gap-10 w-full
-                             max-2xl:gap-10 max-2xl:py-5 max-2xl:px-10
-                             max-lg:flex-col max-lg:gap-10 max-lg:py-10
-                             max-md:gap-5 max-md:py-5 max-md:px-5"
+                className={`flex ${colorValue} px-10 gap-10 w-full rounded-3xl mx-5
+                             max-2xl:gap-10 max-2xl:py-5 max-2xl:px-10 
+                             max-lg:flex-col max-lg:gap-10 max-lg:py-10 max-lg:mx-0
+                             max-md:gap-5 max-md:py-5 max-md:px-5`}
             >
                 <div
                     className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit my-10 pb-10
