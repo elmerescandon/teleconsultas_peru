@@ -43,7 +43,7 @@ const SignInGoogle = () => {
                 }
             } else {
                 signOut({
-                    callbackUrl: `${RouteLogin}?signin=failed?email=${email}`,
+                    callbackUrl: `${RouteLogin}?signin=failed`,
                 });
             }
         };
@@ -53,7 +53,7 @@ const SignInGoogle = () => {
                 validateUser(session.user.email, role);
             } else {
                 signOut({
-                    callbackUrl: `${RouteLogin}?signin=failed?email=${session?.user?.email}`,
+                    callbackUrl: `${RouteLogin}?signin=failed`,
                 });
             }
         }
