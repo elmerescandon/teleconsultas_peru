@@ -22,7 +22,9 @@ const Footer = () => {
                     className="flex flex-col justify-start gap-1 flex-wrap
                                 max-xl:justify-start"
                 >
-                    <LinkSecondary2 to={Routes.HOME}>Inicio </LinkSecondary2>
+                    <LinkSecondary2 to={Routes.POLICY}>
+                        Políticas de Privacidad
+                    </LinkSecondary2>
                     <LinkSecondary2 to={Routes.TERMS}>
                         Términos y Condiciones
                     </LinkSecondary2>
