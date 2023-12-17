@@ -1,12 +1,14 @@
+import ButtonPrimary2 from "@/components/Atoms/Buttons/ButtonPrimary2/ButtonPrimary2";
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
 import LabelPoints from "@/components/Atoms/Labels/LabelPoints/LabelPoints";
 import LinkNew from "@/components/Atoms/Links/LinkNew/LinkNew";
+import PopUpNotes from "@/components/Atoms/PopUp/PopUpNotes/PopUpNotes";
 import NutritionNotesPatient from "@/components/Molecules/NutritionNotesPatient/NutritionNotesPatient";
+import PsychologyNotes from "@/components/Molecules/PsychologyNotes/PsychologyNotes";
 import PsychologyNotesPatient from "@/components/Molecules/PsychologyNotesPatient/PsychologyNotesPatient";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { PsychologyContent } from "@/utils/constants/images/EspecialityImages";
 import { stringToDate } from "@/utils/functions/utils";
 import { Timestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -35,6 +37,8 @@ const PatientAppointmentHistory = ({
         doctorName: string;
         specialityName: string;
     }>({ doctorName: "", specialityName: "" });
+
+    const [openNotes, setOpenNotes] = useState<boolean>(false);
 
     useEffect(() => {
         const getInfoFromDb = async (
@@ -100,7 +104,9 @@ const PatientAppointmentHistory = ({
                     <NutritionNotesPatient appointment={appointment} />
                 ) : null}
                 {specialityId === "speciality1" ? (
-                    <PsychologyNotesPatient appointment={appointment} />
+                    <ButtonPrimary2 onClickFn={() => setOpenNotes(true)}>
+                        Ver mis notas
+                    </ButtonPrimary2>
                 ) : null}
                 {summary ? (
                     <LabelInformation label="Resumen" value={summary} />
@@ -125,6 +131,14 @@ const PatientAppointmentHistory = ({
                     </div>
                 ) : null}
             </div>
+            {specialityId === "speciality1" && openNotes ? (
+                <PopUpNotes
+                    onClose={() => {
+                        setOpenNotes(false);
+                    }}
+                    appointment={appointment}
+                />
+            ) : null}
         </div>
     );
 };
