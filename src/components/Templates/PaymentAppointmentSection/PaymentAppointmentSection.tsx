@@ -1,6 +1,7 @@
 "use client";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import Loading from "@/components/Molecules/Loaders/Loading/Loading";
+import MercadoPagoPayment from "@/components/Organisms/MercadoPagoPayment/MercadoPagoPayment";
 import PaymentOptions from "@/components/Organisms/PaymentOptions/PaymentOptions";
 import PaymentReview from "@/components/Organisms/PaymentReview/PaymentReview";
 import addAppointment from "@/firebase/Appointments/addAppointment";
@@ -11,6 +12,7 @@ import { IState } from "@/redux/store";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
 import { createAppointment } from "@/utils/functions/utils";
 import Routes from "@/utils/routes/Routes";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -48,6 +50,20 @@ const PaymentAppointmentSection = () => {
         }
     };
 
+    const getLink = async () => {
+        try {
+            const res = await fetch(
+                `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout`
+            );
+            console.log(res);
+            const data = await res.json();
+            // const res = await fetch.ge("/api/checkout");
+            console.log(data);
+        } catch (err) {
+            console.log("Hubo un error");
+        }
+    };
+
     return (
         <div
             className="h-screen px-48 
@@ -62,9 +78,16 @@ const PaymentAppointmentSection = () => {
                 <PaymentReview />
             </div>
             <div className="py-5 flex">
-                <ButtonPrimary onClickFn={clickToPay}>
+                <button
+                    className="py-5 w-full rounded-2xl text-lg font-semibold"
+                    onClick={getLink}
+                >
+                    Pagar con MercadoPago
+                </button>
+                {/* <MercadoPagoPayment /> */}
+                {/* <ButtonPrimary onClickFn={clickToPay}>
                     Realizar Pago
-                </ButtonPrimary>
+                </ButtonPrimary> */}
                 {pageState.loading && <Loading size={10} />}
             </div>
             {pageState.error !== "" && (
