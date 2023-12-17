@@ -24,7 +24,7 @@ const DoctorAppointments = () => {
                 setAppointments(appointments);
             }
         };
-        getAppointments(_id, "pending");
+        getAppointments(_id, "scheduled");
     }, []);
 
     return (

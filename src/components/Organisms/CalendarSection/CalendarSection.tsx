@@ -37,7 +37,7 @@ const CalendarSection = () => {
             if (!userInfo) return;
             const appointments = await getUserAppointments(
                 userInfo._id,
-                "pending"
+                "scheduled"
             );
             setPatientAppointments(appointments);
         };
