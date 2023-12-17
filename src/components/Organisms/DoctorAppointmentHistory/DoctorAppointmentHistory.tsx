@@ -1,5 +1,7 @@
 "use client";
+import ButtonPrimary2 from "@/components/Atoms/Buttons/ButtonPrimary2/ButtonPrimary2";
 import LabelInformation from "@/components/Atoms/Labels/LabelInformation/LabelInformation";
+import PopUpNotes from "@/components/Atoms/PopUp/PopUpNotes/PopUpNotes";
 import LabelInformationEdit from "@/components/Molecules/LabelInformationEdit/LabelInformationEdit";
 import LabelPointsEdit from "@/components/Molecules/LabelPointsEdit/LabelPointsEdit";
 import NutritionNotes from "@/components/Molecules/NutritionNotes/NutritionNotes";
@@ -12,7 +14,7 @@ import {
 } from "@/utils/functions/utils";
 import useAppointmentUpdate from "@/utils/hooks/useAppointmentUpdate";
 import { Timestamp } from "firebase/firestore";
-import React from "react";
+import React, { useState } from "react";
 
 type DoctorAppointmentHistoryProps = {
     appointment: IAppointment;
@@ -37,6 +39,7 @@ const DoctorAppointmentHistory = ({
         specialityId,
     } = currentAppointment;
 
+    const [openNotes, setOpenNotes] = useState<boolean>(false);
     return (
         <div className="rounded-t-xl rounded-r-xl border-2 py-10 px-5">
             <h1 className="text-2xl pb-5">{`Cita ${stringToDate(
@@ -81,7 +84,9 @@ const DoctorAppointmentHistory = ({
                     <NutritionNotes appointment={currentAppointment} />
                 ) : null}
                 {specialityId === "speciality1" ? (
-                    <PsychologyNotes appointment={currentAppointment} />
+                    <ButtonPrimary2 onClickFn={() => setOpenNotes(true)}>
+                        Ver mis notas
+                    </ButtonPrimary2>
                 ) : null}
                 <LabelInformationEdit
                     label="Resumen"
@@ -134,6 +139,14 @@ const DoctorAppointmentHistory = ({
                     }}
                 />
             </div>
+            {specialityId === "speciality1" && openNotes ? (
+                <PopUpNotes
+                    onClose={() => {
+                        setOpenNotes(false);
+                    }}
+                    appointment={appointment}
+                />
+            ) : null}
         </div>
     );
 };

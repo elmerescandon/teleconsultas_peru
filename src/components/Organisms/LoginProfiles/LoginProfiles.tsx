@@ -14,11 +14,11 @@ const LoginProfiles = () => {
                 active:bg-basic-white active:text-brand-600 active:border-2"
                 href={Routes.LOGIN_DOCTOR}
             >
-                Soy doctor
+                Soy profesional de la salud
             </Link>
 
             <Link
-                className="text-basic-white bg-brand-600 rounded-lg text-2xl font-normal border-2 border-brand-600 py-4 px-10 w-full text-center
+                className="flex items-center justify-center text-basic-white bg-brand-600 rounded-lg text-2xl font-normal border-2 border-brand-600 py-4 px-10 w-full text-center
                 active:bg-basic-white active:text-brand-600 active:border-2"
                 href={Routes.LOGIN_PATIENT}
             >

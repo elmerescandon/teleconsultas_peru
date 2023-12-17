@@ -11,7 +11,7 @@ const DateFilter = ({ date, setDate }: DateFilterProps) => {
         <div className="flex gap-5 justify-end max-xl:flex-col">
             <DatePicker
                 maxDate={date.finish}
-                label="Fecha Inicio"
+                // label="Fecha Inicio"
                 value={date.init}
                 onChange={(newDate) => {
                     if (newDate) setDate({ ...date, init: newDate });
@@ -19,7 +19,7 @@ const DateFilter = ({ date, setDate }: DateFilterProps) => {
             />
             <DatePicker
                 minDate={date.init}
-                label="Fecha Final"
+                // label="Fecha Final"
                 value={date.finish}
                 onChange={(newDate) => {
                     setDate({ ...date, finish: newDate });
