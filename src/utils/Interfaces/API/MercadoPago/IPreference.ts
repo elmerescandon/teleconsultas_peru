@@ -90,7 +90,7 @@ interface IPrference {
             "floor": string,
             "apartment": string,
             "city_name": null,
-            "state_name": null,
+            "state_name": null,     
             "country_name": null
         }
     },
