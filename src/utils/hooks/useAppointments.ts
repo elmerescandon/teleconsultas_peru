@@ -13,9 +13,9 @@ const useAppointments = (date : IDateRangeAppointment, user: IUserInfo, speciali
         let appointments: IAppointment[] = [];
 
         if (specialityId === "") {
-            appointments = await getUserAppointments(user._id, "pending");
+            appointments = await getUserAppointments(user._id, "scheduled");
         }else{
-            appointments = await getUserAppointmentsFiltered(user._id, "pending", date, specialityId);
+            appointments = await getUserAppointmentsFiltered(user._id, "scheduled", date, specialityId);
         }
         setAppointments(appointments);
     };
