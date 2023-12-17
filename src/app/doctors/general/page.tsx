@@ -13,7 +13,7 @@ const page = () => {
             <Header />
             <EspecialityMain
                 title="Medicina General"
-                subtitle="En Salufy, la medicina general es tu alaida para cultivar una vida plena y salidable; cada consulta es una inversión para tu bienestar integral en el corto y largo plazo."
+                subtitle="En Salufy, la medicina general es tu alaida para cultivar una vida plena y saludable; cada consulta es una inversión para tu bienestar integral en el corto y largo plazo."
                 to={Routes.RESERVE}
                 image={
                     <Image
