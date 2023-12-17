@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request){
     try{
         const res = await axios.post('https://api.mercadopago.com/checkout/preferences', {
+            "external_reference": "appointment1",
             "items": [
                 {
                     id:'1234',
@@ -12,7 +13,13 @@ export async function GET(request: Request){
                     "currency_id": "PEN",
                     "unit_price": 80.0
                 }
-            ]
+            ],
+            "back_urls": {
+                "success": `${process.env.NEXT_PUBLIC_MYPAGE_URL}/reserve/success`,
+                "failure": `${process.env.NEXT_PUBLIC_MYPAGE_URL}/reserve/failure`,
+            },
+            "auto_return": 'approved',
+            'binary_mode': true,
         }, {
             headers: { 
                 Authorization: `Bearer ${process.env.MERCADO_PAGO_ACCESS_TOKEN}`,
