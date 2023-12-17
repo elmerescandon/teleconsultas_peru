@@ -36,7 +36,7 @@ const PaymentReview = () => {
     }, []);
 
     return (
-        <div className="w-2/3 p-7 h-[60vh] max-lg:w-full max-lg:h-full">
+        <div className="w-full p-7 h-[60vh] max-lg:w-full max-lg:h-full">
             <div className="text-xl">Detalle</div>
             <div className="w-full border my-5"></div>
             <div>
