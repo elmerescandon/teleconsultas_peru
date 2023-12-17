@@ -1,4 +1,4 @@
-interface IPrference {
+interface IPreference {
     "additional_info": string,
     "auto_return": string,
     "back_urls": {
@@ -97,3 +97,4 @@ interface IPrference {
     "total_amount": null,
     "last_updated": null
 }
+export default IPreference;
