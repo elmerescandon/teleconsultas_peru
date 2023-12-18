@@ -23,8 +23,8 @@ const BurgerHeader = () => {
     const { role } = userInfo;
 
     return (
-        <div className="lg:hidden fixed inset-0 h-20 ">
-            <div className="flex flex-row justify-between items-center z-50 px-5 py-5 bg-basic-white">
+        <div className="lg:hidden fixed inset-0 z-50 h-20 ">
+            <div className="flex flex-row justify-between items-center px-5 py-5 bg-basic-white relative z-20">
                 <BurgerButton toggleMenu={toggleMenu} isOpen={isOpen} />
                 <LinkLogo />
             </div>
