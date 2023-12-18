@@ -9,6 +9,7 @@ import { sexOptions } from "@/utils/constants/registerSelect";
 import { DatePicker } from "@mui/x-date-pickers";
 import { useRegisterDispatch } from "@/utils/context/RegisterContext/RegisterContext";
 import { Checkbox, FormControlLabel } from "@mui/material";
+import PopUpTerms from "@/components/Atoms/PopUp/PopUpTerms/PopUpTerms";
 
 type RegisterInformationProps = {
     nextFn: () => void;
@@ -21,6 +22,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
     const [checkForms, setCheckForms] = useState<boolean>(false);
     const [readyToPost, setReadyToPost] = useState<boolean>(false);
     const dispatch = useRegisterDispatch();
+    const [termsPopUp, setTermsPopUp] = useState<boolean>(false);
 
     useEffect(() => {
         if (handleRegister("info") && checkForms) {
@@ -139,11 +141,14 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     </RegisterField>
                 </RegisterRow>
             </div>
-            <RegisterField error={formFields.termsAndConditions.error} title="">
+            <RegisterField
+                error={formFields.termsAndConditions.error}
+                title=""
+                horizontal
+            >
                 <FormControlLabel
                     control={
                         <Checkbox
-                            required
                             color="primary"
                             checked={
                                 formFields.termsAndConditions.value === "true"
@@ -158,8 +163,19 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                             }}
                         />
                     }
-                    label="Acepto los terminos y condiciones"
+                    label=""
                 />
+                <div className="-ml-5">
+                    Ver{" "}
+                    <button
+                        className="text-brand-600 font-bold underline mr-5 "
+                        onClick={() => {
+                            setTermsPopUp(true);
+                        }}
+                    >
+                        términos y condiciones
+                    </button>
+                </div>
             </RegisterField>
             <p>*Campos obligatorios</p>
 
@@ -182,6 +198,13 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     Finalizar
                 </ButtonPrimary>
             </div>
+            {termsPopUp && (
+                <PopUpTerms
+                    onClose={() => {
+                        setTermsPopUp(false);
+                    }}
+                />
+            )}
         </div>
     );
 };
