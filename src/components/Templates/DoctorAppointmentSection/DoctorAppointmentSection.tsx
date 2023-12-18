@@ -30,7 +30,7 @@ const DoctorAppointmentSection = () => {
                 setAppointments(appointments);
             }
         };
-        getAppointments(_id, "pending");
+        getAppointments(_id, "scheduled");
     }, []);
 
     const appointmentCards = appointments.map((appointment, index) => {
