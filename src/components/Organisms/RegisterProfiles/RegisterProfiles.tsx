@@ -1,17 +1,30 @@
 import Routes from "@/utils/routes/Routes";
+import { PlusIcon } from "@heroicons/react/24/outline";
+import { UserIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import React from "react";
 
 const RegisterProfiles = () => {
     return (
         <div className="flex gap-5 justify-between">
-            <button className="text-basic-white bg-brand-600 rounded-lg text-2xl font-normal border-2 border-brand-600 py-4 px-10 w-full active:bg-basic-white active:text-brand-600 active:border-2">
-                <Link href={Routes.REGISTER_DOCTOR}>Soy doctor</Link>
-            </button>
+            <Link
+                //Animate a button to transition color when active
+                className="flex flex-col items-center justify-center text-brand-600 bg-basic-white rounded-lg text-2xl border-4 border-brand-600 p-10 gap-3 w-2/3
+                            active:bg-brand-600 active:text-basic-white active:scale-95 transition-all duration-100"
+                href={Routes.REGISTER_DOCTOR}
+            >
+                <PlusIcon className="w-10 h-10" />
+                <p className="text-center">Soy profesional de la salud</p>
+            </Link>
 
-            <button className="text-basic-white bg-brand-600 rounded-lg text-2xl font-normal border-2 border-brand-600 py-4 px-10 w-full active:bg-basic-white active:text-brand-600 active:border-2">
-                <Link href={Routes.REGISTER_PATIENT}>Soy paciente</Link>
-            </button>
+            <Link
+                className="flex flex-col items-center justify-center text-brand-600 bg-basic-white rounded-lg text-2xl border-4 border-brand-600 p-10 gap-3 w-2/3
+                            active:bg-brand-600 active:text-basic-white active:scale-95 transition-all duration-100"
+                href={Routes.REGISTER_PATIENT}
+            >
+                <UserIcon className="w-10 h-10" />
+                <p className="text-center">Soy paciente</p>
+            </Link>
         </div>
     );
 };
