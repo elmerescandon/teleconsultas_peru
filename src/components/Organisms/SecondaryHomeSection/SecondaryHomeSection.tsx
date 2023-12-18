@@ -9,8 +9,7 @@ const SecondaryHomeSection = () => {
         <div
             className="mx-48 relative my-10
                        max-2xl:mx-24 
-                       max-lg:bg-neutral-200 
-                       max-lg:rounded-2xl"
+                       max-lg:bg-neutral-200 max-lg:rounded-2xl max-lg:mx-5"
         >
             <div
                 className="absolute top-1/4 w-3/5 pr-20 right-0
