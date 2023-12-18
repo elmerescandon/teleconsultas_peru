@@ -21,16 +21,17 @@ const SecondaryHomeSection = () => {
                     max-xl:text-3xl 
                     max-md:text-2xl max-md:text-center"
                 >
-                    Lleva un registro de tus citas e historial médico
+                    Conectarte con un profesional de la salud nunca fue tan
+                    fácil
                 </p>
                 <p
                     className="text-2xl text-brand-600 font-medium text-right
                                 max-xl:text-xl max-lg:text-xl
                                 max-md:text-xl max-md:text-center max-md:pt-10"
                 >
-                    Nuestra plataforma te permitirá ver todo tu historial de
-                    citas e historia médica en un sólo lugar (recetas,
-                    diagnóstico, profesional de la salud).
+                    Salufy te permite conectar con especialistas en medicina,
+                    salud mental y nutrición. Lleva el control de tus citas en
+                    un solo lugar.
                 </p>
                 <div className="pt-7 max-md:pt-10 text-right max-md:text-center">
                     <LinkPrimary to={Routes.LOGIN}>Iniciar Sesión</LinkPrimary>
