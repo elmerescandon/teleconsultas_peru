@@ -4,7 +4,11 @@ import LabelProfileMain from "@/components/Atoms/Labels/LabelProfileMain/LabelPr
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { currentUbigeo } from "@/utils/constants/registerSelect";
-import { stringToDate } from "@/utils/functions/utils";
+import {
+    dateToSpanish,
+    dateToSpanishISO,
+    stringToDate,
+} from "@/utils/functions/utils";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 
@@ -112,11 +116,7 @@ const ProfileDetailed = () => {
                     />
                     <LabelProfileMain
                         label="Nacimiento"
-                        value={
-                            bornDate
-                                ? new Date(bornDate).toISOString().split("T")[0]
-                                : ""
-                        }
+                        value={bornDate ? dateToSpanishISO(bornDate) : ""}
                         editable={isEditingAdditional}
                     />
                     <LabelProfileMain
