@@ -12,8 +12,11 @@ const page = () => {
         <div>
             <Header />
             <EspecialityMain
-                title="Nutrición"
-                subtitle="En Salufy estamos comprometidos en promover la salud a través de un asesoramiento nutricional de calidad y apoyo en la búsqueda de hábitos alimenticios más saludables."
+                title="Alimentación"
+                subtitle="Una buena alimentación mejora tu salud de forma integral,
+                tanto a nivel físico como mental. En Salufy podrás encontrar
+                especialistas en nutrición que te ayudarán a llevar un estilo
+                de vida más saludable."
                 to={Routes.RESERVE}
                 image={
                     <Image
@@ -27,18 +30,18 @@ const page = () => {
             />
             <EspecialityDetails
                 type="nutrition"
-                symptoms={[
+                to={[
                     // Dirigido a personas que:
-                    "Mejorar bienestar general.",
-                    "Mejorar rendimiento deportivo.",
-                    "Problemas digestivos.",
-                    "Objetivos corporales o de salud específicos.",
+                    "Objetivos corporales",
+                    "Rendimientos deportivos",
+                    "Problemas digestivos",
+                    "Prevención de enfermedades",
                 ]}
-                risks={[
-                    "Educación nutricional.",
-                    "Mejora de hábitos alimenticios.",
-                    "Prevención de enfermedades crónicas.",
-                    "Mayor energía y vitalidad.",
+                benefits={[
+                    "Calidad de vida",
+                    "Hábitos alimenticios",
+                    "Energíá y vitalidad",
+                    "Reducción de ansiedad y estrés",
                 ]}
             />
             <PhoneSteps color="nutrition" />

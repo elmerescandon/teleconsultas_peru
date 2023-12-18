@@ -12,8 +12,8 @@ const page = () => {
         <div>
             <Header />
             <EspecialityMain
-                title="Psicología"
-                subtitle="En Salufy sabemos que la salud mental es un componente esencial en la salud general, por eso nuestro compromiso y esfuerzo en impulsarlo."
+                title="Salud Mental"
+                subtitle="Cuidar la salud mental tiene un impacto directo en nuestra forma pensar, sentir y actuar. En Salufy podrás encontrar distintos profesionales según tus necesidades."
                 to={Routes.RESERVE}
                 image={
                     <Image
@@ -27,17 +27,17 @@ const page = () => {
             />
             <EspecialityDetails
                 type="psychology"
-                risks={[
-                    "Crecimiento personal",
-                    "Buscan conocerse mejor",
-                    "Mejorar sus relaciones interpersonales",
-                    "Incrementar su calidad de vida",
+                to={[
+                    "Depresión",
+                    "Autoestima",
+                    "Ansiedad y estrés",
+                    "Autoconoimiento",
                 ]}
-                symptoms={[
-                    "Autoconocimiento",
-                    "Herramientas de afrontamiento",
-                    "Manejo de estrés",
-                    "Aumento de la autoestima",
+                benefits={[
+                    "Calidad de vida",
+                    "Crecimiento personal",
+                    "Relaciones interpersonales",
+                    "Manejo de emociones",
                 ]}
             />
             <PhoneSteps color="psychology" />

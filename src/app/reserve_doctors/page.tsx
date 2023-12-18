@@ -9,21 +9,21 @@ import React from "react";
 
 const page = () => {
     const featureMedicine = [
-        "Encuentra la especialidad que buscas y reserva tu cita médica.",
-        "Te brindamos todas las disponibilidades horarias de los doctores para que puedas elegir.",
-        "Elige el horario y doctor según tus necesidades, y reserva tu cita médica.",
+        "Elige la especialidad que necesitas y agenda tu cita.",
+        "Encuentra el horario que mejor te acomode de forma fácil y rápida.",
+        "Realiza el pago de forma segura a través de Mercado Pago.",
     ];
 
     const featureMental = [
-        "Nuestra variedad de psicólogos te apoyarán hacia tu bienestar psicológico y emocional.",
-        "Encuentra el psicólogo que más se adapte a tus necesidades.",
-        "Somos conscientes de la importancia de la salud mental. Nos preocupamos por ti.",
+        "Encuentra al especialista que necesitas para tratar depresión, ansiedad, estrés, entre otros.",
+        "Encuentra el horario que mejor te acomode de forma fácil y rápida.",
+        "Realiza el pago de forma segura a través de Mercado Pago.",
     ];
 
     const featureNutrition = [
-        "Nuestros expertos te orientarán hacia un plan de alimentación saludable.",
-        "Te ofrecemos una variedad de nutricionistas para que elijas el que más se adapte a tus necesidades.",
-        "Llega a la cita con todas las consultas que tengas y necesites resolver.",
+        "Cambia o mejora tus hábitos alimenticios a través de un plan según tus necesidades.",
+        "Encuentra el horario que mejor te acomode de forma fácil y rápida.",
+        "Realiza el pago de forma segura a través de Mercado Pago.",
     ];
 
     return (
