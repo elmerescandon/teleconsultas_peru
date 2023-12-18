@@ -7,12 +7,13 @@ import Image from "next/image";
 const SecondaryHomeSection = () => {
     return (
         <div
-            className="mx-48 relative my-10 
-                       max-lg:bg-neutral-200 max-2xl:mx-10  
+            className="mx-48 relative my-10
+                       max-2xl:mx-24 
+                       max-lg:bg-neutral-200 
                        max-lg:rounded-2xl"
         >
             <div
-                className="absolute top-1/4 w-2/5 pr-20 right-0
+                className="absolute top-1/4 w-3/5 pr-20 right-0
                             max-xl:w-3/6 max-xl:right-0
                             max-lg:w-fit max-lg:top-0 max-lg:p-5 max-lg:rounded-t-2xl max-lg:z-10 max-lg:py-10 max-lg:static"
             >
@@ -38,11 +39,11 @@ const SecondaryHomeSection = () => {
                 </div>
             </div>
             <Image
-                className="w-full max-lg:bg-neutral-200 max-lg:hidden"
+                className="h-max max-lg:bg-neutral-200 max-lg:hidden"
                 src="/SECONDARY_HOME_BANNER.png"
                 alt="main-home-banner"
                 width={20000}
-                height={100}
+                height={1000}
             />
         </div>
     );
