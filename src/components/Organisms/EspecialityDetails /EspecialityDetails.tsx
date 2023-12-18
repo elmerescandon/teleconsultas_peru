@@ -7,14 +7,14 @@ import React from "react";
 type EspecialityDetailsProps = {
     banner?: React.ReactNode;
     type: string;
-    symptoms: string[];
-    risks: string[];
+    to: string[];
+    benefits: string[];
 };
 
 const EspecialityDetails = ({
     type,
-    symptoms,
-    risks,
+    to,
+    benefits,
 }: EspecialityDetailsProps) => {
     let colorValue = "bg-salufy-blue";
     let colorText = "text-salufy-blue";
@@ -37,7 +37,7 @@ const EspecialityDetails = ({
 
     return (
         <div
-            className={`flex mb-10  rounded-3xl mx-48  max-h-[500px]
+            className={`flex mb-10  rounded-3xl mx-48  h-[500px] max-h-[600px]
                         max-2xl:mx-20 max-2xl:mb-10 
                         max-lg:flex-col max-lg:max-h-max
                         max-md:mx-5 `}
@@ -64,7 +64,7 @@ const EspecialityDetails = ({
                         Dirigido a
                     </p>
                     <div className="flex flex-col gap-3 w-full">
-                        {symptoms.map((symptom, index) => (
+                        {to.map((toValue, index) => (
                             <div
                                 key={index}
                                 className="flex gap-5 items-center"
@@ -76,7 +76,7 @@ const EspecialityDetails = ({
                                     ? NutritionContent.item
                                     : null}
                                 <p className="text-lg max-md:text-base">
-                                    {symptom}
+                                    {toValue}
                                 </p>
                             </div>
                         ))}
@@ -97,7 +97,7 @@ const EspecialityDetails = ({
                         Beneficios
                     </p>
                     <div className="flex flex-col gap-3 w-full">
-                        {risks.map((risk, index) => (
+                        {benefits.map((benefit, index) => (
                             <div
                                 key={index}
                                 className="flex gap-5 items-center"
@@ -109,7 +109,7 @@ const EspecialityDetails = ({
                                     ? NutritionContent.item
                                     : null}
                                 <p className="text-lg max-md:text-base">
-                                    {risk}{" "}
+                                    {benefit}
                                 </p>
                             </div>
                         ))}
