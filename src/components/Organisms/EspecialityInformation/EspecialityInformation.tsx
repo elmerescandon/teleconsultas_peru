@@ -57,7 +57,10 @@ const EspecialityInformation = ({
                     );
                 })}
             </div>
-            <div className="pt-10 flex gap-5 justify-center">
+            <div
+                className="pt-10 flex gap-5 justify-center
+                            max-lg:flex-col max-lg:gap-2"
+            >
                 <LinkPrimary color={color} to={reserve}>
                     Agenda una cita
                 </LinkPrimary>
