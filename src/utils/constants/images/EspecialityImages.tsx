@@ -41,7 +41,7 @@ export const NutritionContent = {
     banner: (
         <Image
             className="rounded-3xl object-cover w-1/3	    
-                        max-2xl:w-full max-2xl:py-5"
+                        max-2xl:h-full max-2xl:w-auto"
             src="/COMIDA_SALUD.jpg"
             alt="salufy-nutri"
             width={600}
