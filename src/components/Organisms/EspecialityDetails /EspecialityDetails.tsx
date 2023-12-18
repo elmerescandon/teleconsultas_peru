@@ -37,13 +37,16 @@ const EspecialityDetails = ({
 
     return (
         <div
-            className={`flex mb-10  rounded-3xl mx-48  h-[500px] max-h-[600px]
+            className={`flex mb-10  rounded-3xl mx-48 h-[500px] max-h-[600px]
                         max-2xl:mx-20 max-2xl:mb-10 
-                        max-lg:flex-col max-lg:max-h-max
+                        max-lg:flex-col max-lg:h-auto max-lg:max-h-max
                         max-md:mx-5 `}
         >
-            {type === "psychology" ? PsychologyContent.banner : null}
-            {type === "nutrition" ? NutritionContent.banner : null}
+            <div className="max-lg:hidden">
+                {type === "psychology" ? PsychologyContent.banner : null}
+                {type === "nutrition" ? NutritionContent.banner : null}
+            </div>
+
             <div
                 className={`flex ${colorValue} px-10 gap-10 w-full rounded-3xl mx-5
                              max-2xl:gap-10 max-2xl:py-5 max-2xl:px-10 
