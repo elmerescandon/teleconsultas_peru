@@ -17,18 +17,21 @@ const LoginOptions = ({ role }: LoginOptionsProps) => {
             <div className="flex items-center py-4">
                 <div className="flex-grow h-px bg-neutral-500"></div>
                 <span className="flex-shrink text-2xl text-neutral-500 px-4 font-light">
-                    O continúa con
+                    O
                 </span>
                 <div className="flex-grow h-px bg-neutral-400"></div>
             </div>
             <div className="flex gap-10 justify-center">
                 <button
+                    className="flex items-center gap-5 bg-neutral-100 text-neutral-500 px-4 py-2 rounded-md w-full justify-center
+                                active:bg-neutral-200 active:text-neutral-600 active:scale-95 transition-all duration-100"
                     onClick={() =>
                         signIn("google", {
                             callbackUrl: `${Routes.LOGIN_GOOGLE}?role=${role}`,
                         })
                     }
                 >
+                    <p>Iniciar Sesión con Google</p>
                     <GoogleColoredIcon />
                 </button>
                 {/* <button>
