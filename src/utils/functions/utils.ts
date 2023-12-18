@@ -165,6 +165,11 @@ export const dateToSpanish = (date : string) => {
   return spanishDate.charAt(0).toUpperCase() + spanishDate.slice(1);
 }
 
+export const dateToSpanishISO = (dateString: string) =>  {
+  const date = new Date(dateString);
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('es-ES', options);
+}
 export const replicateAvailabilities = (newDate: string, availability : IAvailableAppointment[], ) => {
   const dateInput = new Date(newDate).toISOString().split("T")[0];
 
