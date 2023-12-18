@@ -52,7 +52,7 @@ const EspecialityDetails = ({
             >
                 <div
                     className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit my-10 pb-10
-                                max-2xl:w-full max-2xl:flex-grow
+                                max-2xl:w-full max-2xl:flex-grow max-2xl:my-0
                                 max-lg:my-0 max-lg:pb-10 max-lg:items-center"
                 >
                     {type === "psychology" ? PsychologyContent.ratio : null}
@@ -84,7 +84,7 @@ const EspecialityDetails = ({
                 </div>
                 <div
                     className="bg-basic-white flex flex-col w-1/2 rounded-3xl px-10 min-h-fit my-10 pb-10
-                                max-2xl:w-full max-2xl:flex-grow
+                                max-2xl:w-full max-2xl:flex-grow max-2xl:my-0 
                                 max-lg:my-0 max-lg:pb-10 max-lg:items-center"
                 >
                     {type === "psychology" ? PsychologyContent.risk : null}
