@@ -36,7 +36,7 @@ const BurgerHeaderPatient = ({ toggleMenu }: BurgerHeaderPatientProps) => {
         },
     ];
     return (
-        <div className="flex flex-col items-start bg-basic-white animate-open-menu">
+        <div className="flex flex-col items-start bg-basic-white animate-open-menu -z-10 relative">
             {linkRoutes.map((linkRoute, index) => {
                 const bgColor =
                     linkRoute.name === "Iniciar Sesión" ||
