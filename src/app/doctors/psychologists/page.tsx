@@ -31,7 +31,7 @@ const page = () => {
                     "Depresión",
                     "Autoestima",
                     "Ansiedad y estrés",
-                    "Autoconoimiento",
+                    "Autoconocimiento",
                 ]}
                 benefits={[
                     "Calidad de vida",

@@ -65,7 +65,7 @@ const PhoneStepsMobile = ({ color }: PhoneStepsProps) => {
                     className="text-md text-salufy-gray text-right font-semibold
                               max-md:pb-5"
                 >
-                    Salufy te conectar con profesionales de la salud en base a
+                    Salufy te conecta con profesionales de la salud en base a
                     tus necesidades y disponibilidad
                 </p>
             </div>

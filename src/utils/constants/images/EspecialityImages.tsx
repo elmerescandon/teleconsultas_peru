@@ -3,8 +3,9 @@ import Image from "next/image";
 export const PsychologyContent = {
     banner: (
         <Image
-            className="rounded-3xl object-cover w-1/3	    
-                        max-2xl:w-full max-2xl:py-5"
+            className="rounded-3xl h-full	    
+            max-2xl:h-auto            
+            max-2xl:w-full max-2xl:py-5"
             src="/CHICA_SALUD.jpg"
             alt="salufy-nutri"
             width={600}
@@ -40,8 +41,9 @@ export const PsychologyContent = {
 export const NutritionContent = {
     banner: (
         <Image
-            className="rounded-3xl object-cover w-1/3	    
-                        max-2xl:h-full max-2xl:w-auto"
+            className="rounded-3xl h-full	
+            max-2xl:h-auto       
+            max-2xl:w-full max-2xl:py-5"
             src="/COMIDA_SALUD.jpg"
             alt="salufy-nutri"
             width={600}
