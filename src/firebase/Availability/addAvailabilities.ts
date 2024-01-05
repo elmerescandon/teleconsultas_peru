@@ -8,10 +8,11 @@ const addAvailabilities = async (date:string, specialityId : string, doctorId : 
 
     try {
         const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId), where("speciality_id", "==", specialityId)));
-        const snapShot = await getDocs(q);
+        let snapShot = await getDocs(q);
     
         if (snapShot.empty) {
             await addDoc(collection(dbFirestore, "availability"), {doctor_id: doctorId, speciality_id: specialityId});
+            snapShot = await getDocs(q);
         }
     
         const docDate = snapShot.docs[0];
