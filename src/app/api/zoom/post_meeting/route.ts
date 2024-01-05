@@ -40,6 +40,7 @@ export async function GET(request: Request){
                 duration: sessionDuration,
                 timezone: sessionTimeZone,
                 settings: sessionSettings,
+                join_before_host: true,
             }),
         });
     
