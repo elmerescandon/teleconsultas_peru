@@ -35,10 +35,11 @@ const CalendarSection = () => {
     useEffect(() => {
         const getAppointments = async () => {
             if (!userInfo) return;
-            const appointments = await getUserAppointments(
-                userInfo._id,
-                "scheduled"
-            );
+            const appointments = await getUserAppointments(userInfo._id, [
+                "scheduled",
+                "pending",
+            ]);
+            console.log(appointments);
             setPatientAppointments(appointments);
         };
         getAppointments();
