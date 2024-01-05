@@ -72,6 +72,8 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
     const userId = type === "patient" ? userIdPatient : userIdDoctor;
     user = {...user, _id: `${type}${userId}`}
     await addUser(user);
+    console.log("Size Patients", sizePatients)
+    console.log("Size Doctors", sizeDoctors)
     if (type === "doctor"){
         if (registerPatient.curriculum !== null)
             uploadDoctorData(registerPatient.curriculum, `${type}${userId}.pdf`, 'curriculum');
