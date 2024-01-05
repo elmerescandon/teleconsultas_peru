@@ -1,5 +1,4 @@
 "use client";
-import TimeDisplay from "@/components/Atoms/Time/TimeDisplay";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { IState } from "@/redux/store";
@@ -14,9 +13,9 @@ const PatientMain = () => {
             <div className="flex flex-col gap-5">
                 {/* <TimeDisplay /> */}
                 <p className="text-3xl font-semibold">{`¡Buenos días, ${userInfo.name}!`}</p>
-                <p className="text-base font-normal">
+                {/* <p className="text-base font-normal">
                     Tienes 1 cita agendada para hoy
-                </p>
+                </p> */}
             </div>
             <Image
                 src="/user-icon.jpg"
