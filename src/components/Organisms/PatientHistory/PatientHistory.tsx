@@ -15,10 +15,10 @@ const PatientHistory = () => {
     useEffect(() => {
         const getAppointments = async () => {
             if (userInfo._id === "" || !state.logged) return;
-            const appointments = await getUserAppointments(
-                userInfo._id,
-                "completed"
-            );
+            const appointments = await getUserAppointments(userInfo._id, [
+                "pending",
+                "scheduled",
+            ]);
             setPatientAppointments(appointments);
         };
         getAppointments();
@@ -58,6 +58,7 @@ const PatientHistory = () => {
                     groupedAppointments.map((appointments) => {
                         return appointments.length > 0 ? (
                             <SpecialityCard
+                                key={appointments[0].specialityId}
                                 appointments={appointments}
                                 specialityId={appointments[0].specialityId}
                             />
