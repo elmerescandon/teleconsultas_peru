@@ -11,6 +11,7 @@ import useDoctorRegister from "@/utils/hooks/useDoctorRegister";
 import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext/RegisterDoctorContext";
 import { specialityOptions } from "@/utils/constants/registerSelect";
 import InputFile from "@/components/Atoms/Inputs/InputFile/InputFile";
+import PopUpTerms from "@/components/Atoms/PopUp/PopUpTerms/PopUpTerms";
 
 type RegisterDoctorInformationProps = {
     nextFn: () => void;
@@ -25,6 +26,7 @@ const RegisterDoctorInformation = ({
         useDoctorRegister();
     const [checkForms, setCheckForms] = useState<boolean>(false);
     const [readyToPost, setReadyToPost] = useState<boolean>(false);
+    const [termsPopUp, setTermsPopUp] = useState<boolean>(false);
     const dispatch = useDoctorRegisterDispatch();
 
     useEffect(() => {
@@ -142,11 +144,14 @@ const RegisterDoctorInformation = ({
                     </RegisterField>
                 </RegisterRow>
             </div>
-            <RegisterField error={formFields.termsAndConditions.error} title="">
+            <RegisterField
+                error={formFields.termsAndConditions.error}
+                title=""
+                horizontal
+            >
                 <FormControlLabel
                     control={
                         <Checkbox
-                            required
                             color="primary"
                             checked={
                                 formFields.termsAndConditions.value === "true"
@@ -161,8 +166,19 @@ const RegisterDoctorInformation = ({
                             }}
                         />
                     }
-                    label="Acepto los terminos y condiciones"
+                    label=""
                 />
+                <div className="-ml-5">
+                    Acepto{" "}
+                    <button
+                        className="text-brand-600 font-bold underline mr-5 "
+                        onClick={() => {
+                            setTermsPopUp(true);
+                        }}
+                    >
+                        términos y condiciones
+                    </button>
+                </div>
             </RegisterField>
             <p>*Campos obligatorios</p>
 
@@ -185,6 +201,13 @@ const RegisterDoctorInformation = ({
                     Finalizar
                 </ButtonPrimary>
             </div>
+            {termsPopUp && (
+                <PopUpTerms
+                    onClose={() => {
+                        setTermsPopUp(false);
+                    }}
+                />
+            )}
         </div>
     );
 };
