@@ -1,10 +1,10 @@
 "use client";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import LabelProfileMain from "@/components/Atoms/Labels/LabelProfileMain/LabelProfileMain";
+import ProfilePicture from "@/components/Molecules/ProfilePicture/ProfilePicture";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
-import { PencilIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
+import { PencilIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 
 const ProfileMain = () => {
@@ -19,22 +19,7 @@ const ProfileMain = () => {
                         max-2xl:w-full max-2xl:flex-row
                         max-md:flex-col"
         >
-            <div
-                className="flex gap-4 flex-col items-center
-                            max-md:w-full"
-            >
-                <Image
-                    src="/user-icon.jpg"
-                    height={200}
-                    width={200}
-                    alt="profile-main"
-                    className="rounded-full"
-                />
-                <button className="flex gap-4 items-center -ml-6">
-                    <PlusCircleIcon className="h-8 w-8 text-brand-600" />
-                    <span className="text-brand-600 text-lg">Cambiar foto</span>
-                </button>
-            </div>
+            <ProfilePicture id={id} />
             <div
                 className="flex flex-col w-full pr-10 gap-5
                             max-md:w-full"
@@ -43,7 +28,7 @@ const ProfileMain = () => {
                     <p className="text-lg font-semibold">
                         Información Personal
                     </p>
-                    {!isEditingPersonal ? (
+                    {/* {!isEditingPersonal ? (
                         <button
                             onClick={() => {
                                 setIsEditingPersonal(true);
@@ -51,7 +36,7 @@ const ProfileMain = () => {
                         >
                             <PencilIcon className="h-5 w-5 text-brand-600 -mb-1" />
                         </button>
-                    ) : null}
+                    ) : null} */}
                 </div>
                 <div
                     className="flex flex-col gap-4 pt-5
