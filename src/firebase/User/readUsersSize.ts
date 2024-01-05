@@ -7,7 +7,7 @@ export const readPatientsSize = async () => {
         const querySnapshot = await getDocs(q);
         return querySnapshot.size;
     } catch (e) {
-        throw new Error("Error getting documents: " + e);
+        throw new Error("Error obteniendo información: " + e);
     }
 }
 
@@ -17,7 +17,7 @@ export const readDoctorsSize = async () => {
         const querySnapshot = await getDocs(q);
         return querySnapshot.size;
     } catch (e) {
-        throw new Error("Error getting documents: " + e);
+        throw new Error("Error obteniendo información: " + e);
     }
 }
 
