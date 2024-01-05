@@ -39,7 +39,7 @@ const DoctorAvailabilityHours = () => {
             {myAvaialability && (
                 <PopUpMyAvailability
                     doctorId={_id}
-                    specialityId={specialities ? specialities[0] : ""}
+                    specialityId={specialities ? specialities.toString() : ""}
                     onClose={() => {
                         setMyAvailability(false);
                     }}
