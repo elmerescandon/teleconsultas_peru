@@ -2,7 +2,11 @@ import PaymentItem from "@/components/Molecules/PaymentItem/PaymentItem";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
-import { getAppointmentHours, stringToDate } from "@/utils/functions/utils";
+import {
+    dateToSpanishISO,
+    getAppointmentHours,
+    stringToDate,
+} from "@/utils/functions/utils";
 import { useEffect, useState } from "react";
 
 const PaymentReview = () => {
@@ -45,7 +49,7 @@ const PaymentReview = () => {
                     name={summary.specialityName}
                 />
                 <PaymentItem label="Profesional" name={summary.doctorName} />
-                <PaymentItem label="Fecha" name={date} />
+                <PaymentItem label="Fecha" name={dateToSpanishISO(date)} />
                 <PaymentItem
                     label="Horario"
                     name={getAppointmentHours(startDate, endDate)}
