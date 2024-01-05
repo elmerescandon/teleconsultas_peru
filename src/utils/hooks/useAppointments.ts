@@ -13,7 +13,7 @@ const useAppointments = (date : IDateRangeAppointment, user: IUserInfo, speciali
         let appointments: IAppointment[] = [];
 
         if (specialityId === "") {
-            appointments = await getUserAppointments(user._id, "scheduled");
+            appointments = await getUserAppointments(user._id, ["scheduled","pending"]);
         }else{
             appointments = await getUserAppointmentsFiltered(user._id, "scheduled", date, specialityId);
         }
