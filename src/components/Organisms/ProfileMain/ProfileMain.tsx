@@ -4,7 +4,7 @@ import LabelProfileMain from "@/components/Atoms/Labels/LabelProfileMain/LabelPr
 import ProfilePicture from "@/components/Molecules/ProfilePicture/ProfilePicture";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
-import { PencilIcon } from "@heroicons/react/24/outline";
+// import { PencilIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 
 const ProfileMain = () => {
@@ -19,7 +19,7 @@ const ProfileMain = () => {
                         max-2xl:w-full max-2xl:flex-row
                         max-md:flex-col"
         >
-            <ProfilePicture id={id} />
+            <ProfilePicture />
             <div
                 className="flex flex-col w-full pr-10 gap-5
                             max-md:w-full"
