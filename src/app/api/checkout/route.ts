@@ -30,6 +30,6 @@ export async function GET(request: Request){
         const { data } = res;
         return NextResponse.json(data);
     } catch (error) {
-        console.log("Hola");    
+        console.log((error as Error).message) 
     }
 }

@@ -60,9 +60,6 @@ export const  stringToDate = (date : Timestamp) => {
 
   const spanishDate = parse(newDate, 'yyyy-MM-dd', new Date()).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
     return spanishDate.charAt(0).toUpperCase() + spanishDate.slice(1);
-  // console.log(date.toDate());
-  // console.log();
-  // return date.toDate().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 export const statusToSpanish = (status : string) => {

@@ -21,8 +21,6 @@ const SignInGoogle = () => {
 
     useEffect(() => {
         const updateSession = async (id: string) => {
-            console.log("updateSession");
-            console.log(id);
             await update({
                 ...session,
                 user: {
@@ -34,7 +32,6 @@ const SignInGoogle = () => {
 
         const validateUser = async (email: string, role: string) => {
             const isValid = await isUserValidMail(email, role);
-            console.log(email);
             if (isValid) {
                 const id = await getUserId(email, role);
                 if (id !== null) {

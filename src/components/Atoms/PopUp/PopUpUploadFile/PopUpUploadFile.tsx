@@ -25,7 +25,6 @@ const PopUpUploadFile = ({
 
     const cargarArchivo = async () => {
         try {
-            console.log("cargando");
             setError("");
             setCorrect(false);
             setLoading(true);

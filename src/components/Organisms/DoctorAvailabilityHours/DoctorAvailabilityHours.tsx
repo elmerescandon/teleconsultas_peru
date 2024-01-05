@@ -15,9 +15,6 @@ const DoctorAvailabilityHours = () => {
 
     const [myAvaialability, setMyAvailability] = useState<boolean>(false);
 
-    useEffect(() => {
-        console.log(specialities);
-    }, []);
     return (
         <div
             className="flex items-center gap-4
