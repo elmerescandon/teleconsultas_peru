@@ -4,7 +4,7 @@ import DoctorPatients from "@/components/Molecules/DoctorPatients/DoctorPatients
 const DoctorDashboard = () => {
     return (
         <div className="flex justify-around w-full max-xl:flex-col">
-            <DoctorPatients />
+            {/* <DoctorPatients /> */}
             {/* <DoctorEarnings /> */}
             {/* <DoctorAnalytics /> */}
         </div>
