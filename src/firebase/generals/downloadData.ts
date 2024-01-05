@@ -13,6 +13,7 @@ export const downloadData = async (
         return URLData;
     } catch (error) {
         // do nothing if error 404
-        throw new Error("No se pudo conectar a la base de datos");
+        return "";	
+        // throw new Error("No se pudo conectar a la base de datos");
     }
 };
