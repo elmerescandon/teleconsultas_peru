@@ -166,7 +166,7 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     label=""
                 />
                 <div className="-ml-5">
-                    Ver{" "}
+                    Acepto
                     <button
                         className="text-brand-600 font-bold underline mr-5 "
                         onClick={() => {
