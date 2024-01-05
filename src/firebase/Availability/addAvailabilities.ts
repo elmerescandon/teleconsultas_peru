@@ -11,7 +11,7 @@ const addAvailabilities = async (date:string, specialityId : string, doctorId : 
         const snapShot = await getDocs(q);
     
         if (snapShot.empty) {
-            throw new Error("No se encontró el doctor");
+            await addDoc(collection(dbFirestore, "availability"), {doctor_id: doctorId, speciality_id: specialityId});
         }
     
         const docDate = snapShot.docs[0];
