@@ -11,7 +11,7 @@ export const getAllAvailableDates = async (doctorId : string, specialityId: stri
         const snapShot = await getDocs(q);
     
         if (snapShot.empty) {
-            throw new Error("No se pudo obtener la disponibilidad del doctor, intente nuevamente más tarde");
+            throw new Error("Todavía no se han agregado nuevos horarios, por favor agregue uno nuevo.");
         }
     
         const docDate = snapShot.docs[0];
@@ -19,7 +19,7 @@ export const getAllAvailableDates = async (doctorId : string, specialityId: stri
         const dateSnapshots = await getDocs(dateCollection);
     
         if (dateSnapshots.empty) {
-            throw new Error("No hay disponibilidad para este doctor");
+            throw new Error("No hay disponibilidad para este doctor.");
         }
     
         dateSnapshots.forEach((doc) => {
