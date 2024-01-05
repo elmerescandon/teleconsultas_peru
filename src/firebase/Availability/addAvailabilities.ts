@@ -11,6 +11,7 @@ const addAvailabilities = async (date:string, specialityId : string, doctorId : 
         const snapShot = await getDocs(q);
     
         if (snapShot.empty) {
+            console.log(specialityId);
             throw new Error("No se encontró el doctor");
         }
     

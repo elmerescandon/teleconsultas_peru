@@ -14,6 +14,10 @@ const DoctorAvailabilityHours = () => {
         useState<boolean>(false);
 
     const [myAvaialability, setMyAvailability] = useState<boolean>(false);
+
+    useEffect(() => {
+        console.log(specialities);
+    }, []);
     return (
         <div
             className="flex items-center gap-4
@@ -46,7 +50,7 @@ const DoctorAvailabilityHours = () => {
             )}
             {showAddAvailability && (
                 <PopUpAddAvailability
-                    specialityId={specialities ? specialities[0] : ""}
+                    specialityId={specialities ? specialities.toString() : ""}
                     onClose={() => {
                         setShowAddAvailability(false);
                     }}
