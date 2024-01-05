@@ -1,7 +1,7 @@
 import {collection, addDoc} from 'firebase/firestore';
 import dbFirestore from '../config';
 import IUserPost from '@/utils/Interfaces/API/Users/IUserPost';
-import { readPatientsSize } from './readUsersSize';
+import { readDoctorsSize, readPatientsSize } from './readUsersSize';
 import { isUserValid } from './isUserValid';
 import { uploadDoctorData } from '../Doctor/uploadDoctorData';
 
@@ -66,7 +66,10 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
         return false
 
     const sizePatients = await readPatientsSize();
-    const userId = sizePatients === undefined ? 1 : sizePatients + 1;
+    const sizeDoctors = await readDoctorsSize();
+    const userIdPatient = sizePatients === undefined ? 1 : sizePatients + 1;
+    const userIdDoctor = sizeDoctors === undefined ? 1 : sizeDoctors + 1;
+    const userId = type === "patient" ? userIdPatient : userIdDoctor;
     user = {...user, _id: `${type}${userId}`}
     await addUser(user);
     if (type === "doctor"){
