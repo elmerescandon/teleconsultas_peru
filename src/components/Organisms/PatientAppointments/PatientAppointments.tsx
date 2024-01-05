@@ -17,10 +17,10 @@ const PatientAppointments = () => {
     useEffect(() => {
         const getAppointments = async () => {
             if (userInfo._id === "" || !state.logged) return;
-            const appointments = await getUserAppointments(
-                userInfo._id,
-                "scheduled"
-            );
+            const appointments = await getUserAppointments(userInfo._id, [
+                "pending",
+                "scheduled",
+            ]);
             setPatientAppointments(appointments);
         };
         getAppointments();
