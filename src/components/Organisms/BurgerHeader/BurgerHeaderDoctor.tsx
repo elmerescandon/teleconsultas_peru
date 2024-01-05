@@ -19,7 +19,7 @@ const BurgerHeaderDoctor = ({ toggleMenu }: BurgerHeaderDoctorProps) => {
             route: Routes.DOCTOR_HOME,
         },
         {
-            name: "Revista tus citas",
+            name: "Revisa tus citas",
             route: Routes.DOCTOR_APPOINTMENTS,
         },
         {
