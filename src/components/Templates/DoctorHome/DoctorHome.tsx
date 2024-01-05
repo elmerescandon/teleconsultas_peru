@@ -11,7 +11,7 @@ const DoctorHome = () => {
                 className="w-full flex
                             max-xl:flex-col"
             >
-                <DoctorDashboard />
+                {/* <DoctorDashboard /> */}
                 <DoctorAppointments />
             </div>
             {/* <DoctorInitial /> */}
