@@ -24,13 +24,13 @@ const DoctorAppointmentSection = () => {
     const [appointments, setAppointments] = useState<IAppointment[]>([]);
 
     useEffect(() => {
-        const getAppointments = async (id: string, status: string) => {
+        const getAppointments = async (id: string, status: string[]) => {
             const appointments = await getDoctorAppointments(id, status);
             if (appointments) {
                 setAppointments(appointments);
             }
         };
-        getAppointments(_id, "scheduled");
+        getAppointments(_id, ["scheduled", "pending"]);
     }, []);
 
     const appointmentCards = appointments.map((appointment, index) => {
