@@ -17,14 +17,14 @@ const DoctorAppointments = () => {
     });
 
     useEffect(() => {
-        const getAppointments = async (id: string, status: string) => {
+        const getAppointments = async (id: string, status: string[]) => {
             if (!id) return console.log("No hay id");
             const appointments = await getDoctorAppointments(id, status);
             if (appointments) {
                 setAppointments(appointments);
             }
         };
-        getAppointments(_id, "scheduled");
+        getAppointments(_id, ["scheduled", "pending"]);
     }, []);
 
     return (
