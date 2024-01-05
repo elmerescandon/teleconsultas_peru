@@ -28,7 +28,7 @@ const ProfileDetailed = () => {
                 <div className="text-xl font-semibold">
                     Información Adicional
                 </div>
-                {isEditingAdditional ? (
+                {/* {isEditingAdditional ? (
                     <div className="w-36">
                         <ButtonPrimary
                             type="button"
@@ -47,7 +47,7 @@ const ProfileDetailed = () => {
                     >
                         <PencilIcon className="h-5 w-5 text-brand-600" />
                     </button>
-                )}
+                )} */}
             </div>
             <div
                 className="flex flex-row gap-5
