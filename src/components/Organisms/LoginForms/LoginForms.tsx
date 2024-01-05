@@ -85,7 +85,6 @@ const LoginForms = ({ role }: LoginFormsProps) => {
                     {loading && <Loading />}
                 </div>
             </div>
-
             {error && <p className="text-rose-600 font-bold">{error}</p>}
         </div>
     );
