@@ -1,4 +1,5 @@
 "use client";
+import ButtonThird from "@/components/Atoms/Buttons/ButtonThird/ButtonThird";
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
 import MercadoPagoPayment from "@/components/Organisms/MercadoPagoPayment/MercadoPagoPayment";
 import PaymentReview from "@/components/Organisms/PaymentReview/PaymentReview";
@@ -64,13 +65,29 @@ const PaymentAppointmentSection = () => {
                         "
         >
             <div className="text-2xl font-semibold py-5">
-                Realiza el pago de tu cita
+                ¡Enhorabuena, tu cita ya se encuentra reservada!
             </div>
             <div className="flex justify-center items-center pt-5 gap-10 max-lg:flex-col">
                 <PaymentReview />
             </div>
             <div>
-                <MercadoPagoPayment />
+                <div className="flex-col items-center justify-center gap-5">
+                    <MercadoPagoPayment />
+                    <div>
+                        <ButtonThird
+                            onClickFn={() => {
+                                router.push(Routes.PATIENT_HOME);
+                            }}
+                        >
+                            Ahora no, deseo pagar más tarde.
+                        </ButtonThird>
+                        <p className="text-sm text-gray-500">
+                            * Recuerda que tienes hasta 24 horas antes de tu
+                            cita para realizar el pago o se cancelará de forma
+                            automática.
+                        </p>
+                    </div>
+                </div>
                 {pageState.loading && <LoadingHorizontal />}
             </div>
             {pageState.error !== "" && (
