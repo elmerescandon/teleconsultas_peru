@@ -8,10 +8,12 @@ import PatientCard from "@/components/Molecules/PatientCard/PatientCard";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import getDoctorAppointments from "@/firebase/Appointments/getDoctorAppointments";
+import getAppointmentsFiltered from "@/firebase/Appointments/getAppointmentsFiltered";
+import IDateRangeAppointment from "@/utils/Interfaces/IDateRangeAppointment";
 
 const DoctorAppointmentSection = () => {
     const user: IUserState = useAppSelector((state) => state.user);
-    const { _id } = user.userInfo;
+    const { _id, role } = user.userInfo;
     const [filter, setFilter] = useState<IAppointmentFilter>({
         date: {
             init: null,
@@ -24,14 +26,36 @@ const DoctorAppointmentSection = () => {
     const [appointments, setAppointments] = useState<IAppointment[]>([]);
 
     useEffect(() => {
-        const getAppointments = async (id: string, status: string[]) => {
-            const appointments = await getDoctorAppointments(id, status);
+        const getAppointments = async (
+            id: string,
+            role: string,
+            status: string[],
+            date: IDateRangeAppointment,
+            specialityId: string
+        ) => {
+            const appointments = await getAppointmentsFiltered(
+                id,
+                role,
+                status,
+                date,
+                specialityId
+            );
             if (appointments) {
                 setAppointments(appointments);
             }
         };
-        getAppointments(_id, ["scheduled", "pending"]);
-    }, []);
+        getAppointments(
+            _id,
+            role,
+            ["scheduled", "pending"],
+            filter.date,
+            filter.speciality
+        );
+    }, [filter]);
+
+    useEffect(() => {
+        console.log(filter);
+    }, [filter]);
 
     const appointmentCards = appointments.map((appointment, index) => {
         return <PatientCard appointment={appointment} key={index} />;
