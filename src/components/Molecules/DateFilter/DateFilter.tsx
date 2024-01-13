@@ -1,5 +1,6 @@
 "use client";
 import { DatePicker } from "@mui/x-date-pickers";
+import { useState } from "react";
 
 type DateFilterProps = {
     date: { init: string | null; finish: string | null };
@@ -7,22 +8,30 @@ type DateFilterProps = {
 };
 
 const DateFilter = ({ date, setDate }: DateFilterProps) => {
+    const [init, setInit] = useState<string | null>(null);
+    const [finish, setFinish] = useState<string | null>(null);
     return (
         <div className="flex gap-5 justify-end max-xl:flex-col">
             <DatePicker
-                maxDate={date.finish}
-                // label="Fecha Inicio"
-                value={date.init}
+                maxDate={finish}
+                label="Fecha Inicio"
+                value={init}
                 onChange={(newDate) => {
-                    if (newDate) setDate({ ...date, init: newDate });
+                    if (newDate) {
+                        setInit(newDate);
+                        setDate({ ...date, init: newDate.toString() });
+                    }
                 }}
             />
             <DatePicker
-                minDate={date.init}
-                // label="Fecha Final"
-                value={date.finish}
+                minDate={init}
+                label="Fecha Final"
+                value={finish}
                 onChange={(newDate) => {
-                    setDate({ ...date, finish: newDate });
+                    if (newDate) {
+                        setDate({ ...date, finish: newDate.toString() });
+                        setFinish(newDate);
+                    }
                 }}
             />
         </div>
