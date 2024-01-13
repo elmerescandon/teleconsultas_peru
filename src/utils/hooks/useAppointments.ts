@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import IAppointment from "../Interfaces/reducers/IAppointment";
 import IDateRangeAppointment from "../Interfaces/IDateRangeAppointment";
 import IUserInfo from "@/redux/state-interfaces/User/IUserInfo";
-import getUserAppointmentsFiltered from "@/firebase/Appointments/getUserAppointmentsFiltered";
 import getUserAppointments from "@/firebase/Appointments/getUserAppointments";
+import getAppointmentsFiltered from "@/firebase/Appointments/getAppointmentsFiltered";
 
 const useAppointments = (date : IDateRangeAppointment, user: IUserInfo, specialityId : string ,setSelectedAppointment: (value: string) => void ) : IAppointment[] => {
 
@@ -11,12 +11,7 @@ const useAppointments = (date : IDateRangeAppointment, user: IUserInfo, speciali
 
     const getAppointments = async () => {
         let appointments: IAppointment[] = [];
-
-        if (specialityId === "") {
-            appointments = await getUserAppointments(user._id, ["scheduled","pending"]);
-        }else{
-            appointments = await getUserAppointmentsFiltered(user._id, "scheduled", date, specialityId);
-        }
+        appointments = await getAppointmentsFiltered(user._id, user.role, ["scheduled","pending"], date, specialityId);
         setAppointments(appointments);
     };
 
