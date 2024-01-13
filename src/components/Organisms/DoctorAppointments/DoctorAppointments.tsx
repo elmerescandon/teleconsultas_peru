@@ -25,7 +25,7 @@ const DoctorAppointments = () => {
             }
         };
         getAppointments(_id, ["scheduled", "pending"]);
-    }, []);
+    }, [_id]);
 
     return (
         <div className="w-full">
