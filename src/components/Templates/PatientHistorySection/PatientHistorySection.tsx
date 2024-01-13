@@ -38,7 +38,7 @@ const PatientHistorySection = () => {
             >
                 <h1 className="font-semibold text-4xl py-5">Historia</h1>
                 <div className="flex gap-5 max-xl:flex-col">
-                    <SpecialityFilter setSpeciality={setSpecialityId} />
+                    {/* <SpecialityFilter setSpeciality={setSpecialityId} /> */}
                     <DateFilter date={date} setDate={setDate} />
                 </div>
             </div>
