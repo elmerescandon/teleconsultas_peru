@@ -28,7 +28,7 @@ const PatientMain = () => {
             <div className="flex flex-col gap-5">
                 <p className="text-3xl font-semibold">{`¡Buenos días, ${userInfo.name}!`}</p>
                 <p className="text-base font-normal">
-                    {`Tienes ${appointmentCount} cita agendada para hoy`}
+                    {`Tienes ${appointmentCount} cita agendadas, revisa tu calendario.`}
                 </p>
             </div>
             <Image
