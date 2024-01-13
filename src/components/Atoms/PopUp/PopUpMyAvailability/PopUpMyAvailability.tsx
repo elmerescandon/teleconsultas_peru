@@ -40,8 +40,6 @@ const PopUpMyAvailability = ({
                 setLoading(false);
             }
         };
-        console.log("doctorId", doctorId);
-        console.log("specialityId", specialityId);
         getAvailabilities();
     }, []);
 
