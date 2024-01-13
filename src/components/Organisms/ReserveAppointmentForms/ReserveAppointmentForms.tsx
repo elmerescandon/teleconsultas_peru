@@ -17,6 +17,8 @@ import reasonMockup from "@/utils/mockups/reasonMockup";
 import symptomsMockup from "@/utils/mockups/symptomsMockup";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import DoctorList from "../DoctorList/DoctorList";
+import PopUpDoctorList from "@/components/Atoms/PopUp/PopUpDoctorList/PopUpDoctorList";
 
 const ReserveAppointmentForms = () => {
     const searchParams = useSearchParams();
@@ -28,6 +30,7 @@ const ReserveAppointmentForms = () => {
         ISelectOptions[]
     >([]);
     const [doctorsOptions, setDoctorsOptions] = useState<ISelectOptions[]>([]);
+    const [popUpDoctor, setPopUpDoctor] = useState<boolean>(false);
 
     useEffect(() => {
         const getSpecialitiesFromDb = async () => {
@@ -57,7 +60,6 @@ const ReserveAppointmentForms = () => {
         if (specialityId === "") {
             setDoctorsOptions([]);
         } else {
-            console.log("specialityId", specialityId);
             getDoctorsFromDb(specialityId);
         }
     }, [specialityId, doctorId]);
@@ -97,6 +99,13 @@ const ReserveAppointmentForms = () => {
                             });
                         }}
                     />
+                    {doctorsOptions && doctorsOptions.length > 0 && (
+                        <DoctorList
+                            openPopUp={() => {
+                                setPopUpDoctor(true);
+                            }}
+                        />
+                    )}
                 </RegisterField>
 
                 <RegisterField title="Razón de consulta*" error="">
@@ -143,6 +152,14 @@ const ReserveAppointmentForms = () => {
                     />
                 </RegisterField>
             </div>
+            {popUpDoctor && (
+                <PopUpDoctorList
+                    onClose={() => {
+                        setPopUpDoctor(false);
+                    }}
+                    specialityId={specialityId}
+                />
+            )}
         </div>
     );
 };
