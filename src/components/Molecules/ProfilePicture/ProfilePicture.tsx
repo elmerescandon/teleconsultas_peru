@@ -40,7 +40,6 @@ const ProfilePicture = () => {
 
     useEffect(() => {
         const getProfilePic = async () => {
-            console.log(_id);
             const url = await downloadData(
                 "doctors",
                 "profile_pictures",
