@@ -18,7 +18,7 @@ const ReserveAppointmentCalendar = ({}) => {
 
     const dispatch = useAppointmentDispatch();
     return (
-        <div className="px-5">
+        <div className="px-5 w-auto">
             <div className="text-xl font-semibold py-4">
                 Calendario Disponible
             </div>
