@@ -5,6 +5,7 @@ import DateFilter from "@/components/Molecules/DateFilter/DateFilter";
 import IAppointmentFilter from "@/utils/Interfaces/IAppointmentFilter";
 import { getSpecialitiesOptions } from "@/utils/functions/utils";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
+import { useEffect } from "react";
 
 type DoctorAppointmentFilterProps = {
     filter: IAppointmentFilter;
