@@ -9,6 +9,8 @@ enum Routes{
     LOGIN_PATIENT = '/login/patient',
     LOGIN_GOOGLE = '/login/google',
 
+    LOST_PASSWORD = '/lost_password',
+
 
     REGISTER = '/register',
     REGISTER_COMPLETE = '/register/success',
