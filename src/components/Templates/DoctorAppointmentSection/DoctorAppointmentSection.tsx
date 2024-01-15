@@ -53,10 +53,6 @@ const DoctorAppointmentSection = () => {
         );
     }, [filter]);
 
-    useEffect(() => {
-        console.log(filter);
-    }, [filter]);
-
     const appointmentCards = appointments.map((appointment, index) => {
         return <PatientCard appointment={appointment} key={index} />;
     });
