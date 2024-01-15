@@ -9,6 +9,7 @@ export const downloadDoctorData = async (
         const URLData = await getDownloadURL(
             ref(storage, `doctors/${subfolder}/${dataName}`)
         );
+        if (URLData === "") throw new Error("No se encontró el archivo");
         return URLData;
     } catch (error) {
         throw new Error("No se pudo conectar a la base de datos");
