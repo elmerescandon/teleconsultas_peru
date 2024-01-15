@@ -12,6 +12,8 @@ import {
 import { useState } from "react";
 import LoadingHorizontal from "../Loaders/LoadingHorizontal/LoadingHorizontal";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
+import emptyAvailableData from "@/firebase/Availability/emptyAvailableData";
+import createAvailability from "@/firebase/Availability/createAvailability";
 
 type AddAvailabilityGeneralProps = {
     doctorId: string;
@@ -37,11 +39,16 @@ const AddAvailabilityGeneral = ({
             setError("");
             setLoading(true);
 
+            if (await emptyAvailableData(specialityId, doctorId)) {
+                await createAvailability(specialityId, doctorId);
+            }
+
             if (!date) {
                 throw new Error("Por favor, completa todos los campos");
             }
 
             let slots: IAvailableAppointment[] = [];
+
             if (check) {
                 slots = createAvailabilitiesSlots(date, "09:00", "18:00");
             } else if (!check && startTime && endTime) {
@@ -88,6 +95,7 @@ const AddAvailabilityGeneral = ({
                         const dateInput = new Date(date)
                             .toISOString()
                             .split("T")[0];
+
                         await addAvailabilities(
                             dateInput,
                             specialityId,
