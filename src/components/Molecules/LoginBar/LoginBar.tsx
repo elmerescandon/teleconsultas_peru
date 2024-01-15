@@ -14,6 +14,7 @@ import Routes from "@/utils/routes/Routes";
 import { signOut, useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import LoginProfilePicture from "../LoginProfilePicture/LoginProfilePicture";
 
 const LoginBar = () => {
     const state: IUserState = useAppSelector((state) => state.user);
@@ -49,7 +50,7 @@ const LoginBar = () => {
             {logged ? (
                 <div className="login-bar flex flex-row items-center gap-7">
                     <button
-                        className="text-lg font-semibold"
+                        className="text-lg font-semibold active:outline-none focus:outline-none "
                         onClick={() => {
                             if (role === "doctor")
                                 router.push(Routes.DOCTOR_PROFILE);
@@ -58,10 +59,7 @@ const LoginBar = () => {
                             else router.push(Routes.HOME);
                         }}
                     >
-                        <img
-                            className="w-14 h-14 rounded-full"
-                            src="/user-icon.jpg"
-                        />
+                        <LoginProfilePicture />
                     </button>
                     <ButtonSecondary
                         onClickFn={() => {
