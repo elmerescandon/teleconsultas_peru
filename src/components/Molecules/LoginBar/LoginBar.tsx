@@ -64,8 +64,10 @@ const LoginBar = () => {
                     <ButtonSecondary
                         onClickFn={() => {
                             dispatch(userLogOut());
-                            signOut({ redirect: false });
-                            router.push(Routes.HOME);
+                            signOut({
+                                redirect: true,
+                                callbackUrl: Routes.HOME,
+                            });
                         }}
                     >
                         Cerrar Sesión
