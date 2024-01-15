@@ -6,12 +6,14 @@ type ButtonPrimaryProps = {
     onClickFn: () => void;
     type?: string;
     selected?: boolean;
+    disabled?: boolean;
 };
 
 const ButtonPrimary = ({
     children,
     onClickFn,
     selected,
+    disabled,
 }: ButtonPrimaryProps) => {
     return (
         <button
@@ -20,6 +22,7 @@ const ButtonPrimary = ({
                             selected ? "bg-white text-brand-600" : ""
                         }`}
             onClick={onClickFn}
+            disabled={disabled}
         >
             {children}
         </button>
