@@ -59,6 +59,8 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
         age: registerPatient.age,
         sex: registerPatient.sex,
         specialities: registerPatient.specialities,
+        bornDate: registerPatient.bornDate,
+        
     }
 
     
