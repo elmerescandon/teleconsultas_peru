@@ -9,7 +9,10 @@ import { Checkbox, FormControlLabel } from "@mui/material";
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import useDoctorRegister from "@/utils/hooks/useDoctorRegister";
 import { useDoctorRegisterDispatch } from "@/utils/context/RegisterDoctorContext/RegisterDoctorContext";
-import { specialityOptions } from "@/utils/constants/registerSelect";
+import {
+    sexOptions,
+    specialityOptions,
+} from "@/utils/constants/registerSelect";
 import InputFile from "@/components/Atoms/Inputs/InputFile/InputFile";
 import PopUpTerms from "@/components/Atoms/PopUp/PopUpTerms/PopUpTerms";
 
@@ -34,6 +37,7 @@ const RegisterDoctorInformation = ({
             dispatch({
                 type: "SET_DOCINFO",
                 payload: {
+                    bornDate: formFields.bornDate.value as string,
                     age: formFields.age.value as string,
                     sex: formFields.sex.value as string,
                     phone: formFields.phone.value as string,
@@ -69,6 +73,17 @@ const RegisterDoctorInformation = ({
                             value={formFields.age.value as string}
                             type="number"
                             placeholder=""
+                        />
+                    </RegisterField>
+
+                    <RegisterField title="Sexo*" error={formFields.sex.error}>
+                        <InputSelect
+                            selectId="sexo"
+                            onChange={(sex) => {
+                                handleChange("sex", sex);
+                            }}
+                            options={sexOptions}
+                            placeholder="Escoge tu sexo"
                         />
                     </RegisterField>
 
