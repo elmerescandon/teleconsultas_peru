@@ -64,11 +64,18 @@ const DoctorAppointmentSection = () => {
         >
             <p className="text-2xl font-semibold">Mis citas</p>
             <DoctorAppointmentFilter filter={filter} setFilter={setFilter} />
-            <Pagination
-                items={appointmentCards}
-                itemsPerPage={12}
-                orientation="row"
-            />
+            {appointmentCards.length !== 0 && (
+                <Pagination
+                    items={appointmentCards}
+                    itemsPerPage={12}
+                    orientation="row"
+                />
+            )}
+            {appointmentCards.length === 0 && (
+                <p className="text-2xl font-semibold text-center mt-10 h-[40vh]">
+                    Todavía no tienes citas, pronto se agendarán.
+                </p>
+            )}
         </div>
     );
 };
