@@ -184,7 +184,7 @@ const RegisterDoctorInformation = ({
                     label=""
                 />
                 <div className="-ml-5">
-                    Acepto{" "}
+                    Acepto los{" "}
                     <button
                         className="text-brand-600 font-bold underline mr-5 "
                         onClick={() => {
