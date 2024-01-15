@@ -18,12 +18,16 @@ const LoginProfilePicture = ({ size }: LoginProfilePictureProps) => {
         const getProfilePic = async () => {
             if (_id === "") return;
 
-            const url = await downloadData(
-                "doctors",
-                "profile_pictures",
-                `${_id}.jpg`
-            );
-            setProfilePic(url);
+            try {
+                const url = await downloadData(
+                    "doctors",
+                    "profile_pictures",
+                    `${_id}.jpg`
+                );
+                setProfilePic(url);
+            } catch (err) {
+                setProfilePic("");
+            }
         };
         getProfilePic();
     }, [_id, profilePic]);
