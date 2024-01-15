@@ -65,7 +65,7 @@ const LoginForms = ({ role }: LoginFormsProps) => {
     }, [status]);
 
     return (
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-3">
             <InputText
                 placeholder="Correo electrónico"
                 value={username}
@@ -85,7 +85,11 @@ const LoginForms = ({ role }: LoginFormsProps) => {
                     {loading && <Loading />}
                 </div>
             </div>
-            {error && <p className="text-rose-600 font-bold">{error}</p>}
+            {error && (
+                <p className="text-rose-500 text-left w-full font-bold">
+                    {error}
+                </p>
+            )}
         </div>
     );
 };
