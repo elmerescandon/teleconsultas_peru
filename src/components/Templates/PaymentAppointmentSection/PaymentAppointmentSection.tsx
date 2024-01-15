@@ -51,7 +51,6 @@ const PaymentAppointmentSection = () => {
                 return;
             }
         };
-        console.log("hello");
         if (!created && user && appointment) {
             createAppointmentInit();
             setCreated(true);
