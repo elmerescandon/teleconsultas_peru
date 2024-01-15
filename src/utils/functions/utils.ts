@@ -227,3 +227,10 @@ export const dateToHours = (startDate : string, endDate: string) => `${new Date(
     .replace(/:\d+ /, " ")} - ${new Date(endDate)
     .toLocaleTimeString()
     .replace(/:\d+ /, " ")} `;
+
+export const getHourFromDate = (dateString: string): string => {
+  const date = new Date(dateString);
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+}
