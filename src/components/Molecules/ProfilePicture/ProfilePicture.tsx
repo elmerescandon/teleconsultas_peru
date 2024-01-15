@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import LoadingCircle from "../Loaders/LoadingCircle/LoadingCircle";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { useAppSelector } from "@/redux/hooks";
+import LoadingHorizontal from "../Loaders/LoadingHorizontal/LoadingHorizontal";
 
 const ProfilePicture = () => {
     const user: IUserState = useAppSelector((state) => state.user);
@@ -28,8 +29,10 @@ const ProfilePicture = () => {
             setLoading(true);
             setError("");
             if (file === null) throw Error("Agrega un archivo primero");
-            uploadData("doctors", "profile_pictures", `${_id}.jpg`, file);
+
+            await uploadData("doctors", "profile_pictures", `${_id}.jpg`, file);
             setCorrect(true);
+            setProfilePic("");
             setAddProfilePic(false);
         } catch (error) {
             setError((error as Error).message);
@@ -58,7 +61,7 @@ const ProfilePicture = () => {
                 <img
                     src={profilePic}
                     alt="profile-main"
-                    className="rounded-full"
+                    className="rounded-full h-52 w-full object-cover max-w-[200px]"
                 />
             ) : (
                 <Image
@@ -87,10 +90,13 @@ const ProfilePicture = () => {
                             setFile(file);
                         }}
                     />
-                    <ButtonPrimary onClickFn={uploadPicture}>
-                        Subir
-                    </ButtonPrimary>
-                    {loading && <LoadingCircle />}
+                    <div>
+                        <ButtonPrimary onClickFn={uploadPicture}>
+                            Subir
+                        </ButtonPrimary>
+                        {loading && <LoadingHorizontal />}
+                    </div>
+
                     {error && (
                         <div className="text-red-500 w-full">{error}</div>
                     )}
