@@ -15,6 +15,7 @@ import {
     userLogIn,
     userLogOut,
 } from "@/redux/action-creators/UserActionCreators";
+import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
 
 type LoginFormsProps = {
     role: string;
@@ -78,11 +79,11 @@ const LoginForms = ({ role }: LoginFormsProps) => {
                 onChangeFn={setPassword}
             />
             <div className="w-full">
-                <div className="flex flex-col justify-start gap-10 items-center w-full">
+                <div>
                     <ButtonPrimary onClickFn={handleSubmit}>
                         Iniciar Sesión
                     </ButtonPrimary>
-                    {loading && <Loading />}
+                    {loading && <LoadingHorizontal />}
                 </div>
             </div>
             {error && (
