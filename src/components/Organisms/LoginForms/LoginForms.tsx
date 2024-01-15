@@ -16,6 +16,7 @@ import {
     userLogOut,
 } from "@/redux/action-creators/UserActionCreators";
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
+import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 
 type LoginFormsProps = {
     role: string;
@@ -29,6 +30,7 @@ const LoginForms = ({ role }: LoginFormsProps) => {
         setPassword,
         error,
         loading,
+        correct,
         handleSubmit,
         setIsDoctor,
     } = useUserValidation();
@@ -90,6 +92,14 @@ const LoginForms = ({ role }: LoginFormsProps) => {
                 <p className="text-rose-500 text-left w-full font-bold">
                     {error}
                 </p>
+            )}
+            {correct && (
+                <div className="flex items-center gap-2 justify-start">
+                    <p className="text-green-500 text-left w-full font-bold">
+                        Se validó correctamente su usario
+                    </p>
+                    <Loading size={5} />
+                </div>
             )}
         </div>
     );
