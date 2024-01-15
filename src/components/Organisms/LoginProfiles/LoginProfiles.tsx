@@ -6,7 +6,7 @@ import React from "react";
 const LoginProfiles = () => {
     return (
         <div
-            className="flex gap-5 justify-between
+            className="flex gap-5 justify-between w-full
                         max-xl:flex-col max-xl:w-full max-xl:px-4 max-xl:h-auto max-xl:gap-10 max-xl:justify-center max-xl:items-center"
         >
             <Link
