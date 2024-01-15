@@ -46,6 +46,7 @@ type IRegisterActionSetDocInfo ={
         cmpNumber: File,
         curriculum: File,
         phone: string,
+        bornDate: string,
         termsAndConditions: string,
     }
 }
