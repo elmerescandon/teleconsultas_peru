@@ -81,12 +81,10 @@ const LoginForms = ({ role }: LoginFormsProps) => {
                 onChangeFn={setPassword}
             />
             <div className="w-full">
-                <div>
-                    <ButtonPrimary onClickFn={handleSubmit}>
-                        Iniciar Sesión
-                    </ButtonPrimary>
-                    {loading && <LoadingHorizontal />}
-                </div>
+                <ButtonPrimary onClickFn={handleSubmit}>
+                    Iniciar Sesión
+                </ButtonPrimary>
+                {loading && <LoadingHorizontal />}
             </div>
             {error && (
                 <p className="text-rose-500 text-left w-full font-bold">
