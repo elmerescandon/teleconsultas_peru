@@ -25,8 +25,8 @@ const AddAvailabilityGeneral = ({
     const [check, setCheck] = useState(false);
     const [date, setDate] = useState<string>("");
     const [endDate, setEndDate] = useState<string>("");
-    const [startTime, setStartTime] = useState<string | null>();
-    const [endTime, setEndTime] = useState<string | null>();
+    const [startTime, setStartTime] = useState<string | null>(null);
+    const [endTime, setEndTime] = useState<string | null>(null);
     const [repeat, setRepeat] = useState<string>("never");
     const [error, setError] = useState<string>("");
     const [uploaded, setUploaded] = useState<boolean>(false);
@@ -78,22 +78,24 @@ const AddAvailabilityGeneral = ({
                     repeat
                 );
 
-                datesRange.map(async (date) => {
-                    const slots = createAvailabilitiesSlots(
-                        formatDate(date),
-                        "09:00",
-                        "18:00"
-                    );
-                    const dateInput = new Date(date)
-                        .toISOString()
-                        .split("T")[0];
-                    await addAvailabilities(
-                        dateInput,
-                        specialityId,
-                        doctorId,
-                        slots
-                    );
-                });
+                if (startTime && endTime) {
+                    datesRange.map(async (date) => {
+                        const slots = createAvailabilitiesSlots(
+                            formatDate(date),
+                            startTime,
+                            endTime
+                        );
+                        const dateInput = new Date(date)
+                            .toISOString()
+                            .split("T")[0];
+                        await addAvailabilities(
+                            dateInput,
+                            specialityId,
+                            doctorId,
+                            slots
+                        );
+                    });
+                }
             }
             setUploaded(true);
         } catch (error) {
