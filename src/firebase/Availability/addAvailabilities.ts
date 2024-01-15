@@ -29,17 +29,17 @@ const addAvailabilities = async (date:string, specialityId : string, doctorId : 
         let availabilitySlots =  dateDoc.data() as IAvailabilitySlots;
     
         // check if slot already exists, if not, add it
-        slots.forEach((slot) => {
-            const index = availabilitySlots.slots.findIndex((s) => {
-                return s.startDate === slot.startDate && s.endDate === slot.endDate;
-            });
-            if (index === -1) {
-                availabilitySlots.slots.push(slot);
-            }else{
-                throw new Error("Alguno de los horarios ya existe, por favor verifique");
-            }
-        });
-        await updateDoc(dateDoc.ref, {...availabilitySlots})
+        // slots.forEach((slot) => {
+        //     const index = availabilitySlots.slots.findIndex((s) => {
+        //         return s.startDate === slot.startDate && s.endDate === slot.endDate;
+        //     });
+        //     if (index === -1) {
+        //         availabilitySlots.slots.push(slot);
+        //     }else{
+        //         availabilitySlots.slots[index] = slot;
+        //     }
+        // });
+        await updateDoc(dateDoc.ref, {...{slots: slots}})
     } catch (error) {
         throw error;
     }
