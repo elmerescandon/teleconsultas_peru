@@ -17,7 +17,7 @@ const LoginSection = ({ role, label }: LoginSectionProps) => {
     const params = useSearchParams();
     const loginStatus = params.get("signin");
     return (
-        <div className="flex flex-col gap-12 justify-center w-1/3 h-full m-auto max-xl:w-full max-xl:px-5 max-xl:py-28">
+        <div className="flex flex-col gap-4  justify-center w-1/3 h-full m-auto max-xl:w-full max-xl:px-5 max-xl:py-28">
             <div className="flex flex-col text-center items-center w-full gap-3">
                 <LinkLogo size="big" />
             </div>
