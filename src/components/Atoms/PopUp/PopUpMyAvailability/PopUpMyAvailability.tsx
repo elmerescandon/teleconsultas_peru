@@ -75,7 +75,7 @@ const PopUpMyAvailability = ({
                     )}
                     {loading && <LoadingCircle />}
                     {newSortedDates && (
-                        <div className="flex flex-col gap-5">
+                        <div className="flex flex-col gap-5 pb-10">
                             {newSortedDates.map((availability, index) => (
                                 <div
                                     className="flex flex-col gap-5"
