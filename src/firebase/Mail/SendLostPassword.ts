@@ -6,7 +6,6 @@ import SendMail from "./SendMail";
 
 const SendLostPassword  = async (email: string, role: string) => {
     let userExists = false;
-    console.log("hello");
 
     try {
         userExists = await isUserValidMail(email, role);
@@ -16,7 +15,6 @@ const SendLostPassword  = async (email: string, role: string) => {
 
 
     if (userExists) {
-        console.log("hello");
         const generatedCode = generateLostPasswordCode();
 
         const userId = await getUserId(email, role);
