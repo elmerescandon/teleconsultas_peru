@@ -1,4 +1,5 @@
 "use client";
+import LoginProfilePicture from "@/components/Molecules/LoginProfilePicture/LoginProfilePicture";
 import getAppointmentCount from "@/firebase/Appointments/getAppointmentCount";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
@@ -31,13 +32,7 @@ const PatientMain = () => {
                     {`Tienes ${appointmentCount} cita agendadas, revisa tu calendario.`}
                 </p>
             </div>
-            <Image
-                src="/user-icon.jpg"
-                height={150}
-                width={150}
-                alt="telemedicine-profile-person"
-                className="rounded-full"
-            />
+            <LoginProfilePicture size="main" />
         </div>
     );
 };
