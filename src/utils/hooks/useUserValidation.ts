@@ -10,6 +10,7 @@ const useUserValidation = () => {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [correct, setCorrect] = useState(false);
 
   const checkEmpty = (username: string, password: string) => {
     if (!username || !password) {
@@ -34,13 +35,14 @@ const useUserValidation = () => {
         }
         setError("");
         setLoading(false);
+        setCorrect(true);
     } catch (error: any) {
         setLoading(false);
         setError(error.message);
     }
 };
 
-  return {username, setUsername, password, setPassword, error, loading, handleSubmit , isDoctor, setIsDoctor}
+  return {username, setUsername, password, setPassword, error, loading, correct, handleSubmit , isDoctor, setIsDoctor}
 
 
 
