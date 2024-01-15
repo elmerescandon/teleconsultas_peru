@@ -5,6 +5,9 @@ import MercadoPagoPayment from "@/components/Organisms/MercadoPagoPayment/Mercad
 import PaymentReview from "@/components/Organisms/PaymentReview/PaymentReview";
 import addAppointment from "@/firebase/Appointments/addAppointment";
 import setAvailabilityToSlot from "@/firebase/Availability/setAvailabilitySlotsState";
+import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
+import SendReserveNotification from "@/firebase/Mail/SendReserveNotification";
+import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { IState } from "@/redux/store";
@@ -24,6 +27,37 @@ const PaymentAppointmentSection = () => {
         loading: boolean;
         error: string;
     }>({ loading: false, error: "" });
+
+    const payLater = async () => {
+        router.push(Routes.PATIENT_HOME);
+        try {
+            const doctorName = await getDoctorName(appointment.doctorId);
+            const specialityName = await getSpecialityName(
+                appointment.specialityId
+            );
+
+            if (!doctorName || !specialityName) {
+                setPageState({
+                    loading: false,
+                    error: "No se pudo obtener el nombre del doctor o la especialidad",
+                });
+                return;
+            }
+
+            await SendReserveNotification(
+                appointment,
+                user.userInfo,
+                `${doctorName?.name} ${doctorName?.lastName}`,
+                `${specialityName?.name}`
+            );
+        } catch (error) {
+            setPageState({
+                loading: false,
+                error: (error as Error).message,
+            });
+            return;
+        }
+    };
 
     useEffect(() => {
         const createAppointmentInit = async () => {
@@ -73,11 +107,7 @@ const PaymentAppointmentSection = () => {
                 <div className="flex-col items-center justify-center gap-5">
                     <MercadoPagoPayment />
                     <div>
-                        <ButtonThird
-                            onClickFn={() => {
-                                router.push(Routes.PATIENT_HOME);
-                            }}
-                        >
+                        <ButtonThird onClickFn={payLater}>
                             Ahora no, deseo pagar más tarde.
                         </ButtonThird>
                         <p className="text-sm text-gray-500">
