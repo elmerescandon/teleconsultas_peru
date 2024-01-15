@@ -3,6 +3,7 @@ import activateLostPassword from "../Password/activateLostPassword";
 import { getUserId } from "../User/getUserId";
 import { isUserValidMail } from "../User/isUserValidMail";
 import SendMail from "./SendMail";
+import checkLostPassword from "../Password/checkLostPassword";
 
 const SendLostPassword  = async (email: string, role: string) => {
     let userExists = false;
@@ -19,6 +20,14 @@ const SendLostPassword  = async (email: string, role: string) => {
 
         const userId = await getUserId(email, role);
         if (!userId) throw new Error("No se pudo obtener el id del usuario.");
+
+        try {
+            if (await checkLostPassword(userId)) {
+                throw new Error("Ya se envío un código de recuperación. Revise su correo.");
+            }
+        } catch (e) {
+            throw e;
+        }
 
         try {
             await activateLostPassword(generatedCode, userId);
