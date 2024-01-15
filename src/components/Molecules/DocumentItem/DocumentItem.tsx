@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 
 type DocumentItemProps = {
     document: string;
-    type: "id" | "cmp" | "curriculum" | "titulo" | "otros";
+    type: "id" | "colegiatura" | "curriculum" | "titulo" | "otros";
 };
 
 const DocumentItem = ({ document, type }: DocumentItemProps) => {
