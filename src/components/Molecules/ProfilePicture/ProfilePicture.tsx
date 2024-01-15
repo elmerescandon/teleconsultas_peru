@@ -10,6 +10,7 @@ import LoadingCircle from "../Loaders/LoadingCircle/LoadingCircle";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { useAppSelector } from "@/redux/hooks";
 import LoadingHorizontal from "../Loaders/LoadingHorizontal/LoadingHorizontal";
+import { ca } from "date-fns/locale";
 
 const ProfilePicture = () => {
     const user: IUserState = useAppSelector((state) => state.user);
@@ -29,7 +30,6 @@ const ProfilePicture = () => {
             setLoading(true);
             setError("");
             if (file === null) throw Error("Agrega un archivo primero");
-
             await uploadData("doctors", "profile_pictures", `${_id}.jpg`, file);
             setCorrect(true);
             setProfilePic("");
@@ -43,12 +43,16 @@ const ProfilePicture = () => {
 
     useEffect(() => {
         const getProfilePic = async () => {
-            const url = await downloadData(
-                "doctors",
-                "profile_pictures",
-                `${_id}.jpg`
-            );
-            setProfilePic(url);
+            try {
+                const url = await downloadData(
+                    "doctors",
+                    "profile_pictures",
+                    `${_id}.jpg`
+                );
+                setProfilePic(url);
+            } catch (err) {
+                setProfilePic("");
+            }
         };
         getProfilePic();
     }, [_id, profilePic]);
