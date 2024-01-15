@@ -4,6 +4,7 @@ import getAppointmentCount from "@/firebase/Appointments/getAppointmentCount";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { IState } from "@/redux/store";
+import { set } from "lodash";
 import React, { useEffect, useState } from "react";
 
 const PatientMain = () => {
@@ -20,8 +21,13 @@ const PatientMain = () => {
         ) => {
             if (_id === "") return;
 
-            const count = await getAppointmentCount(_id, role, status);
-            setAppointmentCount(count);
+            try {
+                const count = await getAppointmentCount(_id, role, status);
+                setAppointmentCount(count);
+            } catch (err) {
+                setAppointmentCount(0);
+                // console.log(err);
+            }
         };
         getCount(_id, role, ["pending", "accepted"]);
     }, [_id]);
