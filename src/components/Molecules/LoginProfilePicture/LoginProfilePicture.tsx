@@ -16,6 +16,8 @@ const LoginProfilePicture = ({ size }: LoginProfilePictureProps) => {
 
     useEffect(() => {
         const getProfilePic = async () => {
+            if (_id === "") return;
+
             const url = await downloadData(
                 "doctors",
                 "profile_pictures",
