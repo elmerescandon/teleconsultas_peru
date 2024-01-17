@@ -14,7 +14,7 @@ const NavigationBar = () => {
     const { logged, userInfo } = state;
     const { role } = userInfo;
     return (
-        <div className="flex items-center">
+        <div className="flex items-center pl-44 max-xl:pl-0">
             {!logged ? <NavigationBarGeneral /> : null}
             {logged && role === "patient" ? <NavigationBarPatient /> : null}
             {logged && role === "doctor" ? <NavigationBarDoctor /> : null}
