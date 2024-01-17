@@ -38,7 +38,9 @@ const SecondaryHomeSection = () => {
                 </div>
             </div>
             <Image
-                className="h-max max-lg:bg-neutral-200 max-lg:hidden"
+                className="h-max
+                            max-xl:h-96 max-xl max-xl:object-center            
+                             max-lg:bg-neutral-200 max-lg:hidden"
                 src="/SECONDARY_HOME_BANNER.png"
                 alt="main-home-banner"
                 width={20000}
