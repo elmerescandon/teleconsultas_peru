@@ -4,10 +4,10 @@ import React from "react";
 
 const NavigationBarGeneral = () => {
     return (
-        <div className="navigation-bar flex flex-row items-center gap-7 max-xl:gap-4 ">
+        <div className="flex flex-row items-center justify-between gap-7 max-xl:gap-2">
             {/* <LinkSecondary to={Routes.PATIENTS}>{"Pacientes"}</LinkSecondary> */}
             <LinkSecondary to={Routes.RESERVE_DOCTORS}>
-                {"¡Reserva tu cita!"}
+                {"Reserva cita"}
             </LinkSecondary>
             <LinkSecondary to={Routes.DOCTORS_GENERAL}>
                 {"Medicina General"}
