@@ -35,7 +35,13 @@ const LoginSection = ({ role, label }: LoginSectionProps) => {
             )}
 
             <LoginForms role={role} />
-            <LinkSecondary to={Routes.LOST_PASSWORD}>
+            <LinkSecondary
+                to={`${
+                    role === "patient"
+                        ? `${Routes.LOST_PASSWORD}?role=patient`
+                        : `${Routes.LOST_PASSWORD}?role=doctor`
+                }`}
+            >
                 ¿Olvidaste tu contraseña? Haz click aquí
             </LinkSecondary>
             <LoginOptions role={role} />
