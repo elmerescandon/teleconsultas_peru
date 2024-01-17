@@ -30,8 +30,8 @@ const AppointmentsBar = ({
                     );
                 })
             ) : (
-                <div className="flex justify-center py-2 text-2xl">
-                    No hay citas para este paciente
+                <div className="flex items-center justify-center py-2 text-2xl h-[50vh]">
+                    No tienes ninguna cita todavía, agenda una...
                 </div>
             )}
         </div>
