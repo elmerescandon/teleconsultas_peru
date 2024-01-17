@@ -47,7 +47,7 @@ const MainHomeSection = () => {
             <Image
                 className="w-full 
                            max-lg:rounded-b-2xl max-lg:block hidden max-lg:pt-4 max-lg:bg-transparent
-                           max-md:pt-28
+                           max-md:pt-56
                            max-sm:pt-96"
                 src="/MAIN_HOME_BANNER_MOBILE.png"
                 alt="main-home-banner"
