@@ -6,7 +6,9 @@ import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/
 import SendLostPassword from "@/firebase/Mail/SendLostPassword";
 import Routes from "@/utils/routes/Routes";
 import { Checkbox, FormControlLabel } from "@mui/material";
-import React, { useState } from "react";
+import { ro } from "date-fns/locale";
+import { useSearchParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 type LostPasswordProps = {
     email: string;
@@ -14,6 +16,8 @@ type LostPasswordProps = {
 };
 
 const LostPassword = ({ email, setEmail }: LostPasswordProps) => {
+    const search = useSearchParams();
+    const roleRedirect = search.get("role");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const [correct, setCorrect] = useState(false);
@@ -38,6 +42,12 @@ const LostPassword = ({ email, setEmail }: LostPasswordProps) => {
         }
     };
 
+    useEffect(() => {
+        if (roleRedirect === "doctor") {
+            setIsDoctor(true);
+        }
+    }, [roleRedirect]);
+
     return (
         <div className="w-full flex flex-col gap-2">
             <InputText
@@ -47,18 +57,20 @@ const LostPassword = ({ email, setEmail }: LostPasswordProps) => {
                 value={email}
                 placeholder="Correo electrónico"
             />
-            <FormControlLabel
-                control={
-                    <Checkbox
-                        color="primary"
-                        checked={isDoctor}
-                        onChange={(e) => {
-                            setIsDoctor(e.target.checked);
-                        }}
-                    />
-                }
-                label="Soy doctor"
-            />
+            {roleRedirect === null && (
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            color="primary"
+                            checked={isDoctor}
+                            onChange={(e) => {
+                                setIsDoctor(e.target.checked);
+                            }}
+                        />
+                    }
+                    label="Soy doctor"
+                />
+            )}
             {error && (
                 <p className="text-red-500 font-semibold py-2">{error}</p>
             )}
