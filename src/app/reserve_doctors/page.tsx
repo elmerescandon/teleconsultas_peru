@@ -29,7 +29,10 @@ const page = () => {
     return (
         <div>
             <Header />
-            <div className="flex flex-row justify-center w-full gap-16 flex-wrap py-10 max-xl:flex-col max-xl:px-16 max-xl:pt-28">
+            <div
+                className="flex flex-row justify-center w-full gap-16 flex-wrap py-10 
+                            max-xl:flex-col max-xl:px-16 max-xl:pt-28 max-xl:items-center"
+            >
                 <EspecialityInformation
                     color="normal"
                     image={
