@@ -6,11 +6,9 @@ import { uploadData } from "@/firebase/generals/uploadData";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import LoadingCircle from "../Loaders/LoadingCircle/LoadingCircle";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { useAppSelector } from "@/redux/hooks";
 import LoadingHorizontal from "../Loaders/LoadingHorizontal/LoadingHorizontal";
-import { ca } from "date-fns/locale";
 
 const ProfilePicture = () => {
     const user: IUserState = useAppSelector((state) => state.user);
