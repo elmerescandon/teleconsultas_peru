@@ -40,9 +40,7 @@ const LoginProfilePicture = ({ size }: LoginProfilePictureProps) => {
                     alt="profile-main"
                     className={`rounded-full ${
                         size === "main" ? "h-52" : "h-14"
-                    }  w-full object-cover max-w-[${
-                        size === "main" ? "250px" : "60px"
-                    }]`}
+                    } object-cover max-w-[250px]`}
                 />
             ) : (
                 <Image
