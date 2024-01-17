@@ -10,7 +10,7 @@ const Header = () => {
             <BurgerHeader />
             <div className="max-lg:hidden flex flex-row justify-between items-center py-8 px-48 max-2xl:px-10">
                 <LinkLogo />
-                <div className="flex gap-28 max-xl:gap-8">
+                <div className="flex gap-28 max-2xl:gap-2">
                     <NavigationBar />
                     <LoginBar />
                 </div>
