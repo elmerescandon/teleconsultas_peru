@@ -48,7 +48,7 @@ const LoginBar = () => {
     return (
         <div>
             {logged ? (
-                <div className="login-bar flex flex-row items-center gap-7">
+                <div className="flex flex-row items-center gap-7 max-2xl:gap-2">
                     <button
                         className="text-lg font-semibold active:outline-none focus:outline-none "
                         onClick={() => {
@@ -74,7 +74,10 @@ const LoginBar = () => {
                     </ButtonSecondary>
                 </div>
             ) : (
-                <div className="login-bar flex flex-row items-center justify-center gap-7 bg-brand-600 rounded-2xl px-5">
+                <div
+                    className="flex flex-row items-center justify-center gap-7 bg-brand-600 rounded-2xl px-5
+                                max-2xl:gap-2 max-2xl:px-2"
+                >
                     <InputSelectSmall
                         onChange={(e) => {
                             setSelectRole(e);
@@ -86,7 +89,6 @@ const LoginBar = () => {
                             { value: "doctor", label: "Profesional" },
                         ]}
                     />
-
                     <LinkPrimary
                         to={
                             selectRole === "patient"
