@@ -70,7 +70,10 @@ const RegisterLocation = ({ role, prevFn, nextFn }: RegisterLocationProps) => {
 
     return (
         <div>
-            <div className="flex flex-row justify-around max-xl:flex-col max-xl:items-center gap-10 max-xl:gap-0 max-xl:px-10">
+            <div
+                className="flex flex-row justify-around gap-10
+                            max-xl:flex-col max-xl:items-center max-xl:gap-4 max-xl:px-10"
+            >
                 <RegisterRow>
                     <RegisterField
                         title="Región*"
@@ -154,7 +157,9 @@ const RegisterLocation = ({ role, prevFn, nextFn }: RegisterLocationProps) => {
                     </RegisterField>
                 </RegisterRow>
             </div>
-            <p>*Campos obligatorios</p>
+            <p className="max-xl:pl-10 pt-3 font-semibold italic">
+                *Campos obligatorios
+            </p>
             <div className="flex py-5 max-xl:px-10 gap-10">
                 <ButtonPrimary
                     type="button"
