@@ -141,43 +141,51 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
                     </RegisterField>
                 </RegisterRow>
             </div>
-            <RegisterField
-                error={formFields.termsAndConditions.error}
-                title=""
-                horizontal
-            >
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            color="primary"
-                            checked={
-                                formFields.termsAndConditions.value === "true"
-                                    ? true
-                                    : false
-                            }
-                            onChange={(e) => {
-                                handleChange(
-                                    "termsAndConditions",
-                                    e.target.checked === true ? "true" : "false"
-                                );
+            <div className="max-xl:pl-10">
+                <RegisterField
+                    error={formFields.termsAndConditions.error}
+                    title=""
+                    horizontal
+                >
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                color="primary"
+                                checked={
+                                    formFields.termsAndConditions.value ===
+                                    "true"
+                                        ? true
+                                        : false
+                                }
+                                onChange={(e) => {
+                                    handleChange(
+                                        "termsAndConditions",
+                                        e.target.checked === true
+                                            ? "true"
+                                            : "false"
+                                    );
+                                }}
+                            />
+                        }
+                        label=""
+                    />
+                    <div className="-ml-5">
+                        Acepto los{" "}
+                        <button
+                            className="text-brand-600 font-bold underline mr-5 "
+                            onClick={() => {
+                                setTermsPopUp(true);
                             }}
-                        />
-                    }
-                    label=""
-                />
-                <div className="-ml-5">
-                    Acepto
-                    <button
-                        className="text-brand-600 font-bold underline mr-5 "
-                        onClick={() => {
-                            setTermsPopUp(true);
-                        }}
-                    >
-                        términos y condiciones
-                    </button>
-                </div>
-            </RegisterField>
-            <p>*Campos obligatorios</p>
+                        >
+                            términos y condiciones
+                        </button>
+                    </div>
+                </RegisterField>
+            </div>
+
+            <p className="max-xl:pl-10 pt-3 font-semibold italic">
+                *Campos obligatorios
+            </p>
 
             <div className="flex py-5 max-xl:px-10 gap-10">
                 <ButtonPrimary
