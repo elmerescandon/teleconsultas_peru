@@ -53,7 +53,10 @@ const RegisterInformation = ({ nextFn, prevFn }: RegisterInformationProps) => {
 
     return (
         <div>
-            <div className="flex flex-row justify-around max-xl:flex-col max-xl:items-center gap-10 max-xl:gap-0 max-xl:px-10">
+            <div
+                className="flex flex-row justify-around gap-10
+                            max-xl:flex-col max-xl:items-center  max-xl:gap-4 max-xl:px-10"
+            >
                 <RegisterRow>
                     <RegisterField title="Edad*" error={formFields.age.error}>
                         <InputText
