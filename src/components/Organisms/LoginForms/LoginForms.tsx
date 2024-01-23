@@ -94,7 +94,7 @@ const LoginForms = ({ role }: LoginFormsProps) => {
             {correct && (
                 <div className="flex items-center gap-2 justify-start">
                     <p className="text-green-500 text-left w-full font-bold">
-                        Se validó correctamente su usario
+                        Se validó correctamente su perfil, espere por favor...
                     </p>
                     <Loading size={5} />
                 </div>
