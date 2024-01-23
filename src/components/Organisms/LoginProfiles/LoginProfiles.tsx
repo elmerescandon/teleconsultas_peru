@@ -1,5 +1,6 @@
 import Routes from "@/utils/routes/Routes";
 import { PlusIcon, UsersIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -15,7 +16,13 @@ const LoginProfiles = () => {
                 active:bg-brand-600 active:text-basic-white active:scale-95 transition-all duration-100"
                 href={Routes.LOGIN_DOCTOR}
             >
-                <PlusIcon className="w-10 h-10" />
+                <Image
+                    src="/caduceo_icon.png"
+                    alt="caduceo"
+                    width={40}
+                    height={40}
+                />
+                {/* <PlusIcon className="w-10 h-10" /> */}
                 <p className="text-center">Soy profesional de la salud</p>
             </Link>
 
