@@ -78,7 +78,7 @@ const LoginBar = () => {
                     className="flex flex-row items-center justify-center gap-7 bg-brand-600 rounded-2xl px-5
                                 max-2xl:gap-2 max-2xl:px-2"
                 >
-                    <InputSelectSmall
+                    {/* <InputSelectSmall
                         onChange={(e) => {
                             setSelectRole(e);
                         }}
@@ -88,7 +88,7 @@ const LoginBar = () => {
                             { value: "patient", label: "Paciente" },
                             { value: "doctor", label: "Profesional" },
                         ]}
-                    />
+                    /> */}
                     <LinkPrimary
                         to={
                             selectRole === "patient"
