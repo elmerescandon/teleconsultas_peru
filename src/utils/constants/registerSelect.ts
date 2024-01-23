@@ -9,7 +9,7 @@ export const departments = currentUbigeo.filter((item) => {
 export const sexOptions = [
   { value: 'M', label: 'Masculino' },
   { value: 'F', label: 'Femenino' },
-  { value: 'O', label: 'Otro'}
+  // { value: 'O', label: 'Otro'}
 ];
 
 
