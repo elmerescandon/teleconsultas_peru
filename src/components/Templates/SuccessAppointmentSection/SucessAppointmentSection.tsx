@@ -7,9 +7,9 @@ import updateAppointmentField from "@/firebase/Appointments/updateAppointmentFie
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { getAppointmentHours } from "@/utils/functions/utils";
+import { getAppointmentHours, stringToDate } from "@/utils/functions/utils";
 import Routes from "@/utils/routes/Routes";
-import { set } from "lodash";
+import { Timestamp } from "firebase/firestore";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -22,10 +22,10 @@ const SucessAppointmentSection = () => {
     const paymentReference = searchParams.get("external_reference");
     const paymentId = searchParams.get("preference_id");
 
-    // const [summary, setSummary] = useState<{
-    //     doctorName: string;
-    //     specialityName: string;
-    // }>({ doctorName: "", specialityName: "" });
+    const [summary, setSummary] = useState<{
+        doctorName: string;
+        specialityName: string;
+    }>({ doctorName: "", specialityName: "" });
 
     useEffect(() => {
         const getAppointmentInfo = async (
@@ -48,6 +48,30 @@ const SucessAppointmentSection = () => {
         };
         getAppointmentInfo(paymentReference, paymentStatus);
     }, []);
+
+    useEffect(() => {
+        const getInfoFromDb = async (
+            doctorId: string,
+            specialityId: string
+        ) => {
+            if (doctorId === "" || specialityId === "") return;
+            const doctor = await getDoctorName(doctorId);
+            const speciality = await getSpecialityName(specialityId);
+
+            if (doctor && speciality) {
+                setSummary({
+                    specialityName: speciality.name,
+                    doctorName: `Dr. ${doctor.name} ${doctor.lastName}`,
+                });
+            } else {
+                setSummary({ doctorName: "", specialityName: "" });
+            }
+        };
+        if (appoinment) {
+            getInfoFromDb(appoinment.doctorId, appoinment.specialityId);
+        }
+    }, [appoinment]);
+
     return (
         <div
             className="px-72 pb-10 
@@ -79,14 +103,26 @@ const SucessAppointmentSection = () => {
             <div className="pb-5">
                 <PaymentItem
                     label="Especialidad"
-                    name={appoinment?.specialityId!}
+                    name={summary.specialityName}
                 />
-                <PaymentItem label="Profesional" name={appoinment?.doctorId!} />
-                {/* <PaymentItem label="Fecha" name={date} />
+                <PaymentItem label="Profesional" name={summary.doctorName} />
+                <PaymentItem
+                    label="Fecha"
+                    name={
+                        appoinment
+                            ? stringToDate(
+                                  appoinment.date as unknown as Timestamp
+                              )
+                            : ""
+                    }
+                />
                 <PaymentItem
                     label="Horario"
-                    name={getAppointmentHours(startDate, endDate)}
-                /> */}
+                    name={getAppointmentHours(
+                        appoinment?.startDate!,
+                        appoinment?.endDate!
+                    )}
+                />
             </div>
             <SuccessRecommendations />
         </div>
