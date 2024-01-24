@@ -60,7 +60,7 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
                     >
                         {summary.specialityName}
                     </div>
-                    <p
+                    <div
                         className="italic 
                                   max-md:text-left"
                     >
@@ -75,7 +75,7 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
                                 appointment.endDate
                             )}
                         </p>
-                    </p>
+                    </div>
                 </div>
                 <div className="text-left w-full">{summary.doctorName}</div>
                 <div className="flex gap-3 items-center w-1/3">
