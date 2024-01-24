@@ -39,7 +39,6 @@ const CalendarSection = () => {
                 "scheduled",
                 "pending",
             ]);
-            console.log(appointments);
             setPatientAppointments(appointments);
         };
         getAppointments();

@@ -26,7 +26,6 @@ const PatientMain = () => {
                 setAppointmentCount(count);
             } catch (err) {
                 setAppointmentCount(0);
-                // console.log(err);
             }
         };
         getCount(_id, role, ["pending", "accepted"]);

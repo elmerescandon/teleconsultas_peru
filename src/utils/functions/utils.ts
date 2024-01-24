@@ -163,7 +163,7 @@ export const dateToSpanish = (date : string) => {
 }
 
 export const dateToSpanishISO = (dateString: string) =>  {
-  const date = new Date(dateString);
+  const date = new Date(dateString.replace(/-/g, '\/'));
   const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString('es-ES', options);
 }

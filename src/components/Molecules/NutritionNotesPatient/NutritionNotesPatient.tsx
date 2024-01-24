@@ -14,7 +14,6 @@ const NutritionNotesPatient = ({ appointment }: NutritionNotesPatientProps) => {
         const getData = async () => {
             try {
                 if (_id === "") throw Error("Aún no carga el id");
-                console.log(_id);
                 const url = await downloadData(
                     "doctors",
                     "nutrition",
