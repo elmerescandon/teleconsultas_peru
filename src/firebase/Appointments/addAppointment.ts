@@ -11,6 +11,7 @@ const addAppointment = async (appointment: IAppointment) => {
         await addDoc(collection(dbFirestore, "appointments"), newAppointment);        
         const joinURL = await createZoomAppointment(newAppointment._id, newAppointment.startDate);
         updateAppointmentField(newAppointment._id, "joinURL", joinURL);
+        return newAppointment._id;
     } catch (e) {
         throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego." + e);
     }
