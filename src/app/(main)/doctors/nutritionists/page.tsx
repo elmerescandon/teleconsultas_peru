@@ -1,7 +1,5 @@
 import EspecialityDetails from "@/components/Organisms/EspecialityDetails /EspecialityDetails";
 import EspecialityMain from "@/components/Organisms/EspecialityMain/EspecialityMain";
-import Footer from "@/components/Organisms/Footer/Footer";
-import Header from "@/components/Organisms/Header/Header";
 import PhoneSteps from "@/components/Organisms/PhoneSteps/PhoneSteps";
 import Routes from "@/utils/routes/Routes";
 import Image from "next/image";
@@ -10,7 +8,6 @@ import React from "react";
 const page = () => {
     return (
         <div>
-            <Header />
             <EspecialityMain
                 title="Alimentación"
                 subtitle="Una buena alimentación mejora tu salud de forma integral,
@@ -45,8 +42,6 @@ const page = () => {
                 ]}
             />
             <PhoneSteps color="nutrition" />
-            {/* <ReviewDoctorSection /> */}
-            <Footer />
         </div>
     );
 };

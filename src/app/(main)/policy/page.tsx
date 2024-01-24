@@ -1,11 +1,8 @@
 import React from "react";
-import Header from "@/components/Organisms/Header/Header";
-import Footer from "@/components/Organisms/Footer/Footer";
 
 const page = () => {
     return (
         <div>
-            <Header />
             <div className="px-48 max-xl:px-10">
                 <h1 className="text-3xl text-center font-bold mb-8">
                     Política de privacidad
@@ -186,8 +183,6 @@ const page = () => {
                     </li>
                 </ol>
             </div>
-
-            <Footer />
         </div>
     );
 };

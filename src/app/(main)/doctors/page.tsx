@@ -1,9 +1,5 @@
-import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
 import EspecialityInformation from "@/components/Organisms/EspecialityInformation/EspecialityInformation";
-import Footer from "@/components/Organisms/Footer/Footer";
-import Header from "@/components/Organisms/Header/Header";
 import PhoneSteps from "@/components/Organisms/PhoneSteps/PhoneSteps";
-import DoctorsCardSection from "@/components/Templates/DoctorsCardSection/DoctorsCardSection";
 import Routes from "@/utils/routes/Routes";
 import Image from "next/image";
 
@@ -28,7 +24,6 @@ const Doctors = () => {
 
     return (
         <div>
-            <Header />
             <div
                 className="flex flex-row justify-center w-full gap-16 flex-wrap py-10 
                             max-xl:flex-col max-xl:px-16 max-xl:pt-28 max-xl:items-center"
@@ -82,8 +77,6 @@ const Doctors = () => {
                 />
             </div>
             <PhoneSteps color="normal" />
-            {/* <ReviewDoctorSection /> */}
-            <Footer />
         </div>
     );
 };

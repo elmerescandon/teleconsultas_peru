@@ -1,11 +1,8 @@
-import Footer from "@/components/Organisms/Footer/Footer";
-import Header from "@/components/Organisms/Header/Header";
 import React from "react";
 
 const page = () => {
     return (
         <div>
-            <Header />
             <div className="px-48 max-xl:px-10">
                 <h1 className="text-3xl text-center font-bold mb-8">
                     TERMINOS Y CONDICIONES
@@ -377,7 +374,6 @@ const page = () => {
                     Fecha de última actualización: 9 de septiembre del 2023.
                 </p>
             </div>
-            <Footer />
         </div>
     );
 };

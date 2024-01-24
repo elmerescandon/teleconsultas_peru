@@ -2,8 +2,6 @@
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 import DoctorAppointmentHistory from "@/components/Organisms/DoctorAppointmentHistory/DoctorAppointmentHistory";
-import Footer from "@/components/Organisms/Footer/Footer";
-import Header from "@/components/Organisms/Header/Header";
 import getAppointment from "@/firebase/Appointments/getAppointment";
 import { getPatientName } from "@/firebase/Patient/getPatientName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
@@ -46,7 +44,6 @@ const Page = ({
 
     return (
         <div>
-            <Header />
             <div
                 className="px-48  pb-28
                             max-xl:px-5 max-xl:pt-24"
@@ -74,7 +71,6 @@ const Page = ({
                 ) : null}
                 {loading ? <LoadingCircle /> : null}
             </div>
-            <Footer />
         </div>
     );
 };
