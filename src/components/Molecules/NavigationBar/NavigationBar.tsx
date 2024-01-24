@@ -7,6 +7,7 @@ import NavigationBarPatient from "../NavigationBarPatient/NavigationBarPatient";
 import NavigationBarGeneral from "../NavigationBarGeneral/NavigationBarGeneral";
 import NavigationBarDoctor from "../NavigationBarDoctor/NavigationBarDoctor";
 import { useSession } from "next-auth/react";
+import { log } from "console";
 
 const NavigationBar = () => {
     const [loaded, setLoaded] = useState(false);
@@ -19,14 +20,14 @@ const NavigationBar = () => {
     const { data: session, status } = useSession();
 
     useEffect(() => {
-        if (status === "authenticated") {
+        if (status === "authenticated" && logged) {
             setLoaded(true);
         } else if (status === "loading") {
             setLoaded(false);
-        } else {
+        } else if (status === "unauthenticated" && !logged) {
             setLoaded(true);
         }
-    }, [status]);
+    }, [status, logged]);
 
     return (
         <div className="flex items-center pl-44 max-xl:pl-0">
