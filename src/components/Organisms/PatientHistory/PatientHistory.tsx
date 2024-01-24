@@ -53,7 +53,7 @@ const PatientHistory = () => {
     return (
         <div className="w-1/3 rounded-3xl border-neutral-300 border-2 py-5 px-10 h-auto max-xl:h-full max-xl:w-full">
             <div className="text-xl font-semibold">Historial Médico</div>
-            <div className="flex flex-col items-center py-5">
+            <div className="flex flex-col items-center py-5 gap-2">
                 {patientAppointments.length > 0 &&
                     groupedAppointments.map((appointments) => {
                         return appointments.length > 0 ? (
