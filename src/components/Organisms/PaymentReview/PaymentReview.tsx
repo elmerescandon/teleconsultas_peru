@@ -7,7 +7,6 @@ import {
     getAppointmentHours,
     stringToDate,
 } from "@/utils/functions/utils";
-import { Timestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 const PaymentReview = () => {
@@ -50,12 +49,7 @@ const PaymentReview = () => {
                     name={summary.specialityName}
                 />
                 <PaymentItem label="Profesional" name={summary.doctorName} />
-                <PaymentItem
-                    label="Fecha"
-                    name={stringToDate(
-                        appointment.date as unknown as Timestamp
-                    )}
-                />
+                <PaymentItem label="Fecha" name={dateToSpanishISO(date)} />
                 <PaymentItem
                     label="Horario"
                     name={getAppointmentHours(startDate, endDate)}
