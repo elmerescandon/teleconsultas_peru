@@ -1,36 +1,90 @@
 import LinkPrimary from "@/components/Atoms/Links/LinkPrimary/LinkPrimary";
+import EspecialityInformation from "@/components/Organisms/EspecialityInformation/EspecialityInformation";
 import Footer from "@/components/Organisms/Footer/Footer";
 import Header from "@/components/Organisms/Header/Header";
+import PhoneSteps from "@/components/Organisms/PhoneSteps/PhoneSteps";
 import DoctorsCardSection from "@/components/Templates/DoctorsCardSection/DoctorsCardSection";
 import Routes from "@/utils/routes/Routes";
+import Image from "next/image";
 
 const Doctors = () => {
+    const featureMedicine = [
+        "Elige la especialidad que necesitas y agenda tu cita.",
+        "Encuentra el horario que mejor te acomode de forma fácil y rápida.",
+        "Realiza el pago de forma segura a través de Mercado Pago.",
+    ];
+
+    const featureMental = [
+        "Encuentra al especialista que necesitas para tratar depresión, ansiedad, estrés, entre otros.",
+        "Encuentra el horario que mejor te acomode de forma fácil y rápida.",
+        "Realiza el pago de forma segura a través de Mercado Pago.",
+    ];
+
+    const featureNutrition = [
+        "Cambia o mejora tus hábitos alimenticios a través de un plan según tus necesidades.",
+        "Encuentra el horario que mejor te acomode de forma fácil y rápida.",
+        "Realiza el pago de forma segura a través de Mercado Pago.",
+    ];
+
     return (
-        <main>
+        <div>
             <Header />
-            <div className="page-body">
-                <div className="flex flex-col items-center px-56 py-10 max-lg:justify-center max-lg:pb-5 max-lg:px-20 max-lg:pt-36 max-sm:px-5">
-                    <div className="flex flex-col gap-4">
-                        <h1 className="text-5xl font-semibold max-lg:text-center">
-                            Expande tu práctica médica con Salufy
-                        </h1>
-                        <h5 className="text-2xl font-semibold max-lg:text-center">
-                            Atiende a pacientes más allá de tu consultorio a
-                            través de tus consultas en línea
-                        </h5>
-                        <div className="flex justify-center py-5 text-center gap-10">
-                            <LinkPrimary to={Routes.REGISTER}>
-                                <div className="w-48 flex items-center justify-center h-full text-xl">
-                                    ¡Pertenece al equipo Salufy!
-                                </div>
-                            </LinkPrimary>
-                        </div>
-                    </div>
-                </div>
-                <DoctorsCardSection />
+            <div
+                className="flex flex-row justify-center w-full gap-16 flex-wrap py-10 
+                            max-xl:flex-col max-xl:px-16 max-xl:pt-28 max-xl:items-center"
+            >
+                <EspecialityInformation
+                    color="normal"
+                    image={
+                        <Image
+                            src="/GENERAL_IMAGE.png"
+                            alt="salufy-general-image"
+                            width={500}
+                            height={500}
+                        />
+                    }
+                    items={featureMedicine}
+                    more={Routes.DOCTORS_GENERAL}
+                    reserve={Routes.RESERVE}
+                    title="Medicina General"
+                />
+
+                <EspecialityInformation
+                    color="psychology"
+                    image={
+                        <Image
+                            src="/PSYCHO_IMAGE.png"
+                            alt="salufy-general-image"
+                            width={500}
+                            height={500}
+                        />
+                    }
+                    items={featureMental}
+                    more={Routes.DOCTORS_PSYCHOLOGISTS}
+                    reserve={Routes.RESERVE}
+                    title="Psicología"
+                />
+
+                <EspecialityInformation
+                    color="nutrition"
+                    image={
+                        <Image
+                            src="/NUTRI_IMAGE.png"
+                            alt="salufy-general-image"
+                            width={500}
+                            height={500}
+                        />
+                    }
+                    items={featureNutrition}
+                    more={Routes.DOCTORS_NUTRITIONISTS}
+                    reserve={Routes.RESERVE}
+                    title="Nutrición"
+                />
             </div>
+            <PhoneSteps color="normal" />
+            {/* <ReviewDoctorSection /> */}
             <Footer />
-        </main>
+        </div>
     );
 };
 
