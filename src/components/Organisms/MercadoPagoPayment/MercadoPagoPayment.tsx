@@ -17,12 +17,17 @@ if (process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY) {
     initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY);
 }
 
-const MercadoPagoPayment = () => {
+type MercadoPagoPaymentProps = {
+    appointmentId: string;
+};
+
+const MercadoPagoPayment = ({ appointmentId }: MercadoPagoPaymentProps) => {
     const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string>("");
     const onSumbit = async () => {
         try {
             const res = await fetch(
-                `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout`
+                `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout?appId=${appointmentId}`
             );
             const data: IPreference = await res.json();
             if (data.init_point) {
@@ -30,19 +35,21 @@ const MercadoPagoPayment = () => {
             }
             throw new Error("No se pudo obtener el link de pago");
         } catch (err) {
-            reject(err as Error);
+            setError((err as Error).message);
         }
     };
 
     return (
         <div className="w-full">
-            {loading && <Loading />}
-            <Wallet
-                locale="es-PE"
-                onSubmit={onSumbit}
-                customization={customization}
-                onReady={() => setLoading(false)}
-            />
+            {(loading || appointmentId === "") && <Loading />}
+            {appointmentId !== "" && (
+                <Wallet
+                    locale="es-PE"
+                    onSubmit={onSumbit}
+                    customization={customization}
+                    onReady={() => setLoading(false)}
+                />
+            )}
         </div>
     );
 };
