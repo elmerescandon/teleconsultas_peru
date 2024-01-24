@@ -9,10 +9,13 @@ interface IResponse {
 
 const createZoomAppointment = async (appointmentId: string, startTime: string) => {
     try{    
+        console.log(process.env.NEXT_PUBLIC_MYPAGE_URL);
+        console.log(RoutesZoom.ZOOM_MEETING);
         const rest = await fetch(`${process.env.NEXT_PUBLIC_MYPAGE_URL}${RoutesZoom.ZOOM_MEETING}?appId=${appointmentId}&start_time=${startTime}`);
         const data : IResponse = await rest.json();
         return data.data.join_url;
     } catch (error) {
+        console.log(error);
         throw new Error("Error creating Zoom appointment, please contact support");
     }
 };
