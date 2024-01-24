@@ -22,6 +22,7 @@ const PaymentAppointmentSection = () => {
     const router = useRouter();
     const appointment = useAppointment();
     const user: IUserState = useAppSelector((state: IState) => state.user);
+    const [appoinmentId, setAppoinmentId] = useState<string>("");
 
     const [created, setCreated] = useState<boolean>(false);
     const [pageState, setPageState] = useState<{
@@ -68,7 +69,7 @@ const PaymentAppointmentSection = () => {
             const reservation = createAppointment(appointment, user.userInfo);
             try {
                 setPageState({ loading: true, error: "" });
-                await addAppointment(reservation);
+                const newAppointmentId = await addAppointment(reservation);
                 await setAvailabilityToSlot(
                     date,
                     specialityId,
@@ -77,6 +78,7 @@ const PaymentAppointmentSection = () => {
                     startDate,
                     endDate
                 );
+                setAppoinmentId(newAppointmentId);
                 setPageState({ loading: false, error: "" });
             } catch (error) {
                 setPageState({
@@ -110,7 +112,7 @@ const PaymentAppointmentSection = () => {
             <div>
                 <div className="flex-col items-center justify-center">
                     <div>
-                        <MercadoPagoPayment />
+                        <MercadoPagoPayment appointmentId={appoinmentId} />
                         {/* {pageState.loading && <LoadingHorizontal />} */}
                     </div>
                     <PaymentLater payLater={payLater} />
