@@ -23,7 +23,7 @@ const SpecialityCard = ({
             <p className="font-2xl font-semibold py-2 underline">
                 {getSpeciality(specialityId)}
             </p>
-            <div>
+            <div className="w-full flex flex-col gap-2">
                 {appointments.map((appointment, index) => {
                     return (
                         <HistoryCard key={index} appointment={appointment} />
