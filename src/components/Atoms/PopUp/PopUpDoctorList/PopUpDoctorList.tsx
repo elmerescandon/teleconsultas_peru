@@ -44,7 +44,7 @@ const PopUpDoctorList = ({ onClose, specialityId }: PopUpDoctorList) => {
                         <XMarkIcon className="w-10 h-10 ml-auto" />
                     </button>
                 </div>
-                <div className="px-5 ">
+                <div className="flex flex-col gap-4 justify-start px-5 ">
                     {doctors.map((doctor) => (
                         <DoctorCard key={doctor.id} doctor={doctor} />
                     ))}
