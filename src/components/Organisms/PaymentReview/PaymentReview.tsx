@@ -1,6 +1,7 @@
 import PaymentItem from "@/components/Molecules/PaymentItem/PaymentItem";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
+import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
 import {
     dateToSpanishISO,
@@ -9,8 +10,11 @@ import {
 } from "@/utils/functions/utils";
 import { useEffect, useState } from "react";
 
-const PaymentReview = () => {
-    const appointment = useAppointment();
+type PaymentReviewProps = {
+    appointment: IAppointment;
+};
+
+const PaymentReview = ({ appointment }: PaymentReviewProps) => {
     const { specialityId, doctorId, date, startDate, endDate } = appointment;
     const [summary, setSummary] = useState<{
         doctorName: string;
@@ -37,7 +41,7 @@ const PaymentReview = () => {
         };
 
         getInfoFromDb(doctorId, specialityId);
-    }, []);
+    }, [appointment]);
 
     return (
         <div className="w-full p-7 h-[60vh] max-lg:w-full max-lg:h-full">
@@ -49,7 +53,7 @@ const PaymentReview = () => {
                     name={summary.specialityName}
                 />
                 <PaymentItem label="Profesional" name={summary.doctorName} />
-                <PaymentItem label="Fecha" name={dateToSpanishISO(date)} />
+                {/* <PaymentItem label="Fecha" name={dateToSpanishISO(date)} /> */}
                 <PaymentItem
                     label="Horario"
                     name={getAppointmentHours(startDate, endDate)}

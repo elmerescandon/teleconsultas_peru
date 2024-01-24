@@ -1,3 +1,4 @@
+import IAppointment from "./IAppointment"
 
 type IAppointmentActionSetSpeciality = {
     type: "SET_SPECIALITY",
@@ -34,6 +35,10 @@ type IAppointmentActionSetTime = {
     payload: {startDate: string, endDate: string},
 }
 
+type IAppointmentActionSetAppointment = {
+    type: "SET_APPOINTMENT",
+    payload: IAppointment,
+}
 
 type IAppointmentActions = 
     IAppointmentActionSetSpeciality | 
@@ -42,6 +47,7 @@ type IAppointmentActions =
     IAppointmentActionSetSymptoms | 
     IAppointmentActionSetDetails | 
     IAppointmentActionSetDate | 
-    IAppointmentActionSetTime;
+    IAppointmentActionSetTime | 
+    IAppointmentActionSetAppointment;
 
 export default IAppointmentActions;

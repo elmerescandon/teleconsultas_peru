@@ -67,6 +67,8 @@ const appointmentReducer = (
                 startDate: action.payload.startDate,
                 endDate: action.payload.endDate,
             };
+        case "SET_APPOINTMENT":
+            return { ...appointment, ...action.payload };
         default:
             return appointment;
     }

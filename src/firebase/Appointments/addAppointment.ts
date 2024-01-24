@@ -13,7 +13,7 @@ const addAppointment = async (appointment: IAppointment) => {
         updateAppointmentField(newAppointment._id, "joinURL", joinURL);
         return newAppointment._id;
     } catch (e) {
-        throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego." + e);
+        throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego.");
     }
 }
 

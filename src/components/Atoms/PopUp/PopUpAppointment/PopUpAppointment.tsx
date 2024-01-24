@@ -12,6 +12,8 @@ import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { Timestamp } from "firebase/firestore";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import LinkPrimary from "../../Links/LinkPrimary/LinkPrimary";
+import Link from "next/link";
+import Routes from "@/utils/routes/Routes";
 
 type PopUpAppointmentProps = {
     onClose: () => void;
@@ -98,16 +100,27 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
                         value={`${appointment.reason}`}
                     />
                 </div>
-
-                <a
-                    className="px-4 py-5 bg-brand-600 rounded-2xl text-basic-white text-center font-semibold
+                {appointment.status === "pending" && (
+                    <Link
+                        href={`${Routes.RESERVE_PAYMENT}?appId=${appointment._id}`}
+                        className="px-4 py-5 bg-brand-600 rounded-2xl text-basic-white text-center font-semibold
+                    hover:bg-brand-700 transition duration-300 ease-in-out
+                    active:bg-brand-800 active:scale-95"
+                    >
+                        Pagar cita
+                    </Link>
+                )}
+                {appointment.status === "scheduled" && (
+                    <a
+                        className="px-4 py-5 bg-brand-600 rounded-2xl text-basic-white text-center font-semibold
                                 hover:bg-brand-700 transition duration-300 ease-in-out
                                 active:bg-brand-800 active:scale-95"
-                    target="_blank"
-                    href={appointment.joinURL}
-                >
-                    Conectarse a la sesión
-                </a>
+                        target="_blank"
+                        href={appointment.joinURL}
+                    >
+                        Conectarse a la sesión
+                    </a>
+                )}
             </div>
         </div>
     );
