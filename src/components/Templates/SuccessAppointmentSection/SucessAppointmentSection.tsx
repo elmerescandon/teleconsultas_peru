@@ -30,15 +30,21 @@ const SucessAppointmentSection = () => {
     useEffect(() => {
         const getAppointmentInfo = async (
             paymentReference: string | null,
-            paymentStatus: string | null
+            paymentStatus: string | null,
+            paymentId: string | null
         ) => {
-            if (paymentReference === null) return;
+            if (paymentReference === null) {
+                router.push(Routes.PATIENT_HOME);
+                return;
+            }
+            console.log(paymentReference);
             const newAppointment: IAppointment | null = await getAppointment(
                 paymentReference
             );
+            // TODO: Make validation for payment status
+            console.log(newAppointment);
             if (newAppointment !== null) {
                 setAppoinment(newAppointment);
-                appoinment;
                 updateAppointmentField(
                     newAppointment._id,
                     "status",
@@ -46,7 +52,7 @@ const SucessAppointmentSection = () => {
                 );
             }
         };
-        getAppointmentInfo(paymentReference, paymentStatus);
+        getAppointmentInfo(paymentReference, paymentStatus, paymentId);
     }, []);
 
     useEffect(() => {
