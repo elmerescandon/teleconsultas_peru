@@ -5,12 +5,16 @@ interface PaginationProps {
     items: ReactElement[];
     itemsPerPage: number;
     orientation: "row" | "col";
+    paginationPosition?: "left" | "right";
+    paginationVerbose?: boolean;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
     items,
     itemsPerPage,
     orientation,
+    paginationPosition = "left",
+    paginationVerbose = true,
 }) => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(1);
@@ -47,7 +51,15 @@ const Pagination: React.FC<PaginationProps> = ({
                     <div key={index}>{item}</div>
                 ))}
             </div>
-            <div className="pagination pt-3">
+            <div
+                className={`pagination pt-3 flex items-center ${
+                    paginationPosition === "left"
+                        ? " justify-start "
+                        : paginationPosition === "right"
+                        ? "justify-end"
+                        : ""
+                }`}
+            >
                 <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
@@ -58,9 +70,11 @@ const Pagination: React.FC<PaginationProps> = ({
                         }`}
                     />
                 </button>
-                <span>
-                    Página {currentPage} de {totalPages}
-                </span>
+                {paginationVerbose && (
+                    <span>
+                        {currentPage} de {totalPages}
+                    </span>
+                )}
                 <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
