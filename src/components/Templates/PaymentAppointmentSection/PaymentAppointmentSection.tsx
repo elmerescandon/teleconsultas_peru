@@ -93,7 +93,7 @@ const PaymentAppointmentSection = () => {
 
     return (
         <div
-            className="h-screen px-48 
+            className="px-48 pb-10
                         max-lg:h-full max-lg:pt-24 max-lg:px-5
                         "
         >
