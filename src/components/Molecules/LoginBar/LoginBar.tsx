@@ -42,7 +42,6 @@ const LoginBar = () => {
             }
             setLoaded(true);
         };
-        console.log(status);
         if (status === "authenticated") {
             getUserInfo(session.user!.name!);
         } else if (status === "loading") {
