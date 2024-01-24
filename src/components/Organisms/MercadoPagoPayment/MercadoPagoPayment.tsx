@@ -3,7 +3,6 @@ import Loading from "@/components/Molecules/Loaders/Loading/Loading";
 import IPreference from "@/utils/Interfaces/API/MercadoPago/IPreference";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { IWalletBrickCustomization } from "@mercadopago/sdk-react/bricks/wallet/types";
-import { reject } from "lodash";
 import React, { useEffect, useState } from "react";
 
 const customization: IWalletBrickCustomization = {
@@ -27,7 +26,7 @@ const MercadoPagoPayment = ({ appointmentId }: MercadoPagoPaymentProps) => {
     const onSumbit = async () => {
         try {
             const res = await fetch(
-                `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout?appId=${appointmentId}`
+                `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout/create_payment?appId=${appointmentId}`
             );
             const data: IPreference = await res.json();
             if (data.init_point) {
