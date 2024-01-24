@@ -59,15 +59,17 @@ const DoctorAppointmentSection = () => {
 
     return (
         <div
-            className="px-48
+            className="px-48 pb-5
                         max-xl:pt-24 max-xl:px-10"
         >
             <p className="text-2xl font-semibold">Mis citas</p>
             <DoctorAppointmentFilter filter={filter} setFilter={setFilter} />
             {appointmentCards.length !== 0 && (
                 <Pagination
+                    wrap={true}
+                    center={true}
                     items={appointmentCards}
-                    itemsPerPage={12}
+                    itemsPerPage={6}
                     orientation="row"
                 />
             )}
