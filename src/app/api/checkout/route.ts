@@ -2,9 +2,18 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request){
+    const {searchParams } = new URL(request.url);
+    const appointmentId = searchParams.get('appId'); 
+
+
     try{
+
+        if (!appointmentId) {
+            throw new Error('No se pudo agendar la cita, inténtelo nuevamente luego.');
+        }
+
         const res = await axios.post('https://api.mercadopago.com/checkout/preferences', {
-            "external_reference": "appointment1",
+            "external_reference": `${appointmentId}`,
             "items": [
                 {
                     id:'1234',
@@ -30,6 +39,6 @@ export async function GET(request: Request){
         const { data } = res;
         return NextResponse.json(data);
     } catch (error) {
-        console.log((error as Error).message) 
+        return NextResponse.json(error);
     }
 }
