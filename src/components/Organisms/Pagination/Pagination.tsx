@@ -7,6 +7,8 @@ interface PaginationProps {
     orientation: "row" | "col";
     paginationPosition?: "left" | "right";
     paginationVerbose?: boolean;
+    wrap?: boolean;
+    center?: boolean;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -15,6 +17,8 @@ const Pagination: React.FC<PaginationProps> = ({
     orientation,
     paginationPosition = "left",
     paginationVerbose = true,
+    wrap = false,
+    center = false,
 }) => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(1);
@@ -45,7 +49,9 @@ const Pagination: React.FC<PaginationProps> = ({
                     orientation === "col"
                         ? "flex-col"
                         : "flex-row justify-start items-start"
-                } gap-2 max-xl:flex-col`}
+                } gap-2 max-xl:flex-col ${wrap ? "flex-wrap" : ""} ${
+                    center ? "justify-center" : ""
+                }`}
             >
                 {currentItems.map((item, index) => (
                     <div key={index}>{item}</div>
