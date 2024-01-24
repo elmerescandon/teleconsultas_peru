@@ -1,10 +1,24 @@
 "use client";
+import Loading from "@/components/Molecules/Loaders/Loading/Loading";
 import IPreference from "@/utils/Interfaces/API/MercadoPago/IPreference";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
+import { IWalletBrickCustomization } from "@mercadopago/sdk-react/bricks/wallet/types";
 import { reject } from "lodash";
 import React, { useEffect, useState } from "react";
 
+const customization: IWalletBrickCustomization = {
+    visual: {
+        buttonBackground: "black",
+        valuePropColor: "white",
+    },
+};
+
+if (process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY) {
+    initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY);
+}
+
 const MercadoPagoPayment = () => {
+    const [loading, setLoading] = useState<boolean>(true);
     const onSumbit = async () => {
         try {
             const res = await fetch(
@@ -20,15 +34,15 @@ const MercadoPagoPayment = () => {
         }
     };
 
-    useEffect(() => {
-        if (process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY) {
-            initMercadoPago(process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY);
-        }
-    }, []);
-
     return (
-        <div>
-            <Wallet locale="es-PE" onSubmit={onSumbit} />
+        <div className="w-full">
+            {loading && <Loading />}
+            <Wallet
+                locale="es-PE"
+                onSubmit={onSumbit}
+                customization={customization}
+                onReady={() => setLoading(false)}
+            />
         </div>
     );
 };
