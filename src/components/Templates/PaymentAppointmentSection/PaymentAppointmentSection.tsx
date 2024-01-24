@@ -1,6 +1,7 @@
 "use client";
 import ButtonThird from "@/components/Atoms/Buttons/ButtonThird/ButtonThird";
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
+import PaymentLater from "@/components/Molecules/PaymentLater/PaymentLater";
 import MercadoPagoPayment from "@/components/Organisms/MercadoPagoPayment/MercadoPagoPayment";
 import PaymentReview from "@/components/Organisms/PaymentReview/PaymentReview";
 import addAppointment from "@/firebase/Appointments/addAppointment";
@@ -103,25 +104,18 @@ const PaymentAppointmentSection = () => {
             <div className="flex justify-center items-center pt-5 gap-10 max-lg:flex-col">
                 <PaymentReview />
             </div>
-            <div>
-                <div className="flex-col items-center justify-center gap-5">
-                    <MercadoPagoPayment />
-                    <div>
-                        <ButtonThird onClickFn={payLater}>
-                            Ahora no, deseo pagar más tarde.
-                        </ButtonThird>
-                        <p className="text-sm text-gray-500">
-                            * Recuerda que tienes hasta 24 horas antes de tu
-                            cita para realizar el pago o se cancelará de forma
-                            automática.
-                        </p>
-                    </div>
-                </div>
-                {pageState.loading && <LoadingHorizontal />}
-            </div>
             {pageState.error !== "" && (
-                <p className="text-xl text-red-500">{pageState.error}</p>
+                <p className="text-base text-red-500 py-5">{pageState.error}</p>
             )}
+            <div>
+                <div className="flex-col items-center justify-center">
+                    <div>
+                        <MercadoPagoPayment />
+                        {/* {pageState.loading && <LoadingHorizontal />} */}
+                    </div>
+                    <PaymentLater payLater={payLater} />
+                </div>
+            </div>
         </div>
     );
 };
