@@ -3,12 +3,17 @@ import React from "react";
 type LabelInformationProps = {
     label: string;
     value: string;
+    style?: string;
 };
 
-const LabelInformation = ({ label, value }: LabelInformationProps) => {
+const LabelInformation = ({
+    label,
+    value,
+    style = "",
+}: LabelInformationProps) => {
     return (
         <div
-            className="flex justify-start  items-start gap-5 py-4
+            className="flex justify-start items-center gap-5 py-4
                     max-md:flex-col max-md:items-start max-md:gap-2 max-md:py-2"
         >
             <p
@@ -18,12 +23,12 @@ const LabelInformation = ({ label, value }: LabelInformationProps) => {
             >
                 {label}
             </p>
-            <p
-                className="text-lg text-right w-full
-                          max-md:text-left max-xl:text-base"
+            <div
+                className={`text-lg text-right 
+                          max-md:text-left max-xl:text-base w-full ${style}`}
             >
                 {value !== "" ? value : "-"}
-            </p>
+            </div>
         </div>
     );
 };

@@ -46,6 +46,14 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
         getInfoFromDb(appointment.doctorId, appointment.specialityId);
     }, []);
 
+    const colorStatus = ` font-bold ${
+        appointment.status === "pending"
+            ? "text-rose-600"
+            : appointment.status === "scheduled"
+            ? "text-green-600 "
+            : "text-basic-black"
+    }`;
+
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div
@@ -76,6 +84,7 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
                     <LabelInformation
                         label="Estado"
                         value={`${statusToSpanish(appointment.status)}`}
+                        style={colorStatus}
                     />
                     <LabelInformation
                         label="Horario"

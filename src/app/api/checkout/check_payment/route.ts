@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const checkPayment = async (req: NextApiRequest, res: NextApiResponse) => {
+export async function GET(req: NextApiRequest, res: NextApiResponse){
     try {
         // Your code to check the payment status goes here
 
@@ -14,4 +14,3 @@ const checkPayment = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 };
 
-export default checkPayment;
