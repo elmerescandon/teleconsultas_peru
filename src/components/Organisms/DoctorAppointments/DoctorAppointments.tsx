@@ -35,7 +35,8 @@ const DoctorAppointments = () => {
                     <Pagination
                         orientation="row"
                         items={appointmentsElements as React.JSX.Element[]}
-                        itemsPerPage={2}
+                        itemsPerPage={4}
+
                     />
                 ) : (
                     <p>No tienes citas para hoy</p>
