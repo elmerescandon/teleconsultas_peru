@@ -25,7 +25,7 @@ const ReserveAppointmentForms = () => {
 
     const dispatch = useAppointmentDispatch();
     const appointment = useAppointment();
-    const { specialityId, doctorId } = appointment;
+    const { specialityId, doctorId, status, reason, details } = appointment;
     const [specialitiesOptions, setSpecialitiesOptions] = useState<
         ISelectOptions[]
     >([]);
@@ -56,7 +56,7 @@ const ReserveAppointmentForms = () => {
                 setDoctorsOptions(getDoctorsOptions(doctors));
             }
         };
-
+        console.log(specialityId);
         if (specialityId === "") {
             setDoctorsOptions([]);
         } else {
@@ -71,19 +71,23 @@ const ReserveAppointmentForms = () => {
 
             <div className="flex gap-5 flex-col">
                 <RegisterField title="Especialidad*" error="">
-                    <InputSelect
-                        key={1}
-                        selectId="speciality"
-                        placeholder="Escoge tu especialidad"
-                        options={specialitiesOptions}
-                        onChange={(e: string) => {
-                            dispatch({
-                                type: "SET_SPECIALITY",
-                                payload: e,
-                            });
-                        }}
-                        fistValue={searchParams.get("spec") || ""}
-                    />
+                    {status !== "doctor-canceled" && (
+                        <InputSelect
+                            key={1}
+                            selectId="speciality"
+                            placeholder="Escoge tu especialidad"
+                            options={specialitiesOptions}
+                            onChange={(e: string) => {
+                                dispatch({
+                                    type: "SET_SPECIALITY",
+                                    payload: e,
+                                });
+                            }}
+                            fistValue={searchParams.get("spec") || ""}
+                        />)}
+                    {status === "doctor-canceled" && (
+                        <div className="font-semibold text-lg py-3">{specialitiesOptions.find((option) => option.value === specialityId)?.label || ""}</div>
+                    )}
                 </RegisterField>
 
                 <RegisterField title="Doctor*" error="">
@@ -109,7 +113,7 @@ const ReserveAppointmentForms = () => {
                 </RegisterField>
 
                 <RegisterField title="Razón de consulta*" error="">
-                    <InputSelect
+                    {status !== "doctor-canceled" && <InputSelect
                         key={3}
                         selectId="reason"
                         placeholder="Selecciona el motivo de tu consulta"
@@ -120,10 +124,13 @@ const ReserveAppointmentForms = () => {
                                 payload: e,
                             });
                         }}
-                    />
+                    />}
+                    {status === "doctor-canceled" && (
+                        <div className="font-semibold text-lg py-3">{reasonMockup.find((option) => option.value === reason)?.label || ""}</div>
+                    )}
                 </RegisterField>
 
-                <RegisterField title="Síntomas" error="">
+                {status !== "doctor-canceled" && <RegisterField title="Síntomas" error="">
                     <InputSelect
                         key={4}
                         selectId="symptoms"
@@ -136,10 +143,9 @@ const ReserveAppointmentForms = () => {
                             });
                         }}
                     />
-                </RegisterField>
-
+                </RegisterField>}
                 <RegisterField title="Detalles" error="">
-                    <InputTextArea
+                    {status !== "doctor-canceled" && <InputTextArea
                         cols={80}
                         rows={5}
                         placeholder="Por favor, indique más detalles sobre su consulta"
@@ -149,7 +155,11 @@ const ReserveAppointmentForms = () => {
                                 payload: value,
                             });
                         }}
-                    />
+                    />}
+                    {status === "doctor-canceled" &&
+                        <div className="font-semibold text-lg py-3 w-[30vw]">
+                            {details || "No hay detalles"}
+                        </div>}
                 </RegisterField>
             </div>
             {popUpDoctor && (
