@@ -13,7 +13,7 @@ type PatientDateProps = {
 
 const PatientDate = ({ appointment }: PatientDateProps) => {
     const [popUpOpen, setPopUpOpen] = useState(false);
-    const { doctorId, specialityId, date } = appointment;
+    const { doctorId, specialityId, date, status } = appointment;
     const [summary, setSummary] = useState<{
         doctorName: string;
         specialityName: string;
@@ -44,9 +44,9 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
     return (
         <div className="w-full">
             <button
-                className="flex items-center w-full px-10 py-3 justify-between bg-brand-600 text-basic-white rounded-3xl
+                className={`flex items-center w-full px-10 py-3 justify-between ${status === "doctor-canceled" ? "bg-rose-400" : "bg-brand-600"} text-basic-white rounded-3xl
                             max-lg:flex-col max-lg:items-start max-lg:gap-2
-                            max-md:px-5"
+                            max-md:px-5`}
                 onClick={() => setPopUpOpen(true)}
             >
                 <div
