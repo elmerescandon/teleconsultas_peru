@@ -1,6 +1,5 @@
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import React, { useEffect, useState } from "react";
-import ButtonPrimary from "../../Buttons/ButtonPrimary/ButtonPrimary";
 import LabelInformation from "../../Labels/LabelInformation/LabelInformation";
 import {
     getAppointmentHours,
@@ -11,9 +10,10 @@ import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { Timestamp } from "firebase/firestore";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import LinkPrimary from "../../Links/LinkPrimary/LinkPrimary";
 import Link from "next/link";
 import Routes from "@/utils/routes/Routes";
+import updateAppointmentField from "@/firebase/Appointments/updateAppointmentField";
+import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
 
 type PopUpAppointmentProps = {
     onClose: () => void;
@@ -25,6 +25,8 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
         doctorName: string;
         specialityName: string;
     }>({ doctorName: "", specialityName: "" });
+    const [validation, setValidation] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const getInfoFromDb = async (
@@ -48,13 +50,25 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
         getInfoFromDb(appointment.doctorId, appointment.specialityId);
     }, []);
 
-    const colorStatus = ` font-bold ${
-        appointment.status === "pending"
-            ? "text-rose-600"
-            : appointment.status === "scheduled"
+    const getRefund = async () => {
+        try {
+            setLoading(true);
+            await updateAppointmentField(appointment._id, "status", "patient-canceled");
+            setValidation("Se ha enviado la solicitud de reembolso, revise su correo electrónico.");
+            setLoading(false);
+        } catch (error) {
+            setValidation("Ha ocurrido un error, inténtelo nuevamente.");
+            setLoading(false);
+        }
+    }
+
+    const colorStatus = ` font-bold ${appointment.status === "pending"
+        ? "text-rose-600"
+        : appointment.status === "scheduled"
             ? "text-green-600 "
-            : "text-basic-black"
-    }`;
+            : appointment.status === "doctor-canceled" ? "text-rose-600"
+                : "text-basic-black"
+        }`;
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -120,6 +134,27 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
                     >
                         Conectarse a la sesión
                     </a>
+                )}
+                {appointment.status === "doctor-canceled" && (
+                    <div className="flex max-xl:flex-col gap-3 w-full justify-between">
+                        <button className="px-4 py-5 bg-brand-600 rounded-2xl text-basic-white text-center font-semibold
+                                hover:bg-brand-700 transition duration-300 ease-in-out
+                                active:bg-brand-800 active:scale-95 w-full">
+                            Reagendar la cita
+                        </button>
+                        <div className="w-full">
+                            <button className="px-4 py-5 bg-brand-600 rounded-2xl text-basic-white text-center font-semibold
+                                hover:bg-brand-700 transition duration-300 ease-in-out w-full
+                                active:bg-brand-800 active:scale-95" onClick={getRefund}>
+                                Pedir reembolso
+                            </button>
+                            {loading && <LoadingHorizontal />}
+                        </div>
+
+                    </div>
+                )}
+                {validation !== "" && (
+                    <p className="w-full py-3 text-center text-amber-600">{validation}</p>
                 )}
             </div>
         </div>
