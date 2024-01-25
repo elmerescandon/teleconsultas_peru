@@ -20,6 +20,7 @@ const PatientAppointments = () => {
             const appointments = await getUserAppointments(userInfo._id, [
                 "pending",
                 "scheduled",
+                "doctor-canceled",
             ]);
             setPatientAppointments(appointments);
         };
@@ -41,12 +42,7 @@ const PatientAppointments = () => {
                     orientation="col"
                     itemsPerPage={4}
                     items={patientAppointments.map((appointment, index) => {
-                        return (
-                            <PatientDate
-                                key={index}
-                                appointment={appointment}
-                            />
-                        );
+                        return <PatientDate key={index} appointment={appointment} />;
                     })}
                 />
             </div>
