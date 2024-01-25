@@ -1,10 +1,10 @@
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { and, collection, getDocs, query, where } from "firebase/firestore";
+import { and, collection, getDocs, limit, orderBy, query, where } from "firebase/firestore";
 import dbFirestore from "../config";
 
 const getAppointments = async (id: string, role: string, status: string[]) => {
     const q = query(collection(dbFirestore, "appointments"), and(where(`${role === "patient" ? "patientId" : "doctorId"}`, "==", id),
-                                                                 where("status", "in", status)));
+        where("status", "in", status)), orderBy("date", "desc"), limit(10));
     const snapShot = await getDocs(q);
 
     const appointments: IAppointment[] = [];
@@ -16,7 +16,7 @@ const getAppointments = async (id: string, role: string, status: string[]) => {
         appointments.push(appointment);
     });
     return appointments;
-    
+
 
 
 }
