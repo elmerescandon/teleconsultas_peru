@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import LabelInformation from "../../Labels/LabelInformation/LabelInformation";
 import {
     getAppointmentHours,
+    isDateOlderThan24Hours,
     statusToSpanish,
     stringToDate,
 } from "@/utils/functions/utils";
@@ -59,6 +60,15 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
         } catch (error) {
             setValidation("Ha ocurrido un error, inténtelo nuevamente.");
             setLoading(false);
+        }
+    }
+
+    const cancelAppointment = async () => {
+        try {
+            await updateAppointmentField(appointment._id, "status", "patient-canceled");
+            setValidation("Se ha cancelado la cita.");
+        } catch (error) {
+            setValidation("Ha ocurrido un error, inténtelo nuevamente.");
         }
     }
 
@@ -153,6 +163,11 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
                         </div>
 
                     </div>
+                )}
+                {(appointment.status === "pending" || appointment.status === "scheduled") && isDateOlderThan24Hours(appointment.date as unknown as Timestamp) && (
+                    <button className="w-full text-left italic text-brand-600 text-lg font-semibold" onClick={cancelAppointment}>
+                        Cancelar cita
+                    </button>
                 )}
                 {validation !== "" && (
                     <p className="w-full py-3 text-center text-amber-600">{validation}</p>
