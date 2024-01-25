@@ -137,11 +137,12 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
                 )}
                 {appointment.status === "doctor-canceled" && (
                     <div className="flex max-xl:flex-col gap-3 w-full justify-between">
-                        <button className="px-4 py-5 bg-brand-600 rounded-2xl text-basic-white text-center font-semibold
+                        <Link href={`${Routes.RESERVE}?appId=${appointment._id}`}
+                            className="px-4 py-5 bg-brand-600 rounded-2xl text-basic-white text-center font-semibold
                                 hover:bg-brand-700 transition duration-300 ease-in-out
                                 active:bg-brand-800 active:scale-95 w-full">
                             Reagendar la cita
-                        </button>
+                        </Link>
                         <div className="w-full">
                             <button className="px-4 py-5 bg-brand-600 rounded-2xl text-basic-white text-center font-semibold
                                 hover:bg-brand-700 transition duration-300 ease-in-out w-full
