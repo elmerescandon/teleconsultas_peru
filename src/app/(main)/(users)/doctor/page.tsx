@@ -3,7 +3,7 @@ import React from "react";
 
 const Doctor = () => {
     return (
-        <div className="flex flex-col h-screen max-xl:h-full">
+        <div className="flex flex-col max-xl:h-full">
             <DoctorHome />
         </div>
     );
