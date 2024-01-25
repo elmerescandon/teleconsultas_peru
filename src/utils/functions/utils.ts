@@ -236,3 +236,12 @@ export const getHourFromDate = (dateString: string): string => {
   const minutes = date.getMinutes();
   return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 }
+
+// compare date in a Firebase Timestamp format with a Date format for today considering the date is in LIMA timezone, return true if the difference is more than 24 hours
+export const isDateOlderThan24Hours = (date: Timestamp): boolean => {
+  const dateNow = new Date();
+  const dateToCompare = date.toDate();
+  const difference = dateNow.getTime() - dateToCompare.getTime();
+  console.log(difference);
+  return 24 * 60 * 60 * 1000 > difference;
+}
