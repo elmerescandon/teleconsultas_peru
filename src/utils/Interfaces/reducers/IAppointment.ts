@@ -5,7 +5,7 @@ interface IAppointment {
     startDate: string,
     date: string,
     endDate: string,
-    status: 'scheduled' | 'completed' | 'canceled' | 'pending' | "doctor-canceled",
+    status: 'scheduled' | 'completed' | 'canceled' | 'pending' | "doctor-canceled" | "patient-canceled",
     reason: string,
     details: string,
     specialityId: string,
