@@ -1,21 +1,30 @@
 "use client";
 import ButtonReserve from "@/components/Atoms/Buttons/ButtonReserve/ButtonReserve";
 import PopUpReservation from "@/components/Atoms/PopUp/PopUpReservation/PopUpReservation";
+import Loading from "@/components/Molecules/Loaders/Loading/Loading";
 import ReserveAppointmentCalendar from "@/components/Organisms/ReserveAppointmentCalendar/ReserveAppointmentCalendar";
 import ReserveAppointmentForms from "@/components/Organisms/ReserveAppointmentForms/ReserveAppointmentForms";
 import ReserveAppointmentHours from "@/components/Organisms/ReserveAppointmentHours/ReserveAppointmentHours";
+import getAppointment from "@/firebase/Appointments/getAppointment";
+import updateAppointmentField from "@/firebase/Appointments/updateAppointmentField";
 import { getAvailableDates } from "@/firebase/Availability/getAvailableDates";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
+import { useAppointment, useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
 import { validateAppointment } from "@/utils/functions/utils";
 import Routes from "@/utils/routes/Routes";
-import { useRouter } from "next/navigation";
+import { set } from "lodash";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const ReserveAppointmentSection = () => {
+    const params = useSearchParams();
+    const appointmentSearch = params.get("appId");
+
+
+
     const userState: IUserState = useAppSelector((state) => state.user);
     const { logged } = userState;
     const router = useRouter();
@@ -27,15 +36,32 @@ const ReserveAppointmentSection = () => {
     >([]);
 
     const appointment = useAppointment();
+    const dispatch = useAppointmentDispatch();
+
     const { date, doctorId, specialityId } = appointment;
     const [loadingDates, setLoadingDates] = useState<boolean>(false);
+    const [confirm, setConfirm] = useState<boolean>(false);
 
     const onClickReserve = (appointment: IAppointment) => {
+
+
         if (validateAppointment(appointment)) {
             if (!logged) {
                 setPopUpRegister(true);
                 return;
             }
+
+            if (appointment.status === "doctor-canceled") {
+                updateAppointmentField(appointment._id, "status", "pending");
+                updateAppointmentField(appointment._id, "doctorId", appointment.doctorId);
+                updateAppointmentField(appointment._id, "date", new Date(appointment.date));
+                updateAppointmentField(appointment._id, "startDate", appointment.startDate);
+                updateAppointmentField(appointment._id, "endDate", appointment.endDate);
+                setConfirm(true);
+                router.push(Routes.PATIENT_HOME);
+                return;
+            }
+
             router.push(Routes.RESERVE_PAYMENT);
         } else {
             setPopUp(true);
@@ -68,6 +94,37 @@ const ReserveAppointmentSection = () => {
             getAvailableAppointments(date, doctorId, specialityId);
         }
     }, [date, doctorId]);
+
+    useEffect(() => {
+        const getAppointmentData = async (id: string) => {
+            try {
+                const newAppointment = await getAppointment(id);
+                if (newAppointment !== null && newAppointment.status === "doctor-canceled") {
+                    dispatch({
+                        type: "SET_APPOINTMENT",
+                        payload: newAppointment,
+                    });
+                    dispatch({
+                        type: "SET_DOCTOR",
+                        payload: "",
+                    });
+                    dispatch({
+                        type: "SET_TIME",
+                        payload: {
+                            startDate: "",
+                            endDate: "",
+                        },
+                    });
+                }
+            } catch (error) {
+                router.push(Routes.PATIENT_HOME);
+            }
+        };
+
+        if (appointmentSearch !== null && appointmentSearch !== "") {
+            getAppointmentData(appointmentSearch);
+        }
+    }, []);
 
     return (
         <div
@@ -104,6 +161,12 @@ const ReserveAppointmentSection = () => {
                         setPopUpRegister(false);
                     }}
                 />
+            )}
+            {confirm && (
+                <div className="flex gap-3">
+                    <p>Se realizó correctamente el registro de la cita, por favor espere</p>
+                    <Loading />
+                </div>
             )}
         </div>
     );
