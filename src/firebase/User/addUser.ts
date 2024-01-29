@@ -1,4 +1,4 @@
-import {collection, addDoc} from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import dbFirestore from '../config';
 import IUserPost from '@/utils/Interfaces/API/Users/IUserPost';
 import { readDoctorsSize, readPatientsSize } from './readUsersSize';
@@ -7,15 +7,19 @@ import { uploadDoctorData } from '../Doctor/uploadDoctorData';
 
 const addUser = async (user: IUserPost) => {
     try {
-        await addDoc(collection(dbFirestore, "users"), user);        
+        console.log("Agregando usuario");
+        console.log(user);
+        await addDoc(collection(dbFirestore, "users"), user);
     } catch (e) {
         throw new Error("Error adding document: " + e);
     }
 }
 
 export const registerUser = async (registerPatient: IRegister & IRegisterDoctor, type: "patient" | "doctor") => {
-    
-    let user : IUserPost = type === "patient" ? {
+
+    console.log("Registrando paciente");
+    console.log(registerPatient);
+    let user: IUserPost = type === "patient" ? {
         _id: "",
         name: registerPatient.name,
         lastName: registerPatient.lastname,
@@ -25,7 +29,7 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
         id: registerPatient.id,
         phone: registerPatient.phone,
         termsAndConditions: true,
-        
+
         region: registerPatient.region,
         province: registerPatient.province,
         district: registerPatient.district,
@@ -48,22 +52,23 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
         id: registerPatient.id,
         phone: registerPatient.phone,
         termsAndConditions: true,
-        
+
         region: registerPatient.region,
         province: registerPatient.province,
         district: registerPatient.district,
         address: registerPatient.address,
         reference: registerPatient.reference,
         interiorNumber: registerPatient.interiorNumber,
+        cmpId: registerPatient.cmpId,
 
         age: registerPatient.age,
         sex: registerPatient.sex,
         specialities: registerPatient.specialities,
         bornDate: registerPatient.bornDate,
-        
+
     }
 
-    
+
     if (!await isUserValid(user))
         return false
 
@@ -72,11 +77,13 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
     const userIdPatient = sizePatients === undefined ? 1 : sizePatients + 1;
     const userIdDoctor = sizeDoctors === undefined ? 1 : sizeDoctors + 1;
     const userId = type === "patient" ? userIdPatient : userIdDoctor;
-    user = {...user, _id: `${type}${userId}`}
+    user = { ...user, _id: `${type}${userId}` }
+    console.log("Agregando usuario a la base de datos")
+    console.log(user);
     await addUser(user);
 
     // Agregar Info de Doctor
-    if (type === "doctor"){
+    if (type === "doctor") {
         if (registerPatient.curriculum !== null)
             uploadDoctorData(registerPatient.curriculum, `${type}${userId}.pdf`, 'curriculum');
 
