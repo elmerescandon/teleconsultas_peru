@@ -1,5 +1,5 @@
 
-type IRegisterActionSetGeneral ={
+type IRegisterActionSetGeneral = {
     type: 'SET_GENERAL',
     payload: {
         name: string,
@@ -11,7 +11,7 @@ type IRegisterActionSetGeneral ={
     }
 }
 
-type IRegisterActionSetLocation ={
+type IRegisterActionSetLocation = {
     type: 'SET_LOCATION',
     payload: {
         region: string,
@@ -23,7 +23,7 @@ type IRegisterActionSetLocation ={
     }
 }
 
-type IRegisterActionSetInfo ={
+type IRegisterActionSetInfo = {
     type: 'SET_INFO',
     payload: {
         age: string,
@@ -37,7 +37,7 @@ type IRegisterActionSetInfo ={
 }
 
 
-type IRegisterActionSetDocInfo ={
+type IRegisterActionSetDocInfo = {
     type: 'SET_DOCINFO',
     payload: {
         age: string,
@@ -45,6 +45,7 @@ type IRegisterActionSetDocInfo ={
         specialities: string[],
         cmpNumber: File,
         curriculum: File,
+        cmpId: string,
         phone: string,
         bornDate: string,
         termsAndConditions: string,
@@ -53,5 +54,5 @@ type IRegisterActionSetDocInfo ={
 
 
 export type IRegisterActions = IRegisterActionSetGeneral | IRegisterActionSetLocation | IRegisterActionSetInfo;
-export type IRegisterDoctorActions = IRegisterActionSetGeneral | IRegisterActionSetLocation |  IRegisterActionSetDocInfo;
+export type IRegisterDoctorActions = IRegisterActionSetGeneral | IRegisterActionSetLocation | IRegisterActionSetDocInfo;
 
