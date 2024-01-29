@@ -117,13 +117,11 @@ const PaymentAppointmentSection = () => {
             }
         };
 
-        console.log("hola apid", appId);
 
-        if (!created && user && appointment && appId === "") {
+        if (!created && user && appointment && appId === null) {
             createAppointmentInit();
             setCreated(true);
         } else if (appointment._id === "" && appId !== "") {
-            console.log("hello");
             getAppointmentFromDb(appId!);
         }
     }, [user, appointment]);
