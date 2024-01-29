@@ -43,6 +43,7 @@ const RegisterDoctorInformation = ({
                     phone: formFields.phone.value as string,
                     specialities: formFields.specialities.value as string[],
                     cmpNumber: formFields.cmpNumber.value as File,
+                    cmpId: formFields.cmpId.value as string,
                     curriculum: formFields.curriculum.value as File,
                     termsAndConditions: formFields.termsAndConditions
                         .value as string,
@@ -53,6 +54,7 @@ const RegisterDoctorInformation = ({
             setReadyToPost(false);
             setCheckForms(false);
         }
+        console.log(formFields);
     }, [checkForms]);
 
     useEffect(() => {
@@ -155,6 +157,19 @@ const RegisterDoctorInformation = ({
                             value={formFields.phone.value as string}
                             type="text"
                             placeholder="(+51) xxx-xxx-xxx"
+                        />
+                    </RegisterField>
+                    <RegisterField
+                        title="Número de colegiatura*"
+                        error={formFields.cmpId.error}
+                    >
+                        <InputText
+                            onChangeFn={(cmpId) => {
+                                handleChange("cmpId", cmpId);
+                            }}
+                            value={formFields.cmpId.value as string}
+                            type="text"
+                            placeholder="XXXXX"
                         />
                     </RegisterField>
                 </RegisterRow>
