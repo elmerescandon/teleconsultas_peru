@@ -1,4 +1,4 @@
-interface IRegisterDoctor{
+interface IRegisterDoctor {
     // general
     name: string,
     lastname: string,
@@ -20,6 +20,7 @@ interface IRegisterDoctor{
     sex: string,
     specialities: string[],
     cmpNumber: File | null,
+    cmpId: string,
     curriculum: File | null,
     phone: string,
     termsAndConditions: string,
