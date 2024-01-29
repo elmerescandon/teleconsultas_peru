@@ -39,6 +39,7 @@ const DoctorRegisterProvider = ({ children }: RegisterProviderProps) => {
         specialities: [],
         cmpNumber: null,
         curriculum: null,
+        cmpId: "",
         phone: "",
         termsAndConditions: "",
     });
