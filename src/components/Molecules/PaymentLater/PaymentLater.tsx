@@ -12,7 +12,7 @@ const PaymentLater = ({ payLater }: PaymentLaterProps) => {
                 Ahora no, deseo pagar más tarde.
             </ButtonThird>
             <p className="text-sm text-gray-500">
-                * Recuerda que tienes hasta 24 horas antes de tu cita para
+                * Recuerda que tienes hasta 48 horas antes de tu cita para
                 realizar el pago o se cancelará de forma automática.
             </p>
         </div>
