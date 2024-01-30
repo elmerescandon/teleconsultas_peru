@@ -33,7 +33,7 @@ const DoctorAvailabilityHours = () => {
                     setShowAddAvailability(true);
                 }}
             >
-                Agregar horario
+                Agregar/Modificar horario
             </ButtonPrimary>
 
             {myAvaialability && (
