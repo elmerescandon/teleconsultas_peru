@@ -29,7 +29,7 @@ const DoctorAppointments = () => {
 
     return (
         <div className="w-full">
-            <p className="text-xl font-semibold pb-5">Tus citas para hoy</p>
+            <p className="text-xl font-semibold pb-5">Tus próximas citas:</p>
             <div className="max-xl:px-5">
                 {appointmentsElements && appointmentsElements.length > 0 ? (
                     <Pagination
