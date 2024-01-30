@@ -4,7 +4,7 @@ import dbFirestore from "../config";
 
 const getAppointments = async (id: string, role: string, status: string[]) => {
     const q = query(collection(dbFirestore, "appointments"), and(where(`${role === "patient" ? "patientId" : "doctorId"}`, "==", id),
-        where("status", "in", status)), orderBy("date", "desc"), limit(10));
+        where("status", "in", status)), orderBy("date", "asc"), limit(10));
     const snapShot = await getDocs(q);
 
     const appointments: IAppointment[] = [];
