@@ -117,7 +117,7 @@ const AddAvailabilityGeneral = ({
     };
 
     return (
-        <div className="flex flex-col pt-10">
+        <div className="flex flex-col">
             <div className="flex flex-col gap-5 pb-5">
                 <SwitchAvailability
                     title="Todo el día (9AM a 6PM)"
