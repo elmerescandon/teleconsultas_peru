@@ -47,7 +47,7 @@ const DoctorAppointmentSection = () => {
         getAppointments(
             _id,
             role,
-            ["scheduled", "pending"],
+            ["scheduled", "pending", "doctor-canceled", "patient-canceled"],
             filter.date,
             filter.speciality
         );
