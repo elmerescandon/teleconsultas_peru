@@ -7,7 +7,6 @@ import Pagination from "@/components/Organisms/Pagination/Pagination";
 import PatientCard from "@/components/Molecules/PatientCard/PatientCard";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
-import getDoctorAppointments from "@/firebase/Appointments/getDoctorAppointments";
 import getAppointmentsFiltered from "@/firebase/Appointments/getAppointmentsFiltered";
 import IDateRangeAppointment from "@/utils/Interfaces/IDateRangeAppointment";
 
@@ -41,7 +40,12 @@ const DoctorAppointmentSection = () => {
                 specialityId
             );
             if (appointments) {
-                setAppointments(appointments);
+                const userFilteredAppointments = appointments.filter((appointment) => {
+                    if (filter.patientName === "") return true;
+                    return appointment.patientId === filter.patientName;
+                })
+                console.log(userFilteredAppointments);
+                setAppointments(userFilteredAppointments);
             }
         };
         getAppointments(
@@ -51,11 +55,9 @@ const DoctorAppointmentSection = () => {
             filter.date,
             filter.speciality
         );
+        // console.log(filter);
     }, [filter]);
 
-    const appointmentCards = appointments.map((appointment, index) => {
-        return <PatientCard appointment={appointment} key={index} />;
-    });
 
     return (
         <div
@@ -63,17 +65,19 @@ const DoctorAppointmentSection = () => {
                         max-xl:pt-24 max-xl:px-10"
         >
             <p className="text-2xl font-semibold">Mis citas</p>
-            <DoctorAppointmentFilter filter={filter} setFilter={setFilter} />
-            {appointmentCards.length !== 0 && (
+            <DoctorAppointmentFilter appointments={appointments} filter={filter} setFilter={setFilter} />
+            {appointments.length !== 0 && (
                 <Pagination
                     wrap={true}
                     center={true}
-                    items={appointmentCards}
+                    items={appointments.map((appointment, index) => {
+                        return <PatientCard appointment={appointment} key={index} />
+                    })}
                     itemsPerPage={6}
                     orientation="row"
                 />
             )}
-            {appointmentCards.length === 0 && (
+            {appointments.length === 0 && (
                 <p className="text-2xl font-semibold text-center mt-10 h-[40vh]">
                     Todavía no tienes citas, pronto se agendarán.
                 </p>
