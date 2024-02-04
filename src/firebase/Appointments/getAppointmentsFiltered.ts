@@ -14,7 +14,6 @@ const getAppointmentsFiltered = async (id: string, role: string, status: string[
     const finishDate = Timestamp.fromDate(new Date(date.finish));
     const q = query(collection(dbFirestore, "appointments"), and(where(`${role === "patient" ? "patientId" : "doctorId"}`, "==", id),
         where("status", "in", status),
-        //  where("specialityId", "==", specialityId),
         where("date", ">=", initDate),
         where("date", "<=", finishDate)
     ), limit(10));
