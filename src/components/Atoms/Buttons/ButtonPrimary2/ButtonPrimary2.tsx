@@ -15,8 +15,8 @@ const ButtonPrimary2 = ({
 }: ButtonPrimary2Props) => {
     return (
         <button
-            className={`text-basic-white bg-salufy-blue rounded-md text-lg font-normal border-2 border-brand-600 py-2 px-5  
-            ${selected ? "bg-white text-brand-600" : ""}
+            className={`text-basic-white bg-brand-600 rounded-md text-lg font-normal border-2 border-brand-600 py-2 px-5  
+            ${selected ? "bg-white text-salufy-blue" : ""}
             active:bg-basic-white active:text-brand-600 active:border-2`}
             onClick={onClickFn}
         >
