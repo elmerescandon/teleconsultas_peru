@@ -60,9 +60,7 @@ const DoctorAppointmentHistory = ({
                     <div className="w-full">
                         <LabelInformation
                             label="Fecha"
-                            value={(date as unknown as Timestamp)
-                                .toDate()
-                                .toLocaleDateString()}
+                            value={stringToDate(date as unknown as Timestamp)}
                         />
                         <LabelInformation
                             label="Monto"
@@ -88,56 +86,60 @@ const DoctorAppointmentHistory = ({
                         Ver mis notas
                     </ButtonPrimary2>
                 ) : null}
-                <LabelInformationEdit
-                    label="Resumen"
-                    value={summary}
-                    setValue={(value: string) => {
-                        setCurrentAppointment({
-                            ...currentAppointment,
-                            summary: value,
-                        });
-                    }}
-                />
-                <LabelPointsEdit
-                    label="Síntomas"
-                    points={symptoms}
-                    changePoints={(symptoms) => {
-                        setCurrentAppointment({
-                            ...currentAppointment,
-                            symptoms: symptoms,
-                        });
-                    }}
-                />
-                <LabelPointsEdit
-                    label="Diagnóstico"
-                    points={diagnosis}
-                    changePoints={(diagnosis) => {
-                        setCurrentAppointment({
-                            ...currentAppointment,
-                            diagnosis: diagnosis,
-                        });
-                    }}
-                />
-                <LabelPointsEdit
-                    label="Prescripción"
-                    points={prescription}
-                    changePoints={(prescription) => {
-                        setCurrentAppointment({
-                            ...currentAppointment,
-                            prescription: prescription,
-                        });
-                    }}
-                />
-                <LabelPointsEdit
-                    label="Tratamiento"
-                    points={treatment}
-                    changePoints={(treatment) => {
-                        setCurrentAppointment({
-                            ...currentAppointment,
-                            treatment: treatment,
-                        });
-                    }}
-                />
+
+                <div className="flex flex-col gap-2">
+                    <LabelInformationEdit
+                        label="Resumen"
+                        value={summary}
+                        setValue={(value: string) => {
+                            setCurrentAppointment({
+                                ...currentAppointment,
+                                summary: value,
+                            });
+                        }}
+                    />
+                    <LabelPointsEdit
+                        label="Síntomas"
+                        points={symptoms}
+                        changePoints={(symptoms) => {
+                            setCurrentAppointment({
+                                ...currentAppointment,
+                                symptoms: symptoms,
+                            });
+                        }}
+                    />
+                    <LabelPointsEdit
+                        label="Diagnóstico"
+                        points={diagnosis}
+                        changePoints={(diagnosis) => {
+                            setCurrentAppointment({
+                                ...currentAppointment,
+                                diagnosis: diagnosis,
+                            });
+                        }}
+                    />
+                    <LabelPointsEdit
+                        label="Prescripción"
+                        points={prescription}
+                        changePoints={(prescription) => {
+                            setCurrentAppointment({
+                                ...currentAppointment,
+                                prescription: prescription,
+                            });
+                        }}
+                    />
+                    <LabelPointsEdit
+                        label="Tratamiento"
+                        points={treatment}
+                        changePoints={(treatment) => {
+                            setCurrentAppointment({
+                                ...currentAppointment,
+                                treatment: treatment,
+                            });
+                        }}
+                    />
+                </div>
+
             </div>
             {specialityId === "speciality1" && openNotes ? (
                 <PopUpNotes
