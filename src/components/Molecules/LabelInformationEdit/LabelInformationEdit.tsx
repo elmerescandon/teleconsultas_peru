@@ -1,8 +1,8 @@
 "use client";
-import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
+import ButtonPrimary2 from "@/components/Atoms/Buttons/ButtonPrimary2/ButtonPrimary2";
 import InputTextArea from "@/components/Atoms/Inputs/InputTextArea/InputTextArea";
 import { CheckIcon } from "@heroicons/react/24/outline";
-import { PencilIcon } from "@heroicons/react/24/solid";
+import { PencilIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 
 type LabelInformationEditProps = {
@@ -21,12 +21,10 @@ const LabelInformationEdit = ({
     return (
         <div>
             {value !== undefined ? (
-                <div className="flex justify-start max-xl:flex-col gap-5 py-8 max-xl:py-3">
-                    <div className="flex gap-4 items-center">
+                <div className="flex justify-start flex-col gap-2 pb-4">
+                    <div className="flex gap-2 justify-start items-center w-full">
                         <p
-                            className={`text-lg text-gray-500 ${
-                                isEditing ? "w-1/4" : "w-full"
-                            } max-xl:w-full`}
+                            className={`text-lg text-gray-500`}
                         >
                             {label}
                         </p>
@@ -36,16 +34,15 @@ const LabelInformationEdit = ({
                                     setIsEditing(true);
                                 }}
                             >
-                                <PencilIcon className="h-5 w-5 text-gray-500" />
+                                <PencilSquareIcon className="h-5 w-5" />
                             </button>
                         ) : null}
                     </div>
 
-                    <div className="flex gap-3 w-full flex-col items-end">
+                    <div className="flex gap-3 w-full flex-col items-start">
                         {!isEditing ? (
                             <p
-                                className="text-lg text-right w-full
-                                            max-xl:text-left"
+                                className="text-lg text-left w-full"
                             >
                                 {value !== "" ? value : "-"}
                             </p>
@@ -67,21 +64,20 @@ const LabelInformationEdit = ({
                                         setIsEditing(false);
                                         setValue(newValue);
                                     }}
+                                    className="text-basic-white rounded-xl bg-slate-500 px-2 py-1 active:bg-slate-600 hover:bg-slate-400"
                                 >
-                                    <CheckIcon className="h-6 w-6 text-gray-500" />
+                                    Actualizar
                                 </button>
                             )}
                         </div>
                     </div>
                 </div>
             ) : (
-                <div>
-                    <ButtonPrimary
-                        onClickFn={() => {
-                            setValue("");
-                        }}
-                    >{`Agregar ${label}`}</ButtonPrimary>
-                </div>
+                <ButtonPrimary2
+                    onClickFn={() => {
+                        setValue("");
+                    }}
+                >{`Agregar ${label}`}</ButtonPrimary2>
             )}
         </div>
     );
