@@ -36,7 +36,7 @@ const PopUpMyAvailability = ({
                 setAllAvailabilities(allAvailabilities);
                 setLoading(false);
             } catch (error) {
-                setError((error as Error).message);
+                setError("Hubo un error al cargar la disponibilidad. Intente más tarde.");
                 setLoading(false);
             }
         };
