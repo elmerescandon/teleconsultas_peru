@@ -1,8 +1,9 @@
-import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
+import ButtonPrimary2 from "@/components/Atoms/Buttons/ButtonPrimary2/ButtonPrimary2";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import {
     CheckIcon,
     PencilIcon,
+    PencilSquareIcon,
     TrashIcon,
     XMarkIcon,
 } from "@heroicons/react/24/solid";
@@ -55,42 +56,31 @@ const LabelPointsEdit = ({
     return (
         <div>
             {updatedPoints ? (
-                <div className="flex flex-col justify-start items-center gap-5 py-10">
-                    <div className="flex gap-5 justify-start w-full">
-                        <p className="text-lg text-gray-500 items-center">
-                            {label}
-                        </p>
+                <div className="flex flex-col justify-start gap-2 pb-4">
+                    <div className="flex gap-2 justify-start items-center w-full">
+                        <p className="text-lg text-gray-500 items-center">{label}</p>
                         {!isEditing && (
-                            <button
-                                onClick={handleEditClick}
-                                className="text-gray-700 rounded-full"
-                            >
-                                <PencilIcon className="w-5 h-5" />
+                            <button onClick={handleEditClick}>
+                                <PencilSquareIcon className="w-5 h-5 text-gray-700" />
                             </button>
                         )}
                     </div>
                     <ul
-                        className={`flex w-full pl-24 ${
-                            isEditing
-                                ? "flex-col max-xl:justify-start max-xl:pl-4"
-                                : "flex-row max-xl:justify-start max-xl:pl-4"
-                        }`}
+                        className={`flex flex-wrap first-letter:pl-4 list-none gap-2 justify-start ${isEditing
+                            ? "flex-col"
+                            : "flex-row"
+                            }`}
                     >
                         {updatedPoints!.map((point, index) => (
-                            <li
-                                className="text-lg w-full list-disc"
-                                key={index}
-                            >
-                                <div className="flex items-center gap-3">
+                            <li className="text-lg list-none rounded-lg py-2 px-4 bg-brand-200" key={index}>
+                                <div className="flex items-center justify-between gap-3">
                                     {point}
                                     {isEditing && (
                                         <button
-                                            onClick={() =>
-                                                handleRemovePoint(index)
-                                            }
-                                            className="text-gray-500"
+                                            onClick={() => handleRemovePoint(index)}
+                                            className="text-basic-black"
                                         >
-                                            <TrashIcon className="w-6 h-6" />
+                                            <TrashIcon className="w-5 h-5" />
                                         </button>
                                     )}
                                 </div>
@@ -99,8 +89,8 @@ const LabelPointsEdit = ({
                     </ul>
                     {isEditing ? (
                         <div
-                            className="flex w-full pl-16 items-center
-                                        max-xl:pl-4 max-xl:flex-col max-xl:items-start"
+                            className="flex w-full items-center
+                                       max-xl:flex-col max-xl:items-start"
                         >
                             <input
                                 type="text"
@@ -109,29 +99,25 @@ const LabelPointsEdit = ({
                                 onChange={handleInputChange}
                                 className="border rounded-md p-2 mr-2"
                             />
-                            <div>
-                                <button
-                                    onClick={handleAddPoint}
-                                    className="text-gray-500 p-2"
-                                >
+                            <div className="flex items-center gap-2">
+                                <button onClick={handleAddPoint} className="text-gray-500 p-2">
                                     <PlusIcon className="w-6 h-6" />
                                 </button>
 
                                 <button
                                     onClick={handleCancelEdit}
-                                    className="text-gray-500 ml-2"
+                                    className="text-gray-500"
                                 >
                                     <XMarkIcon className="w-6 h-6" />
                                 </button>
                                 <button
                                     onClick={() => {
                                         setIsEditing(false);
-                                        if (updatedPoints)
-                                            changePoints(updatedPoints);
+                                        if (updatedPoints) changePoints(updatedPoints);
                                     }}
-                                    className="text-gray-500 ml-2"
+                                    className="text-basic-white rounded-xl bg-slate-500 px-2 py-1 active:bg-slate-600 hover:bg-slate-400"
                                 >
-                                    <CheckIcon className="w-6 h-6" />
+                                    Terminar
                                 </button>
                             </div>
                         </div>
@@ -140,15 +126,13 @@ const LabelPointsEdit = ({
                     )}
                 </div>
             ) : (
-                <div className="py-3">
-                    <ButtonPrimary
-                        onClickFn={() => {
-                            setUpdatedPoints([]);
-                        }}
-                    >
-                        {`Agrega ${label}`}
-                    </ButtonPrimary>
-                </div>
+                <ButtonPrimary2
+                    onClickFn={() => {
+                        setUpdatedPoints([]);
+                    }}
+                >
+                    {`Agrega ${label}`}
+                </ButtonPrimary2>
             )}
         </div>
     );
