@@ -15,8 +15,7 @@ import {
   UserIcon,
 } from "@heroicons/react/24/solid";
 import { Timestamp } from "firebase/firestore";
-// import { useRouter } from "next/navigation";
-import React from "react";
+import React, { use, useEffect } from "react";
 
 type PatientCardProps = {
   appointment: IAppointment;
@@ -35,6 +34,10 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
       console.log("Error al cancelar la cita");
     }
   };
+
+  useEffect(() => {
+    console.log(appointment);
+  }, [appointment]);
 
   return (
     <div className="bg-neutral-100 rounded-2xl w-72 max-w-md">
