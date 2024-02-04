@@ -4,7 +4,7 @@ import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { useEffect, useState } from "react";
 
 
-const useAppointmentInfo = (doctorId: string, specialityId: string, patientName: string) =>{
+const useAppointmentInfo = (doctorId: string, specialityId: string, patientName: string) => {
 
     const [summary, setSummary] = useState<{
         doctorName: string;
@@ -18,6 +18,8 @@ const useAppointmentInfo = (doctorId: string, specialityId: string, patientName:
             specialityId: string,
             patientId: string
         ) => {
+
+            console.log(doctorId, specialityId, patientId);
             if (doctorId === "" || specialityId === "" || patientId === "") return;
             const doctor = await getDoctorName(doctorId);
             const speciality = await getSpecialityName(specialityId);
@@ -30,14 +32,14 @@ const useAppointmentInfo = (doctorId: string, specialityId: string, patientName:
                     patientName: `${patient.name} ${patient.lastName}`,
                 });
             } else {
-                setSummary({ doctorName: "", specialityName: "", patientName: ""});
+                setSummary({ doctorName: "", specialityName: "", patientName: "" });
             }
         };
 
         getInfoFromDb(doctorId, specialityId, patientName);
-    }, []);
+    }, [patientName]);
 
-    return {summary};
+    return { summary };
 };
 
 export default useAppointmentInfo;
