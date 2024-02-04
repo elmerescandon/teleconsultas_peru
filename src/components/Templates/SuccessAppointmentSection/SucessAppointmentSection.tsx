@@ -37,12 +37,10 @@ const SucessAppointmentSection = () => {
                 router.push(Routes.PATIENT_HOME);
                 return;
             }
-            console.log(paymentReference);
             const newAppointment: IAppointment | null = await getAppointment(
                 paymentReference
             );
             // TODO: Make validation for payment status
-            console.log(newAppointment);
             if (newAppointment !== null) {
                 setAppoinment(newAppointment);
                 updateAppointmentField(
@@ -117,8 +115,8 @@ const SucessAppointmentSection = () => {
                     name={
                         appoinment
                             ? stringToDate(
-                                  appoinment.date as unknown as Timestamp
-                              )
+                                appoinment.date as unknown as Timestamp
+                            )
                             : ""
                     }
                 />

@@ -7,8 +7,6 @@ import { uploadDoctorData } from '../Doctor/uploadDoctorData';
 
 const addUser = async (user: IUserPost) => {
     try {
-        console.log("Agregando usuario");
-        console.log(user);
         await addDoc(collection(dbFirestore, "users"), user);
     } catch (e) {
         throw new Error("Error adding document: " + e);
@@ -17,8 +15,6 @@ const addUser = async (user: IUserPost) => {
 
 export const registerUser = async (registerPatient: IRegister & IRegisterDoctor, type: "patient" | "doctor") => {
 
-    console.log("Registrando paciente");
-    console.log(registerPatient);
     let user: IUserPost = type === "patient" ? {
         _id: "",
         name: registerPatient.name,
@@ -78,8 +74,6 @@ export const registerUser = async (registerPatient: IRegister & IRegisterDoctor,
     const userIdDoctor = sizeDoctors === undefined ? 1 : sizeDoctors + 1;
     const userId = type === "patient" ? userIdPatient : userIdDoctor;
     user = { ...user, _id: `${type}${userId}` }
-    console.log("Agregando usuario a la base de datos")
-    console.log(user);
     await addUser(user);
 
     // Agregar Info de Doctor

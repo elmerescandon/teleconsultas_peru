@@ -19,7 +19,6 @@ const useAppointmentInfo = (doctorId: string, specialityId: string, patientName:
             patientId: string
         ) => {
 
-            console.log(doctorId, specialityId, patientId);
             if (doctorId === "" || specialityId === "" || patientId === "") return;
             const doctor = await getDoctorName(doctorId);
             const speciality = await getSpecialityName(specialityId);

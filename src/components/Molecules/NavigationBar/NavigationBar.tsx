@@ -7,7 +7,6 @@ import NavigationBarPatient from "../NavigationBarPatient/NavigationBarPatient";
 import NavigationBarGeneral from "../NavigationBarGeneral/NavigationBarGeneral";
 import NavigationBarDoctor from "../NavigationBarDoctor/NavigationBarDoctor";
 import { useSession } from "next-auth/react";
-import { log } from "console";
 
 const NavigationBar = () => {
     const [loaded, setLoaded] = useState(false);

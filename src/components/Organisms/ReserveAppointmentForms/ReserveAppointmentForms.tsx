@@ -56,7 +56,6 @@ const ReserveAppointmentForms = () => {
                 setDoctorsOptions(getDoctorsOptions(doctors));
             }
         };
-        console.log(specialityId);
         if (specialityId === "") {
             setDoctorsOptions([]);
         } else {

@@ -44,7 +44,6 @@ const DoctorAppointmentSection = () => {
                     if (filter.patientName === "") return true;
                     return appointment.patientId === filter.patientName;
                 })
-                console.log(userFilteredAppointments);
                 setAppointments(userFilteredAppointments);
             }
         };
@@ -55,7 +54,6 @@ const DoctorAppointmentSection = () => {
             filter.date,
             filter.speciality
         );
-        // console.log(filter);
     }, [filter]);
 
 

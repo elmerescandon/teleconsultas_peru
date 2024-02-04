@@ -242,6 +242,5 @@ export const isDateOlderThan24Hours = (date: Timestamp): boolean => {
   const dateNow = new Date();
   const dateToCompare = date.toDate();
   const difference = dateNow.getTime() - dateToCompare.getTime();
-  console.log(difference);
   return 24 * 60 * 60 * 1000 > difference;
 }

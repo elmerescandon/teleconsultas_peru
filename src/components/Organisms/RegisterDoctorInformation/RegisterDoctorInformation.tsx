@@ -54,7 +54,6 @@ const RegisterDoctorInformation = ({
             setReadyToPost(false);
             setCheckForms(false);
         }
-        console.log(formFields);
     }, [checkForms]);
 
     useEffect(() => {

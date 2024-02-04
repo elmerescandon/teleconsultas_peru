@@ -107,7 +107,6 @@ const PaymentAppointmentSection = () => {
                 }
                 setPageState({ loading: false, error: "" });
                 setAppoinmentId(appointmentId);
-                console.log("appointment", appointment);
             } catch (error) {
                 setPageState({
                     loading: false,

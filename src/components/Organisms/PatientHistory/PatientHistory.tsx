@@ -3,7 +3,6 @@ import getUserAppointments from "@/firebase/Appointments/getUserAppointments";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { group } from "console";
 import React, { useEffect, useState } from "react";
 import Pagination from "../Pagination/Pagination";
 

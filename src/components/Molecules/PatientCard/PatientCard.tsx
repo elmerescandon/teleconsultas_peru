@@ -35,9 +35,7 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
     }
   };
 
-  useEffect(() => {
-    console.log(appointment);
-  }, [appointment]);
+
 
   return (
     <div className="bg-neutral-100 rounded-2xl w-72 max-w-md">
