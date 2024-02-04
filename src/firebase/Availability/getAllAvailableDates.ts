@@ -14,7 +14,6 @@ export const getAllAvailableDates = async (
     specialityId: string
 ) => {
 
-    const fromDate = Timestamp.fromDate(new Date(Date.now() - 86400000));
 
     try {
         const allAvailableDates: IAvailabilitySlots[] = [];
@@ -23,14 +22,13 @@ export const getAllAvailableDates = async (
             and(
                 where("doctor_id", "==", doctorId),
                 where("speciality_id", "==", specialityId),
-                where("date", ">=", fromDate)
             )
         );
         const snapShot = await getDocs(q);
 
         if (snapShot.empty) {
             throw new Error(
-                "Todavía no se han agregado nuevos horarios, por favor agregue uno nuevo."
+                "Agrega nuevos horarios de disponibilidad para este doctor."
             );
         }
 
