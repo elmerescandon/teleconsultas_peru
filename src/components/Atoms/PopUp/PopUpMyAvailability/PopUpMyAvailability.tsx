@@ -33,18 +33,25 @@ const PopUpMyAvailability = ({
                     doctorId,
                     specialityId
                 );
+
                 setAllAvailabilities(allAvailabilities);
                 setLoading(false);
             } catch (error) {
-                setError("Hubo un error al cargar la disponibilidad. Intente más tarde.");
+                setError((error as Error).message);
                 setLoading(false);
             }
         };
         getAvailabilities();
     }, []);
 
+    // eliminate dates that are in the past
+    const newAvailabilities = allAvailabilities.filter(
+        (availability) =>
+            new Date(availability.date).getTime() >= new Date().getTime()
+    );
+
     // sort by date
-    const newSortedDates = allAvailabilities.sort((a, b) => {
+    const newSortedDates = newAvailabilities.sort((a, b) => {
         return new Date(a.date).getTime() - new Date(b.date).getTime();
     });
 
