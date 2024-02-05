@@ -11,7 +11,6 @@ const PatientHome = () => {
     const state: IUserState = useAppSelector(
         (state: IState) => state.user as IUserState
     );
-    const { logged, userInfo } = state;
 
     return (
         <div className="flex flex-col items-center px-48 h-full pb-5 max-lg:pt-36 gap-5 max-xl:px-5">
