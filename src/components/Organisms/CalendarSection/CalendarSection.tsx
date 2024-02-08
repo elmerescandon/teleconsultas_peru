@@ -1,6 +1,6 @@
 "use client";
 import MonthGrid from "@/components/Molecules/MonthGrid/MonthGrid";
-import getUserAppointments from "@/firebase/Appointments/getUserAppointments";
+import getAllUserAppointments from "@/firebase/Appointments/getAllUserAppointments";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
@@ -35,14 +35,14 @@ const CalendarSection = () => {
     useEffect(() => {
         const getAppointments = async () => {
             if (!userInfo) return;
-            const appointments = await getUserAppointments(userInfo._id, [
+            const appointments = await getAllUserAppointments(userInfo._id, [
                 "scheduled",
                 "pending",
             ]);
             setPatientAppointments(appointments);
         };
         getAppointments();
-    }, []);
+    }, [userInfo]);
 
     return (
         <div className="max-lg:pt-24">
@@ -64,7 +64,7 @@ const CalendarSection = () => {
 
             <MonthGrid
                 monthAppointmentData={patientAppointments}
-                onAppointmentClick={() => {}}
+                onAppointmentClick={() => { }}
                 month={month}
                 year={year}
             />
