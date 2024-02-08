@@ -64,9 +64,11 @@ const PaymentAppointmentSection2 = () => {
 
                 <div className="flex flex-col justify-center pt-5 gap-2 w-full">
                     <PaymentReview appointment={appointment} />
-                    {pageState.error === "" ? (
+                    {(pageState.error === "" && appointmentExisted !== null) ? (
                         <div className="flex-col items-center justify-center">
-                            {appointment._id !== "" && <MercadoPagoPayment appointment={appointment} />}
+                            {<MercadoPagoPayment
+                                appointmentExisted={appointmentExisted}
+                                appointment={appointment} />}
                             {isDateOlderThan24HoursFromNow(appointment.date) && <PaymentLater payLater={onClickPayLater} />}
                         </div>
                     ) : (

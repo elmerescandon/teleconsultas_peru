@@ -20,16 +20,17 @@ if (process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY) {
 }
 
 type MercadoPagoPaymentProps = {
+    appointmentExisted: boolean;
     appointment: IAppointment;
 };
 
-const MercadoPagoPayment = ({ appointment }: MercadoPagoPaymentProps) => {
+const MercadoPagoPayment = ({ appointmentExisted, appointment }: MercadoPagoPaymentProps) => {
     const { _id } = appointment;
     const [loading, setLoading] = useState<boolean>(true);
     const onSumbit = async () => {
         try {
             if (_id === "") throw new Error("No se pudo obtener el id de la cita");
-            if (!validateAppointment(appointment)) {
+            if (validateAppointment(appointment) && !appointmentExisted) {
                 await createNewAppointment(appointment);
             }
 
