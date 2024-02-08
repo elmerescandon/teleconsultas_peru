@@ -48,6 +48,10 @@ const appointmentReducer = (
             };
         case "SET_DOCTOR":
             return { ...appointment, doctorId: action.payload };
+        case "SET_ID":
+            return { ...appointment, _id: action.payload };
+        case "SET_STATUS":
+            return { ...appointment, _id: action.payload };
         case "SET_REASON":
             return { ...appointment, reason: action.payload };
         case "SET_SYMPTOMS":
