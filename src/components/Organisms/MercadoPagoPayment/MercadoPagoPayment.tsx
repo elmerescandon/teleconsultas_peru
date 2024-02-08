@@ -28,9 +28,10 @@ const MercadoPagoPayment = ({ appointment }: MercadoPagoPaymentProps) => {
     const [loading, setLoading] = useState<boolean>(true);
     const onSumbit = async () => {
         try {
-
-            if (!validateAppointment(appointment)) throw new Error("No se pudo agendar la cita.");
-            await createNewAppointment(appointment);
+            if (_id === "") throw new Error("No se pudo obtener el id de la cita");
+            if (!validateAppointment(appointment)) {
+                await createNewAppointment(appointment);
+            }
 
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout/create_payment?appId=${_id}`
