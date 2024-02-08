@@ -263,20 +263,26 @@ export const isDateOlderThan24Hours = (date: Timestamp): boolean => {
   return 24 * 60 * 60 * 1000 > difference;
 }
 
-export const isDateOlderThan24HoursFromNow = (date: string): boolean => {
+export const isDateOlderThan24HoursFromNow = (date: string | Timestamp): boolean => {
   if (date === "") return false;
-  console.log("comparing a date older", date);
-  let dateParts = date.split("-");
-  if (dateParts.length < 3) return false;
-  let dateObject = new Date(Date.UTC(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2])));
-  dateObject.setUTCHours(0, 0, 0, 0); // set hours, minutes, seconds and milliseconds to 0
-
 
   const dateNow = new Date();
   dateNow.setUTCHours(0, 0, 0, 0); // set hours, minutes, seconds and milliseconds to 0
   let twoDaysLater = new Date(dateNow.getTime() + 2 * 24 * 60 * 60 * 1000)
 
-  if (dateObject > twoDaysLater) return true;
-  return false;
+  if (typeof date === "string") {
+    let dateParts = date.split("-");
+    if (dateParts.length < 3) return false;
+    let dateObject = new Date(Date.UTC(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2])));
+    dateObject.setUTCHours(0, 0, 0, 0); // set hours, minutes, seconds and milliseconds to 0
+
+    if (dateObject > twoDaysLater) return true;
+    return false;
+  } else {
+    let dateObject = date.toDate();
+    dateObject.setUTCHours(0, 0, 0, 0); // set hours, minutes, seconds and milliseconds to 0  
+    if (dateObject > twoDaysLater) return true;
+    return false;
+  }
 
 }

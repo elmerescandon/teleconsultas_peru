@@ -44,10 +44,16 @@ const PaymentReview = ({ appointment }: PaymentReviewProps) => {
         getInfoFromDb(doctorId, specialityId);
     }, [appointment]);
 
-    const getDateString = (date: string) => {
-        if (date === "") return "";
-        if (date.includes("T")) return stringToDate(date as unknown as Timestamp);
-        return dateToSpanishISO(date);
+    const getDateString = (date: string | Timestamp) => {
+
+        if (typeof date === "string") {
+            if (date === "") return "";
+            if (date.includes("T")) return stringToDate(date as unknown as Timestamp);
+            return dateToSpanishISO(date);
+        } else {
+            return stringToDate(date);
+        }
+
     }
 
     return (

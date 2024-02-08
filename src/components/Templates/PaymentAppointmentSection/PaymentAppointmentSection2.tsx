@@ -31,11 +31,11 @@ const PaymentAppointmentSection2 = () => {
                         error: "",
                     });
                     await createNewAppointment(appointment);
-                    router.push(Routes.PATIENT_HOME);
                     return;
                 } else {
                     updateAppointmentField(appointment._id, "status", "pending");
                 }
+                router.push(Routes.PATIENT_HOME);
             } else {
                 setPageState({
                     loading: false,
