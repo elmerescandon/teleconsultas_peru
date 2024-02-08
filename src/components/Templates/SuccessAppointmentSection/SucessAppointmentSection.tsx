@@ -51,7 +51,7 @@ const SucessAppointmentSection = () => {
             }
         };
         getAppointmentInfo(paymentReference, paymentStatus, paymentId);
-    }, []);
+    }, [appoinment, paymentReference]);
 
     useEffect(() => {
         const getInfoFromDb = async (
