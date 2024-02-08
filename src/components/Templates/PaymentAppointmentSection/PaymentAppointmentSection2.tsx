@@ -3,8 +3,6 @@ import LoadingFullPage from '@/components/Molecules/Loaders/LoadingFullPage/Load
 import PaymentLater from '@/components/Molecules/PaymentLater/PaymentLater';
 import MercadoPagoPayment from '@/components/Organisms/MercadoPagoPayment/MercadoPagoPayment';
 import PaymentReview from '@/components/Organisms/PaymentReview/PaymentReview';
-import createNewAppointment from '@/firebase/Appointments/createNewAppointment';
-import updateAppointmentField from '@/firebase/Appointments/updateAppointmentField';
 import { isDateOlderThan24HoursFromNow, validateAppointment } from '@/utils/functions/utils';
 import useAppointmentURLParams from '@/utils/hooks/useAppointmentURLParams';
 import Routes from '@/utils/routes/Routes';
@@ -25,15 +23,6 @@ const PaymentAppointmentSection2 = () => {
     const onClickPayLater = async () => {
         try {
             if (validateAppointment(appointment)) {
-                if (!appointmentExisted) {
-                    setPageState({
-                        loading: true,
-                        error: "",
-                    });
-                    await createNewAppointment(appointment);
-                } else {
-                    updateAppointmentField(appointment._id, "status", "pending");
-                }
                 setPageState({
                     loading: false,
                     error: "",
@@ -70,7 +59,6 @@ const PaymentAppointmentSection2 = () => {
                     {(pageState.error === "" && appointmentExisted !== null) ? (
                         <div className="flex-col items-center justify-center">
                             {<MercadoPagoPayment
-                                appointmentExisted={appointmentExisted}
                                 appointment={appointment} />}
                             {isDateOlderThan24HoursFromNow(appointment.date) && <PaymentLater payLater={onClickPayLater} />}
                         </div>

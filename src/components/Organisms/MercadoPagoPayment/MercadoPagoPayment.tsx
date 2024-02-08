@@ -20,22 +20,14 @@ if (process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY) {
 }
 
 type MercadoPagoPaymentProps = {
-    appointmentExisted: boolean;
     appointment: IAppointment;
 };
 
-const MercadoPagoPayment = ({ appointmentExisted, appointment }: MercadoPagoPaymentProps) => {
+const MercadoPagoPayment = ({ appointment }: MercadoPagoPaymentProps) => {
     const { _id } = appointment;
     const [loading, setLoading] = useState<boolean>(true);
     const onSumbit = async () => {
         try {
-            if (_id === "") throw new Error("No se pudo obtener el id de la cita");
-            if (validateAppointment(appointment) && !appointmentExisted) {
-                await createNewAppointment(appointment);
-            }
-
-            console.log("Creating payment")
-            console.log(`${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout/create_payment?appId=${_id}`)
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout/create_payment?appId=${_id}`
             );
@@ -45,6 +37,8 @@ const MercadoPagoPayment = ({ appointmentExisted, appointment }: MercadoPagoPaym
             }
             throw new Error("No se pudo obtener el link de pago");
         } catch (err) {
+            console.error(err);
+            return "";
         }
     };
 
