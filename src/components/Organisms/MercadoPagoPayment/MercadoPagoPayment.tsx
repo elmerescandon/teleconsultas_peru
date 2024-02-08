@@ -1,9 +1,12 @@
 "use client";
 import Loading from "@/components/Molecules/Loaders/Loading/Loading";
+import createNewAppointment from "@/firebase/Appointments/createNewAppointment";
 import IPreference from "@/utils/Interfaces/API/MercadoPago/IPreference";
+import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
+import { validateAppointment } from "@/utils/functions/utils";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { IWalletBrickCustomization } from "@mercadopago/sdk-react/bricks/wallet/types";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const customization: IWalletBrickCustomization = {
     visual: {
@@ -17,16 +20,20 @@ if (process.env.NEXT_PUBLIC_MERCADO_PAGO_KEY) {
 }
 
 type MercadoPagoPaymentProps = {
-    appointmentId: string;
+    appointment: IAppointment;
 };
 
-const MercadoPagoPayment = ({ appointmentId }: MercadoPagoPaymentProps) => {
+const MercadoPagoPayment = ({ appointment }: MercadoPagoPaymentProps) => {
+    const { _id } = appointment;
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string>("");
     const onSumbit = async () => {
         try {
+
+            if (!validateAppointment(appointment)) throw new Error("No se pudo agendar la cita.");
+            await createNewAppointment(appointment);
+
             const res = await fetch(
-                `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout/create_payment?appId=${appointmentId}`
+                `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout/create_payment?appId=${_id}`
             );
             const data: IPreference = await res.json();
             if (data.init_point) {
@@ -34,14 +41,13 @@ const MercadoPagoPayment = ({ appointmentId }: MercadoPagoPaymentProps) => {
             }
             throw new Error("No se pudo obtener el link de pago");
         } catch (err) {
-            setError((err as Error).message);
         }
     };
 
     return (
         <div className="w-full">
-            {(loading || appointmentId === "") && <Loading />}
-            {appointmentId !== "" && (
+            {(loading || _id === "") && <Loading />}
+            {_id !== "" && (
                 <Wallet
                     locale="es-PE"
                     onSubmit={onSumbit}
