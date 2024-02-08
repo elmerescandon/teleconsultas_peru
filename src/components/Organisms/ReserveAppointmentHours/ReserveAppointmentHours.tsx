@@ -27,7 +27,7 @@ const ReserveAppointmentHours = ({
     ));
 
     return (
-        <div className="px-5 max-">
+        <div className="px-5">
             <div className="flex items-center gap-5">
                 <div className="text-xl font-semibold py-4">
                     Horarios Disponibles
@@ -36,7 +36,7 @@ const ReserveAppointmentHours = ({
             </div>
 
             {!loading && (
-                <div className="flex flex-wrap gap-5 justify-start max-xl:justify-start max-md:justify-center">
+                <div className="flex flex-wrap gap-2 justify-start max-xl:justify-start max-md:justify-center">
                     {slots.length > 0 ? (
                         slots.map((slot) => slot)
                     ) : (
