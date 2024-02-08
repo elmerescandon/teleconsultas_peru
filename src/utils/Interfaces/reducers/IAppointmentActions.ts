@@ -32,7 +32,7 @@ type IAppointmentActionSetDate = {
 
 type IAppointmentActionSetTime = {
     type: "SET_TIME",
-    payload: {startDate: string, endDate: string},
+    payload: { startDate: string, endDate: string },
 }
 
 type IAppointmentActionSetAppointment = {
@@ -40,14 +40,26 @@ type IAppointmentActionSetAppointment = {
     payload: IAppointment,
 }
 
-type IAppointmentActions = 
-    IAppointmentActionSetSpeciality | 
-    IAppointmentActionSetDoctor | 
-    IAppointmentActionSetReason | 
-    IAppointmentActionSetSymptoms | 
-    IAppointmentActionSetDetails | 
-    IAppointmentActionSetDate | 
-    IAppointmentActionSetTime | 
+type IAppointmentActionSetId = {
+    type: "SET_ID",
+    payload: string,
+}
+
+type IAppointmentActionSetStatus = {
+    type: "SET_STATUS",
+    payload: string,
+}
+
+type IAppointmentActions =
+    IAppointmentActionSetSpeciality |
+    IAppointmentActionSetDoctor |
+    IAppointmentActionSetReason |
+    IAppointmentActionSetSymptoms |
+    IAppointmentActionSetDetails |
+    IAppointmentActionSetDate |
+    IAppointmentActionSetTime |
+    IAppointmentActionSetId |
+    IAppointmentActionSetStatus |
     IAppointmentActionSetAppointment;
 
 export default IAppointmentActions;
