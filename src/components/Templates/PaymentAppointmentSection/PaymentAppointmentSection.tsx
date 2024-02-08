@@ -7,7 +7,6 @@ import addAppointment from "@/firebase/Appointments/addAppointment";
 import getAppointment from "@/firebase/Appointments/getAppointment";
 import setAvailabilityToSlot from "@/firebase/Availability/setAvailabilitySlotsState";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
-import SendReserveNotification from "@/firebase/Mail/SendReserveNotification";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
@@ -16,7 +15,7 @@ import {
     useAppointment,
     useAppointmentDispatch,
 } from "@/utils/context/AppointmentContext/AppointmentContext";
-import { createAppointment } from "@/utils/functions/utils";
+import { createAppointment, isDateOlderThan24HoursFromNow } from "@/utils/functions/utils";
 import Routes from "@/utils/routes/Routes";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -33,6 +32,7 @@ const PaymentAppointmentSection = () => {
     const [appoinmentId, setAppoinmentId] = useState<string>("");
 
     const [created, setCreated] = useState<boolean>(false);
+    const [enablePayLater, setEnablePayLater] = useState<boolean>(true);
     const [pageState, setPageState] = useState<{
         loading: boolean;
         error: string;
@@ -40,27 +40,6 @@ const PaymentAppointmentSection = () => {
 
     const payLater = async () => {
         router.push(Routes.PATIENT_HOME);
-        try {
-            const doctorName = await getDoctorName(appointment.doctorId);
-            const specialityName = await getSpecialityName(
-                appointment.specialityId
-            );
-
-            if (!doctorName || !specialityName) {
-                setPageState({
-                    loading: false,
-                    error: "No se pudo obtener el nombre del doctor o la especialidad",
-                });
-                return;
-            }
-
-        } catch (error) {
-            setPageState({
-                loading: false,
-                error: (error as Error).message,
-            });
-            return;
-        }
     };
 
     useEffect(() => {
@@ -72,14 +51,6 @@ const PaymentAppointmentSection = () => {
             try {
                 setPageState({ loading: true, error: "" });
                 const newAppointmentId = await addAppointment(reservation);
-                await setAvailabilityToSlot(
-                    date,
-                    specialityId,
-                    doctorId,
-                    false,
-                    startDate,
-                    endDate
-                );
                 setAppoinmentId(newAppointmentId);
                 setPageState({ loading: false, error: "" });
             } catch (error) {
@@ -113,11 +84,15 @@ const PaymentAppointmentSection = () => {
 
         if (!created && user && appointment && appId === null) {
             createAppointmentInit();
+            if (!isDateOlderThan24HoursFromNow(appointment.date)) {
+                setEnablePayLater(false);
+            }
             setCreated(true);
         } else if (appointment._id === "" && appId !== "") {
             getAppointmentFromDb(appId!);
         }
     }, [user, appointment]);
+
 
     return (
         <div
@@ -125,6 +100,7 @@ const PaymentAppointmentSection = () => {
                         max-lg:h-full max-lg:pt-24 max-lg:px-5
                         "
         >
+            <LinkPrimary to={Routes.RESERVE}>Atrás</LinkPrimary>
             <div className="text-2xl font-semibold py-5">
                 ¡Enhorabuena, tu cita ya se encuentra reservada!
             </div>
@@ -137,8 +113,8 @@ const PaymentAppointmentSection = () => {
             <div>
                 {pageState.error === "" ? (
                     <div className="flex-col items-center justify-center">
-                        <MercadoPagoPayment appointmentId={appoinmentId} />
-                        <PaymentLater payLater={payLater} />
+                        {/* <MercadoPagoPayment appointmentId={appoinmentId} /> */}
+                        {enablePayLater && <PaymentLater payLater={payLater} />}
                     </div>
                 ) : (
                     <LinkPrimary to={Routes.PATIENT_HOME}>
