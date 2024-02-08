@@ -8,6 +8,7 @@ import {
     getAppointmentHours,
     stringToDate,
 } from "@/utils/functions/utils";
+import { Timestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 type PaymentReviewProps = {
@@ -43,8 +44,14 @@ const PaymentReview = ({ appointment }: PaymentReviewProps) => {
         getInfoFromDb(doctorId, specialityId);
     }, [appointment]);
 
+    const getDateString = (date: string) => {
+        if (date === "") return "";
+        if (date.includes("T")) return stringToDate(date as unknown as Timestamp);
+        return dateToSpanishISO(date);
+    }
+
     return (
-        <div className="w-full p-7 h-[60vh] max-lg:w-full max-lg:h-full">
+        <div className="w-full px-7 h-full max-lg:w-full max-lg:h-full">
             <div className="text-xl">Detalle</div>
             <div className="w-full border my-5"></div>
             <div>
@@ -53,7 +60,7 @@ const PaymentReview = ({ appointment }: PaymentReviewProps) => {
                     name={summary.specialityName}
                 />
                 <PaymentItem label="Profesional" name={summary.doctorName} />
-                {/* <PaymentItem label="Fecha" name={dateToSpanishISO(date)} /> */}
+                <PaymentItem label="Fecha" name={getDateString(date)} />
                 <PaymentItem
                     label="Horario"
                     name={getAppointmentHours(startDate, endDate)}
