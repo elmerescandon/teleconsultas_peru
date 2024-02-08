@@ -31,7 +31,7 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
     try {
       updateAppointmentField(_id, "status", "doctor-canceled");
     } catch {
-      console.log("Error al cancelar la cita");
+      return;
     }
   };
 
