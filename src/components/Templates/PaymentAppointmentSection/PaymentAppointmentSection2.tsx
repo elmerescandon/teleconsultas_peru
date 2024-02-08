@@ -1,4 +1,5 @@
 import LinkPrimary from '@/components/Atoms/Links/LinkPrimary/LinkPrimary';
+import LoadingFullPage from '@/components/Molecules/Loaders/LoadingFullPage/LoadingFullPage';
 import PaymentLater from '@/components/Molecules/PaymentLater/PaymentLater';
 import MercadoPagoPayment from '@/components/Organisms/MercadoPagoPayment/MercadoPagoPayment';
 import PaymentReview from '@/components/Organisms/PaymentReview/PaymentReview';
@@ -25,6 +26,10 @@ const PaymentAppointmentSection2 = () => {
         try {
             if (validateAppointment(appointment)) {
                 if (!appointmentExisted) {
+                    setPageState({
+                        loading: true,
+                        error: "",
+                    });
                     await createNewAppointment(appointment);
                     router.push(Routes.PATIENT_HOME);
                     return;
@@ -49,29 +54,33 @@ const PaymentAppointmentSection2 = () => {
 
     return (
         <div className="px-48 pb-10 max-lg:h-full max-lg:pt-24 max-lg:px-5">
-            <div className='flex justify-between items-center max-lg:flex-col-reverse max-lg:items-end'>
-                <div className="text-2xl font-semibold py-5">
-                    ¡Ya falta poco, completa los siguientes pasos!
+            {!pageState.loading && <div>
+                <div className='flex justify-between items-center max-lg:flex-col-reverse max-lg:items-end'>
+                    <div className="text-2xl font-semibold py-5">
+                        ¡Ya falta poco, completa los siguientes pasos!
+                    </div>
+                    <LinkPrimary to={Routes.RESERVE}>Atrás</LinkPrimary >
                 </div>
-                <LinkPrimary to={Routes.RESERVE}>Atrás</LinkPrimary >
-            </div>
 
-            <div className="flex flex-col justify-center pt-5 gap-2 w-full">
-                <PaymentReview appointment={appointment} />
-                {pageState.error === "" ? (
-                    <div className="flex-col items-center justify-center">
-                        {appointment._id !== "" && <MercadoPagoPayment appointment={appointment} />}
-                        {isDateOlderThan24HoursFromNow(appointment.date) && <PaymentLater payLater={onClickPayLater} />}
-                    </div>
-                ) : (
-                    <div>
-                        <p className="text-base text-red-500 py-5">{pageState.error}</p>
-                        <LinkPrimary to={Routes.PATIENT_HOME}>
-                            Volver a inicio
-                        </LinkPrimary>
-                    </div>
-                )}
-            </div>
+                <div className="flex flex-col justify-center pt-5 gap-2 w-full">
+                    <PaymentReview appointment={appointment} />
+                    {pageState.error === "" ? (
+                        <div className="flex-col items-center justify-center">
+                            {appointment._id !== "" && <MercadoPagoPayment appointment={appointment} />}
+                            {isDateOlderThan24HoursFromNow(appointment.date) && <PaymentLater payLater={onClickPayLater} />}
+                        </div>
+                    ) : (
+                        <div>
+                            <p className="text-base text-red-500 py-5">{pageState.error}</p>
+                            <LinkPrimary to={Routes.PATIENT_HOME}>
+                                Volver a inicio
+                            </LinkPrimary>
+                        </div>
+                    )}
+                </div>
+            </div>}
+            {pageState.loading && <LoadingFullPage />}
+
         </div>
     )
 }
