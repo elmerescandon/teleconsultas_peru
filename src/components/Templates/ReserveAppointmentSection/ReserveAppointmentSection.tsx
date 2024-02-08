@@ -13,7 +13,7 @@ import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { useAppointment, useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
-import { validateAppointment } from "@/utils/functions/utils";
+import { isDateOlderThan24HoursFromNow, validateAppointment, validateReservation } from "@/utils/functions/utils";
 import Routes from "@/utils/routes/Routes";
 import { set } from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -45,7 +45,8 @@ const ReserveAppointmentSection = () => {
     const onClickReserve = (appointment: IAppointment) => {
 
 
-        if (validateAppointment(appointment)) {
+
+        if (validateReservation(appointment)) {
             if (!logged) {
                 setPopUpRegister(true);
                 return;
@@ -89,6 +90,7 @@ const ReserveAppointmentSection = () => {
                 setAvailableAppointments([]);
             }
         };
+
 
         if (date !== "") {
             getAvailableAppointments(date, doctorId, specialityId);
