@@ -54,12 +54,6 @@ const PaymentAppointmentSection = () => {
                 return;
             }
 
-            // await SendReserveNotification(
-            //     appointment,
-            //     user.userInfo,
-            //     `${doctorName?.name} $   {doctorName?.lastName}`,
-            //     `${specialityName?.name}`
-            // );
         } catch (error) {
             setPageState({
                 loading: false,
