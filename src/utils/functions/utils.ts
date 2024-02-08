@@ -9,6 +9,7 @@ import ISelectOptions from "../Interfaces/ISelectOptions";
 import dayjs from "dayjs";
 import IAvailabilitySlots from "../Interfaces/dataModel/IAvailabilitySlots";
 import { Timestamp } from "firebase/firestore";
+import { ca } from "date-fns/locale";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
@@ -46,8 +47,14 @@ export const getAvailableAppointments = (date: string, doctorId: string, special
 };
 
 export const validateAppointment = (appointment: IAppointment) => {
-  // TODO: Create a better validation
-  const { specialityId, doctorId, reason, date, startDate, endDate } = appointment;
+  const { specialityId, doctorId, reason, date, startDate, endDate, patientId, _id, status } = appointment;
+  if (!specialityId || !doctorId || !reason || !date || !startDate || !endDate || !patientId || !_id) return false;
+  if (status !== 'pending' && status !== "doctor-canceled") return false;
+  return true;
+}
+
+export const validateReservation = (appointment: IAppointment) => {
+  const { specialityId, doctorId, reason, date, startDate, endDate, patientId, _id, status } = appointment;
   if (!specialityId || !doctorId || !reason || !date || !startDate || !endDate) return false;
   return true;
 }
@@ -124,14 +131,25 @@ export const areDatesEqual = (dateA: Date, dateB: Date) => {
 
 export const createAppointment = (appointment: IAppointment, patient: IUserInfo) => {
   const { _id } = patient;
+  const { date } = appointment;
+  // const dateParts = date.split("-");
+  // const newDate = new Date(
+  //   parseInt(dateParts[0]),
+  //   parseInt(dateParts[1]) - 1,
+  //   parseInt(dateParts[2])
+  // );
   const newAppointment: IAppointment = {
     ...appointment,
     patientId: _id,
     status: 'pending',
     price: 80,
+    // date: newDate as unknown as string,
   }
   return newAppointment;
+
 }
+
+
 
 export const createAvailabilitiesSlots = (date: string, startTime: string, endTime: string) => {
   const dates: IAvailableAppointment[] = [];
@@ -243,4 +261,22 @@ export const isDateOlderThan24Hours = (date: Timestamp): boolean => {
   const dateToCompare = date.toDate();
   const difference = dateNow.getTime() - dateToCompare.getTime();
   return 24 * 60 * 60 * 1000 > difference;
+}
+
+export const isDateOlderThan24HoursFromNow = (date: string): boolean => {
+  if (date === "") return false;
+  console.log("comparing a date older", date);
+  let dateParts = date.split("-");
+  if (dateParts.length < 3) return false;
+  let dateObject = new Date(Date.UTC(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2])));
+  dateObject.setUTCHours(0, 0, 0, 0); // set hours, minutes, seconds and milliseconds to 0
+
+
+  const dateNow = new Date();
+  dateNow.setUTCHours(0, 0, 0, 0); // set hours, minutes, seconds and milliseconds to 0
+  let twoDaysLater = new Date(dateNow.getTime() + 2 * 24 * 60 * 60 * 1000)
+
+  if (dateObject > twoDaysLater) return true;
+  return false;
+
 }
