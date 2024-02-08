@@ -24,7 +24,7 @@ const LabelInformation = ({
                 {label}
             </p>
             <div
-                className={`text-lg text-right 
+                className={`text-lg text-right  
                           max-md:text-left max-xl:text-base w-full ${style}`}
             >
                 {value !== "" ? value : "-"}
