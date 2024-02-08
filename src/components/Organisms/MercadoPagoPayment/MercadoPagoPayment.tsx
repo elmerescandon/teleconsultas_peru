@@ -34,6 +34,8 @@ const MercadoPagoPayment = ({ appointmentExisted, appointment }: MercadoPagoPaym
                 await createNewAppointment(appointment);
             }
 
+            console.log("Creating payment")
+            console.log(`${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout/create_payment?appId=${_id}`)
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_MYPAGE_URL}/api/checkout/create_payment?appId=${_id}`
             );
