@@ -11,7 +11,6 @@ type MonthGridProps = {
 };
 
 const MonthGrid = ({ year, month, monthAppointmentData }: MonthGridProps) => {
-    const daysInMonth = new Date(year, month, 0).getDate();
     const days = ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sáb"];
     const monthGrid = [];
     const daysLeft =
@@ -48,7 +47,7 @@ const MonthGrid = ({ year, month, monthAppointmentData }: MonthGridProps) => {
                 }
                 key={i}
                 dayData={dayData}
-                onAppointmentClick={() => {}}
+                onAppointmentClick={() => { }}
             />
         );
     }
