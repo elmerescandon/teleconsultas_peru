@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import ButtonPrimary from "../../Buttons/ButtonPrimary/ButtonPrimary";
 import { getAllAvailableDates } from "@/firebase/Availability/getAllAvailableDates";
 import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots";
-import SlotAppointment from "../../SlotAppointment/SlotAppointment";
 import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
-import { dateToSpanish } from "@/utils/functions/utils";
-import SlotAppointmentVisible from "../../SlotAppointmentVisible/SlotAppointmentVisible";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import DaySlotAppointments from "@/components/Organisms/DaySlotAppointments/DaySlotAppointments";
 
 type PopUpMyAvailabilityProps = {
     onClose: () => void;
@@ -80,7 +77,7 @@ const PopUpMyAvailability = ({
                             {error}
                         </p>
                     )}
-                    {newSortedDates.length === 0 && (
+                    {!loading && newSortedDates.length === 0 && (
                         <p className="text-red-500 font-semibold py-5">
                             No hay disponibilidad programada
                         </p>
@@ -89,27 +86,7 @@ const PopUpMyAvailability = ({
                     {newSortedDates && (
                         <div className="flex flex-col gap-5 pb-10">
                             {newSortedDates.map((availability, index) => (
-                                <div
-                                    className="flex flex-col gap-5"
-                                    key={index}
-                                >
-                                    <p
-                                        className="text-xl font-semibold
-                                                    max-lg:text-lg"
-                                    >
-                                        {dateToSpanish(availability.date)}
-                                    </p>
-                                    <div className="flex gap-5 flex-wrap">
-                                        {availability.slots.map(
-                                            (slot, index) => (
-                                                <SlotAppointmentVisible
-                                                    key={index}
-                                                    availableAppointment={slot}
-                                                />
-                                            )
-                                        )}
-                                    </div>
-                                </div>
+                                <DaySlotAppointments key={index} availability={availability} doctorId={doctorId} specialityId={specialityId} />
                             ))}
                         </div>
                     )}
