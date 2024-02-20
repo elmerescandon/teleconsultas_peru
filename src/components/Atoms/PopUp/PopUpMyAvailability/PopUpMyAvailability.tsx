@@ -80,6 +80,11 @@ const PopUpMyAvailability = ({
                             {error}
                         </p>
                     )}
+                    {newSortedDates.length === 0 && (
+                        <p className="text-red-500 font-semibold py-5">
+                            No hay disponibilidad programada
+                        </p>
+                    )}
                     {loading && <LoadingCircle />}
                     {newSortedDates && (
                         <div className="flex flex-col gap-5 pb-10">
