@@ -9,6 +9,7 @@ type SlotAppointmentVisibleProps = {
     doctorId: string,
     specialityId: string,
     date: string;
+    onEliminate: boolean;
 };
 
 const SlotAppointmentVisible = ({
@@ -16,6 +17,7 @@ const SlotAppointmentVisible = ({
     doctorId,
     specialityId,
     date,
+    onEliminate
 }: SlotAppointmentVisibleProps) => {
 
     const [visible, setVisible] = useState<boolean>(true);
@@ -38,12 +40,12 @@ const SlotAppointmentVisible = ({
     return (
 
         <div className={`relative ${visible ? "" : 'hidden'} `}>
-            <button className="absolute left-[90%] -top-2" onClick={handleDelete}>
+            {onEliminate && <button className="absolute left-[90%] -top-2" onClick={handleDelete}>
                 <XCircleIcon className="w-6 h-6 rounded-full bg-brand-900 text-basic-white
                                         hover:bg-brand-800 hover:text-brand-100
                                         active:bg-brand-50 active:text-brand-800
                 " />
-            </button>
+            </button>}
             <button
                 disabled={!available}
                 className={`
