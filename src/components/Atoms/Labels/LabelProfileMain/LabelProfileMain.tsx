@@ -20,9 +20,9 @@ const LabelProfileMain = ({
         >
             <p className="text-gray-500 w-36">{label}</p>
             {editable ? (
-                <InputText onChangeFn={() => {}} placeholder="" value="" />
+                <InputText onChangeFn={() => { }} placeholder="" value="" />
             ) : (
-                <p className="text-lg text-right">{value}</p>
+                <p className="text-lg text-right w-full">{value}</p>
             )}
         </div>
     );
