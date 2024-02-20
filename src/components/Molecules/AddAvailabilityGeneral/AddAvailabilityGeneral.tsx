@@ -155,6 +155,12 @@ const AddAvailabilityGeneral = ({
                     />
                 )}
             </div>
+            <div className="py-5">
+                <ButtonPrimary onClickFn={addNewSchedule}>
+                    Agregar
+                </ButtonPrimary>
+                {loading && <LoadingHorizontal />}
+            </div>
             {error && (
                 <p className="text-red-500 font-semibold py-5">{error}</p>
             )}
@@ -163,12 +169,6 @@ const AddAvailabilityGeneral = ({
                     Se agregó la información correctamente
                 </p>
             )}
-            <div className="py-5">
-                <ButtonPrimary onClickFn={addNewSchedule}>
-                    Agregar
-                </ButtonPrimary>
-                {loading && <LoadingHorizontal />}
-            </div>
         </div>
     );
 };
