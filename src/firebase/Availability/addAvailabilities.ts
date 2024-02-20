@@ -1,13 +1,14 @@
 import { addDoc, and, collection, getDocs, query, updateDoc, where } from "firebase/firestore";
 import dbFirestore from "../config";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
+import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots";
 
 
-const addAvailabilities = async (date:string, specialityId : string, doctorId : string, slots: IAvailableAppointment[]) => {
+const addAvailabilities = async (date: string, specialityId: string, doctorId: string, slots: IAvailableAppointment[]) => {
 
-    try {          
-        const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId), 
-                                                                           where("speciality_id", "==", specialityId)));
+    try {
+        const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId),
+            where("speciality_id", "==", specialityId)));
         let snapShot = await getDocs(q);
 
         if (snapShot.empty) {
@@ -18,14 +19,22 @@ const addAvailabilities = async (date:string, specialityId : string, doctorId : 
         const dateCollection = collection(docDate.ref, 'availability_slots');
         const dateQuery = query(dateCollection, where("date", "==", date));
         const dateDocs = await getDocs(dateQuery)
-    
+
         if (dateDocs.empty) {
-            await addDoc(dateCollection, {date, slots})
+            await addDoc(dateCollection, { date, slots })
             return;
         }
-    
+
         const dateDoc = dateDocs.docs[0];
-        await updateDoc(dateDoc.ref, {...{slots: slots}})
+        const dateDocData = dateDocs.docs[0].data() as unknown as IAvailabilitySlots;
+        // add to dateDocData.slots the new slots, if the slot already exists don't add it
+        slots.forEach(slot => {
+            if (!dateDocData.slots.includes(slot)) {
+                dateDocData.slots.push(slot);
+            }
+        });
+
+        await updateDoc(dateDoc.ref, { ...{ slots: dateDocData.slots } })
     } catch (error) {
         throw error;
     }
