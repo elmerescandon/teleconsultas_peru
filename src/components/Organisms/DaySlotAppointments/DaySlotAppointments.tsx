@@ -35,7 +35,7 @@ const DaySlotAppointments = ({
                 </button>
             </div>
 
-            <div className="flex gap-8 flex-wrap">
+            <div className="flex gap-5 flex-wrap">
                 {availability.slots.map((slot, index) => (
                     <SlotAppointmentVisible
                         key={index}
