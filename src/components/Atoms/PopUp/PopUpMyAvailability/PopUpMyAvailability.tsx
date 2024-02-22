@@ -73,12 +73,12 @@ const PopUpMyAvailability = ({
 
                 <div className="flex flex-col justify-between h-full gap-10">
                     {error && (
-                        <p className="text-red-500 font-semibold py-5">
+                        <p className="text-red-500 font-semibold py-5 text-center">
                             {error}
                         </p>
                     )}
-                    {!loading && newSortedDates.length === 0 && (
-                        <p className="text-red-500 font-semibold py-5">
+                    {error === "" && !loading && newSortedDates.length === 0 && (
+                        <p className="text-red-500 font-semibold text-center py-5">
                             No hay disponibilidad programada
                         </p>
                     )}
