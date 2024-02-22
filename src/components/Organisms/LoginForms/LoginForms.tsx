@@ -2,10 +2,10 @@
 import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import InputText from "@/components/Atoms/Inputs/InputText/InputText";
 import useUserValidation from "@/utils/hooks/useUserValidation";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Loading from "@/components/Molecules/Loaders/Loading/Loading";
 import { signOut, useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Routes from "@/utils/routes/Routes";
 import { getUser } from "@/firebase/User/getUser";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
@@ -16,7 +16,6 @@ import {
     userLogOut,
 } from "@/redux/action-creators/UserActionCreators";
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
-import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 
 type LoginFormsProps = {
     role: string;
@@ -38,6 +37,18 @@ const LoginForms = ({ role }: LoginFormsProps) => {
     const router = useRouter();
     const dispatch = useAppDispatch();
     const { data: session, status } = useSession();
+
+    useEffect(() => {
+        const handleKeyPress = (e: KeyboardEvent) => {
+            if (e.key === "Enter") {
+                handleSubmit();
+            }
+        };
+        window.addEventListener("keydown", handleKeyPress);
+        return () => {
+            window.removeEventListener("keydown", handleKeyPress);
+        };
+    }, [username, password]);
 
     useEffect(() => {
         const getUserInfo = async (id: string) => {
