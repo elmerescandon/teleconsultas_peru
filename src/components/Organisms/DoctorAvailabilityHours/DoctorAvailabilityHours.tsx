@@ -26,14 +26,14 @@ const DoctorAvailabilityHours = () => {
                     setMyAvailability(true);
                 }}
             >
-                Ver horario
+                Ver/Modificar horario
             </ButtonPrimary>
             <ButtonPrimary
                 onClickFn={() => {
                     setShowAddAvailability(true);
                 }}
             >
-                Agregar/Modificar horario
+                Agregar horario
             </ButtonPrimary>
 
             {myAvaialability && (
