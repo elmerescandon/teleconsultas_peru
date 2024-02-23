@@ -7,7 +7,8 @@ import updateAppointmentField from "@/firebase/Appointments/updateAppointmentFie
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { getAppointmentHours, stringToDate } from "@/utils/functions/utils";
+import { stringToDate } from "@/utils/functions/utils";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import Routes from "@/utils/routes/Routes";
 import { Timestamp } from "firebase/firestore";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -122,10 +123,8 @@ const SucessAppointmentSection = () => {
                 />
                 <PaymentItem
                     label="Horario"
-                    name={getAppointmentHours(
-                        appoinment?.startDate!,
-                        appoinment?.endDate!
-                    )}
+                    name={appoinment && appoinment.startDate && appoinment.endDate
+                        && getHourRange(appoinment?.startDate, appoinment?.endDate) || ""}
                 />
             </div>
             <SuccessRecommendations />
