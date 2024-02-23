@@ -51,7 +51,7 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
             {stringToDate(appointment.date as unknown as Timestamp)}
           </div>
           <div className="text-sm">
-            {getHourRange(startDate, endDate)}
+            {startDate && endDate && getHourRange(startDate, endDate)}
           </div>
         </div>
         <div className="flex gap-5 py-1">
