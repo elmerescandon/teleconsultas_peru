@@ -2,12 +2,11 @@ import PaymentItem from "@/components/Molecules/PaymentItem/PaymentItem";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { useAppointment } from "@/utils/context/AppointmentContext/AppointmentContext";
 import {
     dateToSpanishISO,
-    getAppointmentHours,
     stringToDate,
 } from "@/utils/functions/utils";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import { Timestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
@@ -69,7 +68,7 @@ const PaymentReview = ({ appointment }: PaymentReviewProps) => {
                 <PaymentItem label="Fecha" name={getDateString(date)} />
                 <PaymentItem
                     label="Horario"
-                    name={getAppointmentHours(startDate, endDate)}
+                    name={startDate && endDate && getHourRange(startDate, endDate) || ""}
                 />
             </div>
 
