@@ -6,7 +6,7 @@ import updateAppointmentField from './updateAppointmentField';
 import setAvailabilityToSlot from '../Availability/setAvailabilitySlotsState';
 
 const createNewAppointment = async (appointment: IAppointment) => {
-    const { date, specialityId, doctorId, startDate, endDate } = appointment;
+    const { date, specialityId, doctorId, startDate, endDate, _id } = appointment;
     const dateParts = date.split("-");
     const newDate = new Date(
         parseInt(dateParts[0]),
@@ -17,6 +17,7 @@ const createNewAppointment = async (appointment: IAppointment) => {
 
     try {
         await addDoc(collection(dbFirestore, "appointments"), newAppointment);
+        if (startDate === null || endDate === null) throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego.");
         await setAvailabilityToSlot(
             date,
             specialityId,
@@ -25,8 +26,8 @@ const createNewAppointment = async (appointment: IAppointment) => {
             startDate,
             endDate
         );
-        const joinURL = await createZoomAppointment(appointment._id, appointment.startDate);
-        updateAppointmentField(appointment._id, "joinURL", joinURL);
+        const joinURL = await createZoomAppointment(_id, startDate);
+        updateAppointmentField(_id, "joinURL", joinURL);
     } catch (e) {
         throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego.");
     }
