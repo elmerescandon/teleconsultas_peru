@@ -1,6 +1,6 @@
-interface IAvailableAppointment{
-        startDate: string;
-        endDate: string;
+interface IAvailableAppointment {
+        startDate: Date;
+        endDate: Date;
         available: boolean;
 }
 
