@@ -1,3 +1,4 @@
+import { DateValue } from "@/utils/alias/alias"
 import IAppointment from "./IAppointment"
 
 type IAppointmentActionSetSpeciality = {
@@ -32,7 +33,7 @@ type IAppointmentActionSetDate = {
 
 type IAppointmentActionSetTime = {
     type: "SET_TIME",
-    payload: { startDate: string, endDate: string },
+    payload: { startDate: DateValue | null, endDate: DateValue | null },
 }
 
 type IAppointmentActionSetAppointment = {
