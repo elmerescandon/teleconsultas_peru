@@ -27,9 +27,10 @@ const createNewAppointment = async (appointment: IAppointment) => {
             endDate
         );
         const joinURL = await createZoomAppointment(_id, startDate);
+        if (joinURL === null || joinURL === undefined) throw new Error("No se generó la cita en Zoom, inténtelo nuevamente luego");
         updateAppointmentField(_id, "joinURL", joinURL);
     } catch (e) {
-        throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego.");
+        throw e;
     }
 }
 
