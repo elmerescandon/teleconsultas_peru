@@ -7,6 +7,7 @@ import { getSpecialityName } from '@/firebase/Speciality/getSpecialityName';
 import IAppointment from '@/utils/Interfaces/reducers/IAppointment';
 import { useAppointment } from '@/utils/context/AppointmentContext/AppointmentContext';
 import { getAppointmentHours, stringToDate } from '@/utils/functions/utils';
+import { getHourRange } from '@/utils/functions/utilsDate';
 import Routes from '@/utils/routes/Routes';
 import { Timestamp } from 'firebase/firestore';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -112,7 +113,7 @@ const FailureAppointmentSection = () => {
                     />
                     <PaymentItem
                         label="Horario"
-                        name={getAppointmentHours(
+                        name={getHourRange(
                             appoinment?.startDate!,
                             appoinment?.endDate!
                         )}
