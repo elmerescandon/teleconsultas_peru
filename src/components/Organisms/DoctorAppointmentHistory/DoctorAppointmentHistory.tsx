@@ -82,9 +82,12 @@ const DoctorAppointmentHistory = ({
                     <NutritionNotes appointment={currentAppointment} />
                 ) : null}
                 {specialityId === "speciality1" ? (
-                    <ButtonPrimary2 onClickFn={() => setOpenNotes(true)}>
-                        Ver mis notas
-                    </ButtonPrimary2>
+                    <div className="my-2">
+                        <ButtonPrimary2 onClickFn={() => setOpenNotes(true)}>
+                            Ver mis notas
+                        </ButtonPrimary2>
+                    </div>
+
                 ) : null}
 
                 <div className="flex flex-col gap-2">
