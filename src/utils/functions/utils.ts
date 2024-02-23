@@ -3,13 +3,10 @@ import IAvailableAppointment from "../Interfaces/IAvailableAppointment";
 import Ispeciality from "../Interfaces/dataModel/ISpeciality";
 import IUser from "../Interfaces/dataModel/IUser";
 import IAppointment from "../Interfaces/reducers/IAppointment";
-import doctorAvailabilityMockup from "../mockups/doctorAvailabilityMockup";
 import { parse } from "date-fns";
 import ISelectOptions from "../Interfaces/ISelectOptions";
 import dayjs from "dayjs";
-import IAvailabilitySlots from "../Interfaces/dataModel/IAvailabilitySlots";
 import { Timestamp } from "firebase/firestore";
-import { ca } from "date-fns/locale";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
@@ -33,18 +30,6 @@ export const getDoctorsOptions = (doctors: IUser[]) => {
   return options;
 };
 
-export const getAvailableAppointments = (date: string, doctorId: string, specialityId: string) => {
-  const availableDateDoctor = doctorAvailabilityMockup.filter((availability) => {
-    if (availability.availability_slots === undefined) return false;
-    return availability.doctor_id === doctorId && availability.speciality_id === specialityId && availability.availability_slots.some((slot) => slot.date === date);
-  });
-
-  if (availableDateDoctor.length === 0) return [];
-
-  if (availableDateDoctor[0].availability_slots === undefined) return [];
-
-  return availableDateDoctor[0].availability_slots.filter((slot) => slot.date === date)[0].slots as IAvailableAppointment[];
-};
 
 export const validateAppointment = (appointment: IAppointment) => {
   const { specialityId, doctorId, reason, date, startDate, endDate, patientId, _id, status } = appointment;
