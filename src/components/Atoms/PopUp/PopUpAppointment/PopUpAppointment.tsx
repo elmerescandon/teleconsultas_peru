@@ -15,6 +15,7 @@ import Link from "next/link";
 import Routes from "@/utils/routes/Routes";
 import updateAppointmentField from "@/firebase/Appointments/updateAppointmentField";
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
+import { getHourRange } from "@/utils/functions/utilsDate";
 
 type PopUpAppointmentProps = {
     onClose: () => void;
@@ -28,6 +29,7 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
     }>({ doctorName: "", specialityName: "" });
     const [validation, setValidation] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
+    const { date, startDate, endDate } = appointment;
 
     useEffect(() => {
         const getInfoFromDb = async (
@@ -103,9 +105,7 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
 
                     <LabelInformation
                         label="Fecha"
-                        value={stringToDate(
-                            appointment.date as unknown as Timestamp
-                        )}
+                        value={stringToDate(date as unknown as Timestamp)}
                     />
                     <LabelInformation
                         label="Estado"
@@ -114,10 +114,7 @@ const PopUpAppointment = ({ onClose, appointment }: PopUpAppointmentProps) => {
                     />
                     <LabelInformation
                         label="Horario"
-                        value={getAppointmentHours(
-                            appointment.startDate,
-                            appointment.endDate
-                        )}
+                        value={startDate && endDate && getHourRange(startDate, endDate) || ""}
                     />
                     <LabelInformation
                         label="Razón"
