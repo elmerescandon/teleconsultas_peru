@@ -1,5 +1,6 @@
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import { useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import React from "react";
 
 type SlotAppointmentProps = {
@@ -15,7 +16,6 @@ const SlotAppointment = ({
     currentId,
     setId,
 }: SlotAppointmentProps) => {
-    // TODO: Animate button
     const { startDate, endDate, available } = availableAppointment;
     const dispatch = useAppointmentDispatch();
     return (
@@ -23,16 +23,14 @@ const SlotAppointment = ({
             disabled={!available}
             className={`
                 px-3 py-2 rounded-md text-center text-xs font-semibold
-                ${
-                    available
-                        ? "bg-brand-600 text-basic-white "
-                        : "bg-neutral-50 text-neutral-400 border-0"
+                ${available
+                    ? "bg-brand-600 text-basic-white "
+                    : "bg-neutral-50 text-neutral-400 border-0"
                 }
 
-                ${
-                    currentId === id
-                        ? "bg-brand-600 text-basic-white"
-                        : "bg-white text-brand-900 border-2 border-brand-600"
+                ${currentId === id
+                    ? "bg-brand-600 text-basic-white"
+                    : "bg-white text-brand-900 border-2 border-brand-600"
                 }
 
                 `}
@@ -44,11 +42,7 @@ const SlotAppointment = ({
                 });
             }}
         >
-            {`${new Date(startDate)
-                .toLocaleTimeString()
-                .replace(/:\d+ /, " ")} - ${new Date(endDate)
-                .toLocaleTimeString()
-                .replace(/:\d+ /, " ")} `}
+            {getHourRange(startDate, endDate)}
         </button>
     );
 };
