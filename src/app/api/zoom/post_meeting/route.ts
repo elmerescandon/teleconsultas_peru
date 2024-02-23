@@ -1,14 +1,13 @@
 import getAppointment from "@/firebase/Appointments/getAppointment";
 import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import getTokenAuth from "@/lib/zoom/getTokenAuth";
-import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { sessionDuration, sessionSettings, sessionTimeZone, zoomMeetingURL } from "@/utils/constants/APIConstants"
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request){
-    const {searchParams } = new URL(request.url);
+export async function GET(request: Request) {
+    const { searchParams } = new URL(request.url);
 
-    const appointmentId = searchParams.get('appId'); 
+    const appointmentId = searchParams.get('appId');
     const startTime = searchParams.get('start_time');
 
     if (!appointmentId || !startTime) return Response.redirect('/404', 301);
@@ -27,7 +26,7 @@ export async function GET(request: Request){
 
 
         const zoomToken = await getTokenAuth();
-        const res = await fetch(`${zoomMeetingURL}`,{
+        const res = await fetch(`${zoomMeetingURL}`, {
             headers: {
                 'Authorization': 'Bearer ' + zoomToken,
                 'Content-Type': 'application/json'
@@ -43,11 +42,12 @@ export async function GET(request: Request){
                 join_before_host: true,
             }),
         });
-    
+        console.log(res);
+
         const data = await res.json();
-        return NextResponse.json({data});
+        return NextResponse.json({ data });
     } catch (error) {
-        return NextResponse.json({error});
+        return NextResponse.json({ error });
     }
 
 

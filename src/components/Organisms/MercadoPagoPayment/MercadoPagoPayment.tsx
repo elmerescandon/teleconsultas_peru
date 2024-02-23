@@ -1,9 +1,7 @@
 "use client";
 import Loading from "@/components/Molecules/Loaders/Loading/Loading";
-import createNewAppointment from "@/firebase/Appointments/createNewAppointment";
 import IPreference from "@/utils/Interfaces/API/MercadoPago/IPreference";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { validateAppointment } from "@/utils/functions/utils";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { IWalletBrickCustomization } from "@mercadopago/sdk-react/bricks/wallet/types";
 import React, { useState } from "react";
