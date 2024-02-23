@@ -149,8 +149,6 @@ export const createAppointment = (appointment: IAppointment, patient: IUserInfo)
 
 }
 
-
-
 export const createAvailabilitiesSlots = (date: string, startTime: string, endTime: string) => {
   const dates: IAvailableAppointment[] = [];
   const start = dayjs(date)
@@ -162,15 +160,11 @@ export const createAvailabilitiesSlots = (date: string, startTime: string, endTi
 
   for (let i = start; i.isBefore(end); i = i.add(30, "minute")) {
     let startDate = new Date(i.toDate());
-    let startDateCorrected = new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000).toISOString().slice(0, -1);
-
     let endDate = new Date(i.add(30, "minute").toDate());
-    let endDateCorrected = new Date(endDate.getTime() - endDate.getTimezoneOffset() * 60000).toISOString().slice(0, -1);
-
     dates.push({
       available: true,
-      startDate: startDateCorrected,
-      endDate: endDateCorrected,
+      startDate,
+      endDate,
     });
   }
   return dates;
@@ -187,21 +181,7 @@ export const dateToSpanishISO = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString('es-ES', options);
 }
-export const replicateAvailabilities = (newDate: string, availability: IAvailableAppointment[],) => {
-  const dateInput = new Date(newDate).toISOString().split("T")[0];
 
-  const newAvailability: IAvailabilitySlots = {
-    date: dateInput,
-    slots: availability.map((slot) => {
-      return {
-        available: true,
-        startDate: dateInput + "T" + slot.startDate.split("T")[1],
-        endDate: dateInput + "T" + slot.endDate.split("T")[1],
-      }
-    })
-  }
-  return newAvailability;
-}
 
 export const getWeekdaysDatesBetween = (date: string, endDate: string, interval: 'daily' | 'weekly' | 'monthly'): Date[] => {
   const dates = [];
