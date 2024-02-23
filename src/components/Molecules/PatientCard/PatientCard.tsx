@@ -35,6 +35,9 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
     }
   };
 
+  const classNameIcon: string = `w-7 h-7 rounded-full p-1
+                         hover:text-white hover:bg-black  
+                         active:translate-y-1 transition-transform duration-300`;
 
 
   return (
@@ -56,16 +59,16 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
         </div>
         <div className="flex gap-5 py-1">
           <a href={`${Routes.DOCTOR_APPOINTMENTS}/${patientId}`}>
-            <UserIcon className="w-5 h-5" />
+            <UserIcon className={classNameIcon} />
           </a>
           <a href={`${Routes.DOCTOR_APPOINTMENTS}/${patientId}/${_id}`}>
-            <PencilSquareIcon className="w-5 h-5" />
+            <PencilSquareIcon className={classNameIcon} />
           </a>
           <a href={joinURL} target="_blank">
-            <ComputerDesktopIcon className="w-5 h-5" />
+            <ComputerDesktopIcon className={classNameIcon} />
           </a>
           <button onClick={cancelAppointment}>
-            <TrashIcon className="w-5 h-5" />
+            <TrashIcon className={classNameIcon} />
           </button>
         </div>
       </div>
