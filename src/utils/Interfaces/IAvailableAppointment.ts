@@ -1,6 +1,8 @@
+import { DateValue } from "../alias/alias";
+
 interface IAvailableAppointment {
-        startDate: Date;
-        endDate: Date;
+        startDate: DateValue;
+        endDate: DateValue;
         available: boolean;
 }
 
