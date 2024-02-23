@@ -1,12 +1,10 @@
 import updateAppointmentField from "@/firebase/Appointments/updateAppointmentField";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import {
-  getAppointmentHours,
-  getSpecialityName,
   stringToDate,
 } from "@/utils/functions/utils";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import useAppointmentInfo from "@/utils/hooks/useAppointmentInfo";
-import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
 import Routes from "@/utils/routes/Routes";
 import {
   ComputerDesktopIcon,
@@ -15,7 +13,6 @@ import {
   UserIcon,
 } from "@heroicons/react/24/solid";
 import { Timestamp } from "firebase/firestore";
-import React, { use, useEffect } from "react";
 
 type PatientCardProps = {
   appointment: IAppointment;
@@ -54,7 +51,7 @@ const PatientCard = ({ appointment }: PatientCardProps) => {
             {stringToDate(appointment.date as unknown as Timestamp)}
           </div>
           <div className="text-sm">
-            {getAppointmentHours(startDate, endDate)}
+            {startDate && endDate && getHourRange(startDate, endDate)}
           </div>
         </div>
         <div className="flex gap-5 py-1">

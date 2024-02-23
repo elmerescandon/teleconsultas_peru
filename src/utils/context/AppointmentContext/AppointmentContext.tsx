@@ -19,8 +19,8 @@ const AppointmentProvider = ({ children }: AppointmentProviderProps) => {
         symptoms: [],
         details: "",
         date: "",
-        startDate: "",
-        endDate: "",
+        startDate: null,
+        endDate: null,
         _id: "",
         patientId: "",
         status: "pending",
@@ -62,8 +62,8 @@ const appointmentReducer = (
             return {
                 ...appointment,
                 date: action.payload,
-                startDate: "",
-                endDate: "",
+                startDate: null,
+                endDate: null,
             };
         case "SET_TIME":
             return {

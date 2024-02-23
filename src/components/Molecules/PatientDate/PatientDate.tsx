@@ -3,6 +3,7 @@ import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { dateToHours, stringToDate } from "@/utils/functions/utils";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 import { Timestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ type PatientDateProps = {
 
 const PatientDate = ({ appointment }: PatientDateProps) => {
     const [popUpOpen, setPopUpOpen] = useState(false);
-    const { doctorId, specialityId, date, status } = appointment;
+    const { doctorId, specialityId, status, date, startDate, endDate } = appointment;
     const [summary, setSummary] = useState<{
         doctorName: string;
         specialityName: string;
@@ -44,7 +45,7 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
     return (
         <div className="w-full">
             <button
-                className={`flex items-center w-full px-10 py-3 justify-between ${status === "doctor-canceled" ? "bg-rose-400" : "bg-brand-600"} text-basic-white rounded-3xl
+                className={`flex items-center w-full px-10 py-2 justify-between ${status === "doctor-canceled" ? "bg-rose-400" : "bg-brand-600"} text-basic-white rounded-2xl
                             max-lg:flex-col max-lg:items-start max-lg:gap-2
                             max-md:px-5`}
                 onClick={() => setPopUpOpen(true)}
@@ -65,19 +66,14 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
                                   max-md:text-left"
                     >
                         <p>
-                            {stringToDate(
-                                appointment.date as unknown as Timestamp
-                            )}
+                            {stringToDate(date as unknown as Timestamp)}
                         </p>
                         <p>
-                            {dateToHours(
-                                appointment.startDate,
-                                appointment.endDate
-                            )}
+                            {startDate && endDate && getHourRange(startDate, endDate)}
                         </p>
                     </div>
                 </div>
-                <div className="text-left w-full">{summary.doctorName}</div>
+                <div className="text-left w-52">{summary.doctorName}</div>
                 <div className="flex gap-3 items-center w-1/3">
                     <p className="text-brand-50 w-full">Ver más</p>
                     <BookOpenIcon className="w-8 h-8 text-brand-100" />

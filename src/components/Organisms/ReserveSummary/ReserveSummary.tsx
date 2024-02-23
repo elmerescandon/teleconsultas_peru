@@ -8,6 +8,7 @@ import {
     getReasonName,
     stringToDate,
 } from "@/utils/functions/utils";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import reasonMockup from "@/utils/mockups/reasonMockup";
 import { useEffect, useState } from "react";
 
@@ -73,7 +74,7 @@ const ReserveSummary = () => {
                 <LabelInformation label="Fecha programada" value={date} />
                 <LabelInformation
                     label="Hora programada"
-                    value={getAppointmentHours(startDate, endDate)}
+                    value={startDate && endDate && getHourRange(startDate, endDate) || "No disponible"}
                 />
                 <LabelInformation label="Detalles" value={details} />
             </div>

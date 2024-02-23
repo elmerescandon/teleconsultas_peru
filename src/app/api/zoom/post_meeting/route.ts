@@ -23,8 +23,6 @@ export async function GET(request: Request) {
         if (!doctorData) return Response.redirect('/404', 301);
 
 
-
-
         const zoomToken = await getTokenAuth();
         const res = await fetch(`${zoomMeetingURL}`, {
             headers: {
@@ -39,12 +37,12 @@ export async function GET(request: Request) {
                 duration: sessionDuration,
                 timezone: sessionTimeZone,
                 settings: sessionSettings,
-                join_before_host: true,
+
             }),
         });
-        console.log(res);
 
         const data = await res.json();
+        console.log(data);
         return NextResponse.json({ data });
     } catch (error) {
         return NextResponse.json({ error });

@@ -12,6 +12,7 @@ import {
     statusToSpanish,
     stringToDate,
 } from "@/utils/functions/utils";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import useAppointmentUpdate from "@/utils/hooks/useAppointmentUpdate";
 import { Timestamp } from "firebase/firestore";
 import React, { useState } from "react";
@@ -69,12 +70,12 @@ const DoctorAppointmentHistory = ({
                     </div>
                     <div className="w-full">
                         <LabelInformation
-                            label="Hora"
-                            value={getAppointmentHours(startDate, endDate)}
-                        />
-                        <LabelInformation
                             label="Estado"
                             value={statusToSpanish(status)}
+                        />
+                        <LabelInformation
+                            label="Hora"
+                            value={startDate && endDate && getHourRange(startDate, endDate) || ""}
                         />
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
 import eliminateAvailability from "@/firebase/Availability/eliminateAvailability";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 
@@ -57,11 +58,7 @@ const SlotAppointmentVisible = ({
                 `}
                 onClick={() => { }}
             >
-                {`${new Date(startDate)
-                    .toLocaleTimeString()
-                    .replace(/:\d+ /, " ")} - ${new Date(endDate)
-                        .toLocaleTimeString()
-                        .replace(/:\d+ /, " ")} `}
+                {getHourRange(startDate, endDate)}
             </button>
             {loading && <LoadingHorizontal />}
         </div>

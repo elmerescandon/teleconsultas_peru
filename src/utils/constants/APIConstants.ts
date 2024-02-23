@@ -9,8 +9,9 @@ export const sessionDuration = 30;
 export const sessionTimeZone = 'America/Lima';
 export const sessionSettings = {
     host_video: true,
+    waiting_room: false,
+    jbh_time: 5,
     participant_video: false,
     join_before_host: true,
-    waiting_room: true,
     mute_upon_entry: true,
 }

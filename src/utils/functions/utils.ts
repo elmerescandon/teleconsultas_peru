@@ -3,13 +3,10 @@ import IAvailableAppointment from "../Interfaces/IAvailableAppointment";
 import Ispeciality from "../Interfaces/dataModel/ISpeciality";
 import IUser from "../Interfaces/dataModel/IUser";
 import IAppointment from "../Interfaces/reducers/IAppointment";
-import doctorAvailabilityMockup from "../mockups/doctorAvailabilityMockup";
 import { parse } from "date-fns";
 import ISelectOptions from "../Interfaces/ISelectOptions";
 import dayjs from "dayjs";
-import IAvailabilitySlots from "../Interfaces/dataModel/IAvailabilitySlots";
 import { Timestamp } from "firebase/firestore";
-import { ca } from "date-fns/locale";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
@@ -33,18 +30,6 @@ export const getDoctorsOptions = (doctors: IUser[]) => {
   return options;
 };
 
-export const getAvailableAppointments = (date: string, doctorId: string, specialityId: string) => {
-  const availableDateDoctor = doctorAvailabilityMockup.filter((availability) => {
-    if (availability.availability_slots === undefined) return false;
-    return availability.doctor_id === doctorId && availability.speciality_id === specialityId && availability.availability_slots.some((slot) => slot.date === date);
-  });
-
-  if (availableDateDoctor.length === 0) return [];
-
-  if (availableDateDoctor[0].availability_slots === undefined) return [];
-
-  return availableDateDoctor[0].availability_slots.filter((slot) => slot.date === date)[0].slots as IAvailableAppointment[];
-};
 
 export const validateAppointment = (appointment: IAppointment) => {
   const { specialityId, doctorId, reason, date, startDate, endDate, patientId, _id, status } = appointment;
@@ -149,8 +134,6 @@ export const createAppointment = (appointment: IAppointment, patient: IUserInfo)
 
 }
 
-
-
 export const createAvailabilitiesSlots = (date: string, startTime: string, endTime: string) => {
   const dates: IAvailableAppointment[] = [];
   const start = dayjs(date)
@@ -162,15 +145,11 @@ export const createAvailabilitiesSlots = (date: string, startTime: string, endTi
 
   for (let i = start; i.isBefore(end); i = i.add(30, "minute")) {
     let startDate = new Date(i.toDate());
-    let startDateCorrected = new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000).toISOString().slice(0, -1);
-
     let endDate = new Date(i.add(30, "minute").toDate());
-    let endDateCorrected = new Date(endDate.getTime() - endDate.getTimezoneOffset() * 60000).toISOString().slice(0, -1);
-
     dates.push({
       available: true,
-      startDate: startDateCorrected,
-      endDate: endDateCorrected,
+      startDate,
+      endDate,
     });
   }
   return dates;
@@ -187,21 +166,7 @@ export const dateToSpanishISO = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString('es-ES', options);
 }
-export const replicateAvailabilities = (newDate: string, availability: IAvailableAppointment[],) => {
-  const dateInput = new Date(newDate).toISOString().split("T")[0];
 
-  const newAvailability: IAvailabilitySlots = {
-    date: dateInput,
-    slots: availability.map((slot) => {
-      return {
-        available: true,
-        startDate: dateInput + "T" + slot.startDate.split("T")[1],
-        endDate: dateInput + "T" + slot.endDate.split("T")[1],
-      }
-    })
-  }
-  return newAvailability;
-}
 
 export const getWeekdaysDatesBetween = (date: string, endDate: string, interval: 'daily' | 'weekly' | 'monthly'): Date[] => {
   const dates = [];

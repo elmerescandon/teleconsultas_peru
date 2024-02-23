@@ -1,9 +1,10 @@
-import { and, collection, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { Timestamp, and, collection, getDocs, query, updateDoc, where } from "firebase/firestore";
 import dbFirestore from "../config";
 import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots";
+import { DateValue } from "@/utils/alias/alias";
 
 
-const eliminateAvailability = async (date: string, specialityId: string, doctorId: string, startDate: string, endDate: string) => {
+const eliminateAvailability = async (date: string, specialityId: string, doctorId: string, startDate: DateValue, endDate: DateValue) => {
 
     try {
         const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId),
@@ -23,10 +24,17 @@ const eliminateAvailability = async (date: string, specialityId: string, doctorI
             throw new Error("No existe disponibilidad para la fecha seleccionada.");
         }
 
+
+        if (startDate instanceof Date && endDate instanceof Date) {
+            throw new Error("Error en el tipo de dato de fecha.");
+        }
+
         const dateDoc = dateDocs.docs[0]
         const dateDocData = dateDocs.docs[0].data() as unknown as IAvailabilitySlots;
         const slots = dateDocData.slots.filter((slot) => {
-            return slot.startDate !== startDate && slot.endDate !== endDate;
+            const startDateValidation = (slot.startDate as Timestamp).isEqual(startDate as Timestamp)
+            const endDateValidations = (slot.endDate as Timestamp).isEqual(endDate as Timestamp)
+            return !startDateValidation && !endDateValidations;
         });
         await updateDoc(dateDoc.ref, { ... { slots: slots } })
     } catch (error) {

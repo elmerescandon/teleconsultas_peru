@@ -43,9 +43,6 @@ const ReserveAppointmentSection = () => {
     const [confirm, setConfirm] = useState<boolean>(false);
 
     const onClickReserve = (appointment: IAppointment) => {
-
-
-
         if (validateReservation(appointment)) {
             if (!logged) {
                 setPopUpRegister(true);
@@ -62,7 +59,6 @@ const ReserveAppointmentSection = () => {
                 router.push(Routes.PATIENT_HOME);
                 return;
             }
-
             router.push(Routes.RESERVE_PAYMENT);
         } else {
             setPopUp(true);
@@ -91,7 +87,6 @@ const ReserveAppointmentSection = () => {
             }
         };
 
-
         if (date !== "") {
             getAvailableAppointments(date, doctorId, specialityId);
         }
@@ -113,8 +108,8 @@ const ReserveAppointmentSection = () => {
                     dispatch({
                         type: "SET_TIME",
                         payload: {
-                            startDate: "",
-                            endDate: "",
+                            startDate: null,
+                            endDate: null,
                         },
                     });
                 }

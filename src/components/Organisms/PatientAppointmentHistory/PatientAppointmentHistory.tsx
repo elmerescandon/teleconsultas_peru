@@ -10,8 +10,10 @@ import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { stringToDate } from "@/utils/functions/utils";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import { Timestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
+import { start } from "repl";
 
 type PatientAppointmentHistoryProps = {
     appointment: IAppointment;
@@ -25,6 +27,8 @@ const PatientAppointmentHistory = ({
         doctorId,
         specialityId,
         price,
+        startDate,
+        endDate,
         summary,
         diagnosis,
         symptoms,
@@ -95,8 +99,8 @@ const PatientAppointmentHistory = ({
                             value={stringToDate(date as unknown as Timestamp)}
                         />
                         <LabelInformation
-                            label="Monto"
-                            value={`${price ? `S/.${price}` : "Por Definir"}`}
+                            label="Hora"
+                            value={startDate && endDate && getHourRange(startDate, endDate) || ""}
                         />
                     </div>
                 </div>

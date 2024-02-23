@@ -5,6 +5,7 @@ import {
     getDoctorNameMockup as getDoctorName,
     getSpecialityName,
 } from "@/utils/functions/utils";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import useAppointmentInfo from "@/utils/hooks/useAppointmentInfo";
 import doctorsMockup from "@/utils/mockups/doctorsMockup";
 import specialitiesMockup from "@/utils/mockups/specialitiesMockup";
@@ -55,7 +56,7 @@ const AppointmentCard = ({ appointment }: AppointmentCardProps) => {
                             .toLocaleDateString()}
                     </div>
                     <div className="text-md">
-                        {getAppointmentHours(startDate, endDate)}
+                        {startDate && endDate && getHourRange(startDate, endDate)}
                     </div>
                 </div>
                 <div className="flex gap-5 py-1 items-center justify-center">

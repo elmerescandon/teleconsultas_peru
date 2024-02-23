@@ -1,7 +1,7 @@
 import SlotAppointment from "@/components/Atoms/SlotAppointment/SlotAppointment";
 import Loading from "@/components/Molecules/Loaders/Loading/Loading";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type ReserveAppointmentHoursProps = {
     availableAppointments: IAvailableAppointment[];
@@ -12,7 +12,7 @@ const ReserveAppointmentHours = ({
     availableAppointments,
     loading,
 }: ReserveAppointmentHoursProps) => {
-    const [currentId, setCurrentId] = useState(0);
+    const [currentId, setCurrentId] = useState(-1);
 
     const slots = availableAppointments.map((appointment, index) => (
         <SlotAppointment
@@ -25,6 +25,10 @@ const ReserveAppointmentHours = ({
             }}
         />
     ));
+
+    useEffect(() => {
+        setCurrentId(-1);
+    }, [availableAppointments]);
 
     return (
         <div className="px-5">

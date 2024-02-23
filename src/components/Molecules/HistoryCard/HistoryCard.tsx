@@ -2,6 +2,7 @@ import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
 import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { dateToHours, stringToDate } from "@/utils/functions/utils";
+import { getHourRange } from "@/utils/functions/utilsDate";
 import { BookOpenIcon } from "@heroicons/react/24/outline";
 import { Timestamp } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -43,7 +44,7 @@ const HistoryCard = ({ appointment }: HistoryCardProps) => {
         <div className="w-full border-2 rounded-lg px-4 py-2 border-brand-50">
             <div>
                 <div>{stringToDate(date as unknown as Timestamp)}</div>
-                <div>{dateToHours(startDate, endDate)}</div>
+                <div>{startDate && endDate && getHourRange(startDate, endDate)}</div>
                 <div className="w-36 text-left">{summary.doctorName}</div>
             </div>
             {/* <div className="flex gap-3 items-center">
