@@ -1,12 +1,10 @@
-import IAvailabilitySlots from "./IAvailabilitySlots";
+import { DateValue } from "@/utils/alias/alias";
 
 interface IDoctorAvailability {
-    _id: string;
     doctor_id: string;
     speciality_id: string;
-    other_fields?: any;
-    availability_slots?: IAvailabilitySlots[];
+    dateArray: DateValue[];
 }
-  
+
 
 export default IDoctorAvailability;
