@@ -1,14 +1,11 @@
 "use client";
 import { ServerDay } from "@/components/Atoms/Days/ServerDay";
-import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
 import { getAvailableDays } from "@/firebase/Availability/geAvailableDays";
 import { useAppointment, useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
-import { dateValuesToDates } from "@/utils/functions/utilsDate";
+import { changeTimezone, dateValuesToDates } from "@/utils/functions/utilsDate";
 import { DateCalendar } from "@mui/x-date-pickers";
-import { set } from "lodash";
 import React, { useEffect, useState } from "react";
-import { LoadingIndicator } from "react-select/dist/declarations/src/components/indicators";
 
 
 const ReserveAppointmentCalendar = () => {
@@ -28,7 +25,7 @@ const ReserveAppointmentCalendar = () => {
         setDateJS(date);
         dispatch({
             type: "SET_DATE",
-            payload: dateTemp.toISOString().split("T")[0],
+            payload: changeTimezone(dateTemp),
         });
     };
 
