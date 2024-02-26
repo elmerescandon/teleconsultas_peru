@@ -21,6 +21,7 @@ const PopUpMyAvailability = ({
     >([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>("");
+    const [erased, setErased] = useState<boolean>(true);
 
     useEffect(() => {
         const getAvailabilities = async () => {
@@ -38,8 +39,13 @@ const PopUpMyAvailability = ({
                 setLoading(false);
             }
         };
-        getAvailabilities();
-    }, []);
+
+        if (erased) {
+            console.log("hello");
+            getAvailabilities();
+            setErased(false);
+        }
+    }, [erased]);
 
     // eliminate dates that are in the past
     const newAvailabilities = allAvailabilities.filter(
@@ -83,10 +89,11 @@ const PopUpMyAvailability = ({
                         </p>
                     )}
                     {loading && <LoadingCircle />}
-                    {newSortedDates && (
+                    {!loading && newSortedDates && (
                         <div className="flex flex-col gap-5 pb-10">
                             {newSortedDates.map((availability, index) => (
-                                <DaySlotAppointments key={index} availability={availability} doctorId={doctorId} specialityId={specialityId} />
+                                // Return only availabilities with one or more available slots
+                                availability.slots.length > 0 && <DaySlotAppointments setErased={setErased} key={index} availability={availability} doctorId={doctorId} specialityId={specialityId} />
                             ))}
                         </div>
                     )}
