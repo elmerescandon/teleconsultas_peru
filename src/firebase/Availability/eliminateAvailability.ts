@@ -4,7 +4,7 @@ import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots"
 import { DateValue } from "@/utils/alias/alias";
 
 
-const eliminateAvailability = async (date: string, specialityId: string, doctorId: string, startDate: DateValue, endDate: DateValue) => {
+const eliminateAvailability = async (date: DateValue, specialityId: string, doctorId: string, startDate: DateValue, endDate: DateValue) => {
 
     try {
         const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId),
