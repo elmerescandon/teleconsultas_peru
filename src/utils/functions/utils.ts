@@ -7,6 +7,7 @@ import { parse } from "date-fns";
 import ISelectOptions from "../Interfaces/ISelectOptions";
 import dayjs from "dayjs";
 import { Timestamp } from "firebase/firestore";
+import { changeTimezone } from "./utilsDate";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
@@ -144,8 +145,8 @@ export const createAvailabilitiesSlots = (date: string, startTime: string, endTi
     .minute(parseInt(endTime.split(":")[1]));
 
   for (let i = start; i.isBefore(end); i = i.add(30, "minute")) {
-    let startDate = new Date(i.toDate());
-    let endDate = new Date(i.add(30, "minute").toDate());
+    let startDate = changeTimezone(new Date(i.toDate()));
+    let endDate = changeTimezone(new Date(i.add(30, "minute").toDate()));
     dates.push({
       available: true,
       startDate,
@@ -156,10 +157,10 @@ export const createAvailabilitiesSlots = (date: string, startTime: string, endTi
 };
 
 
-export const dateToSpanish = (date: string) => {
-  const spanishDate = parse(date, 'yyyy-MM-dd', new Date()).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  return spanishDate.charAt(0).toUpperCase() + spanishDate.slice(1);
-}
+// export const dateToSpanish = (date: string) => {
+//   const spanishDate = parse(date, 'yyyy-MM-dd', new Date()).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+//   return spanishDate.charAt(0).toUpperCase() + spanishDate.slice(1);
+// }
 
 export const dateToSpanishISO = (dateString: string) => {
   const date = new Date(dateString.replace(/-/g, '\/'));
