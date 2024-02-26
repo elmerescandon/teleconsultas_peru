@@ -1,6 +1,6 @@
 import SlotAppointmentVisible from "@/components/Atoms/SlotAppointmentVisible/SlotAppointmentVisible";
 import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots";
-import { dateToSpanish } from "@/utils/functions/utils";
+import { dateToSpanish } from "@/utils/functions/utilsDate";
 import { CheckCircleIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 
