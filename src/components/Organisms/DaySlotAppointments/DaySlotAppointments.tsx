@@ -8,15 +8,17 @@ type DaySlotAppointmentsProps = {
     availability: IAvailabilitySlots;
     doctorId: string;
     specialityId: string;
+    setErased: (erased: boolean) => void;
 };
 
 const DaySlotAppointments = ({
     availability,
     doctorId,
     specialityId,
+    setErased,
 }: DaySlotAppointmentsProps) => {
 
-    const [eliminate, setEliminate] = useState<boolean>(false);
+    const [eliminate, setEliminate] = useState<boolean>(true);
 
     const toggleEliminate = () => {
         setEliminate(!eliminate);
@@ -44,6 +46,7 @@ const DaySlotAppointments = ({
                         doctorId={doctorId}
                         specialityId={specialityId}
                         onEliminate={eliminate}
+                        setErased={setErased}
                     />
                 ))}
             </div>
