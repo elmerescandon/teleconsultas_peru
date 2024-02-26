@@ -14,6 +14,7 @@ import LoadingHorizontal from "../Loaders/LoadingHorizontal/LoadingHorizontal";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import emptyAvailableData from "@/firebase/Availability/emptyAvailableData";
 import createAvailability from "@/firebase/Availability/createAvailability";
+import { getOnlyDateWithTimezone } from "@/utils/functions/utilsDate";
 
 type AddAvailabilityGeneralProps = {
     doctorId: string;
@@ -61,7 +62,7 @@ const AddAvailabilityGeneral = ({
                 throw new Error("Seleccione un rango de fechas correcto");
             }
 
-            const dateInput = new Date(date).toISOString().split("T")[0];
+            const dateInput = getOnlyDateWithTimezone(date);
 
             if (repeat === "never") {
                 await addAvailabilities(
@@ -92,10 +93,7 @@ const AddAvailabilityGeneral = ({
                             startTime,
                             endTime
                         );
-                        const dateInput = new Date(date)
-                            .toISOString()
-                            .split("T")[0];
-
+                        const dateInput = getOnlyDateWithTimezone(date);
                         await addAvailabilities(
                             dateInput,
                             specialityId,
