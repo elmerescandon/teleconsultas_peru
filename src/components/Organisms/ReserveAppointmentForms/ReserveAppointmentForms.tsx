@@ -40,13 +40,6 @@ const ReserveAppointmentForms = () => {
             }
         };
         getSpecialitiesFromDb();
-        const defaultSpeciality = searchParams.get("spec");
-        if (defaultSpeciality) {
-            dispatch({
-                type: "SET_SPECIALITY",
-                payload: defaultSpeciality,
-            });
-        }
     }, []);
 
     useEffect(() => {
