@@ -1,7 +1,7 @@
 import SlotAppointmentVisible from "@/components/Atoms/SlotAppointmentVisible/SlotAppointmentVisible";
 import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots";
 import { dateToSpanish } from "@/utils/functions/utils";
-import { CheckBadgeIcon, CheckCircleIcon, EllipsisVerticalIcon, PencilIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { CheckCircleIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 
 type DaySlotAppointmentsProps = {
