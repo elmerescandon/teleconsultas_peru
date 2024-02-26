@@ -1,10 +1,10 @@
-import { addDoc, and, collection, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, and, arrayUnion, collection, getDocs, query, updateDoc, where } from "firebase/firestore";
 import dbFirestore from "../config";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots";
 
 
-const addAvailabilities = async (date: string, specialityId: string, doctorId: string, slots: IAvailableAppointment[]) => {
+const addAvailabilities = async (date: Date, specialityId: string, doctorId: string, slots: IAvailableAppointment[]) => {
 
     try {
         const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId),
@@ -16,6 +16,14 @@ const addAvailabilities = async (date: string, specialityId: string, doctorId: s
         }
 
         const docDate = snapShot.docs[0];
+        // Add to dateArray the date if it doesn't exist
+        await updateDoc(docDate.ref, {
+            dateArray: arrayUnion(date)
+        });
+
+
+
+
         const dateCollection = collection(docDate.ref, 'availability_slots');
         const dateQuery = query(dateCollection, where("date", "==", date));
         const dateDocs = await getDocs(dateQuery)
