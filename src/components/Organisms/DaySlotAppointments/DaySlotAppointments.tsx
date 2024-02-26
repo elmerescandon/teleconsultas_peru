@@ -1,22 +1,24 @@
 import SlotAppointmentVisible from "@/components/Atoms/SlotAppointmentVisible/SlotAppointmentVisible";
 import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots";
 import { dateToSpanish } from "@/utils/functions/utils";
-import { CheckBadgeIcon, CheckCircleIcon, EllipsisVerticalIcon, PencilIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { CheckCircleIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 
 type DaySlotAppointmentsProps = {
     availability: IAvailabilitySlots;
     doctorId: string;
     specialityId: string;
+    setErased: (erased: boolean) => void;
 };
 
 const DaySlotAppointments = ({
     availability,
     doctorId,
     specialityId,
+    setErased,
 }: DaySlotAppointmentsProps) => {
 
-    const [eliminate, setEliminate] = useState<boolean>(false);
+    const [eliminate, setEliminate] = useState<boolean>(true);
 
     const toggleEliminate = () => {
         setEliminate(!eliminate);
@@ -44,6 +46,7 @@ const DaySlotAppointments = ({
                         doctorId={doctorId}
                         specialityId={specialityId}
                         onEliminate={eliminate}
+                        setErased={setErased}
                     />
                 ))}
             </div>

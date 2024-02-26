@@ -11,6 +11,7 @@ type SlotAppointmentVisibleProps = {
     specialityId: string,
     date: string;
     onEliminate: boolean;
+    setErased: (erased: boolean) => void;
 };
 
 const SlotAppointmentVisible = ({
@@ -18,10 +19,10 @@ const SlotAppointmentVisible = ({
     doctorId,
     specialityId,
     date,
-    onEliminate
+    onEliminate,
+    setErased
 }: SlotAppointmentVisibleProps) => {
 
-    const [visible, setVisible] = useState<boolean>(true);
     const [loading, setLoading] = useState<boolean>(false);
     const { startDate, endDate, available } = availableAppointment;
 
@@ -31,8 +32,9 @@ const SlotAppointmentVisible = ({
         try {
             setLoading(true);
             eliminateAvailability(date, specialityId, doctorId, startDate, endDate);
-            setVisible(false);
             setLoading(false);
+            setErased(true);
+            console.log("borrado");
         } catch (error) {
             console.log(error);
         }
@@ -40,7 +42,7 @@ const SlotAppointmentVisible = ({
 
     return (
 
-        <div className={`relative ${visible ? "" : 'hidden'} `}>
+        <div className="relative">
             {onEliminate && <button className="absolute left-[90%] -top-2" onClick={handleDelete}>
                 <XCircleIcon className="w-6 h-6 rounded-full bg-brand-900 text-basic-white
                                         hover:bg-brand-800 hover:text-brand-100
