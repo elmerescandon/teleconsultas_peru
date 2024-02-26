@@ -6,6 +6,7 @@ import ReserveAppointmentCalendar from "@/components/Organisms/ReserveAppointmen
 import ReserveAppointmentForms from "@/components/Organisms/ReserveAppointmentForms/ReserveAppointmentForms";
 import ReserveAppointmentHours from "@/components/Organisms/ReserveAppointmentHours/ReserveAppointmentHours";
 import getAppointment from "@/firebase/Appointments/getAppointment";
+import { updateAppointmentCanceled } from "@/firebase/Appointments/updateAppointmentCanceled";
 import updateAppointmentField from "@/firebase/Appointments/updateAppointmentField";
 import { getAvailableDates } from "@/firebase/Availability/getAvailableDates";
 import { useAppSelector } from "@/redux/hooks";
@@ -32,18 +33,9 @@ const ReserveAppointmentSection = () => {
         unloggedUser: false,
     });
 
-
-
-
-    const [availableAppointments, setAvailableAppointments] = useState<
-        IAvailableAppointment[]
-    >([]);
-
     const appointment = useAppointment();
     const dispatch = useAppointmentDispatch();
 
-    const { date, doctorId, specialityId } = appointment;
-    const [loadingDates, setLoadingDates] = useState<boolean>(false);
     const [confirm, setConfirm] = useState<boolean>(false);
 
     const onClickReserve = (appointment: IAppointment) => {
@@ -54,11 +46,7 @@ const ReserveAppointmentSection = () => {
             }
 
             if (appointment.status === "doctor-canceled") {
-                updateAppointmentField(appointment._id, "status", "pending");
-                updateAppointmentField(appointment._id, "doctorId", appointment.doctorId);
-                updateAppointmentField(appointment._id, "date", new Date(appointment.date));
-                updateAppointmentField(appointment._id, "startDate", appointment.startDate);
-                updateAppointmentField(appointment._id, "endDate", appointment.endDate);
+                updateAppointmentCanceled(appointment);
                 setConfirm(true);
                 router.push(Routes.PATIENT_HOME);
                 return;
@@ -69,32 +57,6 @@ const ReserveAppointmentSection = () => {
             return;
         }
     };
-
-    useEffect(() => {
-        const getAvailableAppointments = async (
-            date: string,
-            doctorId: string,
-            specialityId: string
-        ) => {
-            setLoadingDates(true);
-            const availableDates = await getAvailableDates(
-                date,
-                doctorId,
-                specialityId
-            );
-
-            setLoadingDates(false);
-            if (availableDates) {
-                setAvailableAppointments(availableDates);
-            } else {
-                setAvailableAppointments([]);
-            }
-        };
-
-        if (date !== "") {
-            getAvailableAppointments(date, doctorId, specialityId);
-        }
-    }, [date, doctorId]);
 
     useEffect(() => {
         const getAppointmentData = async (id: string) => {
