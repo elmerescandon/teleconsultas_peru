@@ -119,18 +119,11 @@ export const areDatesEqual = (dateA: Date, dateB: Date) => {
 export const createAppointment = (appointment: IAppointment, patient: IUserInfo) => {
   const { _id } = patient;
   const { date } = appointment;
-  // const dateParts = date.split("-");
-  // const newDate = new Date(
-  //   parseInt(dateParts[0]),
-  //   parseInt(dateParts[1]) - 1,
-  //   parseInt(dateParts[2])
-  // );
   const newAppointment: IAppointment = {
     ...appointment,
     patientId: _id,
     status: 'pending',
     price: 80,
-    // date: newDate as unknown as string,
   }
   return newAppointment;
 
