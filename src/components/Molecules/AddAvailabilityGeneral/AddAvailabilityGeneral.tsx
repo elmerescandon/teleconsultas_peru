@@ -101,6 +101,21 @@ const AddAvailabilityGeneral = ({
                             slots
                         );
                     });
+                } else if (check) {
+                    datesRange.map(async (date) => {
+                        const slots = createAvailabilitiesSlots(
+                            formatDate(date),
+                            "09:00",
+                            "18:00"
+                        );
+                        const dateInput = getOnlyDateWithTimezone(date);
+                        await addAvailabilities(
+                            dateInput,
+                            specialityId,
+                            doctorId,
+                            slots
+                        );
+                    });
                 }
             }
             setUploaded(true);
