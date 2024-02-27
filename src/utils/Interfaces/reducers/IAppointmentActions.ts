@@ -28,7 +28,7 @@ type IAppointmentActionSetDetails = {
 
 type IAppointmentActionSetDate = {
     type: "SET_DATE",
-    payload: string,
+    payload: DateValue | null,
 }
 
 type IAppointmentActionSetTime = {
