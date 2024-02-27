@@ -7,11 +7,8 @@ import ReserveAppointmentForms from "@/components/Organisms/ReserveAppointmentFo
 import ReserveAppointmentHours from "@/components/Organisms/ReserveAppointmentHours/ReserveAppointmentHours";
 import getAppointment from "@/firebase/Appointments/getAppointment";
 import { updateAppointmentCanceled } from "@/firebase/Appointments/updateAppointmentCanceled";
-import updateAppointmentField from "@/firebase/Appointments/updateAppointmentField";
-import { getAvailableDates } from "@/firebase/Availability/getAvailableDates";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
-import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import IPopUpReserve from "@/utils/Interfaces/IPopUpReserve";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { useAppointment, useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
@@ -99,10 +96,7 @@ const ReserveAppointmentSection = () => {
                 <ReserveAppointmentForms />
                 <div className="w-full max-xl:w-full max-xl:flex max-md:flex-col max-xl:justify-around">
                     <ReserveAppointmentCalendar />
-                    <ReserveAppointmentHours
-                        loading={loadingDates}
-                        availableAppointments={availableAppointments}
-                    />
+                    <ReserveAppointmentHours />
                 </div>
             </div>
             <ButtonReserve onClickFn={() => onClickReserve(appointment)} />
