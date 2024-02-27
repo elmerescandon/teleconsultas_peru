@@ -60,7 +60,7 @@ const useAppointmentURLParams = () => {
             getAppointmentData();
         } else {
             if (!appointmentExisted) {
-                if (appointment.patientId === "" && userInfo._id !== "" && appointment.date !== "" && appointment._id === "") {
+                if (appointment.patientId === "" && userInfo._id !== "" && appointment.date !== null && appointment._id === "") {
                     constructAppointment();
                     return;
                 }

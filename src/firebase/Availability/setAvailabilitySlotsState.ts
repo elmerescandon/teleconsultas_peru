@@ -4,7 +4,7 @@ import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots"
 import { DateValue } from "@/utils/alias/alias";
 
 
-const setAvailabilityToSlot = async (date: string, specialityIdId: string, doctorId: string, availability: boolean, startDate: DateValue, endDate: DateValue) => {
+const setAvailabilityToSlot = async (date: DateValue, specialityIdId: string, doctorId: string, availability: boolean, startDate: DateValue, endDate: DateValue) => {
     const q = query(collection(dbFirestore, "availability"), and(where("doctor_id", "==", doctorId), where("speciality_id", "==", specialityIdId)));
     const snapShot = await getDocs(q);
 

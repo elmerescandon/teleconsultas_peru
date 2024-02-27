@@ -4,6 +4,7 @@ import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots"
 import LoadingCircle from "@/components/Molecules/Loaders/LoadingCircle/LoadingCircle";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import DaySlotAppointments from "@/components/Organisms/DaySlotAppointments/DaySlotAppointments";
+import { Timestamp } from "firebase/firestore";
 
 type PopUpMyAvailabilityProps = {
     onClose: () => void;
@@ -41,7 +42,6 @@ const PopUpMyAvailability = ({
         };
 
         if (erased) {
-            console.log("hello");
             getAvailabilities();
             setErased(false);
         }
@@ -50,12 +50,12 @@ const PopUpMyAvailability = ({
     // eliminate dates that are in the past
     const newAvailabilities = allAvailabilities.filter(
         (availability) =>
-            new Date(availability.date).getTime() >= new Date().getTime()
+            (availability.date as Timestamp).toDate() >= new Date()
     );
 
     // sort by date
     const newSortedDates = newAvailabilities.sort((a, b) => {
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
+        return (a.date as Timestamp).seconds - (b.date as Timestamp).seconds;
     });
 
     return (

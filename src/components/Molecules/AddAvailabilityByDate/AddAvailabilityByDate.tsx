@@ -28,7 +28,7 @@ const AddAvailabilityByDate = ({
                 return;
             }
             const slots = createAvailabilitiesSlots(date, startTime, endTime);
-            const dateInput = new Date().toISOString().split("T")[0];
+            const dateInput = new Date()
             await addAvailabilities(dateInput, specialityId, doctorId, slots);
             setError("");
         } catch (error) {
@@ -86,9 +86,8 @@ const AddAvailabilityByDate = ({
                     key={2}
                 />
                 {date && (
-                    <p className="pt-2 text-lg">{`Fecha: ${
-                        new Date(date).toLocaleString().split(",")[0]
-                    } `}</p>
+                    <p className="pt-2 text-lg">{`Fecha: ${new Date(date).toLocaleString().split(",")[0]
+                        } `}</p>
                 )}
                 {startTime && endTime && (
                     <p className="pt-3 text-lg">{`Horario: ${startTime} - ${endTime}`}</p>

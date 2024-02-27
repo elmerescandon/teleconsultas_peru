@@ -8,7 +8,7 @@ import {
     getReasonName,
     stringToDate,
 } from "@/utils/functions/utils";
-import { getHourRange } from "@/utils/functions/utilsDate";
+import { dateToSpanish, getHourRange } from "@/utils/functions/utilsDate";
 import reasonMockup from "@/utils/mockups/reasonMockup";
 import { useEffect, useState } from "react";
 
@@ -71,7 +71,7 @@ const ReserveSummary = () => {
                     value={getReasonName(reasonMockup, reason)}
                 />
 
-                <LabelInformation label="Fecha programada" value={date} />
+                <LabelInformation label="Fecha programada" value={date && dateToSpanish(date) || ""} />
                 <LabelInformation
                     label="Hora programada"
                     value={startDate && endDate && getHourRange(startDate, endDate) || "No disponible"}

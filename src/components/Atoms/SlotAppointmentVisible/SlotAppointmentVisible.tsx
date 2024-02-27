@@ -1,6 +1,7 @@
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
 import eliminateAvailability from "@/firebase/Availability/eliminateAvailability";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
+import { DateValue } from "@/utils/alias/alias";
 import { getHourRange } from "@/utils/functions/utilsDate";
 import { XCircleIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
@@ -9,7 +10,7 @@ type SlotAppointmentVisibleProps = {
     availableAppointment: IAvailableAppointment;
     doctorId: string,
     specialityId: string,
-    date: string;
+    date: DateValue;
     onEliminate: boolean;
     setErased: (erased: boolean) => void;
 };
@@ -34,7 +35,6 @@ const SlotAppointmentVisible = ({
             eliminateAvailability(date, specialityId, doctorId, startDate, endDate);
             setLoading(false);
             setErased(true);
-            console.log("borrado");
         } catch (error) {
             console.log(error);
         }

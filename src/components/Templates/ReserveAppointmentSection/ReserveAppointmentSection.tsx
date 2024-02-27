@@ -6,16 +6,14 @@ import ReserveAppointmentCalendar from "@/components/Organisms/ReserveAppointmen
 import ReserveAppointmentForms from "@/components/Organisms/ReserveAppointmentForms/ReserveAppointmentForms";
 import ReserveAppointmentHours from "@/components/Organisms/ReserveAppointmentHours/ReserveAppointmentHours";
 import getAppointment from "@/firebase/Appointments/getAppointment";
-import updateAppointmentField from "@/firebase/Appointments/updateAppointmentField";
-import { getAvailableDates } from "@/firebase/Availability/getAvailableDates";
+import { updateAppointmentCanceled } from "@/firebase/Appointments/updateAppointmentCanceled";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
-import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
+import IPopUpReserve from "@/utils/Interfaces/IPopUpReserve";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import { useAppointment, useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
-import { isDateOlderThan24HoursFromNow, validateAppointment, validateReservation } from "@/utils/functions/utils";
+import { validateReservation } from "@/utils/functions/utils";
 import Routes from "@/utils/routes/Routes";
-import { set } from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -23,74 +21,39 @@ const ReserveAppointmentSection = () => {
     const params = useSearchParams();
     const appointmentSearch = params.get("appId");
 
-
-
     const userState: IUserState = useAppSelector((state) => state.user);
     const { logged } = userState;
     const router = useRouter();
 
-    const [popUp, setPopUp] = useState<boolean>(false);
-    const [popUpRegister, setPopUpRegister] = useState<boolean>(false);
-    const [availableAppointments, setAvailableAppointments] = useState<
-        IAvailableAppointment[]
-    >([]);
+    const [popUps, setPopUps] = useState<IPopUpReserve>({
+        uncompletedFields: false,
+        unloggedUser: false,
+    });
 
     const appointment = useAppointment();
     const dispatch = useAppointmentDispatch();
 
-    const { date, doctorId, specialityId } = appointment;
-    const [loadingDates, setLoadingDates] = useState<boolean>(false);
     const [confirm, setConfirm] = useState<boolean>(false);
 
     const onClickReserve = (appointment: IAppointment) => {
         if (validateReservation(appointment)) {
             if (!logged) {
-                setPopUpRegister(true);
+                setPopUps({ ...popUps, unloggedUser: true });
                 return;
             }
 
             if (appointment.status === "doctor-canceled") {
-                updateAppointmentField(appointment._id, "status", "pending");
-                updateAppointmentField(appointment._id, "doctorId", appointment.doctorId);
-                updateAppointmentField(appointment._id, "date", new Date(appointment.date));
-                updateAppointmentField(appointment._id, "startDate", appointment.startDate);
-                updateAppointmentField(appointment._id, "endDate", appointment.endDate);
+                updateAppointmentCanceled(appointment);
                 setConfirm(true);
                 router.push(Routes.PATIENT_HOME);
                 return;
             }
             router.push(Routes.RESERVE_PAYMENT);
         } else {
-            setPopUp(true);
+            setPopUps({ ...popUps, uncompletedFields: true });
             return;
         }
     };
-
-    useEffect(() => {
-        const getAvailableAppointments = async (
-            date: string,
-            doctorId: string,
-            specialityId: string
-        ) => {
-            setLoadingDates(true);
-            const availableDates = await getAvailableDates(
-                date,
-                doctorId,
-                specialityId
-            );
-
-            setLoadingDates(false);
-            if (availableDates) {
-                setAvailableAppointments(availableDates);
-            } else {
-                setAvailableAppointments([]);
-            }
-        };
-
-        if (date !== "") {
-            getAvailableAppointments(date, doctorId, specialityId);
-        }
-    }, [date, doctorId]);
 
     useEffect(() => {
         const getAppointmentData = async (id: string) => {
@@ -133,29 +96,26 @@ const ReserveAppointmentSection = () => {
                 <ReserveAppointmentForms />
                 <div className="w-full max-xl:w-full max-xl:flex max-md:flex-col max-xl:justify-around">
                     <ReserveAppointmentCalendar />
-                    <ReserveAppointmentHours
-                        loading={loadingDates}
-                        availableAppointments={availableAppointments}
-                    />
+                    <ReserveAppointmentHours />
                 </div>
             </div>
             <ButtonReserve onClickFn={() => onClickReserve(appointment)} />
-            {popUp && (
+            {popUps.uncompletedFields && (
                 <PopUpReservation
                     title="¡Lo sentimos!"
                     message="Debes completar todos los campos para poder agendar una cita"
                     onClose={() => {
-                        setPopUp(false);
+                        setPopUps({ ...popUps, uncompletedFields: false });
                     }}
                 />
             )}
-            {popUpRegister && (
+            {popUps.unloggedUser && (
                 <PopUpReservation
                     requireSession={true}
                     title="¡Ya falta poco!"
                     message="Inicia sesión o regístrate para agendar una cita"
                     onClose={() => {
-                        setPopUpRegister(false);
+                        setPopUps({ ...popUps, unloggedUser: false });
                     }}
                 />
             )}

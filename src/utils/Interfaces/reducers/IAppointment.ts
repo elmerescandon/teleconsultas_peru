@@ -5,7 +5,7 @@ interface IAppointment {
     patientId: string,
     doctorId: string,
     startDate: DateValue | null,
-    date: string,
+    date: DateValue | null,
     endDate: DateValue | null,
     status: 'scheduled' | 'completed' | 'canceled' | 'pending' | "doctor-canceled" | "patient-canceled",
     reason: string,
