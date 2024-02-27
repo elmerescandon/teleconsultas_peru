@@ -18,7 +18,7 @@ const AppointmentProvider = ({ children }: AppointmentProviderProps) => {
         reason: "",
         symptoms: [],
         details: "",
-        date: "",
+        date: null,
         startDate: null,
         endDate: null,
         _id: "",
