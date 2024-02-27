@@ -51,6 +51,8 @@ const useAppointmentURLParams = () => {
             }
             dispatch({ type: "SET_APPOINTMENT", payload: newAppointment });
             setAppointmentExisted(true);
+            setPageState({ loading: false, error: "" });
+
         }
 
         const uploadAppointment = async () => {
@@ -62,8 +64,8 @@ const useAppointmentURLParams = () => {
             setPageState({ loading: false, error: "" });
         }
 
-        setPageState({ loading: true, error: "" });
         if (appointmentExisted === null) {
+            setPageState({ loading: true, error: "" });
             getAppointmentData();
         } else {
             if (!appointmentExisted) {
