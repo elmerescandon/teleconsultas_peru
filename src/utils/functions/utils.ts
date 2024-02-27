@@ -8,6 +8,7 @@ import ISelectOptions from "../Interfaces/ISelectOptions";
 import dayjs from "dayjs";
 import { Timestamp } from "firebase/firestore";
 import { changeTimezone } from "./utilsDate";
+import { DateValue } from "../alias/alias";
 
 // function from specialitiesMokcup to select options
 export const getSpecialitiesOptions = (specialities: Ispeciality[]) => {
@@ -224,26 +225,10 @@ export const isDateOlderThan24Hours = (date: Timestamp): boolean => {
   return 24 * 60 * 60 * 1000 > difference;
 }
 
-export const isDateOlderThan24HoursFromNow = (date: string | Timestamp): boolean => {
-  if (date === "") return false;
-
+export const isDateOlderThan24HoursFromNow = (date: DateValue): boolean => {
+  // check if date older than 24 hours from now using a DateValue argument
   const dateNow = new Date();
-  dateNow.setUTCHours(0, 0, 0, 0); // set hours, minutes, seconds and milliseconds to 0
-  let twoDaysLater = new Date(dateNow.getTime() + 2 * 24 * 60 * 60 * 1000)
-
-  if (typeof date === "string") {
-    let dateParts = date.split("-");
-    if (dateParts.length < 3) return false;
-    let dateObject = new Date(Date.UTC(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2])));
-    dateObject.setUTCHours(0, 0, 0, 0); // set hours, minutes, seconds and milliseconds to 0
-
-    if (dateObject > twoDaysLater) return true;
-    return false;
-  } else {
-    let dateObject = date.toDate();
-    dateObject.setUTCHours(0, 0, 0, 0); // set hours, minutes, seconds and milliseconds to 0  
-    if (dateObject > twoDaysLater) return true;
-    return false;
-  }
-
+  const dateToCompare = date instanceof Date ? date : date.toDate();
+  const difference = dateNow.getTime() - dateToCompare.getTime();
+  return 24 * 60 * 60 * 1000 > difference;
 }
