@@ -3,7 +3,7 @@ import { ServerDay } from "@/components/Atoms/Days/ServerDay";
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
 import { getAvailableDays } from "@/firebase/Availability/geAvailableDays";
 import { useAppointment, useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
-import { changeTimezone, dateValuesToDates } from "@/utils/functions/utilsDate";
+import { changeTimezone, dateToSpanish, dateValuesToDates } from "@/utils/functions/utilsDate";
 import { DateCalendar } from "@mui/x-date-pickers";
 import React, { useEffect, useState } from "react";
 
@@ -28,6 +28,8 @@ const ReserveAppointmentCalendar = () => {
             payload: changeTimezone(dateTemp),
         });
     };
+
+    const dateString = dateJS !== null ? dateToSpanish(changeTimezone(dateJS.toISOString())) : "";
 
     useEffect(() => {
         const getHighlightedDays = async (doctorId: string, specialityId: string) => {
@@ -74,6 +76,8 @@ const ReserveAppointmentCalendar = () => {
                     } as any,
                 }}
             />
+            {error === "" && !loading && dateJS
+                && <p className="text-brand-600 font-semibold -mt-8 text-center" >{dateString}</p>}
             {error && <p className="text-brand-600 font-semibold -mt-8 text-center" >{error}</p>}
             {loading && <LoadingHorizontal />}
         </div>
