@@ -22,6 +22,11 @@ const useAppointmentURLParams = () => {
     const user: IUserState = useAppSelector((state: IState) => state.user);
     const { userInfo } = user;
 
+    const [pageState, setPageState] = useState<{
+        loading: boolean;
+        error: string;
+    }>({ loading: false, error: "" });
+
 
     useEffect(() => {
 
@@ -54,8 +59,10 @@ const useAppointmentURLParams = () => {
             } else {
                 await updateAppointmentField(appointment._id, "status", "pending");
             }
+            setPageState({ loading: false, error: "" });
         }
 
+        setPageState({ loading: true, error: "" });
         if (appointmentExisted === null) {
             getAppointmentData();
         } else {
@@ -69,7 +76,7 @@ const useAppointmentURLParams = () => {
         }
     }, [appointment, user, appointmentExisted])
 
-    return { appointmentExisted, appointment };
+    return { appointmentExisted, appointment, pageState, setPageState };
 
 }
 
