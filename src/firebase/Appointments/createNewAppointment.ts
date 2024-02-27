@@ -7,17 +7,9 @@ import setAvailabilityToSlot from '../Availability/setAvailabilitySlotsState';
 
 const createNewAppointment = async (appointment: IAppointment) => {
     const { date, specialityId, doctorId, startDate, endDate, _id } = appointment;
-    const dateParts = date.split("-");
-    const newDate = new Date(
-        parseInt(dateParts[0]),
-        parseInt(dateParts[1]) - 1,
-        parseInt(dateParts[2]),
-    );
-    const newAppointment = { ...appointment, date: newDate as unknown };
-
     try {
-        await addDoc(collection(dbFirestore, "appointments"), newAppointment);
-        if (startDate === null || endDate === null) throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego.");
+        await addDoc(collection(dbFirestore, "appointments"), appointment);
+        if (startDate === null || endDate === null || date === null) throw new Error("No se pudo agendar la cita, inténtelo nuevamente luego.");
         await setAvailabilityToSlot(
             date,
             specialityId,
