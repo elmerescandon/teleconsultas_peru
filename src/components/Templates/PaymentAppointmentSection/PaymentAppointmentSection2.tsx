@@ -14,6 +14,7 @@ const PaymentAppointmentSection2 = () => {
     const router = useRouter();
 
     const { appointmentExisted, appointment } = useAppointmentURLParams();
+    const { date } = appointment;
 
     const [pageState, setPageState] = useState<{
         loading: boolean;
@@ -60,7 +61,7 @@ const PaymentAppointmentSection2 = () => {
                         <div className="flex-col items-center justify-center">
                             {<MercadoPagoPayment
                                 appointment={appointment} />}
-                            {isDateOlderThan24HoursFromNow(appointment.date) && <PaymentLater payLater={onClickPayLater} />}
+                            {date && isDateOlderThan24HoursFromNow(date) && <PaymentLater payLater={onClickPayLater} />}
                         </div>
                     ) : (
                         <div>
