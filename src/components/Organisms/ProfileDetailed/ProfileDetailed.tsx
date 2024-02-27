@@ -1,15 +1,11 @@
 "use client";
-import ButtonPrimary from "@/components/Atoms/Buttons/ButtonPrimary/ButtonPrimary";
 import LabelProfileMain from "@/components/Atoms/Labels/LabelProfileMain/LabelProfileMain";
 import { useAppSelector } from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import { currentUbigeo } from "@/utils/constants/registerSelect";
 import {
-    dateToSpanish,
     dateToSpanishISO,
-    stringToDate,
 } from "@/utils/functions/utils";
-import { PencilIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 
 const ProfileDetailed = () => {
