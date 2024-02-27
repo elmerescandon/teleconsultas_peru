@@ -1,4 +1,5 @@
 import LinkPrimary from '@/components/Atoms/Links/LinkPrimary/LinkPrimary';
+import Loading from '@/components/Molecules/Loaders/Loading/Loading';
 import LoadingFullPage from '@/components/Molecules/Loaders/LoadingFullPage/LoadingFullPage';
 import PaymentLater from '@/components/Molecules/PaymentLater/PaymentLater';
 import MercadoPagoPayment from '@/components/Organisms/MercadoPagoPayment/MercadoPagoPayment';
@@ -13,13 +14,13 @@ const PaymentAppointmentSection2 = () => {
 
     const router = useRouter();
 
-    const { appointmentExisted, appointment } = useAppointmentURLParams();
+    const { appointmentExisted,
+        appointment,
+        pageState,
+        setPageState } = useAppointmentURLParams();
     const { date } = appointment;
 
-    const [pageState, setPageState] = useState<{
-        loading: boolean;
-        error: string;
-    }>({ loading: false, error: "" });
+
 
     const onClickPayLater = async () => {
         try {
@@ -57,7 +58,7 @@ const PaymentAppointmentSection2 = () => {
 
                 <div className="flex flex-col justify-center pt-5 gap-2 w-full">
                     <PaymentReview appointment={appointment} />
-                    {(pageState.error === "" && appointmentExisted !== null) ? (
+                    {(pageState.error === "" && appointmentExisted !== null && !pageState.loading) ? (
                         <div className="flex-col items-center justify-center">
                             {<MercadoPagoPayment
                                 appointment={appointment} />}
