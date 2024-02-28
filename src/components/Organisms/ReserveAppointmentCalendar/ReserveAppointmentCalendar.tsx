@@ -3,7 +3,7 @@ import { ServerDay } from "@/components/Atoms/Days/ServerDay";
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
 import { getAvailableDays } from "@/firebase/Availability/geAvailableDays";
 import { useAppointment, useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
-import { changeTimezone, dateToSpanish, dateValuesToDates } from "@/utils/functions/utilsDate";
+import { changeTimezone, dateToSpanish, dateValuesToDates, setDateToTimezoneConstantWithTime } from "@/utils/functions/utilsDate";
 import { DateCalendar } from "@mui/x-date-pickers";
 import React, { useEffect, useState } from "react";
 
@@ -25,11 +25,11 @@ const ReserveAppointmentCalendar = () => {
         setDateJS(date);
         dispatch({
             type: "SET_DATE",
-            payload: changeTimezone(dateTemp),
+            payload: setDateToTimezoneConstantWithTime(dateTemp),
         });
     };
 
-    const dateString = dateJS !== null ? dateToSpanish(changeTimezone(dateJS.toISOString())) : "";
+    const dateString = dateJS !== null ? dateToSpanish(setDateToTimezoneConstantWithTime(new Date(dateJS))) : "";
 
     useEffect(() => {
         const getHighlightedDays = async (doctorId: string, specialityId: string) => {
@@ -78,7 +78,7 @@ const ReserveAppointmentCalendar = () => {
             />
             {error === "" && !loading && dateJS
                 && <p className="text-brand-600 font-semibold -mt-8 text-center" >{dateString}</p>}
-            {error && <p className="text-brand-600 font-semibold -mt-8 text-center" >{error}</p>}
+            {error && <p className="text-brand-600 font-semibold -mt-4 text-center" >{error}</p>}
             {loading && <LoadingHorizontal />}
         </div>
     );
