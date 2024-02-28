@@ -1,6 +1,9 @@
-import { DatePicker } from "@mui/x-date-pickers";
+"use client";
 import dayjs from "dayjs";
+import { DatePicker } from "@mui/x-date-pickers";
 import React from "react";
+
+
 
 type DateAvailabilityProps = {
     title: string;
