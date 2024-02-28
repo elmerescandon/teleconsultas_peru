@@ -54,11 +54,19 @@ export const dateValuesToDates = (dates: DateValue[]) => {
     })
 }
 
-export const formatDate = (date: Dayjs) => {
-    let month: number = date.month(); // getMonth() is zero-indexed, so we add 1
-    let day: number = date.date();
-    let year: number = date.year();
-    return { month, day, year };
+export const formatDate = (date: Dayjs | Date) => {
+    if (date instanceof Date) {
+        let month: number = date.getMonth(); // getMonth() is zero-indexed, so we add 1
+        let day: number = date.getDate();
+        let year: number = date.getFullYear();
+        return { month, day, year };
+    } else {
+        let month: number = date.month(); // getMonth() is zero-indexed, so we add 1
+        let day: number = date.date();
+        let year: number = date.year();
+        return { month, day, year };
+    }
+
 }
 
 export const formatDateWithTime = (date: Date) => {
@@ -71,13 +79,20 @@ export const formatDateWithTime = (date: Date) => {
 }
 
 
-export const setDateToTimezoneConstant = (date: Dayjs) => {
+export const setDateToTimezoneConstant = (date: Dayjs | Date) => {
     const { month, day, year } = formatDate(date) // Splitting and converting date components to numbers1
     const newDate = new Date(Date.UTC(year, month, day)); // Constructing a UTC date object
     const offset = newDate.getTimezoneOffset(); // Getting timezone offset in minutes
     const localTime = newDate.getTime() + (offset * 60 * 1000); // Converting UTC time to local time
-    const targetTime = localTime + (timeZoneConstantToOffset(date.toDate()) * 60 * 1000); // Converting to target timezone
-    return new Date(targetTime);
+
+    if (date instanceof Date) {
+        const targetTime = localTime + (timeZoneConstantToOffset(date) * 60 * 1000); // Converting to target timezone
+        return new Date(targetTime);
+    } else {
+        const targetTime = localTime + (timeZoneConstantToOffset(date.toDate()) * 60 * 1000); // Converting to target timezone
+        return new Date(targetTime);
+    }
+
 }
 
 const timeZoneConstantToOffset = (date: Date) => {
