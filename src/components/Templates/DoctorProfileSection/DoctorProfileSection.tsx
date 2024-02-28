@@ -7,9 +7,9 @@ import React from "react";
 const DoctorProfileSection = () => {
     return (
         <div
-            className="flex px-48 py-10 flex-wrap 
+            className="flex px-48 py-3 flex-wrap 
                         max-2xl:px-10 max-2xl:flex-col
-                        max-xl:py-40
+                        max-lg:py-20
                         max-md:px-5"
         >
             <ProfileMain />
