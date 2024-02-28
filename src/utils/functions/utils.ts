@@ -7,7 +7,7 @@ import { parse } from "date-fns";
 import ISelectOptions from "../Interfaces/ISelectOptions";
 import dayjs from "dayjs";
 import { Timestamp } from "firebase/firestore";
-import { changeTimezone } from "./utilsDate";
+import { changeTimezone, setDateToTimezoneConstant, setDateToTimezoneConstantWithTime } from "./utilsDate";
 import { DateValue } from "../alias/alias";
 
 // function from specialitiesMokcup to select options
@@ -139,8 +139,8 @@ export const createAvailabilitiesSlots = (date: string, startTime: string, endTi
     .minute(parseInt(endTime.split(":")[1]));
 
   for (let i = start; i.isBefore(end); i = i.add(30, "minute")) {
-    let startDate = changeTimezone(new Date(i.toDate()));
-    let endDate = changeTimezone(new Date(i.add(30, "minute").toDate()));
+    let startDate = setDateToTimezoneConstantWithTime(new Date(i.toDate()));
+    let endDate = setDateToTimezoneConstantWithTime(new Date(i.add(30, "minute").toDate()));
     dates.push({
       available: true,
       startDate,
