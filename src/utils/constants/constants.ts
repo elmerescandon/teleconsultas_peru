@@ -5,4 +5,5 @@ export const defaultOptions: ISelectOptions[] = [{
     label: "Selecciona al paciente"
 }]
 
-export const timeZoneConstant = 'America/Lima'
+export const timeZoneConstant = 'America/Lima';
+export const timezoneUTCOffset = -5;
