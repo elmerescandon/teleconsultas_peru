@@ -66,7 +66,7 @@ const ReserveAppointmentHours = () => {
                 {loading && <Loading size={5} />}
             </div>
             {error && <p className="italic">{error}</p>}
-            {!loading && (
+            {!loading && error === "" && (
                 <div className="flex flex-wrap gap-2 justify-start max-xl:justify-start max-md:justify-center">
                     {slots.length > 0 ? (
                         slots.map((slot) => slot)
