@@ -1,6 +1,7 @@
 import { Timestamp } from "firebase/firestore";
 import { DateValue } from "../alias/alias";
 import { timeZoneConstant } from "../constants/constants";
+import { Dayjs } from "dayjs";
 
 export const getHourMinutes = (date: DateValue) => {
     if (date instanceof Timestamp) {
@@ -19,15 +20,15 @@ export const getHourRange = (startDate: DateValue, endDate: DateValue) => {
     return `${getHourMinutes(startDate)} - ${getHourMinutes(endDate)}`;
 }
 
-
 export const changeTimezone = (date: Date | string) => {
     if (typeof date === 'string') {
         return new Date(
-            new Date(date).toLocaleString("en-US", { timeZone: timeZoneConstant })
+            // add dont count 12 hours
+            new Date(date).toLocaleString("en-US", { timeZone: timeZoneConstant, hour12: true })
         );
     } else {
         return new Date(
-            date.toLocaleString("en-US", { timeZone: timeZoneConstant })
+            date.toLocaleString("en-US", { timeZone: timeZoneConstant, hour12: true })
         );
     }
 }
@@ -36,15 +37,13 @@ export const getOnlyDateWithTimezone = (date: string | Date) => {
     return new Date(changeTimezone(date).setHours(0, 0, 0, 0));
 }
 
-// create a function that returns the date in spanish in this format "Miercole , 23 de agosto del 2023"
 export const dateToSpanish = (date: DateValue) => {
     const dateJS = date instanceof Timestamp ? date.toDate() : date;
-    const days = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+    const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
     const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
     return `${days[dateJS.getDay()]}, ${dateJS.getDate()} de ${months[dateJS.getMonth()]} del ${dateJS.getFullYear()}`;
 }
 
-// convert datevalue array to date with format "yyyy-mm-dd"
 export const dateValuesToDates = (dates: DateValue[]) => {
     return dates.map((date) => {
         if (date instanceof Timestamp) {
@@ -53,4 +52,45 @@ export const dateValuesToDates = (dates: DateValue[]) => {
             return date.toISOString().split("T")[0];
         }
     })
+}
+
+export const formatDate = (date: Dayjs) => {
+    let month: number = date.month(); // getMonth() is zero-indexed, so we add 1
+    let day: number = date.date();
+    let year: number = date.year();
+    return { month, day, year };
+}
+
+export const formatDateWithTime = (date: Date) => {
+    let month: number = date.getMonth(); // getMonth() is zero-indexed, so we add 1
+    let day: number = date.getDate();
+    let year: number = date.getFullYear();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    return { month, day, year, hours, minutes };
+}
+
+
+export const setDateToTimezoneConstant = (date: Dayjs) => {
+    const { month, day, year } = formatDate(date) // Splitting and converting date components to numbers1
+    const newDate = new Date(Date.UTC(year, month, day)); // Constructing a UTC date object
+    const offset = newDate.getTimezoneOffset(); // Getting timezone offset in minutes
+    const localTime = newDate.getTime() + (offset * 60 * 1000); // Converting UTC time to local time
+    const targetTime = localTime + (timeZoneConstantToOffset(date.toDate()) * 60 * 1000); // Converting to target timezone
+    return new Date(targetTime);
+}
+
+const timeZoneConstantToOffset = (date: Date) => {
+    const timeZoneOffset = date.toLocaleTimeString('en-us', { timeZone: timeZoneConstant, timeZoneName: 'short' }).split(' ')[0];
+    const [hours, minutes] = timeZoneOffset.split(':').map(Number);
+    return (hours * 60) + minutes;
+}
+
+
+export const setDateToTimezoneConstantWithTime = (date: Date) => {
+    const dateTimezone = changeTimezone(date);
+    // date > dateTimezone then date is in the future 
+    const difference = (date.valueOf() - dateTimezone.valueOf()) / 1000 / 60;
+    // add the difference to date 
+    return new Date(date.valueOf() + difference * 60 * 1000);
 }
