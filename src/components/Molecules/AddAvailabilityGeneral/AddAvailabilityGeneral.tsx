@@ -94,7 +94,6 @@ const AddAvailabilityGeneral = ({
                             endTime
                         );
                         const dateInput = setDateToTimezoneConstant(date as unknown as Dayjs);
-
                         await addAvailabilities(
                             dateInput,
                             specialityId,
