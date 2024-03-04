@@ -17,6 +17,14 @@ export async function GET() {
       cache: "no-cache",
     }
   );
-  const data = await res.json();
-  return NextResponse.json({data});
+
+  if (res.ok) {
+    const data = await res.json();
+    return NextResponse.json({data});
+  } else {
+    return NextResponse.json(
+      {error: "Failed to get the Zoom Token"},
+      {status: 500}
+    );
+  }
 }
