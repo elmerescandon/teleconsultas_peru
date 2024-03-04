@@ -24,7 +24,7 @@ export async function GET() {
   } else {
     return NextResponse.json(
       {error: "Failed to get the Zoom Token"},
-      {status: 500}
+      {status: 501, statusText: "Failed to get the Zoom Token"}
     );
   }
 }
