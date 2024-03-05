@@ -44,7 +44,7 @@ const useAppointmentURLParams = () => {
         dispatch({type: "SET_APPOINTMENT", payload: newAppointment});
         setAppointmentUpdated(true);
       } catch (error) {
-        setPageState({loading: false, error: "Error creating appointment"});
+        setPageState({loading: false, error: (error as Error).message});
       }
     };
 
@@ -65,7 +65,7 @@ const useAppointmentURLParams = () => {
         setAppointmentExisted(true);
         setPageState({loading: false, error: ""});
       } catch (error) {
-        setPageState({loading: false, error: "Error creating appointment"});
+        setPageState({loading: false, error: (error as Error).message});
       }
     };
 
@@ -82,7 +82,7 @@ const useAppointmentURLParams = () => {
         }
         setPageState({loading: false, error: ""});
       } catch (error) {
-        setPageState({loading: false, error: "Error creating appointment"});
+        setPageState({loading: false, error: (error as Error).message});
       }
     };
 
