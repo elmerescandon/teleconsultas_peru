@@ -24,14 +24,6 @@ const createZoomAppointment = async (
     const doctorData = await getDoctorName(appointment.doctorId);
     if (!doctorData) throw new Error("Failed to get doctor data");
 
-    console.log({
-      appointmentId: appointmentId,
-      startTime: dateString,
-      doctorName: doctorData.name,
-      doctorLastName: doctorData.lastName,
-      token: newToken,
-    });
-
     const rest = await fetch(
       `${process.env.NEXT_PUBLIC_MYPAGE_URL}${RoutesZoom.ZOOM_MEETING}`,
       {
