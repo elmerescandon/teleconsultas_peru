@@ -1,7 +1,5 @@
-import getAppointment from "@/firebase/Appointments/getAppointment";
-import {getDoctorName} from "@/firebase/Doctor/getDoctorName";
-import getTokenAuth from "@/lib/zoom/getTokenAuth";
 import {ICreateMeeting} from "@/utils/Interfaces/API/Zoom/ICreateMeeting";
+import IPostMeeting from "@/utils/Interfaces/API/Zoom/IPostMeeting";
 import {
   sessionDuration,
   sessionSettings,
@@ -10,32 +8,31 @@ import {
 } from "@/utils/constants/APIConstants";
 import {NextResponse} from "next/server";
 
-export async function GET(request: Request) {
-  const {searchParams} = new URL(request.url);
+export async function POST(request: Request) {
+  const postData: IPostMeeting = await request.json();
 
-  const appointmentId = searchParams.get("appId");
-  const startTime = searchParams.get("start_time");
+  const {token, appointmentId, startTime, doctorName, doctorLastName} =
+    postData;
 
-  if (!appointmentId || !startTime) return NextResponse.error();
+  if (
+    appointmentId === "" ||
+    startTime === "" ||
+    doctorName === "" ||
+    doctorLastName === ""
+  )
+    throw new Error("Missing parameters");
 
   const appointmentMatch = appointmentId.replace(/\D/g, "") as string;
 
   try {
-    const appointment = await getAppointment(appointmentId);
-    if (!appointment) throw new Error("Failed to get appointment data");
-
-    const doctorData = await getDoctorName(appointment.doctorId);
-    if (!doctorData) throw new Error("Failed to get doctor data");
-
-    const zoomToken = await getTokenAuth();
     const res = await fetch(`${zoomMeetingURL}`, {
       headers: {
-        Authorization: "Bearer " + zoomToken,
+        Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify({
-        topic: `Salufy Salud: ${doctorData.name} ${doctorData.lastName} -  Cita ${appointmentMatch}`,
+        topic: `Salufy Salud: ${doctorName} ${doctorLastName} -  Cita ${appointmentMatch}`,
         type: 2,
         start_time: startTime.replace(".000", ""),
         duration: sessionDuration,
@@ -44,7 +41,6 @@ export async function GET(request: Request) {
       }),
     });
 
-    console.log(res);
     if (!res.ok) throw new Error("Failed to get data from Zoom API");
 
     const data: ICreateMeeting = await res.json();
