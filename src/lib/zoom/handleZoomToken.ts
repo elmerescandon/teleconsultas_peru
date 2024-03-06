@@ -3,6 +3,7 @@ import IZoomToken from "@/utils/Interfaces/API/Zoom/IZoomToken";
 import getTokenAuth from "./getTokenAuth";
 import addZoomToken from "@/firebase/Zoom/addZoomToken";
 import {Timestamp} from "firebase/firestore";
+import updateZoomToken from "@/firebase/Zoom/updateZoomToken";
 
 export const handleZoomToken = async () => {
   try {
@@ -16,7 +17,7 @@ export const handleZoomToken = async () => {
       // compare if zoom time is less than 1 hour considering zoomTime as Timestamp from firebase
       if (Date.now() - zoomTime.toMillis() > 3600000) {
         newToken = await getTokenAuth();
-        await addZoomToken(newToken);
+        await updateZoomToken(newToken);
       } else {
         newToken = zoomToken.token;
       }
