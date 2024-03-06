@@ -24,6 +24,7 @@ export async function POST(request: Request) {
 
   const appointmentMatch = appointmentId.replace(/\D/g, "") as string;
 
+  console.log(zoomMeetingURL);
   try {
     const res = await fetch(`${zoomMeetingURL}`, {
       headers: {
@@ -41,6 +42,7 @@ export async function POST(request: Request) {
       }),
     });
 
+    console.log(res);
     if (!res.ok) throw new Error("Failed to get data from Zoom API");
 
     const data: ICreateMeeting = await res.json();
