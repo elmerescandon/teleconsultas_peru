@@ -1,3 +1,4 @@
+import {handleZoomToken} from "@/lib/zoom/handleZoomToken";
 import {ICreateMeeting} from "@/utils/Interfaces/API/Zoom/ICreateMeeting";
 import IPostMeeting from "@/utils/Interfaces/API/Zoom/IPostMeeting";
 import {
@@ -11,8 +12,7 @@ import {NextResponse} from "next/server";
 export async function POST(request: Request) {
   const postData: IPostMeeting = await request.json();
 
-  const {token, appointmentId, startTime, doctorName, doctorLastName} =
-    postData;
+  const {appointmentId, startTime, doctorName, doctorLastName} = postData;
 
   if (
     appointmentId === "" ||
@@ -23,12 +23,13 @@ export async function POST(request: Request) {
     throw new Error("Missing parameters");
 
   const appointmentMatch = appointmentId.replace(/\D/g, "") as string;
+  const newToken = await handleZoomToken();
 
   console.log(zoomMeetingURL);
   try {
     const res = await fetch(`${zoomMeetingURL}`, {
       headers: {
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + newToken,
         "Content-Type": "application/json",
       },
       method: "POST",
