@@ -5,7 +5,7 @@ import IZoomToken from "@/utils/Interfaces/API/Zoom/IZoomToken";
 export const getZoomToken = async () => {
   try {
     const q = query(
-      collection(dbFirestore, "token"),
+      collection(dbFirestore, "tokens"),
       and(where("id", "==", "zoom"))
     );
     const snapShot = await getDocs(q);
