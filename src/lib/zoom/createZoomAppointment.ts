@@ -4,7 +4,6 @@ import {ICreateMeeting} from "@/utils/Interfaces/API/Zoom/ICreateMeeting";
 import {DateValue} from "@/utils/alias/alias";
 import RoutesZoom from "@/utils/routes/RoutesZoom";
 import {Timestamp} from "firebase/firestore";
-import getTokenAuth from "./getTokenAuth";
 
 interface IResponse {
   data: ICreateMeeting;
@@ -15,8 +14,6 @@ const createZoomAppointment = async (
   startTime: DateValue
 ) => {
   try {
-    const newToken = await getTokenAuth();
-
     const dateString = (startTime as Timestamp).toDate().toISOString();
     const appointment = await getAppointment(appointmentId);
     if (!appointment) throw new Error("Failed to get appointment data");
@@ -36,7 +33,6 @@ const createZoomAppointment = async (
           startTime: dateString,
           doctorName: doctorData.name,
           doctorLastName: doctorData.lastName,
-          token: newToken,
         }),
       }
     );
