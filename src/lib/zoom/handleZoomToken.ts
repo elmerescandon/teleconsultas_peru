@@ -14,6 +14,7 @@ export const handleZoomToken = async () => {
       await addZoomToken(newToken);
     } else {
       const zoomTime = zoomToken.date as Timestamp;
+      console.log(Date.now() - zoomTime.toMillis());
       // compare if zoom time is less than 1 hour considering zoomTime as Timestamp from firebase
       if (Date.now() - zoomTime.toMillis() > 3600000) {
         newToken = await getTokenAuth();

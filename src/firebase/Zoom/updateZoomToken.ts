@@ -22,6 +22,7 @@ const updateZoomToken = async (token: string) => {
     const tokenDoc = snapShot.docs[0];
     await updateDoc(doc(dbFirestore, "tokens", tokenDoc.id), {
       token: token,
+      date: new Date(),
     });
   } catch {
     throw new Error("Error actualizando al usuario");
