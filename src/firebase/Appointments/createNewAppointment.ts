@@ -1,8 +1,6 @@
 import {collection, addDoc} from "firebase/firestore";
 import dbFirestore from "../config";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import createZoomAppointment from "@/lib/zoom/createZoomAppointment";
-import updateAppointmentField from "./updateAppointmentField";
 import setAvailabilityToSlot from "../Availability/setAvailabilitySlotsState";
 
 const createNewAppointment = async (appointment: IAppointment) => {
@@ -21,12 +19,12 @@ const createNewAppointment = async (appointment: IAppointment) => {
       startDate,
       endDate
     );
-    const joinURL = await createZoomAppointment(_id, startDate);
-    if (joinURL === null || joinURL === undefined)
-      throw new Error(
-        "No se generó la cita en Zoom, inténtelo nuevamente luego"
-      );
-    updateAppointmentField(_id, "joinURL", joinURL);
+    // const joinURL = await createZoomAppointment(_id, startDate);
+    // if (joinURL === null || joinURL === undefined)
+    //   throw new Error(
+    //     "No se generó la cita en Zoom, inténtelo nuevamente luego"
+    //   );
+    // updateAppointmentField(_id, "joinURL", joinURL);
   } catch (e) {
     throw e;
   }
