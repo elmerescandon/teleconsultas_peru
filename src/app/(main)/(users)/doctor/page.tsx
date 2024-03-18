@@ -2,11 +2,11 @@ import DoctorHome from "@/components/Templates/DoctorHome/DoctorHome";
 import React from "react";
 
 const Doctor = () => {
-    return (
-        <div className="flex flex-col max-xl:h-full">
-            <DoctorHome />
-        </div>
-    );
+  return (
+    <div className="flex flex-col h-full max-xl:h-full">
+      <DoctorHome />
+    </div>
+  );
 };
 
 export default Doctor;
