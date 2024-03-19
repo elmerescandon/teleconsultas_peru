@@ -4,15 +4,15 @@ import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import {DateValue} from "@/utils/alias/alias";
 import {getHourRange} from "@/utils/functions/utilsDate";
 import {XCircleIcon} from "@heroicons/react/24/solid";
-import React, {useState} from "react";
 
 type SlotAppointmentVisibleProps = {
   availableAppointment: IAvailableAppointment;
   doctorId: string;
   specialityId: string;
   date: DateValue;
-  onEliminate: boolean;
   setErased: (erased: boolean) => void;
+  setLoading: (loading: boolean) => void;
+  setError: (error: string) => void;
 };
 
 const SlotAppointmentVisible = ({
@@ -20,38 +20,39 @@ const SlotAppointmentVisible = ({
   doctorId,
   specialityId,
   date,
-  onEliminate,
   setErased,
+  setLoading,
+  setError,
 }: SlotAppointmentVisibleProps) => {
-  const [loading, setLoading] = useState<boolean>(false);
   const {startDate, endDate, available} = availableAppointment;
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     try {
       setLoading(true);
-      eliminateAvailability(date, specialityId, doctorId, startDate, endDate);
-      setLoading(false);
+      await eliminateAvailability(
+        date,
+        specialityId,
+        doctorId,
+        startDate,
+        endDate
+      );
       setErased(true);
-      console.log("Hola Raul");
     } catch (error) {
-      console.log(error);
+      setError("No se pudo borrar la disponibilidad");
     }
   };
 
   return (
     <div className="relative">
-      {onEliminate && (
-        <button className="absolute left-[90%] -top-2" onClick={handleDelete}>
-          <XCircleIcon
-            className="w-6 h-6 rounded-full bg-brand-900 text-basic-white
+      <button className="absolute left-[90%] -top-2" onClick={handleDelete}>
+        <XCircleIcon
+          className="w-6 h-6 rounded-full bg-brand-900 text-basic-white
                                         hover:bg-brand-800 hover:text-brand-100
                                         active:bg-brand-50 active:text-brand-800
                 "
-          />
-        </button>
-      )}
-      <button
-        disabled={!available}
+        />
+      </button>
+      <div
         className={`
                 px-3 py-2 rounded-md text-center text-xs font-semibold
                 ${
@@ -63,8 +64,7 @@ const SlotAppointmentVisible = ({
         onClick={() => {}}
       >
         {getHourRange(startDate, endDate)}
-      </button>
-      {loading && <LoadingHorizontal />}
+      </div>
     </div>
   );
 };
