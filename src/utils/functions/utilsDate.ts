@@ -109,7 +109,7 @@ export const setDateToTimezoneConstant = (date: Dayjs | Date) => {
   return new Date(correctedDate.getTime() + timezoneOffset);
 };
 
-export const setDateToTimezoneConstantWithTime = (date: Date) => {
+export const setDateToTimezoneConstantWithTime = (date: Date): Date => {
   const dateTimezone = changeTimezone(date);
   const difference = (date.valueOf() - dateTimezone.valueOf()) / 1000 / 60;
   return new Date(date.valueOf() + difference * 60 * 1000);
@@ -120,4 +120,38 @@ const parseDateStringToDate = (dateString: string): Date => {
   const [month, day, year] = datePart.split("/").map(Number);
   const [hours, minutes, seconds] = timePart.split(":").map(Number);
   return new Date(year, month - 1, day, hours, minutes, seconds);
+};
+
+export const getDaysFromRange = (startDate: Date, finishDate: Date) => {
+  const days = [];
+  for (let day = startDate; day <= finishDate; day.setDate(day.getDate() + 1)) {
+    days.push(new Date(day));
+  }
+  return days;
+};
+
+export const getDaysFromRangeWithTimezone = (
+  startDate: string,
+  finishDate: string
+) => {
+  const correctedStartTime = setDateToTimezoneConstant(new Date(startDate));
+  const correctedEndTime = setDateToTimezoneConstant(new Date(finishDate));
+  return getDaysFromRange(correctedStartTime, correctedEndTime);
+};
+
+export const timestampToDateArray = (dates: Timestamp[]) => {
+  return dates.map((date) => date.toDate());
+};
+
+export const getNowDay = () => {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  return now.toISOString();
+};
+
+export const getNowDayPlusDays = (days: number) => {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+  now.setDate(now.getDate() + days);
+  return now.toISOString();
 };
