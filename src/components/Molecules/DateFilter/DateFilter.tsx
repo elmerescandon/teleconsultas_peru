@@ -1,5 +1,6 @@
 "use client";
 import {DatePicker} from "@mui/x-date-pickers";
+import dayjs, {Dayjs} from "dayjs";
 import {useState} from "react";
 
 type DateFilterProps = {
@@ -8,8 +9,9 @@ type DateFilterProps = {
 };
 
 const DateFilter = ({date, setDate}: DateFilterProps) => {
-  const [init, setInit] = useState<string | null>(null);
-  const [finish, setFinish] = useState<string | null>(null);
+  const [init, setInit] = useState<Dayjs | null>(dayjs(date.init));
+  const [finish, setFinish] = useState<Dayjs | null>(dayjs(date.finish));
+
   return (
     <div className="flex gap-5 justify-start max-xl:flex-col">
       <DatePicker
@@ -33,6 +35,7 @@ const DateFilter = ({date, setDate}: DateFilterProps) => {
             setFinish(newDate);
           }
         }}
+        defaultValue={dayjs("2022-04-17")}
       />
     </div>
   );
