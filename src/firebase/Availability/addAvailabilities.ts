@@ -12,7 +12,6 @@ import {
 import dbFirestore from "../config";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import IAvailabilitySlots from "@/utils/Interfaces/dataModel/IAvailabilitySlots";
-import {timestampToDateArray} from "@/utils/functions/utilsDate";
 
 const addAvailabilities = async (
   date: Date,
