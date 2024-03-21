@@ -56,7 +56,7 @@ const DoctorAvailableDays = ({
   }, [doctorId, specialityId, startDate, finishDate]);
 
   return (
-    <div className="flex flex-col justify-start h-full gap-10">
+    <div className="flex flex-col justify-start gap-10">
       {!loading &&
         error === "" &&
         dates.map((date, index) => (
