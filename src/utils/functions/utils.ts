@@ -212,49 +212,100 @@ export const dateToSpanishISO = (dateString: string) => {
   return date.toLocaleDateString("es-ES", options);
 };
 
+const addDays = (date: Date, days: number): Date => {
+  const result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+};
+
+const addWeeks = (date: Date, weeks: number): Date => {
+  return addDays(date, weeks * 7);
+};
+
+const addMonths = (date: Date, months: number): Date => {
+  const result = new Date(date);
+  result.setMonth(result.getMonth() + months);
+  return result;
+};
+
+const isWeekday = (date: Date): boolean => {
+  const day = date.getDay();
+  return day > 0 && day < 6;
+};
+
 export const getWeekdaysDatesBetween = (
   date: string,
   endDate: string,
   interval: "daily" | "weekly" | "monthly"
 ): Date[] => {
   const dates = [];
-  const current = new Date(date);
+  let current = new Date(date);
   const lastDate = new Date(endDate);
 
-  let increment;
-  switch (interval) {
-    case "daily":
-      increment = 1;
-      break;
-    case "weekly":
-      increment = 7;
-      break;
-    case "monthly":
-      increment = 30; // Approximation for a month
-      break;
-    default:
-      throw new Error(
-        'Invalid interval. Supported intervals are "daily", "weekly", and "monthly".'
-      );
-  }
+  while (current <= lastDate) {
+    if (isWeekday(current)) {
+      dates.push(new Date(current));
+    }
 
-  // Generate an array of dates between date and endDate with the specified interval
-  for (
-    let i = current.getTime();
-    i <= lastDate.getTime();
-    i += increment * 24 * 60 * 60 * 1000
-  ) {
-    const currentDate = new Date(i);
-    if (
-      interval === "daily" ||
-      (currentDate.getDay() > 0 && currentDate.getDay() < 6)
-    ) {
-      dates.push(currentDate);
+    switch (interval) {
+      case "daily":
+        current = addDays(current, 1);
+        break;
+      case "weekly":
+        current = addWeeks(current, 1);
+        break;
+      case "monthly":
+        current = addMonths(current, 1);
+        break;
     }
   }
 
   return dates;
 };
+
+// export const getWeekdaysDatesBetween = (
+//   date: string,
+//   endDate: string,
+//   interval: "daily" | "weekly" | "monthly"
+// ): Date[] => {
+//   const dates = [];
+//   const current = new Date(date);
+//   const lastDate = new Date(endDate);
+
+//   let increment;
+//   switch (interval) {
+//     case "daily":
+//       increment = 1;
+//       break;
+//     case "weekly":
+//       increment = 7;
+//       break;
+//     case "monthly":
+//       increment = 30; // Approximation for a month
+//       break;
+//     default:
+//       throw new Error(
+//         'Invalid interval. Supported intervals are "daily", "weekly", and "monthly".'
+//       );
+//   }
+
+//   // Generate an array of dates between date and endDate with the specified interval
+//   for (
+//     let i = current.getTime();
+//     i <= lastDate.getTime();
+//     i += increment * 24 * 60 * 60 * 1000
+//   ) {
+//     const currentDate = new Date(i);
+//     if (
+//       interval === "daily" ||
+//       (currentDate.getDay() > 0 && currentDate.getDay() < 6)
+//     ) {
+//       dates.push(currentDate);
+//     }
+//   }
+
+//   return dates;
+// };
 
 export const formatDate = (date: Date): string => {
   const year = date.getFullYear();
