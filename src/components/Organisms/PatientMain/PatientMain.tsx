@@ -23,7 +23,7 @@ const PatientMain = () => {
         setAppointmentCount(0);
       }
     };
-    getCount(_id, role, ["pending", "accepted"]);
+    getCount(_id, role, ["pending", "scheduled"]);
   }, [role, _id]);
   return (
     <div className="flex justify-between w-full items-center rounded-3xl border-neutral-300 border-2 py-10 px-24 max-xl:px-5 max-xl:flex-col max-xl:gap-5">
