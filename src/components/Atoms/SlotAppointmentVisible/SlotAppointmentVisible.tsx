@@ -44,14 +44,17 @@ const SlotAppointmentVisible = ({
 
   return (
     <div className="relative">
-      <button className="absolute left-[90%] -top-2" onClick={handleDelete}>
-        <XCircleIcon
-          className="w-6 h-6 rounded-full bg-brand-900 text-basic-white
-                                        hover:bg-brand-800 hover:text-brand-100
-                                        active:bg-brand-50 active:text-brand-800
-                "
-        />
-      </button>
+      {available && (
+        <button className="absolute left-[90%] -top-2" onClick={handleDelete}>
+          <XCircleIcon
+            className="w-6 h-6 rounded-full bg-brand-900 text-basic-white
+                                      hover:bg-brand-800 hover:text-brand-100
+                                      active:bg-brand-50 active:text-brand-800
+              "
+          />
+        </button>
+      )}
+
       <div
         className={`
                 px-3 py-2 rounded-md text-center text-xs font-semibold
