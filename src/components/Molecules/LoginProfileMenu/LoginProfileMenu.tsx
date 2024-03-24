@@ -52,7 +52,7 @@ const LoginProfileMenu = () => {
         <ProfileArrowIcon showMenu={showMenu} />
       </button>
       {showMenu && (
-        <div className="absolute w-full">
+        <div className="absolute w-full z-10">
           <ButtonProfileBar
             onClick={handleProfileClick}
             text="Mi Perfil"
