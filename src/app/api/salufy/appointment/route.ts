@@ -6,7 +6,8 @@ import {NextResponse} from "next/server";
 export async function POST(request: Request) {
   try {
     const {appointment} = (await request.json()) as {appointment: IAppointment};
-    createAppointment(appointment);
+    const appointmentId = createAppointment(appointment);
+    return new NextResponse(JSON.stringify({appointmentId}), {status: 200});
   } catch (error) {
     return new NextResponse((error as Error).message, {status: 406});
   }
