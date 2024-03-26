@@ -26,7 +26,7 @@ const ReserveAppointmentSection = () => {
   const appointmentSearch = params.get("appId");
 
   const userState: IUserState = useAppSelector((state) => state.user);
-  const {logged} = userState;
+  const {logged, userInfo} = userState;
   const router = useRouter();
 
   const [popUps, setPopUps] = useState<IPopUpReserve>({
@@ -53,7 +53,6 @@ const ReserveAppointmentSection = () => {
         return;
       }
 
-      // Pre-reserve the appointment
       setConfirm(true);
       const res = await fetch("/api/salufy/appointment", {
         method: "POST",
@@ -61,7 +60,11 @@ const ReserveAppointmentSection = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          appointment: {...appointment, status: "pre-reserved"},
+          appointment: {
+            ...appointment,
+            patientId: userInfo._id,
+            status: "pre-reserved",
+          },
         }),
       });
       const resData = await res.json();
