@@ -21,7 +21,7 @@ class SalufyService {
     type: "pre-reserved" | "scheduled" | "pending" = "pre-reserved"
   ): Promise<string> => {
     try {
-      const res = await fetch("/api/salufy/appointment", {
+      const res = await fetch(`${this.URL}/appointment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +43,7 @@ class SalufyService {
       const {appointmentId} = resData;
       return appointmentId as string;
     } catch (error) {
-      throw Error;
+      throw error as Error;
     }
   };
 
@@ -52,7 +52,7 @@ class SalufyService {
     type: "scheduled" | "pending"
   ) => {
     try {
-      const response = await fetch(this.URL + "/appointment", {
+      const response = await fetch(`${this.URL}/appointment`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -67,6 +67,47 @@ class SalufyService {
       return response.json();
     } catch (error) {
       throw Error;
+    }
+  };
+
+  updateAppointmentDoctorCanceled = async (
+    id: string,
+    appointment: IAppointment
+  ) => {
+    try {
+      const response = await fetch(`${this.URL}/appointment`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          appointmentFields: {
+            status: "pending",
+            doctorId: appointment.doctorId,
+            date: appointment.date,
+            startDate: appointment.startDate,
+            endDate: appointment.endDate,
+          },
+        }),
+      });
+      return response.json();
+    } catch (error) {
+      throw Error;
+    }
+  };
+
+  getAppointment = async (id: string): Promise<IAppointment> => {
+    try {
+      const res = await fetch(`${this.URL}/appointment/${id}`);
+      if (!res.ok) {
+        throw new Error("Failed to fetch appointment");
+      }
+
+      const resData = await res.json();
+      return resData as IAppointment;
+    } catch (error) {
+      throw error as Error;
     }
   };
 }
