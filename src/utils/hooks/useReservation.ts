@@ -1,31 +1,76 @@
-import {useAppointment} from "../context/AppointmentContext/AppointmentContext";
+import {useEffect, useState} from "react";
+import {useAppointmentDispatch} from "../context/AppointmentContext/AppointmentContext";
+import {useSearchParams} from "next/navigation";
+import SalufyService from "@/services/Salufy/Salufy.services";
 import usePageState from "./usePageState";
+import IAppointment from "../Interfaces/reducers/IAppointment";
 
 const useReservation = () => {
-  const {pageState, setLoading, setError, setSuccess, errorMessage} =
+  const {pageState, setSuccess, setError, setLoading, errorMessage} =
     usePageState();
-  const appointment = useAppointment();
+  const params = useSearchParams();
+  const appId = params.get("appId");
+  const dispatch = useAppointmentDispatch();
+  const [reschedule, setReschedule] = useState<boolean>(false);
 
-  const handleUpload = async (type: "scheduled" | "pending") => {
-    try {
-      setLoading();
-      await fetch("/api/salufy/appointment", {
-        method: "PUT",
-        body: JSON.stringify({
-          id: appointment._id,
-          appointmentFields: {status: type},
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      setSuccess();
-    } catch (error) {
-      setError(error as Error);
-    }
+  const resetAppointment = (appointment: IAppointment) => {
+    dispatch({
+      type: "SET_APPOINTMENT",
+      payload: appointment,
+    });
+    dispatch({
+      type: "SET_DOCTOR",
+      payload: "",
+    });
+    dispatch({
+      type: "SET_STATUS",
+      payload: "pending",
+    });
+    dispatch({
+      type: "SET_TIME",
+      payload: {
+        startDate: null,
+        endDate: null,
+      },
+    });
   };
 
-  return {appointment, pageState, errorMessage, handleUpload};
+  useEffect(() => {
+    const getAppointmentData = async (id: string) => {
+      try {
+        setLoading();
+        const appointment = await SalufyService.getInstance().getAppointment(
+          id
+        );
+
+        if (appointment.status !== "doctor-canceled")
+          throw new Error("No es posible editar esta cita.");
+
+        setReschedule(true);
+        resetAppointment(appointment);
+        setSuccess();
+      } catch (error) {
+        setError(error as Error);
+      }
+    };
+
+    if (appId !== null && appId !== "") {
+      getAppointmentData(appId);
+    } else {
+      setSuccess();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appId]);
+
+  return {
+    reschedule,
+    pageState,
+    errorMessage,
+    setSuccess,
+    setError,
+    setLoading,
+    resetAppointment,
+  };
 };
 
 export default useReservation;
