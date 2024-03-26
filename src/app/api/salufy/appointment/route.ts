@@ -20,7 +20,8 @@ export async function PUT(request: Request) {
       appointmentFields: Partial<IAppointment>;
     };
 
-    updateAppointment(id, appointmentFields);
+    await updateAppointment(id, appointmentFields);
+    return new NextResponse("Appointment updated", {status: 200});
   } catch (error) {
     return new NextResponse((error as Error).message, {status: 406});
   }
