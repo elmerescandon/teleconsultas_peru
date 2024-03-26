@@ -16,7 +16,7 @@ const createAppointment = async (appointment: IAppointment) => {
     });
 
     // Update according to new ID
-    await updateDoc(docRef, {_id: `appointment${docRef.id}`});
+    await updateDoc(docRef, {_id: `app_${docRef.id}`});
 
     return docRef.id;
   } catch (e) {
