@@ -21,6 +21,7 @@ import {useRouter, useSearchParams} from "next/navigation";
 import React, {useEffect, useState} from "react";
 
 const ReserveAppointmentSection = () => {
+  // TODO: Refactor this component to smaller parts
   const params = useSearchParams();
   const appointmentSearch = params.get("appId");
 
@@ -38,7 +39,7 @@ const ReserveAppointmentSection = () => {
 
   const [confirm, setConfirm] = useState<boolean>(false);
 
-  const onClickReserve = (appointment: IAppointment) => {
+  const onClickReserve = async (appointment: IAppointment) => {
     if (validateReservation(appointment)) {
       if (!logged) {
         setPopUps({...popUps, unloggedUser: true});
@@ -46,11 +47,29 @@ const ReserveAppointmentSection = () => {
       }
 
       if (appointment.status === "doctor-canceled") {
-        updateAppointmentCanceled(appointment);
+        await updateAppointmentCanceled(appointment);
         setConfirm(true);
         router.push(Routes.PATIENT_HOME);
         return;
       }
+
+      // Pre-reserve the appointment
+      setConfirm(true);
+      const res = await fetch("/api/salufy/appointment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          appointment: {...appointment, status: "pre-reserved"},
+        }),
+      });
+      const resData = await res.json();
+      const {appointmentId} = resData;
+      dispatch({
+        type: "SET_APPOINTMENT",
+        payload: {...appointment, _id: appointmentId},
+      });
       router.push(Routes.RESERVE_PAYMENT);
     } else {
       setPopUps({...popUps, uncompletedFields: true});
@@ -90,7 +109,7 @@ const ReserveAppointmentSection = () => {
     if (appointmentSearch !== null && appointmentSearch !== "") {
       getAppointmentData(appointmentSearch);
     }
-  }, [appointmentSearch, router, dispatch]);
+  }, [appointmentSearch]);
 
   return (
     <div
