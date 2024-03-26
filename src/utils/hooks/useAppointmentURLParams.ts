@@ -13,7 +13,6 @@ import IUserState from "@/redux/state-interfaces/User/IUserState";
 import createNewAppointment from "@/firebase/Appointments/createNewAppointment";
 import updateAppointmentField from "@/firebase/Appointments/updateAppointmentField";
 import checkAppointment from "@/firebase/Appointments/checkAppointment";
-import {ca} from "date-fns/locale";
 
 const useAppointmentURLParams = () => {
   const params = useSearchParams();
@@ -76,7 +75,6 @@ const useAppointmentURLParams = () => {
           validateAppointment(appointment) &&
           !(await checkAppointment(appointment._id))
         ) {
-          await createNewAppointment(appointment);
         } else {
           await updateAppointmentField(appointment._id, "status", "pending");
         }
