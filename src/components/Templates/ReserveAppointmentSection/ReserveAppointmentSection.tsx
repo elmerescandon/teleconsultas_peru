@@ -39,7 +39,7 @@ const ReserveAppointmentSection = () => {
       setLoading();
       if (!validateReservation(appointment)) setPopUps(2);
       if (!logged) setPopUps(1);
-      if (popUps !== 0) return;
+      if (!logged || !validateReservation(appointment)) return;
 
       if (reschedule) {
         await Salufy.updateAppointmentDoctorCanceled(
