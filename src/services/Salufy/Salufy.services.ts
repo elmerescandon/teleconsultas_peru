@@ -17,19 +17,31 @@ class SalufyService {
 
   createAppointment = async (
     appointment: IAppointment,
-    type: "pre-reserved" | "scheduled" | "pending"
+    id: string,
+    type: "pre-reserved" | "scheduled" | "pending" = "pre-reserved"
   ): Promise<string> => {
     try {
-      appointment.status = type;
-
-      const response = await fetch(this.URL + "/appointment", {
+      const res = await fetch("/api/salufy/appointment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(appointment),
+        body: JSON.stringify({
+          appointment: {
+            ...appointment,
+            patientId: id,
+            status: type,
+          },
+        }),
       });
-      return response.json();
+
+      if (!res.ok) {
+        throw new Error("Failed to create appointment");
+      }
+
+      const resData = await res.json();
+      const {appointmentId} = resData;
+      return appointmentId as string;
     } catch (error) {
       throw Error;
     }
