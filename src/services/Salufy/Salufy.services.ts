@@ -99,13 +99,13 @@ class SalufyService {
 
   getAppointment = async (id: string): Promise<IAppointment> => {
     try {
+      console.log(`${this.URL}/appointment/${id}`);
       const res = await fetch(`${this.URL}/appointment/${id}`);
       if (!res.ok) {
         throw new Error("Failed to fetch appointment");
       }
-
-      const resData = await res.json();
-      return resData as IAppointment;
+      const {appointment} = await res.json();
+      return appointment as IAppointment;
     } catch (error) {
       throw error as Error;
     }
