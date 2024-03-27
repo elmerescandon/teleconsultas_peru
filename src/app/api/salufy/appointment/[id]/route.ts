@@ -1,10 +1,9 @@
 import getAppointment from "@/firebase/Appointments/getAppointment";
-import {NextApiRequest, NextApiResponse} from "next";
 import {NextResponse} from "next/server";
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: Request, {params}: {params: {id: string}}) {
   try {
-    const {id} = req.query;
+    const {id} = params;
     if (!id || id === "") {
       throw new Error("No id provided");
     }
