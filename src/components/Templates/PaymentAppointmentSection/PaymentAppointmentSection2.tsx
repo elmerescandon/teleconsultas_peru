@@ -3,12 +3,12 @@ import PaymentLater from "@/components/Molecules/PaymentLater/PaymentLater";
 import MercadoPagoPayment from "@/components/Organisms/MercadoPagoPayment/MercadoPagoPayment";
 import PaymentReview from "@/components/Organisms/PaymentReview/PaymentReview";
 import {isDateOlderThan24HoursFromNow} from "@/utils/functions/utils";
-import useReservation from "@/utils/hooks/useReservation";
+import usePayment from "@/utils/hooks/usePayment";
 import Routes from "@/utils/routes/Routes";
 import {useRouter} from "next/navigation";
 
 const PaymentAppointmentSection2 = () => {
-  const {appointment, pageState, handleUpload} = useReservation();
+  const {appointment, pageState, handleUpload} = usePayment();
   const {date} = appointment;
   const router = useRouter();
 
@@ -22,20 +22,22 @@ const PaymentAppointmentSection2 = () => {
           <LinkPrimary to={Routes.RESERVE}>Atrás</LinkPrimary>
         </div>
 
-        <div className="flex flex-col justify-center pt-5 gap-2 w-full">
-          <PaymentReview appointment={appointment} />
-          <div className="flex-col items-center justify-center">
-            {<MercadoPagoPayment appointment={appointment} />}
-            {date && isDateOlderThan24HoursFromNow(date) && (
-              <PaymentLater
-                payLater={async () => {
-                  await handleUpload("pending");
-                  router.push(Routes.PATIENT_HOME);
-                }}
-              />
-            )}
+        {pageState === "success" && (
+          <div className="flex flex-col justify-center pt-5 gap-2 w-full">
+            <PaymentReview appointment={appointment} />
+            <div className="flex-col items-center justify-center">
+              {<MercadoPagoPayment appointment={appointment} />}
+              {date && isDateOlderThan24HoursFromNow(date) && (
+                <PaymentLater
+                  payLater={async () => {
+                    await handleUpload("pending");
+                    router.push(Routes.PATIENT_HOME);
+                  }}
+                />
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
