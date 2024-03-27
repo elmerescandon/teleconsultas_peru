@@ -45,6 +45,7 @@ const MercadoPagoPayment = ({appointment}: MercadoPagoPaymentProps) => {
       {(loading || _id === "") && <Loading />}
       {_id !== "" && (
         <Wallet
+          initialization={{redirectMode: "self"}}
           locale="es-PE"
           onSubmit={onSumbit}
           customization={customization}
