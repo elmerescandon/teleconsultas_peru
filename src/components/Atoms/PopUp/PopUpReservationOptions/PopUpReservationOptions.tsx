@@ -16,14 +16,14 @@ const PopUpReservationOptions = ({
         <PopUpReservation
           title="¡Lo sentimos!"
           message="Debes completar todos los campos para poder agendar una cita"
-          onClose={() => setPopUps(2)}
+          onClose={() => setPopUps(0)}
         />
       )}
       {popUps === 1 && (
         <PopUpReservation
           title="¡Ya falta poco!"
           message="Inicia sesión o regístrate para agendar una cita"
-          onClose={() => setPopUps(1)}
+          onClose={() => setPopUps(0)}
         />
       )}
     </div>
