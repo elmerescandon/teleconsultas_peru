@@ -47,6 +47,7 @@ const SucessAppointmentSection = () => {
         return;
       }
       console.log(newAppointment);
+      setAppoinment(newAppointment);
       await fetch("/api/salufy/appointment", {
         method: "PUT",
         body: JSON.stringify({
@@ -59,7 +60,7 @@ const SucessAppointmentSection = () => {
       });
     };
     getAppointmentInfo(paymentReference, paymentStatus, paymentId);
-  }, [appoinment, paymentReference]);
+  }, [paymentReference]);
 
   useEffect(() => {
     const getInfoFromDb = async (doctorId: string, specialityId: string) => {
