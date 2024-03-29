@@ -25,6 +25,7 @@ const DaySlotAppointmentsV2 = ({
   useEffect(() => {
     const getAvailableSlots = async () => {
       try {
+        console.log("Fecha", date);
         setLoading(true);
         const availableSlots = await getAvailableDates(
           date,
