@@ -106,8 +106,7 @@ export const setDateToTimezoneConstant = (date: Dayjs | Date) => {
   });
   const dateInlocalTime = parseDateStringToDate(localTimeToString);
 
-  const timezoneOffset =
-    correctedDate.getTime() - dateInlocalTime.getTime() + 60 * 60 * 1000;
+  const timezoneOffset = correctedDate.getTime() - dateInlocalTime.getTime();
   return new Date(correctedDate.getTime() + timezoneOffset);
 };
 
