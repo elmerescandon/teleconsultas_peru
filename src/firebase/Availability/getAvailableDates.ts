@@ -1,4 +1,11 @@
-import {and, collection, getDocs, query, where} from "firebase/firestore";
+import {
+  Timestamp,
+  and,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import dbFirestore from "../config";
 import IAvailableAppointment from "@/utils/Interfaces/IAvailableAppointment";
 import {DateValue} from "@/utils/alias/alias";
@@ -22,11 +29,23 @@ export const getAvailableDates = async (
 
   const docDate = snapShot.docs[0];
   const dateCollection = collection(docDate.ref, "availability_slots");
-  const dateQuery = query(dateCollection, where("date", "==", date));
+  const startDate = new Date(date as Date);
+  const endDate = new Date(startDate);
+  endDate.setDate(endDate.getDate() + 1);
+
+  const dateQuery = query(
+    dateCollection,
+    and(
+      where("startDate", ">=", Timestamp.fromDate(startDate)),
+      where("startDate", "<", Timestamp.fromDate(endDate))
+    )
+  );
+
   const dateDocs = await getDocs(dateQuery);
+
   if (dateDocs.empty) {
     return null;
   }
 
-  return dateDocs.docs[0].data().slots as IAvailableAppointment[];
+  return dateDocs.docs.map((doc) => doc.data() as IAvailableAppointment);
 };
