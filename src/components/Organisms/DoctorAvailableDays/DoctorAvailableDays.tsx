@@ -31,15 +31,18 @@ const DoctorAvailableDays = ({
       try {
         setLoading(true);
         const daysRange = getDaysFromRangeWithTimezone(startDate, finishDate);
+        console.log("daysRange", daysRange);
         const doctorAvailability = await getAvailableDays(
           doctorId,
           specialityId
         );
         if (doctorAvailability === null)
           throw new Error("No hay disponibilidad");
+
         const doctorAvailableDates = timestampToDateArray(
           doctorAvailability.dateArray as Timestamp[]
         );
+        console.log("doctorAvailableDates", doctorAvailableDates);
         const availableDays = daysRange.filter((day) =>
           doctorAvailableDates.some(
             (date) => date.toDateString() === day.toDateString()
