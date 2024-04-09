@@ -1,17 +1,25 @@
 "use client";
-import { ServerDay } from "@/components/Atoms/Days/ServerDay";
+import {ServerDay} from "@/components/Atoms/Days/ServerDay";
 import LoadingHorizontal from "@/components/Molecules/Loaders/LoadingHorizontal/LoadingHorizontal";
-import { getAvailableDays } from "@/firebase/Availability/geAvailableDays";
-import { useAppointment, useAppointmentDispatch } from "@/utils/context/AppointmentContext/AppointmentContext";
-import { changeTimezone, dateToSpanish, dateValuesToDates, setDateToTimezoneConstantWithTime } from "@/utils/functions/utilsDate";
-import { DateCalendar } from "@mui/x-date-pickers";
-import React, { useEffect, useState } from "react";
-
+import {getAvailableDays} from "@/firebase/Availability/geAvailableDays";
+import {
+    useAppointment,
+    useAppointmentDispatch,
+} from "@/utils/context/AppointmentContext/AppointmentContext";
+import {
+    changeTimezone,
+    dateToSpanish,
+    dateValuesToDates,
+    getNowDay,
+    setDateToTimezoneConstantWithTime,
+} from "@/utils/functions/utilsDate";
+import {DateCalendar, DatePicker} from "@mui/x-date-pickers";
+import dayjs from "dayjs";
+import React, {useEffect, useState} from "react";
 
 const ReserveAppointmentCalendar = () => {
-
     const appointment = useAppointment();
-    const { doctorId, specialityId } = appointment;
+    const {doctorId, specialityId} = appointment;
     const dispatch = useAppointmentDispatch();
 
     const [dateJS, setDateJS] = useState<IDateJS | null>(null);
@@ -29,15 +37,27 @@ const ReserveAppointmentCalendar = () => {
         });
     };
 
-    const dateString = dateJS !== null ? dateToSpanish(setDateToTimezoneConstantWithTime(new Date(dateJS))) : "";
+    const dateString =
+        dateJS !== null
+            ? dateToSpanish(setDateToTimezoneConstantWithTime(new Date(dateJS)))
+            : "";
 
     useEffect(() => {
-        const getHighlightedDays = async (doctorId: string, specialityId: string) => {
+        const getHighlightedDays = async (
+            doctorId: string,
+            specialityId: string
+        ) => {
             try {
                 setLoading(true);
-                const highlightedDays = await getAvailableDays(doctorId, specialityId);
-                if (highlightedDays === null) throw new Error("No hay días disponibles para este doctor");
-                setHighlightedDays(dateValuesToDates(highlightedDays.dateArray));
+                const highlightedDays = await getAvailableDays(
+                    doctorId,
+                    specialityId
+                );
+                if (highlightedDays === null)
+                    throw new Error("No hay días disponibles para este doctor");
+                setHighlightedDays(
+                    dateValuesToDates(highlightedDays.dateArray)
+                );
                 setError("");
                 setLoading(false);
             } catch (error) {
@@ -45,7 +65,7 @@ const ReserveAppointmentCalendar = () => {
                 setError((error as Error).message);
                 setLoading(false);
             }
-        }
+        };
 
         if (doctorId && specialityId) {
             getHighlightedDays(doctorId, specialityId);
@@ -62,6 +82,7 @@ const ReserveAppointmentCalendar = () => {
                 Calendario Disponible
             </div>
             <DateCalendar
+                minDate={dayjs(getNowDay()) as unknown as IDateJS}
                 sx={{
                     width: "100%",
                 }}
@@ -72,13 +93,20 @@ const ReserveAppointmentCalendar = () => {
                 }}
                 slotProps={{
                     day: {
-                        highlightedDays
+                        highlightedDays,
                     } as any,
                 }}
             />
-            {error === "" && !loading && dateJS
-                && <p className="text-brand-600 font-semibold -mt-8 text-center" >{dateString}</p>}
-            {error && <p className="text-brand-600 font-semibold -mt-4 text-center" >{error}</p>}
+            {error === "" && !loading && dateJS && (
+                <p className="text-brand-600 font-semibold -mt-8 text-center">
+                    {dateString}
+                </p>
+            )}
+            {error && (
+                <p className="text-brand-600 font-semibold -mt-4 text-center">
+                    {error}
+                </p>
+            )}
             {loading && <LoadingHorizontal />}
         </div>
     );
