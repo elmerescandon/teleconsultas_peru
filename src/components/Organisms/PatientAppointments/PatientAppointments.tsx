@@ -1,9 +1,9 @@
 "use client";
 import PatientDate from "@/components/Molecules/PatientDate/PatientDate";
-import { useAppSelector } from "@/redux/hooks";
+import {useAppSelector} from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import Pagination from "../Pagination/Pagination";
 import getUserAppointments from "@/firebase/Appointments/getUserAppointments";
 
@@ -12,7 +12,7 @@ const PatientAppointments = () => {
     const [patientAppointments, setPatientAppointments] = useState<
         IAppointment[]
     >([]);
-    const { userInfo } = state;
+    const {userInfo} = state;
 
     useEffect(() => {
         const getAppointments = async () => {
@@ -42,7 +42,12 @@ const PatientAppointments = () => {
                     orientation="col"
                     itemsPerPage={4}
                     items={patientAppointments.map((appointment, index) => {
-                        return <PatientDate key={index} appointment={appointment} />;
+                        return (
+                            <PatientDate
+                                key={index}
+                                appointment={appointment}
+                            />
+                        );
                     })}
                 />
             </div>
