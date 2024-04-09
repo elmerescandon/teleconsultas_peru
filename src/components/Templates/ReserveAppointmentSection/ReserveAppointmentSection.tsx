@@ -10,8 +10,8 @@ import IUserState from "@/redux/state-interfaces/User/IUserState";
 import SalufyService from "@/services/Salufy/Salufy.services";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
 import {
-  useAppointment,
-  useAppointmentDispatch,
+    useAppointment,
+    useAppointmentDispatch,
 } from "@/utils/context/AppointmentContext/AppointmentContext";
 import {validateReservation} from "@/utils/functions/utils";
 import useReservation from "@/utils/hooks/useReservation";
@@ -20,66 +20,72 @@ import {useRouter} from "next/navigation";
 import React, {useState} from "react";
 
 const ReserveAppointmentSection = () => {
-  const {reschedule, pageState, setLoading, setSuccess, setError} =
-    useReservation();
+    const {reschedule, pageState, setLoading, setSuccess, setError} =
+        useReservation();
 
-  const Salufy = SalufyService.getInstance();
+    const Salufy = SalufyService.getInstance();
 
-  const userState: IUserState = useAppSelector((state) => state.user);
-  const {logged, userInfo} = userState;
-  const router = useRouter();
+    const userState: IUserState = useAppSelector((state) => state.user);
+    const {logged, userInfo} = userState;
+    const router = useRouter();
 
-  const [popUps, setPopUps] = useState<number>(0);
+    const [popUps, setPopUps] = useState<number>(0);
 
-  const appointment = useAppointment();
-  const dispatch = useAppointmentDispatch();
+    const appointment = useAppointment();
+    const dispatch = useAppointmentDispatch();
 
-  const onClickReserve = async (appointment: IAppointment) => {
-    try {
-      setLoading();
-      if (!validateReservation(appointment)) setPopUps(2);
-      if (!logged) setPopUps(1);
-      if (!logged || !validateReservation(appointment)) return;
+    const onClickReserve = async (appointment: IAppointment) => {
+        try {
+            setLoading();
+            if (!validateReservation(appointment)) setPopUps(2);
+            if (!logged) setPopUps(1);
+            if (!logged || !validateReservation(appointment)) return;
 
-      if (reschedule) {
-        await Salufy.updateAppointmentDoctorCanceled(
-          appointment._id,
-          appointment
-        );
-      } else if (appointment._id === "" && !reschedule) {
-        const appId = await Salufy.createAppointment(appointment, userInfo._id);
-        dispatch({
-          type: "SET_APPOINTMENT",
-          payload: {...appointment, _id: appId},
-        });
-        router.push(Routes.RESERVE_PAYMENT);
-      }
-      setSuccess();
-    } catch (error) {
-      setError(error as Error);
-    }
-  };
+            if (reschedule) {
+                await Salufy.updateAppointmentDoctorCanceled(
+                    appointment._id,
+                    appointment
+                );
+                dispatch({
+                    type: "RESET",
+                });
+                router.push(Routes.PATIENT_HOME);
+            } else if (appointment._id === "" && !reschedule) {
+                const appId = await Salufy.createAppointment(
+                    appointment,
+                    userInfo._id
+                );
+                dispatch({
+                    type: "SET_APPOINTMENT",
+                    payload: {...appointment, _id: appId},
+                });
+                router.push(Routes.RESERVE_PAYMENT);
+            }
+        } catch (error) {
+            setError(error as Error);
+        }
+    };
 
-  return (
-    <div
-      className="px-48  py-10
+    return (
+        <div
+            className="px-48  py-10
                         max-xl:px-20 max-xl:py-24 
                         max-md:px-5"
-    >
-      <div className="flex max-xl:flex-col max-xl:items-center max-xl:justify-around ">
-        <ReserveAppointmentForms />
-        <div className="w-full max-xl:w-full max-xl:flex max-md:flex-col max-xl:justify-around">
-          <ReserveAppointmentCalendar />
-          <ReserveAppointmentHours />
+        >
+            <div className="flex max-xl:flex-col max-xl:items-center max-xl:justify-around ">
+                <ReserveAppointmentForms reschedule={reschedule} />
+                <div className="w-full max-xl:w-full max-xl:flex max-md:flex-col max-xl:justify-around">
+                    <ReserveAppointmentCalendar />
+                    <ReserveAppointmentHours />
+                </div>
+            </div>
+            <ButtonReserve
+                loading={pageState === "loading"}
+                onClickFn={() => onClickReserve(appointment)}
+            />
+            <PopUpReservationOptions popUps={popUps} setPopUps={setPopUps} />
         </div>
-      </div>
-      <ButtonReserve
-        loading={pageState === "loading"}
-        onClickFn={() => onClickReserve(appointment)}
-      />
-      <PopUpReservationOptions popUps={popUps} setPopUps={setPopUps} />
-    </div>
-  );
+    );
 };
 
 export default ReserveAppointmentSection;
