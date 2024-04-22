@@ -1,15 +1,15 @@
-import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
-import { downloadData } from "@/firebase/generals/downloadData";
+import {getSpecialityName} from "@/firebase/Speciality/getSpecialityName";
+import {downloadData} from "@/firebase/generals/downloadData";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 type DoctorCardProps = {
     doctor: IUser;
 };
 
-const DoctorCard = ({ doctor }: DoctorCardProps) => {
-    const { _id, cmpId } = doctor;
+const DoctorCard = ({doctor}: DoctorCardProps) => {
+    const {_id, cmpId} = doctor;
     const [profilePic, setProfilePic] = useState<string>("");
     const [speciality, setSpeciality] = useState<string>("");
 
@@ -25,7 +25,6 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
             } catch (error) {
                 setProfilePic("");
             }
-
         };
 
         const getSpeciality = async (specialityId: string) => {
@@ -44,7 +43,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
                 <img
                     src={profilePic}
                     alt="profile-main"
-                    className="rounded-full h-32"
+                    className="rounded-full h-32 w-32 object-cover"
                 />
             ) : (
                 <Image
@@ -52,13 +51,13 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
                     height={200}
                     width={128}
                     alt="profile-main"
-                    className="rounded-full"
+                    className="rounded-full h-32 w-32"
                 />
             )}
             <div>
                 <h1 className="text-brand-900 text-xl font-semibold">{`${doctor.name} ${doctor.lastName} `}</h1>
                 <p>{`Especialidad: ${speciality}`}</p>
-                <p>{`Colegiatura: ${cmpId === undefined ? '-' : cmpId}`}</p>
+                <p>{`Colegiatura: ${cmpId === undefined ? "-" : cmpId}`}</p>
             </div>
         </div>
     );
