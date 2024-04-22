@@ -86,7 +86,7 @@ const ReserveAppointmentCalendar = () => {
                 sx={{
                     width: "100%",
                     position: "relative",
-                    zIndex: -10,
+                    zIndex: 0,
                 }}
                 value={dateJS}
                 onChange={onChangeDate}
