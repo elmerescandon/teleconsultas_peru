@@ -1,15 +1,15 @@
 import DoctorCard from "@/components/Molecules/DoctorCard/DoctorCard";
-import { getDoctorsFromSpeciality } from "@/firebase/Doctor/getDoctorsFromSpeciality";
+import {getDoctorsFromSpeciality} from "@/firebase/Doctor/getDoctorsFromSpeciality";
 import IUser from "@/utils/Interfaces/dataModel/IUser";
-import { XMarkIcon } from "@heroicons/react/24/solid";
-import React, { useEffect, useState } from "react";
+import {XMarkIcon} from "@heroicons/react/24/solid";
+import React, {useEffect, useState} from "react";
 
 type PopUpDoctorList = {
     onClose: () => void;
     specialityId: string;
 };
 
-const PopUpDoctorList = ({ onClose, specialityId }: PopUpDoctorList) => {
+const PopUpDoctorList = ({onClose, specialityId}: PopUpDoctorList) => {
     const [doctors, setDoctors] = useState<IUser[]>([]);
     useEffect(() => {
         const getDoctorsFromDb = async (specialityId: string) => {
@@ -27,7 +27,7 @@ const PopUpDoctorList = ({ onClose, specialityId }: PopUpDoctorList) => {
     }, [specialityId]);
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
             <div
                 className="bg-white p-10 rounded-3xl flex flex-col gap-5 h-3/4 w-1/2 overflow-auto
                                 max-2xl:px-10
