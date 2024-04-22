@@ -2,15 +2,15 @@
 import AppointmentCard from "@/components/Molecules/AppointmentCard/AppointmentCard";
 import Pagination from "@/components/Organisms/Pagination/Pagination";
 import getAllPatientAppointments from "@/firebase/Patient/getAllPatientAppointments";
-import { getPatientName } from "@/firebase/Patient/getPatientName";
+import {getPatientName} from "@/firebase/Patient/getPatientName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 
 type DoctorPatientSectionProps = {
     patientId: string;
 };
 
-const DoctorPatientSection = ({ patientId }: DoctorPatientSectionProps) => {
+const DoctorPatientSection = ({patientId}: DoctorPatientSectionProps) => {
     const [appointment, setAppointment] = useState<IAppointment[]>([]);
     const [name, setName] = useState<string>("");
 
@@ -27,7 +27,7 @@ const DoctorPatientSection = ({ patientId }: DoctorPatientSectionProps) => {
         if (patientId) {
             getPatientInfo(patientId);
         }
-    }, []);
+    }, [patientId]);
 
     const patientCards = appointment.map((appointment) => (
         <AppointmentCard key={appointment._id} appointment={appointment} />
