@@ -85,6 +85,8 @@ const ReserveAppointmentCalendar = () => {
                 minDate={dayjs(getNowDay()) as unknown as IDateJS}
                 sx={{
                     width: "100%",
+                    position: "relative",
+                    zIndex: -10,
                 }}
                 value={dateJS}
                 onChange={onChangeDate}
