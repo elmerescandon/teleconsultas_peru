@@ -16,9 +16,10 @@ import Loading from "../Loaders/Loading/Loading";
 
 type PatientCardProps = {
     appointment: IAppointment;
+    updateParent?: () => void;
 };
 
-const PatientCard = ({appointment}: PatientCardProps) => {
+const PatientCard = ({appointment, updateParent}: PatientCardProps) => {
     const {
         specialityId,
         patientId,
@@ -27,6 +28,7 @@ const PatientCard = ({appointment}: PatientCardProps) => {
         _id,
         doctorId,
         joinURL,
+        status,
     } = appointment;
 
     const [state, setState] = useState<{
@@ -46,7 +48,21 @@ const PatientCard = ({appointment}: PatientCardProps) => {
     const cancelAppointment = async () => {
         try {
             setState({...state, loading: true}); // Set loading state to true
-            await updateAppointmentField(_id, "status", "doctor-canceled");
+            if (status === "scheduled") {
+                await updateAppointmentField(
+                    _id,
+                    "status",
+                    "doctor-canceled/scheduled"
+                );
+            } else if (status === "pending") {
+                await updateAppointmentField(
+                    _id,
+                    "status",
+                    "doctor-canceled/pending"
+                );
+            }
+            updateParent && updateParent();
+            // await updateAppointmentField(_id, "status", "doctor-canceled");
             setState({...state, confirm: true, loading: false}); // Set confirm state to true
         } catch {
             setState({...state, error: "Failed to cancel appointment"}); // Set error state if updateAppointmentField fails
