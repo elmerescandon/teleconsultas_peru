@@ -111,11 +111,6 @@ const PatientCard = ({appointment, updateParent}: PatientCardProps) => {
                     </button>
                     {loading && <Loading size={5} />}
                 </div>
-                {confirm && !loading && (
-                    <p className="font-semibold italic text-sm text-green-500">
-                        Se eliminó la cita, actualice la página.
-                    </p>
-                )}
                 {error && !loading && (
                     <p className="font-semibold italic text-sm text-red-500">
                         {error}
