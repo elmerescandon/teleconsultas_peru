@@ -12,9 +12,10 @@ const DoctorAppointments = () => {
   const user: IUserState = useAppSelector((state) => state.user);
   const {_id} = user.userInfo;
   const [appointments, setAppointments] = useState<IAppointment[]>([]);
+  const [updated, setUpdated] = useState<boolean>(false);
 
   const appointmentsElements = appointments.map((appointment) => {
-    return <PatientCard key={appointment._id} appointment={appointment} />;
+    return <PatientCard key={appointment._id} appointment={appointment} updateParent={() => setUpdated(!updated)} />;
   });
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const DoctorAppointments = () => {
       }
     };
     getAppointments(_id, ["scheduled", "pending"]);
-  }, [_id]);
+  }, [_id, updated]);
 
   return (
     <div className="w-full">
