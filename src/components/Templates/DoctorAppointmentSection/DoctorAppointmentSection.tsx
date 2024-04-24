@@ -23,6 +23,8 @@ const DoctorAppointmentSection = () => {
     });
 
     const [appointments, setAppointments] = useState<IAppointment[]>([]);
+    const [updated, setUpdated] = useState<boolean>(false);
+
 
     useEffect(() => {
         const getAppointments = async (
@@ -56,7 +58,7 @@ const DoctorAppointmentSection = () => {
             filter.date,
             filter.speciality
         );
-    }, [filter, _id, role]);
+    }, [filter, _id, role, updated]);
 
     return (
         <div
@@ -79,6 +81,7 @@ const DoctorAppointmentSection = () => {
                                 <PatientCard
                                     appointment={appointment}
                                     key={index}
+                                    updateParent={() => setUpdated(!updated)}
                                 />
                             );
                         })}
