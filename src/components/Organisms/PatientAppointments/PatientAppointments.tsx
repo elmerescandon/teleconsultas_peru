@@ -21,7 +21,7 @@ const PatientAppointments = () => {
                 "pending",
                 "scheduled",
                 "doctor-canceled/scheduled",
-                "doctor-cancelede/pending",
+                "doctor-canceled/pending",
             ]);
             setPatientAppointments(appointments);
         };
