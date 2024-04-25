@@ -50,7 +50,7 @@ const ReserveAppointmentSection = () => {
                     type: "RESET",
                 });
                 router.push(Routes.PATIENT_HOME);
-            } else if (appointment._id === "" && !reschedule) {
+            } else if (appointment._id === "" && !reschedule.state) {
                 const appId = await Salufy.createAppointment(
                     appointment,
                     userInfo._id
@@ -60,7 +60,7 @@ const ReserveAppointmentSection = () => {
                     payload: {...appointment, _id: appId},
                 });
                 router.push(Routes.RESERVE_PAYMENT);
-            } else{
+            } else {
                 router.push(Routes.PATIENT_HOME);
                 throw new Error("Error al reservar la cita");
             }
