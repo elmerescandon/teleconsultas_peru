@@ -72,7 +72,8 @@ class SalufyService {
 
     updateAppointmentDoctorCanceled = async (
         id: string,
-        appointment: IAppointment
+        appointment: IAppointment,
+        type: "doctor-canceled/scheduled" | "doctor-canceled/pending"
     ) => {
         try {
             console.log(appointment);
@@ -85,7 +86,10 @@ class SalufyService {
                 body: JSON.stringify({
                     id: id,
                     appointmentFields: {
-                        status: "pending",
+                        status:
+                            type === "doctor-canceled/scheduled"
+                                ? "scheduled"
+                                : "pending",
                         doctorId: appointment.doctorId,
                         date: appointment.date,
                         startDate: appointment.startDate,
