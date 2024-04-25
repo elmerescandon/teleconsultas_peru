@@ -64,6 +64,7 @@ const PopUpAppointment = ({onClose, appointment}: PopUpAppointmentProps) => {
             setValidation(
                 "Se ha enviado la solicitud de reembolso, revise su correo electrónico."
             );
+            // TODO: Consider cases according to refund policy
             setLoading(false);
         } catch (error) {
             setValidation("Ha ocurrido un error, inténtelo nuevamente.");
