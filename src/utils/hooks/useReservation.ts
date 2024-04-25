@@ -63,6 +63,9 @@ const useReservation = () => {
         if (appId !== null && appId !== "") {
             getAppointmentData(appId);
         } else {
+            dispatch({
+                type: "RESET",
+            });
             setSuccess();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
