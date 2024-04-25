@@ -11,7 +11,10 @@ const useReservation = () => {
     const params = useSearchParams();
     const appId = params.get("appId");
     const dispatch = useAppointmentDispatch();
-    const [reschedule, setReschedule] = useState<boolean>(false);
+    const [reschedule, setReschedule] = useState<{
+        state: boolean;
+        type: "" | "doctor-canceled/pending" | "doctor-canceled/scheduled";
+    }>({state: false, type: ""});
 
     const resetAppointment = (appointment: IAppointment) => {
         dispatch({
@@ -41,13 +44,15 @@ const useReservation = () => {
                 setLoading();
                 const appointment =
                     await SalufyService.getInstance().getAppointment(id);
-                console.log("appointment hook", appointment);
-
-                if (appointment.status !== "doctor-canceled")
+                if (
+                    appointment.status !== "doctor-canceled/pending" &&
+                    appointment.status !== "doctor-canceled/scheduled"
+                )
                     throw new Error("No es posible editar esta cita.");
-
-                console.log("appointment canceled");
-                setReschedule(true);
+                setReschedule({
+                    state: true,
+                    type: appointment.status,
+                });
                 resetAppointment(appointment);
                 setSuccess();
             } catch (error) {
@@ -56,7 +61,6 @@ const useReservation = () => {
         };
 
         if (appId !== null && appId !== "") {
-            console.log("appId", appId);
             getAppointmentData(appId);
         } else {
             setSuccess();
