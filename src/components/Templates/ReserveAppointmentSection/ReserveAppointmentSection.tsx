@@ -4,7 +4,6 @@ import PopUpReservationOptions from "@/components/Atoms/PopUp/PopUpReservationOp
 import ReserveAppointmentCalendar from "@/components/Organisms/ReserveAppointmentCalendar/ReserveAppointmentCalendar";
 import ReserveAppointmentForms from "@/components/Organisms/ReserveAppointmentForms/ReserveAppointmentForms";
 import ReserveAppointmentHours from "@/components/Organisms/ReserveAppointmentHours/ReserveAppointmentHours";
-import {updateAppointmentCanceled} from "@/firebase/Appointments/updateAppointmentCanceled";
 import {useAppSelector} from "@/redux/hooks";
 import IUserState from "@/redux/state-interfaces/User/IUserState";
 import SalufyService from "@/services/Salufy/Salufy.services";
@@ -41,10 +40,11 @@ const ReserveAppointmentSection = () => {
             if (!logged) setPopUps(1);
             if (!logged || !validateReservation(appointment)) return;
 
-            if (reschedule) {
+            if (reschedule.state && reschedule.type !== "") {
                 await Salufy.updateAppointmentDoctorCanceled(
                     appointment._id,
-                    appointment
+                    appointment,
+                    reschedule.type
                 );
                 dispatch({
                     type: "RESET",
@@ -60,9 +60,13 @@ const ReserveAppointmentSection = () => {
                     payload: {...appointment, _id: appId},
                 });
                 router.push(Routes.RESERVE_PAYMENT);
+            } else{
+                router.push(Routes.PATIENT_HOME);
+                throw new Error("Error al reservar la cita");
             }
         } catch (error) {
             setError(error as Error);
+            setLoading();
         }
     };
 
@@ -73,7 +77,7 @@ const ReserveAppointmentSection = () => {
                         max-md:px-5"
         >
             <div className="flex max-xl:flex-col max-xl:items-center max-xl:justify-around ">
-                <ReserveAppointmentForms reschedule={reschedule} />
+                <ReserveAppointmentForms reschedule={reschedule.state} />
                 <div className="w-full max-xl:w-full max-xl:flex max-md:flex-col max-xl:justify-around">
                     <ReserveAppointmentCalendar />
                     <ReserveAppointmentHours />
