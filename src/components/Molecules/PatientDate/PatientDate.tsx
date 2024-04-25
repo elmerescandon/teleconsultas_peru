@@ -1,24 +1,25 @@
 import PopUpAppointment from "@/components/Atoms/PopUp/PopUpAppointment/PopUpAppointment";
-import { getDoctorName } from "@/firebase/Doctor/getDoctorName";
-import { getSpecialityName } from "@/firebase/Speciality/getSpecialityName";
+import {getDoctorName} from "@/firebase/Doctor/getDoctorName";
+import {getSpecialityName} from "@/firebase/Speciality/getSpecialityName";
 import IAppointment from "@/utils/Interfaces/reducers/IAppointment";
-import { dateToHours, stringToDate } from "@/utils/functions/utils";
-import { getHourRange } from "@/utils/functions/utilsDate";
-import { BookOpenIcon } from "@heroicons/react/24/outline";
-import { Timestamp } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import {stringToDate} from "@/utils/functions/utils";
+import {getHourRange} from "@/utils/functions/utilsDate";
+import {BookOpenIcon} from "@heroicons/react/24/outline";
+import {Timestamp} from "firebase/firestore";
+import React, {useEffect, useState} from "react";
 
 type PatientDateProps = {
     appointment: IAppointment;
 };
 
-const PatientDate = ({ appointment }: PatientDateProps) => {
+const PatientDate = ({appointment}: PatientDateProps) => {
     const [popUpOpen, setPopUpOpen] = useState(false);
-    const { doctorId, specialityId, status, date, startDate, endDate } = appointment;
+    const {doctorId, specialityId, status, date, startDate, endDate} =
+        appointment;
     const [summary, setSummary] = useState<{
         doctorName: string;
         specialityName: string;
-    }>({ doctorName: "", specialityName: "" });
+    }>({doctorName: "", specialityName: ""});
 
     useEffect(() => {
         const getInfoFromDb = async (
@@ -35,17 +36,26 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
                     doctorName: `Dr. ${doctor.name} ${doctor.lastName}`,
                 });
             } else {
-                setSummary({ doctorName: "", specialityName: "" });
+                setSummary({doctorName: "", specialityName: ""});
             }
         };
 
         getInfoFromDb(doctorId, specialityId);
-    }, []);
+    }, [doctorId, specialityId]);
 
     return (
         <div className="w-full">
             <button
-                className={`flex items-center w-full px-10 py-2 justify-between ${status === "doctor-canceled" ? "bg-rose-400" : "bg-brand-600"} text-basic-white rounded-2xl
+                className={`flex items-center w-full px-10 py-2 justify-between 
+                            ${
+                                [
+                                    "doctor-canceled/scheduled",
+                                    "doctor-canceled/pending",
+                                ].includes(status)
+                                    ? "bg-rose-400"
+                                    : "bg-brand-600"
+                            } 
+                            text-basic-white rounded-2xl
                             max-lg:flex-col max-lg:items-start max-lg:gap-2
                             max-md:px-5`}
                 onClick={() => setPopUpOpen(true)}
@@ -65,11 +75,11 @@ const PatientDate = ({ appointment }: PatientDateProps) => {
                         className="italic 
                                   max-md:text-left"
                     >
+                        <p>{stringToDate(date as unknown as Timestamp)}</p>
                         <p>
-                            {stringToDate(date as unknown as Timestamp)}
-                        </p>
-                        <p>
-                            {startDate && endDate && getHourRange(startDate, endDate)}
+                            {startDate &&
+                                endDate &&
+                                getHourRange(startDate, endDate)}
                         </p>
                     </div>
                 </div>
