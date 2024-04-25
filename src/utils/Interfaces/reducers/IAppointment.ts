@@ -14,7 +14,9 @@ interface IAppointment {
     | "canceled"
     | "pending"
     | "doctor-canceled"
-    | "patient-canceled";
+    | "patient-canceled"
+    | "doctor-canceled/scheduled"
+    | "doctor-canceled/pending";
   reason: string;
   details: string;
   specialityId: string;
