@@ -20,7 +20,8 @@ const PatientAppointments = () => {
             const appointments = await getUserAppointments(userInfo._id, [
                 "pending",
                 "scheduled",
-                "doctor-canceled",
+                "doctor-canceled/scheduled",
+                "doctor-cancelede/pending",
             ]);
             setPatientAppointments(appointments);
         };
